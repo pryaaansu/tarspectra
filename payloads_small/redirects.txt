@@ -1,0 +1,2 @@
+https://attacker.example/INJECT-@@ID@@
+http://example.com/INJECT-@@ID@@

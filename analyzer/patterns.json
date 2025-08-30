@@ -1,0 +1,56 @@
+{
+  "xss": [
+    "<script>",
+    "alert(",
+    "onerror=",
+    "onload=",
+    "javascript:",
+    "document.cookie",
+    "innerhtml",
+    "document.write",
+    "eval("
+  ],
+  "ssrf": [
+    "127.0.0.1",
+    "localhost",
+    "file://",
+    "169.254.169.254",
+    "metadata.google.internal",
+    "http://169.254.169.254",
+    "http://127.0.0.1",
+    "http://localhost"
+  ],
+  "lfi": [
+    "../",
+    "..\\\\",
+    "/etc/passwd",
+    "root:x",
+    "boot.ini",
+    "php://",
+    "file_get_contents("
+  ],
+  "sqli": [
+    "sql syntax",
+    "sqlstate",
+    "syntax error",
+    "' or '1'='1",
+    "union select",
+    "select * from",
+    "information_schema"
+  ],
+  "idor": [
+    "user_id",
+    "userid",
+    "account_id",
+    "profile_id",
+    "order_id",
+    "customer_id"
+  ],
+  "open_redirect": [
+    "redirect=",
+    "next=",
+    "url=",
+    "return_to=",
+    "goto="
+  ]
+}
