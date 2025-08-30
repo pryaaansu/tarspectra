@@ -1,0 +1,10 @@
+GET http://testphp.vulnweb.com/listproducts.php?cat=%253CINJECT-MARKER-PRYANSU-573614%253E
+
+Headers:
+User-Agent: ExploitFinder-Active/0.3 (+https://example.local)
+Accept-Encoding: gzip, deflate, br, zstd
+Accept: */*
+Connection: keep-alive
+
+Body/data:
+null

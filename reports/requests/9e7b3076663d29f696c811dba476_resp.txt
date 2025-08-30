@@ -1,0 +1,60 @@
+Status: 200
+
+Headers:
+Server: nginx/1.19.0
+Date: Sat, 30 Aug 2025 12:56:15 GMT
+Content-Type: text/html; charset=UTF-8
+Transfer-Encoding: chunked
+Connection: keep-alive
+X-Powered-By: PHP/5.6.40-38+ubuntu20.04.1+deb.sury.org+1
+Content-Encoding: gzip
+
+Body (trimmed):
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html><!-- InstanceBegin template="/Templates/main_dynamic_template.dwt.php" codeOutsideHTMLIsLocked="false" -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-2">
+
+<!-- InstanceBeginEditable name="document_title_rgn" -->
+<title>pictures</title>
+<!-- InstanceEndEditable -->
+<link rel="stylesheet" href="style.css" type="text/css">
+<!-- InstanceBeginEditable name="headers_rgn" -->
+<!-- InstanceEndEditable -->
+<script language="JavaScript" type="text/JavaScript">
+<!--
+function MM_reloadPage(init) {  //reloads the window if Nav4 resized
+  if (init==true) with (navigator) {if ((appName=="Netscape")&&(parseInt(appVersion)==4)) {
+    document.MM_pgW=innerWidth; document.MM_pgH=innerHeight; onresize=MM_reloadPage; }}
+  else if (innerWidth!=document.MM_pgW || innerHeight!=document.MM_pgH) location.reload();
+}
+MM_reloadPage(true);
+//-->
+</script>
+
+</head>
+<body> 
+<div id="mainLayer" style="position:absolute; width:700px; z-index:1">
+<div id="masthead"> 
+  <h1 id="siteName"><a href="https://www.acunetix.com/"><img src="images/logo.gif" width="306" height="38" border="0" alt="Acunetix website security"></a></h1>   
+  <h6 id="siteInfo">TEST and Demonstration site for <a href="https://www.acunetix.com/vulnerability-scanner/">Acunetix Web Vulnerability Scanner</a></h6>
+  <div id="globalNav"> 
+      	<table border="0" cellpadding="0" cellspacing="0" width="100%"><tr>
+	<td align="left">
+		<a href="index.php">home</a> | <a href="categories.php">categories</a> | <a href="artists.php">artists
+		</a> | <a href="disclaimer.php">disclaimer</a> | <a href="cart.php">your cart</a> | 
+		<a href="guestbook.php">guestbook</a> | 
+		<a href="AJAX/index.php">AJAX Demo</a>
+	</td>
+	<td align="right">
+		</td>
+	</tr></table>
+  </div> 
+</div> 
+<!-- end masthead --> 
+
+<!-- begin content -->
+<!-- InstanceBeginEditable name="content_rgn" -->
+<div id="content">
+	Error: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '%3Cscript%3Ealert%281%29%3C%2Fscript%3E' at line 1

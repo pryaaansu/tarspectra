@@ -1,0 +1,10 @@
+GET http://testphp.vulnweb.com/hpp/?pp=http%3A%2F%2Fexample.com%2FINJECT-553054
+
+Headers:
+User-Agent: ExploitFinder-Active/0.3 (+https://example.local)
+Accept-Encoding: gzip, deflate, br, zstd
+Accept: */*
+Connection: keep-alive
+
+Body/data:
+null

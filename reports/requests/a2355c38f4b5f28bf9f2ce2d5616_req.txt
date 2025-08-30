@@ -1,0 +1,10 @@
+GET http://testphp.vulnweb.com/artists.php?artist=INJECT-MARKER-PRYANSU-600857
+
+Headers:
+User-Agent: ExploitFinder-Active/0.3 (+https://example.local)
+Accept-Encoding: gzip, deflate, br, zstd
+Accept: */*
+Connection: keep-alive
+
+Body/data:
+null

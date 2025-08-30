@@ -1,0 +1,6 @@
+GET http://testphp.vulnweb.com/hpp/?pp=12
+
+Headers:
+
+Body/data:
+null

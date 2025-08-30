@@ -1,0 +1,6 @@
+GET http://testphp.vulnweb.com/search.php?test=query
+
+Headers:
+
+Body/data:
+null

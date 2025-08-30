@@ -1,0 +1,10 @@
+GET http://testphp.vulnweb.com/listproducts.php?cat=http%253A%252F%252Fexample.com%252FINJECT-568309
+
+Headers:
+User-Agent: ExploitFinder-Active/0.3 (+https://example.local)
+Accept-Encoding: gzip, deflate, br, zstd
+Accept: */*
+Connection: keep-alive
+
+Body/data:
+null

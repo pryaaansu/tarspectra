@@ -1,0 +1,14 @@
+POST http://testphp.vulnweb.com/guestbook.php
+
+Headers:
+User-Agent: ExploitFinder-Active/0.3 (+https://example.local)
+Accept-Encoding: gzip, deflate, br, zstd
+Accept: */*
+Connection: keep-alive
+Content-Length: 33
+Content-Type: application/x-www-form-urlencoded
+
+Body/data:
+{
+  "name": "INJECT-MARKER-PRYANSU-516406"
+}

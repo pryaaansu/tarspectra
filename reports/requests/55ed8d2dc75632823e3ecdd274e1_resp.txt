@@ -1,0 +1,18 @@
+Status: 200
+
+Headers:
+Server: nginx/1.19.0
+Date: Sat, 30 Aug 2025 12:55:53 GMT
+Content-Type: text/html; charset=UTF-8
+Transfer-Encoding: chunked
+Connection: keep-alive
+X-Powered-By: PHP/5.6.40-38+ubuntu20.04.1+deb.sury.org+1
+Content-Encoding: gzip
+
+Body (trimmed):
+<title>HTTP Parameter Pollution Example</title>
+
+<a href="?pp=12">check</a><br/>
+<a href="params.php?p=valid&pp=12">link1</a><br/><a href="params.php?p=valid&pp=12">link2</a><br/><form action="params.php?p=valid&pp=12"><input type=submit name=aaaa/></form><br/>
+<hr>
+<a href='http://blog.mindedsecurity.com/2009/05/client-side-http-parameter-pollution.html'>Original article</a>
