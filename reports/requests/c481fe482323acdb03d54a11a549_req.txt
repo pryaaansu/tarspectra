@@ -1,0 +1,6 @@
+GET http://testphp.vulnweb.com/listproducts.php?cat=2
+
+Headers:
+
+Body/data:
+null

@@ -5,23 +5,112 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Tarspectra Web Crawler</title>
     <style>
-      body { font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif; margin: 2rem; }
-      form { display: grid; gap: 0.75rem; max-width: 640px; }
-      label { font-weight: 600; }
-      input[type="text"], input[type="number"] { padding: 0.5rem; font-size: 1rem; width: 100%; }
-      button { padding: 0.6rem 1rem; font-size: 1rem; cursor: pointer; }
-      .error { color: #b00020; margin-bottom: 1rem; }
-      .hint { color: #666; }
-      fieldset { border: 1px solid #ddd; border-radius: 8px; padding: 1rem; }
-      legend { font-weight: 700; padding: 0 0.25rem; }
+      * { box-sizing: border-box; }
+      body { 
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif; 
+        margin: 0; 
+        padding: 2rem; 
+        background: #fafafa; 
+        color: #333; 
+        line-height: 1.6;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .container { 
+        max-width: 640px; 
+        width: 100%; 
+        background: white; 
+        border-radius: 12px; 
+        box-shadow: 0 2px 12px rgba(0,0,0,0.08); 
+        padding: 2rem;
+      }
+      h1 { 
+        margin: 0 0 1.5rem 0; 
+        font-size: 1.75rem; 
+        font-weight: 600; 
+        color: #222; 
+        text-align: center;
+      }
+      form { 
+        display: grid; 
+        gap: 1rem; 
+      }
+      label { 
+        font-weight: 600; 
+        color: #374151; 
+        font-size: 0.9rem;
+      }
+      input[type="text"], input[type="number"] { 
+        padding: 0.75rem; 
+        font-size: 1rem; 
+        width: 100%; 
+        border: 1px solid #d1d5db; 
+        border-radius: 8px; 
+        background: #fff;
+        transition: border-color 0.2s ease;
+      }
+      input[type="text"]:focus, input[type="number"]:focus { 
+        outline: none; 
+        border-color: #2563eb; 
+        box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+      }
+      button { 
+        padding: 0.75rem 1.5rem; 
+        font-size: 1rem; 
+        cursor: pointer; 
+        background: #2563eb; 
+        color: white; 
+        border: none; 
+        border-radius: 8px; 
+        font-weight: 500;
+        transition: background 0.2s ease;
+      }
+      button:hover { 
+        background: #1d4ed8; 
+      }
+      .error { 
+        color: #dc2626; 
+        margin-bottom: 1rem; 
+        padding: 0.75rem; 
+        background: #fef2f2; 
+        border: 1px solid #fecaca; 
+        border-radius: 8px; 
+        font-size: 0.9rem;
+      }
+      .hint { 
+        color: #6b7280; 
+        font-size: 0.85rem; 
+        margin-top: 0.25rem;
+      }
+      fieldset { 
+        border: 1px solid #e5e5e5; 
+        border-radius: 8px; 
+        padding: 1.5rem; 
+        margin-top: 0.5rem;
+      }
+      legend { 
+        font-weight: 600; 
+        padding: 0 0.5rem; 
+        color: #374151;
+      }
+      input[type="checkbox"] { 
+        margin-right: 0.5rem; 
+      }
+      @media (max-width: 768px) {
+        body { padding: 1rem; }
+        .container { padding: 1.5rem; }
+      }
     </style>
   </head>
   <body>
-    <h1>Start a Crawl</h1>
-    {% if error %}
-      <div class="error">{{ error }}</div>
-    {% endif %}
-    <form method="post" action="/crawl">
+    <div class="container">
+      <h1>Start a Crawl</h1>
+      {% if error %}
+        <div class="error">{{ error }}</div>
+      {% endif %}
+      <form method="post" action="/crawl">
       <div>
         <label for="url">Start URL</label>
         <input id="url" name="url" type="text" placeholder="https://example.com" required>
@@ -64,10 +153,11 @@
           <input id="max_variants" name="max_variants" type="number" value="2" min="1" max="20">
         </div>
       </fieldset>
-      <div>
-        <button type="submit">Run</button>
-      </div>
-    </form>
+        <div>
+          <button type="submit">Run</button>
+        </div>
+      </form>
+    </div>
   </body>
   </html>
 

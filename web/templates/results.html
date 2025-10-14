@@ -5,98 +5,316 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Crawl Results</title>
     <style>
-      body { font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif; margin: 2rem; }
-      a { text-decoration: none; }
-      .grid { display: grid; grid-template-columns: 1fr; gap: 1rem; }
-      .card { border: 1px solid #ddd; border-radius: 8px; padding: 1rem; }
-      .muted { color: #666; }
-      pre { white-space: pre-wrap; word-break: break-word; max-height: 14rem; overflow: auto; background: #fafafa; padding: 0.75rem; border-radius: 6px; }
-      table { border-collapse: collapse; width: 100%; }
-      th, td { padding: 0.5rem; border-bottom: 1px solid #eee; text-align: left; }
-      .topbar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; }
-      .btn { padding: 0.45rem 0.8rem; border: 1px solid #ccc; border-radius: 6px; background: #fff; cursor: pointer; }
+      * { box-sizing: border-box; }
+      body { 
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif; 
+        margin: 0; 
+        padding: 2rem; 
+        background: #fafafa; 
+        color: #333; 
+        line-height: 1.6;
+      }
+      .container { 
+        max-width: 1200px; 
+        margin: 0 auto; 
+        background: white; 
+        border-radius: 12px; 
+        box-shadow: 0 2px 12px rgba(0,0,0,0.08); 
+        overflow: hidden;
+      }
+      .header { 
+        background: #fff; 
+        border-bottom: 1px solid #e5e5e5; 
+        padding: 1.5rem 2rem;
+      }
+      .topbar { 
+        display: flex; 
+        justify-content: space-between; 
+        align-items: center; 
+        margin-bottom: 0;
+      }
+      h1 { 
+        margin: 0; 
+        font-size: 1.5rem; 
+        font-weight: 600; 
+        color: #222;
+      }
+      .btn { 
+        padding: 0.6rem 1.2rem; 
+        border: 1px solid #d1d5db; 
+        border-radius: 8px; 
+        background: #fff; 
+        cursor: pointer; 
+        text-decoration: none; 
+        color: #374151; 
+        font-weight: 500; 
+        transition: all 0.2s ease;
+      }
+      .btn:hover { 
+        background: #f9fafb; 
+        border-color: #9ca3af; 
+      }
+      .content { 
+        padding: 2rem; 
+      }
+      .card { 
+        border: 1px solid #e5e5e5; 
+        border-radius: 8px; 
+        padding: 1.5rem; 
+        margin-bottom: 1.5rem; 
+        background: #fff;
+      }
+      .card h2 { 
+        margin: 0 0 1rem 0; 
+        font-size: 1.25rem; 
+        font-weight: 600; 
+        color: #222;
+      }
+      .summary { 
+        display: flex; 
+        gap: 1rem; 
+        flex-wrap: wrap; 
+        margin-bottom: 1.5rem; 
+        padding: 1rem; 
+        background: #f8f9fa; 
+        border-radius: 8px; 
+        border-left: 4px solid #6b7280;
+      }
+      .summary p { 
+        margin: 0; 
+        font-size: 0.9rem; 
+      }
+      .muted { 
+        color: #6b7280; 
+        font-size: 0.9rem;
+      }
+      table { 
+        width: 100%; 
+        border-collapse: collapse; 
+        margin-top: 1rem; 
+        background: #fff;
+      }
+      th, td { 
+        padding: 1rem; 
+        text-align: left; 
+        border-bottom: 1px solid #f3f4f6; 
+        vertical-align: top;
+      }
+      th { 
+        background: #f8f9fa; 
+        font-weight: 600; 
+        color: #374151; 
+        font-size: 0.9rem; 
+        text-transform: uppercase; 
+        letter-spacing: 0.05em;
+      }
+      tr:hover { 
+        background: #f9fafb; 
+      }
+      ul { 
+        margin: 0; 
+        padding-left: 1.2rem; 
+      }
+      li { 
+        margin-bottom: 0.5rem; 
+      }
+      strong { 
+        font-weight: 600; 
+        color: #222;
+      }
+      .severity-high { color: #dc2626; }
+      .severity-medium { color: #d97706; }
+      .severity-low { color: #059669; }
+      .active-block { 
+        background: #f8fafc; 
+        border: 1px solid #e2e8f0; 
+        border-radius: 6px; 
+        padding: 1rem; 
+        margin-top: 0.75rem;
+      }
+      .payload { 
+        font-family: 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, 'Courier New', monospace; 
+        font-size: 0.8rem; 
+        background: #f1f5f9; 
+        color: #475569; 
+        padding: 0.2rem 0.4rem; 
+        border-radius: 4px; 
+        margin: 0 0.2rem; 
+        display: inline-block;
+      }
+      .artifact { 
+        font-family: 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, 'Courier New', monospace; 
+        font-size: 0.8rem; 
+        background: #fef3c7; 
+        color: #92400e; 
+        padding: 0.2rem 0.4rem; 
+        border-radius: 4px; 
+        margin: 0 0.2rem; 
+        text-decoration: none; 
+        display: inline-block; 
+        transition: background 0.2s ease;
+      }
+      .artifact:hover { 
+        background: #fde68a; 
+      }
+      .small { 
+        font-size: 0.85rem; 
+        color: #6b7280;
+      }
+      .url-cell { 
+        max-width: 300px; 
+        word-break: break-all;
+      }
+      .url-cell a { 
+        color: #2563eb; 
+        text-decoration: none; 
+      }
+      .url-cell a:hover { 
+        text-decoration: underline; 
+      }
+      .findings-cell { 
+        min-width: 400px; 
+      }
+      @media (max-width: 768px) {
+        body { padding: 1rem; }
+        .container { margin: 0; border-radius: 0; }
+        .content { padding: 1rem; }
+        .topbar { flex-direction: column; gap: 1rem; align-items: flex-start; }
+        .summary { flex-direction: column; }
+        table { font-size: 0.9rem; }
+        th, td { padding: 0.75rem 0.5rem; }
+      }
     </style>
   </head>
   <body>
-    <div class="topbar">
-      <h1>Results for {{ start_url }}</h1>
-      <a class="btn" href="/">Start another</a>
-    </div>
+    <div class="container">
+      <div class="header">
+        <div class="topbar">
+          <h1>Results for {{ start_url }}</h1>
+          <a class="btn" href="/">Start another</a>
+        </div>
+      </div>
 
-    <div class="card">
-      <h2>Discovered URLs ({{ urls|length }})</h2>
-      <ul>
-        {% for u in urls %}
-          <li><a href="{{ u }}" target="_blank" rel="noopener">{{ u }}</a></li>
-        {% endfor %}
-      </ul>
-    </div>
+      <div class="content">
+        <div class="card">
+          <h2>Discovered URLs ({{ urls|length }})</h2>
+          <ul>
+            {% for u in urls %}
+              <li><a href="{{ u }}" target="_blank" rel="noopener">{{ u }}</a></li>
+            {% endfor %}
+          </ul>
+        </div>
 
-    <div class="card">
-      <h2>Analyzed Pages ({{ details|length }})</h2>
-      {% if summary and summary.by_type %}
-        <p><strong>Heuristic summary:</strong>
-          {% for k, v in summary.by_type.items() %}
-            <span class="muted">{{ k }}: {{ v }}</span>{% if not loop.last %}, {% endif %}
-          {% endfor %}
-        </p>
-      {% endif %}
-      {% if active_enabled %}
-        <p><strong>Active testing:</strong> enabled ({{ active_findings_count }} findings).{% if active_error %} Error: {{ active_error }}{% endif %}</p>
-      {% else %}
-        <p class="muted">Active testing disabled.</p>
-      {% endif %}
-      <table>
-        <thead>
-          <tr>
-            <th>URL</th>
-            <th>Status</th>
-            <th>Content-Type</th>
-            <th>Params</th>
-            <th>Inputs</th>
-            <th>Active Findings</th>
-          </tr>
-        </thead>
-        <tbody>
-          {% for r in details %}
-            <tr>
-              <td style="max-width: 360px;">
-                <a href="{{ r.url }}" target="_blank" rel="noopener">{{ r.url }}</a>
-              </td>
-              <td>{{ r.status_code }}</td>
-              <td class="muted">{{ r.content_type }}</td>
-              <td class="muted">{{ r.query_params | join(', ') }}</td>
-              <td class="muted">{{ r.form_inputs | join(', ') }}</td>
-              <td>
-                {% if r.active_findings %}
-                  <details>
-                    <summary>{{ r.active_findings | length }} items</summary>
-                    <ul>
-                      {% for f in r.active_findings %}
-                        <li>
-                          <span class="muted">{{ f.type or 'finding' }}</span>
-                          {% if f.payload %}- <code>{{ f.payload }}</code>{% endif %}
-                          {% if f.param %} on <em>{{ f.param }}</em>{% endif %}
-                        </li>
-                      {% endfor %}
-                    </ul>
-                  </details>
+        <div class="card">
+          <h2>Analyzed Pages ({{ details|length }})</h2>
+          <div class="summary">
+            {% if summary and summary.by_type %}
+              <p><strong>Heuristic summary:</strong>
+                {% for k, v in summary.by_type.items() %}
+                  <span class="muted">{{ k }}: {{ v }}</span>{% if not loop.last %}, {% endif %}
+                {% endfor %}
+              </p>
+            {% endif %}
+            {% if active_enabled %}
+              <p><strong>Active testing:</strong> enabled ({{ active_findings_count }} findings).{% if active_error %} Error: {{ active_error }}{% endif %}</p>
+            {% else %}
+              <p class="muted">Active testing disabled.</p>
+            {% endif %}
+          </div>
+          <table>
+            <thead>
+              <tr>
+                <th>URL</th>
+                <th>Status</th>
+                <th>Content-Type</th>
+                <th>Findings</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for r in details %}
+                <tr>
+                  <td class="url-cell">
+                    <a href="{{ r.url }}" target="_blank" rel="noopener">{{ r.url }}</a>
+                  </td>
+                  <td>{{ r.status_code }}</td>
+                  <td class="muted">{{ r.content_type }}</td>
+                  <td class="findings-cell">
+                <!-- Heuristic findings -->
+                {% if r.vuln_findings %}
+                  <ul>
+                    {% for f in r.vuln_findings %}
+                      <li>
+                        <strong>{{ f.type }}</strong> - 
+                        <span class="severity-{{ f.severity }}">{{ f.severity.upper() }}</span> 
+                        (count: {{ f.count }})
+                        <div class="small" style="margin-top: 4px;">
+                          {% for evidence in f.evidence %}
+                            {{ evidence.evidence }} <span style="color: #9ca3af;">({{ evidence.location }})</span><br>
+                          {% endfor %}
+                        </div>
+                      </li>
+                    {% endfor %}
+                  </ul>
                 {% else %}
-                  <span class="muted">-</span>
+                  <span class="small">no heuristic findings</span>
                 {% endif %}
-              </td>
-            </tr>
-            <tr>
-              <td colspan="5">
-                <details>
-                  <summary>Body snippet</summary>
-                  <pre>{{ r.body_snippet }}</pre>
-                </details>
-              </td>
-            </tr>
-          {% endfor %}
-        </tbody>
-      </table>
+
+                <!-- Active findings -->
+                {% if r.active_findings %}
+                  <div class="active-block">
+                    <strong>Active findings:</strong>
+                    {% for af in r.active_findings %}
+                      <div style="margin-top: 8px;">
+                        <span class="small">param: <strong>{{ af.param }}</strong></span>
+                        <div style="margin-top: 4px;">
+                          payload template: <span class="payload">{{ af.payload_template }}</span>
+                        </div>
+                        {% if af.variants_tested %}
+                          <div class="small" style="margin-top: 6px;">
+                            Variants tested: 
+                            {% for variant in af.variants_tested[:12] %}
+                              <span class="payload">{{ variant }}</span>
+                            {% endfor %}
+                          </div>
+                        {% endif %}
+                        
+                        {% if af.findings %}
+                          <ul>
+                            {% for fd in af.findings %}
+                              <li>
+                                <strong>{{ fd.type }}</strong>: {{ fd.evidence }}
+                                {% if fd.payload_variant %}
+                                  <div class="small">
+                                    used variant: <span class="payload">{{ fd.payload_variant }}</span>
+                                  </div>
+                                {% endif %}
+                                {% if fd.request_file or fd.response_file %}
+                                  <div style="margin-top: 4px;">
+                                    {% if fd.request_file %}
+                                      <a href="file://{{ fd.request_file }}" target="_blank" class="artifact">req</a>
+                                    {% endif %}
+                                    {% if fd.response_file %}
+                                      <a href="file://{{ fd.response_file }}" target="_blank" class="artifact">resp</a>
+                                    {% endif %}
+                                  </div>
+                                {% endif %}
+                              </li>
+                            {% endfor %}
+                          </ul>
+                        {% else %}
+                          <span class="small">no individual findings</span>
+                        {% endif %}
+                      </div>
+                    {% endfor %}
+                  </div>
+                {% endif %}
+                  </td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
     </div>
   </body>
   </html>

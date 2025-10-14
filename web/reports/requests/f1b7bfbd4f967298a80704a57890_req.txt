@@ -1,0 +1,14 @@
+POST https://crawler-test.com/other/duplicated_body_content_1
+
+Headers:
+User-Agent: ExploitFinder-Active/0.3 (+https://example.local)
+Accept-Encoding: gzip, deflate
+Accept: */*
+Connection: keep-alive
+Content-Length: 30
+Content-Type: application/x-www-form-urlencoded
+
+Body/data:
+{
+  "N": "INJECT-MARKER-PRYANSU-259057"
+}
