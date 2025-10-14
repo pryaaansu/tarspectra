@@ -1,0 +1,853 @@
+Status: 200
+
+Headers:
+Date: Tue, 14 Oct 2025 07:29:06 GMT
+Upgrade: h2,h2c
+Connection: Upgrade
+Set-Cookie: HackThisSite=jkqdtbh84lfo9f7e2poudpbd13; expires=Wed, 15-Oct-2025 07:29:06 GMT; path=/
+Expires: Thu, 19 Nov 1981 08:52:00 GMT
+Cache-Control: no-store, no-cache, must-revalidate, post-check=0, pre-check=0
+Pragma: no-cache
+Onion-Location: http://hackthisjogneh42n5o7gbzrewxee3vyu6ex37ukyvdw6jm66npakiyd.onion/pages/programs/programs.php
+Vary: Accept-Encoding
+Content-Encoding: gzip
+Content-Length: 27166
+Content-Type: text/html
+Content-Language: en
+Server: HackThisSite
+Access-Control-Allow-Origin: *
+Content-Security-Policy: child-src 'self' hackthissite.org *.hackthissite.org htscdn.org *.htscdn.org discord.com; form-action 'self' hackthissite.org *.hackthissite.org htscdn.org *.htscdn.org; upgrade-insecure-requests; report-uri https://hackthissite.report-uri.com/r/d/csp/enforce
+Referrer-Policy: origin-when-cross-origin
+X-XSS-Protection: 0
+Feature-Policy: fullscreen *
+Public-Key-Pins-Report-Only: pin-sha256="YLh1dUR9y6Kja30RrAn7JKnbQG/uEtLMkBgFF2Fuihg="; pin-sha256="Vjs8r4z+80wjNcr1YKepWQboSIRi63WsWXhIMN+eWys="; max-age=2592000; includeSubDomains; report-uri="https://hackthissite.report-uri.com/r/d/hpkp/reportOnly"
+Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
+Report-To: {"group":"default","max_age":31536000,"endpoints":[{"url":"https://hackthissite.report-uri.com/a/d/g"}],"include_subdomains":true}
+NEL: {"report_to":"default","max_age":31536000,"include_subdomains":true,"success_fraction":0.0,"failure_fraction":0.1}
+
+Body (trimmed):
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<head>
+  <title>Hack This Site</title>
+  <meta name="verify-v1" content="s/YXn7eQrMBoF9PL5jLJDiWpAxEXpJzE9JLg/zM4C2Y=" />
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta name="author" content="HackThisSite.org Staff" />
+  <meta name="keywords" content="challenge, computer, culture, deface, digital, ethics, games, guide, hack, hack forums, hacker, hackers, hacking, hacking challenges, hacking forums, mission, net, programming, radical, revolution, root, rooting, security, site, society, tutorial, tutorials, war, wargame, wargames, web, website" />
+  <meta name="title" content="HackThisSite" />
+  <meta name="description" content="HackThisSite.org is a free, safe and legal training ground for hackers to test and expand their ethical hacking skills with challenges, CTFs, and more." />
+  <meta itemprop="name" content="HackThisSite" />
+  <meta itemprop="description" content="HackThisSite.org is a free, safe and legal training ground for hackers to test and expand their ethical hacking skills with challenges, CTFs, and more." />
+  <meta itemprop="image" content="https://data.htscdn.org/images/hackthissite-meta-card.png" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://www.hackthissite.org/" />
+  <meta property="og:title" content="HackThisSite" />
+  <meta property="og:description" content="HackThisSite.org is a free, safe and legal training ground for hackers to test and expand their ethical hacking skills with challenges, CTFs, and more." />
+  <meta property="og:image" content="https://data.htscdn.org/images/hackthissite-meta-card.png" />
+  <meta property="twitter:card" content="summary_large_image" />
+  <meta property="twitter:url" content="https://www.hackthissite.org/" />
+  <meta property="twitter:title" content="HackThisSite" />
+  <meta property="twitter:description" content="HackThisSite.org is a free, safe and legal training ground for hackers to test and expand their ethical hacking skills with challenges, CTFs, and more." />
+  <meta property="twitter:image" content="https://data.htscdn.org/images/hackthissite-meta-card.png" />
+  <meta name="viewport" content="width=820, initial-scale=0.5" />
+  <meta name="theme-color" content="#163ea7" />
+  <meta name="color-scheme" content="dark" />
+  <meta http-equiv="onion-location" content="http://hackthisjogneh42n5o7gbzrewxee3vyu6ex37ukyvdw6jm66npakiyd.onion/pages/programs/programs.php" />
+  <link rel="apple-touch-icon" sizes="180x180" href="https://data.htscdn.org/favicon/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="https://data.htscdn.org/favicon/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="https://data.htscdn.org/favicon/favicon-16x16.png" />
+  <link rel="manifest" href="https://www.hackthissite.org/manifest.webmanifest" />
+  <link href="https://data.htscdn.org/themes/Dark/Dark.css" rel="stylesheet" type="text/css" />
+  <link href="https://www.hackthissite.org/pages/hts.rss.php" rel="alternate" type="application/rss+xml" title="HTS RSS feed" />
+  <base href="https://www.hackthissite.org" />
+  <script type="text/javascript" src="https://data.htscdn.org/js/jquery-1.8.1.min.js"></script>
+  </head>
+<body>
+<span id="blank-element" style="display: none"></span>
+
+<div id="topbar" align="center">
+<a href="https://www.hackthissite.org" id="active">Hack This Site</a> (<a href="https://hackthisjogneh42n5o7gbzrewxee3vyu6ex37ukyvdw6jm66npakiyd.onion">TOR .onion HTTPS</a> - <a href="http://hackthisjogneh42n5o7gbzrewxee3vyu6ex37ukyvdw6jm66npakiyd.onion">HTTP</a>) - <a href="https://www.irc.hackthissite.org/chat">IRC</a> - <a href="/discord">Discord</a> - <a href="https://www.hackthissite.org/forums">Forums</a> - <a href="https://www.cafepress.com/htsstore" target="_new">Store</a> - <a href="https://hts.io" target="_new">URL Shortener</a> - <a href="https://cryptopaste.org" target="_new">CryptoPaste</a>&nbsp;&nbsp;&nbsp;---&nbsp;&nbsp;&nbsp;<a href="https://www.facebook.com/HackThisSite.org" target="_new">Like Us</a> - <a href="https://twitter.com/hackthissite" target="_new">Follow Us</a> - <a href="https://github.com/HackThisSite" target="_new">Fork Us</a>
+</div>
+<div class="hts-header">
+<a href="/"><img src="https://data.htscdn.org/themes/Dark/images/header.jpg" alt="Hack This Site" border="0" /></a>
+<br />
+<a href="https://www.hackthissite.org/advertise"><img src="https://data.htscdn.org/images/support-hts.gif" alt="Support HackThisSite - Advertise with us!" title="Support HackThisSite - Advertise with us!" id="atpimg" class="abstaimg" border="0" /><img src="https://www.hackthissite.org/images/px.png" border="0"></a></div>
+  <table width="780" border="0" cellpadding="0" cellspacing="0" class="siteheader cmTable">
+    <tr>
+      <td class="sitetopheader"><blockquote>Until our most fantastic demands are met, fantasy will always be at war with reality.</blockquote></td>
+    </tr>
+    <tr>
+      <td><table width="100%"  border="0" cellspacing="0" cellpadding="0">
+        <tr>
+          <td width="160" valign="top" class="navbar"><div align="center">
+            <br />
+            	<!-- login form start -->
+	<div id="ourlogin">
+		<span id="loginclick"><a class="nav" href="/user/login">Login</a></span> (or <a class="nav" href="/register">Register</a>):<br />
+				<form id="loginform" method="post" action="/user/login">
+		<div id="innerlogin">
+		<script type="text/javascript">var userclicked=0; var passclicked=0;</script>
+		<p><input type="text" name="username" class="login" value="" onclick="if(userclicked==0){this.value='';userclicked=1;};" title="Username" /></p>
+		<p><input type="password" name="password" class="login" value="" onclick="if(passclicked==0){this.value='';passclicked=1;};" title="Password" /></p>
+				<p><input type="submit" value="Login" name="btn_submit" class="submit-button" /></p>
+		</div>
+	</form>
+	<!-- login form end -->
+	<a href="/user/resetpass">Lost your password?</a><br />
+        <a href="/user/forgotusername">Forgot your username?</a></br />
+		</div>
+	<h4 class="header">Donate</h4>
+<p>
+  <a href="https://www.hackthissite.org/donate/">
+    <img
+      src="https://data.htscdn.org/images/donate.png"
+      border="0"
+      title="Donate to HackThisSite.org"
+      alt="Donate to HackThisSite.org" />
+  </a>
+  <br />
+  <img
+    src="https://data.htscdn.org/images/donate-bat.png"
+    border="0"
+    title="Donate using Brave Basic Attention Tokens"
+    alt="Donate using Brave Basic Attention Tokens" />
+  <br /><br />
+  HTS costs up to $300 a month to operate. We <strong>need</strong> your help!
+</p>
+<h4 class="header">Challenges</h4>
+<ul class="navigation">
+  <li><a class="nav" href="/missions/basic/">Basic</a></li><li><a class="nav" href="/missions/realistic/">Realistic</a></li><li><a class="nav" href="/missions/application/">Application</a></li><li><a class="nav" href="/missions/programming/">Programming</a></li><li><a class="nav" href="/missions/javascript/">Javascript</a></li><li><a class="nav" href="/missions/forensic/">Forensic</a></li><li><a class="nav" href="/missions/playit/extbasic/0/">Extended Basic</a></li><li><a class="nav" href="/missions/playit/stego/0/">Steganography</a></li><li><a class="nav" href="ircs://irc.hackthissite.org:7000/#htb">IRC</a></li></ul>
+
+<h4 class="header">Get Informed</h4><ul class="navigation"><li><a class="nav" href="/blogs">Blogs</a></li><li><a class="nav" href="/news">News</a></li><li><a class="nav" href="/pages/articles/article.php">Articles</a></li><li><a class="nav" href="/lectures">Lectures</a></li><li><a class="nav" href="/pages/programs/programs.php">Useful Stuff</a></li><!--<li><a class="nav" href="ebooks">E-books</a></li>--><li><a class="nav" href="https://mirror.hackthissite.org/hackthiszine/">HackThisZine</a></li><li><a class="nav" href=""></a></li></ul><h4 class="header">Get Involved</h4><ul class="navigation"><li><a class="nav" href="/donate"><span class="completed">Donate to HackThisSite!</span></a></li><li><a class="nav" href="https://www.cafepress.com/htsstore">Store</a></li><li><a class="nav" href="/submit/article">Submit Article</a></li><li><a class="nav" href="/pages/bugManagement/index.php">Submit Bug Report</a></li><li><a class="nav" href="/submit/lecture">Submit Lecture</a></li><li><a class="nav" href="/pages/programs/insert.php">Submit Useful Stuff</a></li><!--<li><a class="nav" href="/pages/showsource/loopdeloop.php">We Want You!</a></li>--><li><a class="nav" href=""></a></li></ul><h4 class="header">Communicate</h4><ul class="navigation"><li><a class="nav" href="/forums">Forums</a></li><li><a class="nav" href="/discord">Discord</a></li><li><a class="nav" href="https://www.hackthissite.org/forums/ucp.php?i=pm">Private Messages</a></li><li><a class="nav" href="https://www.irc.hackthissite.org/chat">IRC Web Chat</a></li><li><a class="nav" href="https://www.irc.hackthissite.org/idlerpg">IRC IdleRPG</a></li><li><a class="nav" href="https://www.hackthissite.org/irc/stats.php">IRC Stats</a></li><li><a class="nav" href="https://qdb.hackthissite.org">IRC Quotes</a></li><li><a class="nav" href="/pages/irc/reference.php">IRC Command Reference</a></li><li><a class="nav" href="/user/search">Search Users</a></li><li><a class="nav" href="/user/online">Who is Online</a></li><li><a class="nav" href="/user/rankings/">Rankings</a></li><li><a class="nav" href=""></a></li></ul><h4 class="header">About HTS</h4><ul class="navigation"><li><a class="nav" href="/info/about">About the Project</a></li><li><a class="nav" href="/info/billofrights">Bill of Rights</a></li><li><a class="nav" href="https://legal.hackthissite.org/terms">Terms &amp; Conditions</a></li><li><a class="nav" href="https://legal.hackthissite.org/privacy">Privacy Policy</a></li><li><a class="nav" href="/info/staff">Meet the Staff</a></li><li><a class="nav" href="/info/underthehood">Under the Hood</a></li><li><a class="nav" href="/advertise">Advertise with HTS</a></li><li><a class="nav" href="/ipv6">IPv6</a></li><li><a class="nav" href="/hof">Hall of Fame</a></li><li><a class="nav" href=""></a></li></ul><h4 class="header"></h4><ul class="navigation"><li><a class="nav" href=""></a></li></ul>
+<br />
+<a href="/">
+  <img
+    src="https://data.htscdn.org/images/hts_80x15.gif"
+    width="80"
+    height="15"
+    border="0"
+    alt="" />
+</a>
+<br />
+<a class="nav" href="https://www.hackthissite.org/pages/info/linktous.php">
+  Link to us!
+</a>
+
+<h4 class="header">
+  Partners
+</h4>
+<br />
+<a class="nav" target="_new" href="https://www.hellboundhackers.org/">
+  <img
+    src="https://data.htscdn.org/images/hbhlogo.jpg"
+    alt="Hellbound Hackers"
+    title="Hellbound Hackers"
+    width="88"
+    height="31"
+    border="0" />
+</a>
+<br />
+<a class="nav" target="_new" href="https://www.netsparker.com/blog">
+  <img
+    src="https://data.htscdn.org/images/netsparker.gif"
+    alt="Netsparker Security Blog"
+    title="Netsparker Security Blog"
+    width="88"
+    height="31"
+    border="0" />
+</a>
+<br />
+<a class="nav" target="_new" href="https://www.acunetix.com/blog">
+  <img
+   src="https://data.htscdn.org/images/acunetixblog.gif"
+   alt="Acunetix Security Blog"
+   title="Acunetix Security Blog"
+   width="88"
+   height="31"
+   border="0" />
+</a>
+<br />
+<a class="nav" target="_new" href="https://www.buddyns.com">
+<img
+  src="https://data.htscdn.org/images/buddyns88x31.png"
+  alt="BuddyNS Secondary DNS"
+  title="BuddyNS Secondary DNS"
+  width="88"
+  height="31"
+  border="0" />
+</a>
+<br />
+<a class="nav" target="_new" href="https://redirect.pizza/?utm_source=partner&utm_medium=banner&utm_campaign=hackthissite.org">
+<img
+  src="https://data.htscdn.org/images/redirectpizza88x31.png"
+  alt="Redirect.pizza - HTTPS Redirect Service"
+  title="Redirect.pizza - HTTPS Redirect Service"
+  width="88"
+  height="31"
+  border="0" />
+</a>
+<br />
+<a class="nav" target="_new" href="https://brave.com/hac977">
+<img
+  src="https://data.htscdn.org/images/brave-88x31.png"
+  alt="Brave Browser - Secure, fast, and private web browser with a built-in adblocker"
+  title="Brave Browser - Secure, fast, and private web browser with a built-in adblocker"
+  width="88"
+  height="31"
+  border="0" />
+</a>
+<br />
+
+          </td>
+          <td valign="top" class="sitebuffer">
+	<br />
+	
+<center><h1>Useful Stuff</h1></center>
+<center>
+Need a program? A website? A tool?  Have one for someone else?<br />
+Look here!<br />
+</center>
+ <div class="slight-td" style="border-width: 1px; padding: 3px;">
+Category:
+	<a href="pages/programs/programs.php">All</a> - 
+	<a href="pages/programs/programs.php?cat=1">General</a> - <a href="pages/programs/programs.php?cat=2">Hash cracking and password sniffing</a> - <a href="pages/programs/programs.php?cat=3">Development tools</a> - <a href="pages/programs/programs.php?cat=4">Fun and Games</a> - <a href="pages/programs/programs.php?cat=5">Web based tools</a> - <a href="pages/programs/programs.php?cat=6">Shareware and other non-free software</a> - <a href="pages/programs/programs.php?cat=7">Hacking tools</a> - <a href="pages/programs/programs.php?cat=8">RAT (Remote Administration Tool)</a> - <a href="pages/programs/programs.php?cat=9">Anti-spyware</a> - <a href="pages/programs/programs.php?cat=10">Network Security</a> - 	<br />
+			<a href="pages/programs/insert.php">Insert Something</a>
+	<br />
+	Class: 	<a href="pages/programs/programs.php?class=1">Programs</a> - 
+		<a href="pages/programs/programs.php?class=2">Links</a> - 
+		<a href="pages/programs/programs.php?class=3">Books</a> -
+		<a href="pages/programs/programs.php?class=">All</a> 
+	<br />
+        Operating System:  <a href="pages/programs/programs.php?os=">Any/Multiple</a> -
+        <a href="pages/programs/programs.php?os=1">Any</a> - <a href="pages/programs/programs.php?os=2">Windows</a> - <a href="pages/programs/programs.php?os=3">Unix</a> - <a href="pages/programs/programs.php?os=4">Linux</a> - <a href="pages/programs/programs.php?os=5">freeBSD</a> - <a href="pages/programs/programs.php?os=6">Other</a> - <a href="pages/programs/programs.php?os=7">Mac</a> - 
+</div>
+ <table width="600" cellspacing="3" cellpadding="3" align="center">
+		<tr>
+			<td class="dark-td">
+				<a href="www.http://it-ebooks.info/book/2128/">
+					 <center> <font size="+1"><b>-J</b></font></center><br />
+										</a>
+				Link for free PDF of Hacking for Dummies 4th edition (so you can update the amazon link in Useful Stuff)		      </td>
+		</tr>
+			<tr>
+			<td class="dark-td">
+				<a href="http://sourceforge.net/projects/soleditor/">
+					 <center> <font size="+1"><b>.sol editor</b></font></center><br />
+									                 <img src="http://i101.photobucket.com/albums/m54/gavfir/3.jpg" style="border: 2;"  height="74" width="187" align="right"/>
+										</a>
+				A flash hacking alternative to variable editing and cheat engine, you can change values saved by the game in a .sol file. You will find the .SOL files in
+ x:\Documents and Settings\[account-name]\Application Data\Macromedia\Flash Player\#SharedObjects\
+followed by the name of the website. If the game was running from your computer, the .SOL will be in the localhost folder. Replace x with your main drive, the one with your OS, and the account-name with the currently logged in user.		      </td>
+		</tr>
+			<tr>
+			<td class="dark-td">
+				<a href="http://www.ethicalhacker.net/content/view/120/24/">
+					 <center> <font size="+1"><b>ADS - Alternate Data Streams</b></font></center><br />
+										</a>
+				If you&#039;re looking to hide files (text, exe, pics, etc..) here&#039;s a good place to teach you how.		      </td>
+		</tr>
+			<tr>
+			<td class="dark-td">
+				<a href="http://pastebin.com/pW7dvKqu">
+					 <center> <font size="+1"><b>ARPwn v0.2 by Muffins</b></font></center><br />
+										</a>
+				ARP cache poisoning tool written python using the Scapy packet library.
+
+Can poison using either ARP requests or ARP replies.
+
+It can also flood ARP tables and has a quick command for enabling ip-forwarding.		      </td>
+		</tr>
+			<tr>
+			<td class="dark-td">
+				<a href="https://addons.mozilla.org/en-US/firefox/addon/573">
+					 <center> <font size="+1"><b>Add N Edit Cookies</b></font></center><br />
+									                 <img src="https://addons.mozilla.org/en-US/firefox/images/addon_preview/573/1" style="border: 2;"  height="74" width="187" align="right"/>
+										</a>
+				Firefox Add-on, Cookie Editor that allows you add and edit cookies.		      </td>
+		</tr>
+			<tr>
+			<td class="dark-td">
+				<a href="http://www.iobit.com/advancedwindowscareper.html">
+					 <center> <font size="+1"><b>Advanced system care version 3</b></font></center><br />
+										</a>
+				Advanced SystemCare Free (formerly Advanced WindowsCare Personal) has a one-click approach to help protect, repair, clean, and optimize your PC. With over 35 MILLION downloads since 2006, this fantastic, award-winning free registry cleaner and system optimizer is a &quot;must-have&quot; tool to speed up your slow computer. 100% safe with no adware, spyware, or viruses; a PC maintenance program thats incredibly easy to use.
+		      </td>
+		</tr>
+			<tr>
+			<td class="dark-td">
+				<a href="http://www.aircrack-ng.org/doku.php">
+					 <center> <font size="+1"><b>Aircrack-ng</b></font></center><br />
+									                 <img src="http://www.aircrack-ng.org/img/logo.png" style="border: 2;"  height="74" width="187" align="right"/>
+										</a>
+				aircrack is an 802.11 WEP and WPA-PSK keys cracking program that can recover keys once enough data packets have been captured. It implements the standard FMS attack along with some optimizations like KoreK attacks, thus making the attack much faster compared to other WEP cracking tools. In fact, aircrack is a set of tools for auditing wireless networks.		      </td>
+		</tr>
+			<tr>
+			<td class="dark-td">
+				<a href="http://sourceforge.net/projects/airsnort">
+					 <center> <font size="+1"><b>Airsnort</b></font></center><br />
+										</a>
+				
+
+AirSnort is a wireless LAN (WLAN) tool which cracks encryption keys on 802.11b WEP networks. AirSnort operates by passively monitoring transmissions, computing the encryption key when enough packets have been gathered. 		      </td>
+		</tr>
+			<tr>
+			<td class="dark-td">
+				<a href="http://www.allitebooks.com/">
+					 <center> <font size="+1"><b>All IT eBooks</b></font></center><br />
+										</a>
+				A website full of of eBooks covering a very broad range of IT Topics		      </td>
+		</tr>
+			<tr>
+			<td class="dark-td">
+				<a href="http://www.catb.org/esr/faqs/smart-questions.html">
+					 <center> <font size="+1"><b>Asking questions the Smart way</b></font></center><br />
+										</a>
+				We all have questions, don&#039;t we. This article will help you get to the answers faster. And not look like the typical newbie who will just waste valuable time.		      </td>
+		</tr>
+			<tr>
+			<td class="dark-td">
+				<a href="www.atom.io">
+					 <center> <font size="+1"><b>Atom</b></font></center><br />
+										</a>
+				An open source, highly 
+customizable editor with its 
+own package manager, 
+similar to plugins.		      </td>
+		</tr>
+			<tr>
+			<td class="dark-td">
+				<a href="http://www.autohotkey.com/">
+					 <center> <font size="+1"><b>Autohotkey</b></font></center><br />
+									                 <img src="http://www.autohotkey.com/docs/images/AutoHotkey_logo.gif" style="border: 2;"  height="74" width="187" align="right"/>
+										</a>
+				AutoHotkey is a free, open-source utility for Windows.
+* Automate almost anything by sending keystrokes and mouse clicks.
+* Create hotkeys for keyboard, joystick, and mouse. Virtually any key, button, or combination can become a hotkey.
+* Expand abbreviations as you type them. For example, typing \&quot;btw\&quot; can automatically produce \&quot;by the way\&quot;.
+* Create custom data-entry forms, user interfaces, and menu bars.
+* Remap keys and buttons on your keyboard, joystick, and mouse.
+* Convert any script into an EXE file that can be run on computers that don\&#039;t have AutoHotkey installed.		      </td>
+		</tr>
+			<tr>
+			<td class="dark-td">
+				<a href="http://www.autoitscript.com/autoit3/">
+					 <center> <font size="+1"><b>Autoit</b></font></center><br />
+									                 <img src="http://www.autoitscript.com/autoit3/files/graphics/autoit9_wall_thumb.jpg" style="border: 2;"  height="74" width="187" align="right"/>
+										</a>
+				A VERY useful automation program. I&#039;ve used it for all of the scripts I have ever made and I would like to see it put on the list. The program even has a very helpful forum to learn how to use the program effectively.		      </td>
+		</tr>
+			<tr>
+			<td class="dark-td">
+				<a href="http://bfg.houbysoft.com">
+					 <center> <font size="+1"><b>BFG / hydra</b></font></center><br />
+										</a>
+				BFG is a modified hydra tool, which now supports generating passwords in brute-force mode, unlike the original hydra. Of course, full source code is provided, and it should compile on all systems where hydra itself compiles, which means all UNIX-based systems including Linux, BSD, Mac OS, Windows (cygwin), etc.		      </td>
+		</tr>
+			<tr>
+			<td class="dark-td">
+				<a href="http://gizmoware.net/bping/">
+					 <center> <font size="+1"><b>BPing</b></font></center><br />
+										</a>
+				can scan an entire 
+network and tell you 
+at a glance what IP 
+addresses are 
+available and which 
+are taken. It also 
+beeps!		      </td>
+		</tr>
+			<tr>
+			<td class="dark-td">
+				<a href="http://basket.kde.org/">
+					 <center> <font size="+1"><b>BasKet Note Pads</b></font></center><br />
+										</a>
+				multi-purpose note-taking application 		      </td>
+		</tr>
+			<tr>
+			<td class="dark-td">
+				<a href="http://www.bluej.org/download/download.html">
+					 <center> <font size="+1"><b>BlueJ</b></font></center><br />
+									                 <img src="http://wiki.bluej.org/images/logos/bluej-128.jpg" style="border: 2;"  height="74" width="187" align="right"/>
+										</a>
+				BlueJ is an integrated Java environment specifically designed for introductory teaching.		      </td>
+		</tr>
+			<tr>
+			<td class="dark-td">
+				<a href="http://bugmenot.com">
+					 <center> <font size="+1"><b>Bug Me Not</b></font></center><br />
+										</a>
+				Bypass registration		      </td>
+		</tr>
+			<tr>
+			<td class="dark-td">
+				<a href="http://portswigger.net/">
+					 <center> <font size="+1"><b>Burp</b></font></center><br />
+									                 <img src="http://portswigger.net/images/icon_burp.gif" style="border: 2;"  height="74" width="187" align="right"/>
+										</a>
+				A very powerful website test including spider and possibility to test some exploit		      </td>
+		</tr>
+			<tr>
+			<td class="dark-td">
+				<a href="http://www.piriform.com/ccleaner/download">
+					 <center> <font size="+1"><b>CCleaner</b></font></center><br />
+									                 <img src="http://broadcasteverywhere.com/jp/wp-content/uploads/2008/12/ccleaner_by_1bumpy.png" style="border: 2;"  height="74" width="187" align="right"/>
+										</a>
+				Clearing all your files is just a click away. Also choose what you want to keep and what you want to get rid of. CCleaner al
+
+---TRUNCATED---
+
+dows users.
+
+Cain &amp; Abel has been developed in the hope that it will be useful for network administrators, teachers, security consultants/professionals, forensic staff, security software vendors, professional penetration tester and everyone else that plans to use it for ethical reasons. The author will not help or support any illegal activity done with this program. Be warned that there is the possibility that you will cause damages and/or loss of data using this software and that in no events shall the author be liable for such damages or loss of data. Please carefully read the License Agreement included in the program before using it.		      </td>
+		</tr>
+			<tr>
+			<td class="dark-td">
+				<a href="http://www.cheatengine.org/download.php">
+					 <center> <font size="+1"><b>Cheat Engine 5.4</b></font></center><br />
+									                 <img src="http://upload.wikimedia.org/wikipedia/en/thumb/a/a2/CE54.png/350px-CE54.png" style="border: 2;"  height="74" width="187" align="right"/>
+										</a>
+				The coolest tool to hack all sorts of games, with powerful commands and friendly interface. Every game hacker must have this tool...
+ * very useful also in browser games		      </td>
+		</tr>
+			<tr>
+			<td class="dark-td">
+				<a href="http://groups.csail.mit.edu/uid/chickenfoot/">
+					 <center> <font size="+1"><b>Chickenfoot</b></font></center><br />
+										</a>
+				Chickenfoot is a Firefox extension that puts a programming environment in the browser&#039;s sidebar so you can write scripts to manipulate web pages and automate web browsing.		      </td>
+		</tr>
+			<tr>
+			<td class="dark-td">
+				<a href="http://www.codecademy.com/">
+					 <center> <font size="+1"><b>Code Academy</b></font></center><br />
+										</a>
+				A good site that can 
+turn anyone who 
+can&#039;t even 
+understand basic 
+html, into someone 
+who knows some of 
+the most common web 
+languages		      </td>
+		</tr>
+			<tr>
+			<td class="dark-td">
+				<a href="http://www.codeblocks.org/downloads/">
+					 <center> <font size="+1"><b>Code Blocks</b></font></center><br />
+										</a>
+				An IDE for C/C++ 
+languages		      </td>
+		</tr>
+			<tr>
+			<td class="dark-td">
+				<a href="http://www.colasoft.com/capsa/features.php">
+					 <center> <font size="+1"><b>Colasoft Capsa Packet Sniffer</b></font></center><br />
+									                 <img src="http://www.colasoft.com/images/capsa_free_screenshot.jpg" style="border: 2;"  height="74" width="187" align="right"/>
+										</a>
+				Capsa Network Analyzer, a network traffic 
+analyzer ( Packet Sniffer ) for Windows, which 
+can be used to sniffer all traffics on a 
+network, and monitor, troubleshoot and diagnose 
+their network.		      </td>
+		</tr>
+			<tr>
+			<td class="dark-td">
+				<a href="http://www.colasoft.com/packet_builder/">
+					 <center> <font size="+1"><b>Colasoft Packet Builder</b></font></center><br />
+									                 <img src="http://www.colasoft.com/images/pktbuilder.gif" style="border: 2;"  height="74" width="187" align="right"/>
+										</a>
+				Colasoft Packet Builder enables creating custom network packets; users can use this tool to check their network protection against attacks and intruders. Colasoft Packet Builder includes a very powerful editing feature. Besides common HEX editing raw data, it features a Decoding Editor allowing users to edit specific protocol field values much easier.
+
+Users are also able to edit decoding information in two editors - Decode Editor and Hex Editor. Users can select one from the provided templates Ethernet Packet, ARP Packet, IP Packet, TCP Packet and UDP Packet, and change the parameters in the decoder editor, hexadecimal editor or ASCII editor to create a packet. Any changes will be immediately displayed in the other two windows. In addition to building packets, Colasoft Packet Builder also supports saving packets to packet files and sending packets to network.		      </td>
+		</tr>
+			<tr>
+			<td class="dark-td">
+				<a href="http://crackstation.net">
+					 <center> <font size="+1"><b>CrackStation</b></font></center><br />
+										</a>
+				Crackstation is the most effective hash cracking service. We crack: MD5, SHA1, SHA2, WPA, and much more...		      </td>
+		</tr>
+			<tr>
+			<td class="dark-td">
+				<a href="http://www.cryptool.org/">
+					 <center> <font size="+1"><b>Cryptool</b></font></center><br />
+									                 <img src="http://img206.imageshack.us/img206/1332/cryptool.png" style="border: 2;"  height="74" width="187" align="right"/>
+										</a>
+				A cryptography Analysis, how-to and cracking program...
+		      </td>
+		</tr>
+			<tr>
+			<td class="dark-td">
+				<a href="http://sourceforge.net/projects/democrakey/files/democrakey/V3.0/full.exe/download">
+					 <center> <font size="+1"><b>DemocraKey</b></font></center><br />
+									                 <img src="http://www.democrakey.com/wp-content/uploads/2007/02/splash.gif" style="border: 2;"  height="74" width="187" align="right"/>
+										</a>
+				DemocraKey
+
+It includes:
+
+    * Tor Browser  For anonymous web browsing without using an insecure anonymous proxy
+    * Clamwin Portable  To check the host computer for viruses, and to clean before surfing anonymously
+    * Thunderbird Portable  Send anonymous email or encrypted email with Enigmail and GnuPGP
+    * TrueCrypt  Create hidden volumes and encrypt your files so they are unreadable
+		      </td>
+		</tr>
+			<tr>
+			<td class="dark-td">
+				<a href="http://www.bloodshed.net/dev/devcpp.html">
+					 <center> <font size="+1"><b>Dev C++</b></font></center><br />
+										</a>
+				Bloodshed Dev-C++ is a full-featured Integrated Development Environment (IDE) for the C/C++ programming language. It uses Mingw port of GCC (GNU Compiler Collection) as it\&#039;s compiler. Dev-C++ can also be used in combination with Cygwin or any other GCC based compiler.
+		      </td>
+		</tr>
+			<tr>
+			<td class="dark-td">
+				<a href="http://www.dexpot.de/index.php?id=home">
+					 <center> <font size="+1"><b>Dexpot</b></font></center><br />
+									                 <img src="http://www.dexpot.de/lib/tpl/dexpot/dexoben.png" style="border: 2;"  height="74" width="187" align="right"/>
+										</a>
+				With Dexpot you may 
+have separate 
+virtual desktops for 
+different 
+applications. One 
+desktop might 
+feature applications 
+for graphic design, 
+for example, and 
+another might 
+feature your 
+business 
+applications.
+
+Switch between 
+virtual desktops in 
+order to keep track 
+of your open 
+windows. Using 
+Dexpot, you&#039;ll 
+considerably 
+increase your 
+workflow.		      </td>
+		</tr>
+			<tr>
+			<td class="dark-td">
+				<a href="http://www.dollardns.net/cgi-bin/dnscrawler/index.pl">
+					 <center> <font size="+1"><b>DollarDNS Crawler</b></font></center><br />
+										</a>
+				This tool allows one to recursively retrieve the result of any type of DNS record for all name servers a domain specifies		      </td>
+		</tr>
+			<tr>
+			<td class="dark-td">
+				<a href="http://whois.dollardns.net/">
+					 <center> <font size="+1"><b>DollarDNS Whois</b></font></center><br />
+										</a>
+				DollarDNS Whois Direct allows users to make advanced WHOIS queries against a domain, including raw queries		      </td>
+		</tr>
+			<tr>
+			<td class="dark-td">
+				<a href="http://www.downloadhelper.net/">
+					 <center> <font size="+1"><b>DownloadHelper</b></font></center><br />
+									                 <img src="https://addons.mozilla.org/en-US/firefox/images/t/22865/1215002155" style="border: 2;"  height="74" width="187" align="right"/>
+										</a>
+				&quot;Using DownloadHelper, you can easily save videos from most of the popular video sites&quot; -Main Site
+Lets you download videos from youtube, or almost any other video/music site in a flv format (that you can then convert after download) As simple as click and its downloaded!		      </td>
+		</tr>
+			<tr>
+			<td class="dark-td">
+				<a href="http://duckduckgo.com">
+					 <center> <font size="+1"><b>DuckDuckGo</b></font></center><br />
+										</a>
+				The search engine that doesn&#039;t track you.		      </td>
+		</tr>
+			<tr>
+			<td class="dark-td">
+				<a href="www.duckduckgo.">
+					 <center> <font size="+1"><b>DuckDuckGo</b></font></center><br />
+										</a>
+				The search engine that doesn&#039;t track you.		      </td>
+		</tr>
+			<tr>
+			<td class="dark-td">
+				<a href="http://widestep.com/elite-keystroke-recorder-info">
+					 <center> <font size="+1"><b>Elite Keylogger</b></font></center><br />
+										</a>
+				  Elite Keylogger is a very powerful yet easy-to-use covert surveillance tool. Elite Keylogger offers several main types of logs available, such as keystrokes log, screenshots log, Internet activity log, applications history, clipboard log, E-mail history, passwords log and printer monitor. You can configure these logs in a way most preferable for you.		      </td>
+		</tr>
+			<tr>
+			<td class="dark-td">
+				<a href="http://ettercap.sourceforge.net/">
+					 <center> <font size="+1"><b>Ettercap</b></font></center><br />
+										</a>
+				ARP Cache Poisoning, DNS Spoofing and so much more in one little program.		      </td>
+		</tr>
+			<tr>
+			<td class="dark-td">
+				<a href="http://getfiregpg.org/">
+					 <center> <font size="+1"><b>FireGPG</b></font></center><br />
+										</a>
+				FireGPG is a Firefox extension under MPL which brings an interface to encrypt, decrypt, sign or verify the signature of text in any web page using GnuPG.		      </td>
+		</tr>
+			<tr>
+			<td class="dark-td">
+				<a href="http://www.getfirebug.com/">
+					 <center> <font size="+1"><b>Firebug</b></font></center><br />
+									                 <img src="http://www.getfirebug.com/screenHome-html.gif" style="border: 2;"  height="74" width="187" align="right"/>
+										</a>
+				Firebug integrates with Firefox to put a wealth of web development tools at your fingertips while you browse. You can edit, debug, and monitor CSS, HTML, JavaScript, and network activity live in any web page. 		      </td>
+		</tr>
+			<tr>
+			<td class="dark-td">
+				<a href="http://en-us.www.mozilla.com/en-US/firefox/">
+					 <center> <font size="+1"><b>Firefox</b></font></center><br />
+									                 <img src="http://abcdefu.files.wordpress.com/2008/06/firefox.jpg" style="border: 2;"  height="74" width="187" align="right"/>
+										</a>
+				The most safe web browser for mac and windows. It has many types of add-ons, including hacking add-ons.		      </td>
+		</tr>
+			<tr>
+			<td class="dark-td">
+				<a href="http://firekeeper.mozdev.org/">
+					 <center> <font size="+1"><b>Firekeeper</b></font></center><br />
+										</a>
+				Firekeeper is an Intrusion Detection and Prevention System for Firefox. It is able to detect, block and warn the user about malicious sites. Firekeeper uses flexible rules similar to Snort ones to describe browser based attack attempts. Rules can also be used to effectively filter different kinds of unwanted content.		      </td>
+		</tr>
+			<tr>
+			<td class="dark-td">
+				<a href="https://addons.mozilla.org/en-US/firefox/addon/966">
+					 <center> <font size="+1"><b>Flash Hacker (Tamper Data)</b></font></center><br />
+									                 <img src="https://addons.mozilla.org/en-US/firefox/images/addon_preview/966/1" style="border: 2;"  height="74" width="187" align="right"/>
+										</a>
+				Tamper data is a add on 
+for firefox that is used for hacking flash  games(High scores)&gt;
+
+If you have trouble 
+using ti or don\&#039;t know how to use it contact me at ryanb58@100wpd.com 		      </td>
+		</tr>
+			<tr>
+			<td class="dark-td">
+				<a href="http://www.nowrap.de/flasm.html">
+					 <center> <font size="+1"><b>Flasm</b></font></center><br />
+									                 <img src="http://t0.gstatic.com/images?q=tbn:ANd9GcQWTaE8vzxvjL1FCULqjj-szZ1Nn2kqIdYMoWZwgBAGy-7If2M&amp;t=1&amp;usg=__josUMfQwvBFAVFMzgtxaw54WPIk=" style="border: 2;"  height="74" width="187" align="right"/>
+										</a>
+				A simple hacking 
+tool for basic flash 
+games. Change values 
+(e.g. 999 lives) to 
+increase fun!		      </td>
+		</tr>
+			<tr>
+			<td class="dark-td">
+				<a href="fossbytes.com">
+					 <center> <font size="+1"><b>Fossbytes</b></font></center><br />
+										</a>
+				Fossbytes is a leading source of technology news with a focus on Linux distro releases, security &amp; hacking news, tutorials, tips and tricks, VPNs &amp; more.		      </td>
+		</tr>
+			<tr>
+			<td class="dark-td">
+				<a href="http://gcc.gnu.org/">
+					 <center> <font size="+1"><b>GCC - C compiler</b></font></center><br />
+									                 <img src="http://gcc.gnu.org/img/gccegg-65.png" style="border: 2;"  height="74" width="187" align="right"/>
+										</a>
+				The GNU Compiler Collection includes front ends for C, C++, Objective-C, Fortran, Java, and Ada, as well as libraries for these languages (libstdc++, libgcj,...).		      </td>
+		</tr>
+			<tr>
+			<td class="dark-td">
+				<a href="http://www.gnu.org/software/emacs/">
+					 <center> <font size="+1"><b>GNU Emacs</b></font></center><br />
+									                 <img src="http://www.gnu.org/software/emacs/tour/images/splash.png" style="border: 2;"  height="74" width="187" align="right"/>
+										</a>
+				Due to it&#039;s extensibility it&#039;s a very useful tool editing code and miscellaneous. Also useful for general-purpose use.		      </td>
+		</tr>
+			<tr>
+			<td class="dark-td">
+				<a href="http://www.geany.org/">
+					 <center> <font size="+1"><b>Geany</b></font></center><br />
+									                 <img src="http://www.geany.org/images/geany_main.png" style="border: 2;"  height="74" width="187" align="right"/>
+										</a>
+				Geany is a lightweight, fast, and compatible GTK2 based IDE. It supports many languages including but not limited to (PHP, C, C++, Ruby, Python, Bash).		      </td>
+		</tr>
+			<tr>
+			<td class="dark-td">
+				<a href="http://www.google.com/">
+					 <center> <font size="+1"><b>Google</b></font></center><br />
+									                 <img src="http://www.google.com/intl/en_ALL/images/logo.gif" style="border: 2;"  height="74" width="187" align="right"/>
+										</a>
+				Google is your friend. Use it to the best of your ability. Don&#039;t misuse it. Don&#039;t be evil.		      </td>
+		</tr>
+			<tr>
+			<td class="dark-td">
+				<a href="http://earth.google.com/download-earth.html">
+					 <center> <font size="+1"><b>Google Earth</b></font></center><br />
+									                 <img src="http://earth.google.com/images/googleearth.gif" style="border: 2;"  height="74" width="187" align="right"/>
+										</a>
+				Google Earth combines the power of Google Search with satellite imagery, maps, terrain and 3D buildings to put the world&#039;s geographic information at your fingertips.		      </td>
+		</tr>
+			<tr>
+			<td class="dark-td">
+				<a href="http://code.google.com/p/googlehacks/">
+					 <center> <font size="+1"><b>Google Hacks</b></font></center><br />
+									                 <img src="http://i126.photobucket.com/albums/p110/jacerox1234/SS20072308_041348.png" style="border: 2;"  height="74" width="187" align="right"/>
+										</a>
+				Google Hacks is a compilation of carefully crafted Google searches that expose novel functionality from Google\&#039;s search and map services. For example, you can use it to view a timeline of your search results, view a map, search for music, search for books, and perform many other specific kinds of searches. You can also use this program to use google as a proxy.		      </td>
+		</tr>
+			<tr>
+			<td class="dark-td">
+				<a href="http://addons.mozilla.org/en-US/firefox/addon/3899/">
+					 <center> <font size="+1"><b>HackBar FireFox addon</b></font></center><br />
+									                 <img src="http://addons.mozilla.org/en-US/firefox/images/addon_icon/3899/1242211878.png" style="border: 2;"  height="74" width="187" align="right"/>
+										</a>
+				Simple security audit / Penetration test tool. This toolbar will help you in testing sql injections, XSS holes and site security.		      </td>
+		</tr>
+			<tr>
+			<td class="dark-td">
+				<a href="http://www.amazon.com/Hacking-Dummies-Kevin-Beaver/dp/076455784X">
+					 <center> <font size="+1"><b>Hacking For Dummies</b></font></center><br />
+									                 <img src="http://ec1.images-amazon.com/images/I/51P6XZAFPCL._BO2,204,203,200_PIsitb-dp-500-arrow,TopRight,45,-64_OU01_AA240_SH20_.jpg" style="border: 2;"  height="74" width="187" align="right"/>
+										</a>
+				by Kevin Beaver (Author), Stuart McClure (Foreword) 
+
+&quot;This book is about hacking ethically - the science of testing your computers and network for security vulnerabilities and plugging the holes you find before...&quot;		      </td>
+		</tr>
+			<tr>
+			<td class="dark-td">
+				<a href="http://www.technologismiki.com/prod.php?id=31">
+					 <center> <font size="+1"><b>Hackman</b></font></center><br />
+									                 <img src="http://www.technologismiki.com/images/demo2_logo.gif" style="border: 2;"  height="74" width="187" align="right"/>
+										</a>
+				a Hex Editor, Disassembler and Template Creator/Editor.		      </td>
+		</tr>
+			<tr>
+			<td class="dark-td">
+				<a href="http://www.hak5.org/">
+					 <center> <font size="+1"><b>Hak5</b></font></center><br />
+									                 <img src="http://t3.gstatic.com/images?q=tbn:l6X_Mw98l4XxbM:http://static0.channels.com/thumbnails/-hak5--large-quicktime---f1284.jpg" style="border: 2;"  height="74" width="187" align="right"/>
+										</a>
+				A website with some very interesting, informative videos. They cover wired and wireless networks, setting up a VoIP, way to many things to list here. You gotta check it out!		      </td>
+		</tr>
+			<tr>
+			<td class="dark-td">
+				<a href="http://www.hexworkshop.com/">
+					 <center> <font size="+1"><b>Hex Workshop</b></font></center><br />
+									                 <img src="http://www.hexworkshop.com/images/ss_v60/ss_hworks_sv_edit.gif" style="border: 2;"  height="74" width="187" align="right"/>
+										</a>
+				The Hex Workshop Hex Editor by BreakPoint Software is a complete set of hexadecimal development tools for Microsoft Windows 2000 and later. Hex Workshop combines advanced binary editing and data interpretation with the ease and flexibility of a modern word processor. With the Hex Workshop, you can edit, cut, copy, paste, insert, fill and delete binary data. You can also work with data in its native structure and data types using our integrated structure view and smart bookmarks. Data editing is quick and easy with our extensive features that allow you to: jump to file or sector location, find or replace data, perform arithmetic and logical operations, binary compare files, generate checksums and digests, view character distributions and export data to RTF or HTML for publishing.		      </td>
+		</tr>
+			<tr>
+			<td class="dark-td">
+				<a href="http://freeworld.thc.org/releases.php">
+					 <center> <font size="+1"><b>Hydra</b></font></center><br />
+										</a>
+				THC-Hydra - the best parallized login hacker: for Samba, FTP, POP3, IMAP, Telnet, HTTP Auth, LDAP, NNTP, MySQL, VNC, ICQ, Socks5, PCNFS, Cisco and more. Includes SSL support and is part of Nessus.		      </td>
+		</tr>
+			<tr>
+			<td class="dark-td">
+				<a href="http://i2p2.de">
+					 <center> <font size="+1"><b>I2P</b></font></center><br />
+										</a>
+				I2P: Invisible Internet Project;
+I2P is an anonymizing network, offering a simple layer that identity-sensitive applications can use to securely communicate. All data is wrapped with several layers of encryption, and the network is both distributed and dynamic, with no trusted parties.
+
+Many applications are available that interface with I2P, including mail, peer-peer, IRC chat, and others. 
+Can be seen as an alternative for the Tor Project.		      </td>
+		</tr>
+			<tr>
+			<td class="dark-td">
+				<a href="http://ipython.scipy.org/moin/">
+					 <center> <font size="+1"><b>IPython</b></font></center><br />
+									                 <img src="http://ipython.scipy.org/ipython-icons/IPy-transparent-120-flush.png" style="border: 2;"  height="74" width="187" align="right"/>
+										</a>
+				An enhanced interactive shell for the python language, which includes object introspection. Excellent for experimenting with code and getting things to work.		      </td>
+		</tr>
+			<tr>
+			<td class="dark-td">
+				<a href="0day.today">
+					 <center> <font size="+1"><b>Inj3ct0r</b></font></center><br />
+										</a>
+				Inj3ct0r is the ultimate database of exploits and vulnerabilities and a great resource for vulnerability researchers and security professionals. 		      </td>
+		</tr>
+			<tr>
+			<td class="dark-td">
+				<a href="http://www.instructables.com/">
+					 <center> <font size="+1"><b>Instructables</b></font></center><br />
+									                 <img src="http://www.instructables.com/static/img/banner.jpg" style="border: 2;"  height="74" width="187" align="right"/>
+										</a>
+				Want to make an explosion or maybe something new for lunch. Instructions on almost anything at instructables.com		      </td>
+		</tr>
+			<tr>
+			<td class="dark-td">
+				<a href="http://www.openwall.com/john/">
+					 <center> <font size="+1"><b>John the Ripper</b></font></center><br />
+									                 <img src="http://www.openwall.com/john/jack.jpg" style="border: 2;"  height="74" width="187" align="right"/>
+										</a>
+				John the Ripper is a fast password cracker, currently available for many flavors of Unix (11 are officially supported, not counting different architectures), Windows, DOS, BeOS, and OpenVMS. Its primary purpose is to detect weak Unix passwords. Besides several crypt(3) password hash types most commonly found on various Unix flavors, supported out of the box are Kerberos AFS and Windows NT/2000/XP/2003 LM hashes, plus several more with contributed patches.		      </td>
+		</tr>
+			<tr>
+			<td class="dark-td">
+				<a href="http://www.kali.org/downloads/">
+					 <center> <font size="+1"><b>Kali Linux</b></font></center><br />
+										</a>
+				The most advanced 
+penetration testing 
+distribution, ever.
+
+From the creators of 
+BackTrack comes Kali 
+Linux, the most 
+advanced and 
+versatile 
+penetration testing 
+distribution ever 
+created. We have a 
+whole set of amazing 
+features lined up in 
+our security 
+distribution, geared 
+at streamlining the 
+penetration testing 
+experience.		      </td>
+		</tr>
+			<tr>
+			<td class="dark-td">
+				<a href="http://www.kismetwireless.net/">
+					 <center> <font size="+1"><b>Kismet</b></font></center><br />
+									                 <img src="http://www.kismetwireless.net/logo_small.png" style="border: 2;"  height="74" width="187" align="right"/>
+										</a>
+				Kismet is an 802.11 layer2 wireless network detector, sniffer, and intrusion detection system. Kismet will work with any wireless card which supports raw monitoring (rfmon) mode, and can sniff 802.11b, 802.11a, and 802.11g traffic.
+
+Kismet identifies networks by passively collecting packets and detecting standard named networks, detecting (and given time, decloaking) hidden networks, and infering the presence of nonbeaconing networks via data traffic. 		      </td>
+		</tr>
+			<tr>
+			<td class="dark-td">
+				<a href="http://kodi.tv">
+					 <center> <font size="+1"><b>Kodi</b></font></center><br />
+										</a>
+				Open source home theater software, that costs zilch.		      </td>
+		</tr>
+			<tr>
+			<td class="dark-td">
+				<a href="http://www.thelead82.com/kon-boot/konbootWIN.html">
+					 <center> <font size="+1"><b>Kon-Boot</b></font></center><br />
+										</a>
+				Kon-Boot is an application which will silently bypass the authentication process of Windows based operating systems. Without overwriting your old password! Easy to use and excellent for tech repairs, data recovery and security audits.
+		      </td>
+		</tr>
+			<tr>
+			<td class="dark-td">
+				<a href="http://www.l0phtcrack.com/download.html">
+					 <center> <font size="+1"><b>L0phtcrack(LC6)</b></font></center><br />
+										</a>
+				L0phtCrack 6 is packed with powerful features such as scheduling, hash extraction from 64 bit Windows versions, multiprocessor algorithms, and networks monitoring and decoding. Yet it is still the easiest to use password auditing and recovery software available.		      </td>
+		</tr>
+			<tr>
+			<td class="dark-td">
+				<a href="http://www.learncpp.com/">
+					 <center> <font size="+1"><b>Learn CPP</b></font></center><br />
+										</a>
+				A good site for learning C++. Gives you a C++ basis, teaches about variables, operators, even teaches you the history of C.		      </td>
+		</tr>
+			<tr>
+			<td class="dark-td">
+				<a href="http://lifehacker.com/">
+					 <center> <font size="+1"><b>LifeHacker.com</b></font></center><br />
+									                 <img src="http://advertising.gawker.com/assets/img/logo/lifehacker_logo.jpg" st

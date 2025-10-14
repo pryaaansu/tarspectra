@@ -14,6 +14,87 @@ from utils.payloads_manager import (
 )
 
 
+def run_active_injection(
+    annotated,
+    target_url,
+    payloads_dir="payloads",
+    workers=3,
+    delay_between=0.6,
+    encodings="raw,url,html",
+    max_variants=2,
+    log_dir="reports/requests",
+):
+    """Run active payload tests on annotated items and merge findings.
+
+    Returns a tuple: (annotated_with_findings, active_results, error_message)
+    error_message is None on success.
+    """
+    try:
+        payloads_map = load_payload_lists_from_dir(base_dir=payloads_dir)
+        active_payloads = build_active_payload_map(payloads_map)
+    except Exception as e:
+        # proceed with None to allow scanner to fall back if supported by injector
+        active_payloads = None
+        # Return early with error; caller can display
+        try:
+            enc_list = [e.strip() for e in encodings.split(",") if e.strip()]
+        except Exception:
+            enc_list = ["raw", "url", "html"]
+        # pick pages with params/forms even on error path to keep consistent type
+        to_test = []
+        for r in annotated:
+            if (r.get("query_params") and len(r.get("query_params")) > 0) or (r.get("form_inputs") and len(r.get("form_inputs")) > 0):
+                to_test.append(r)
+        return annotated, [], str(e)
+
+    # LIMIT: avoid explosion per category
+    MAX_PAYLOADS_PER_CAT = 500
+    if active_payloads:
+        for k, v in list(active_payloads.items()):
+            if isinstance(v, list) and len(v) > MAX_PAYLOADS_PER_CAT:
+                active_payloads[k] = v[:MAX_PAYLOADS_PER_CAT]
+
+    # Select candidate pages
+    to_test = []
+    for r in annotated:
+        if (r.get("query_params") and len(r.get("query_params")) > 0) or (r.get("form_inputs") and len(r.get("form_inputs")) > 0):
+            to_test.append(r)
+
+    if not to_test:
+        return annotated, [], None
+
+    enc_list = [e.strip() for e in encodings.split(",") if e.strip()]
+
+    try:
+        active_results = run_active_tests(
+            to_test,
+            payloads=active_payloads,
+            max_workers=workers,
+            delay_between=delay_between,
+            require_consent=True,
+            verify=True,
+            timeout=12,
+            encodings=enc_list,
+            max_variants=max_variants,
+            log_dir=log_dir,
+        )
+    except Exception as e:
+        return annotated, [], str(e)
+
+    # Merge by URL
+    by_url = {r["url"]: r for r in annotated}
+    for ar in active_results:
+        url = ar.get("url")
+        if not url:
+            continue
+        parent = by_url.get(url)
+        if parent is None:
+            continue
+        parent.setdefault("active_findings", []).append(ar)
+
+    return annotated, active_results, None
+
+
 def main():
     parser = argparse.ArgumentParser(description="Exploit Finder: crawl -> fetch -> heuristics -> reports -> (optional active tests)")
     parser.add_argument("-u", "--url", required=True, help="Start URL, e.g. https://example.com")

@@ -1,0 +1,6 @@
+GET https://www.hackthissite.org/user/rankings/
+
+Headers:
+
+Body/data:
+null

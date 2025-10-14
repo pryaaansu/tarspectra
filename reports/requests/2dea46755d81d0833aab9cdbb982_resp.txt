@@ -1,0 +1,425 @@
+Status: 200
+
+Headers:
+Date: Tue, 14 Oct 2025 07:24:53 GMT
+Upgrade: h2,h2c
+Connection: Upgrade
+Set-Cookie: HackThisSite=feva2ksetn4o0v3467fbblrmh2; expires=Wed, 15-Oct-2025 07:24:53 GMT; path=/
+Expires: Thu, 19 Nov 1981 08:52:00 GMT
+Cache-Control: no-store, no-cache, must-revalidate, post-check=0, pre-check=0
+Pragma: no-cache
+Onion-Location: http://hackthisjogneh42n5o7gbzrewxee3vyu6ex37ukyvdw6jm66npakiyd.onion/
+Vary: Accept-Encoding
+Content-Encoding: gzip
+Content-Length: 12061
+Content-Type: text/html
+Content-Language: en
+Server: HackThisSite
+Access-Control-Allow-Origin: *
+Content-Security-Policy: child-src 'self' hackthissite.org *.hackthissite.org htscdn.org *.htscdn.org discord.com; form-action 'self' hackthissite.org *.hackthissite.org htscdn.org *.htscdn.org; upgrade-insecure-requests; report-uri https://hackthissite.report-uri.com/r/d/csp/enforce
+Referrer-Policy: origin-when-cross-origin
+X-XSS-Protection: 0
+Feature-Policy: fullscreen *
+Public-Key-Pins-Report-Only: pin-sha256="YLh1dUR9y6Kja30RrAn7JKnbQG/uEtLMkBgFF2Fuihg="; pin-sha256="Vjs8r4z+80wjNcr1YKepWQboSIRi63WsWXhIMN+eWys="; max-age=2592000; includeSubDomains; report-uri="https://hackthissite.report-uri.com/r/d/hpkp/reportOnly"
+Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
+Report-To: {"group":"default","max_age":31536000,"endpoints":[{"url":"https://hackthissite.report-uri.com/a/d/g"}],"include_subdomains":true}
+NEL: {"report_to":"default","max_age":31536000,"include_subdomains":true,"success_fraction":0.0,"failure_fraction":0.1}
+
+Body (trimmed):
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<head>
+  <title>Hack This Site</title>
+  <meta name="verify-v1" content="s/YXn7eQrMBoF9PL5jLJDiWpAxEXpJzE9JLg/zM4C2Y=" />
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta name="author" content="HackThisSite.org Staff" />
+  <meta name="keywords" content="challenge, computer, culture, deface, digital, ethics, games, guide, hack, hack forums, hacker, hackers, hacking, hacking challenges, hacking forums, mission, net, programming, radical, revolution, root, rooting, security, site, society, tutorial, tutorials, war, wargame, wargames, web, website" />
+  <meta name="title" content="HackThisSite" />
+  <meta name="description" content="HackThisSite.org is a free, safe and legal training ground for hackers to test and expand their ethical hacking skills with challenges, CTFs, and more." />
+  <meta itemprop="name" content="HackThisSite" />
+  <meta itemprop="description" content="HackThisSite.org is a free, safe and legal training ground for hackers to test and expand their ethical hacking skills with challenges, CTFs, and more." />
+  <meta itemprop="image" content="https://data.htscdn.org/images/hackthissite-meta-card.png" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://www.hackthissite.org/" />
+  <meta property="og:title" content="HackThisSite" />
+  <meta property="og:description" content="HackThisSite.org is a free, safe and legal training ground for hackers to test and expand their ethical hacking skills with challenges, CTFs, and more." />
+  <meta property="og:image" content="https://data.htscdn.org/images/hackthissite-meta-card.png" />
+  <meta property="twitter:card" content="summary_large_image" />
+  <meta property="twitter:url" content="https://www.hackthissite.org/" />
+  <meta property="twitter:title" content="HackThisSite" />
+  <meta property="twitter:description" content="HackThisSite.org is a free, safe and legal training ground for hackers to test and expand their ethical hacking skills with challenges, CTFs, and more." />
+  <meta property="twitter:image" content="https://data.htscdn.org/images/hackthissite-meta-card.png" />
+  <meta name="viewport" content="width=820, initial-scale=0.5" />
+  <meta name="theme-color" content="#163ea7" />
+  <meta name="color-scheme" content="dark" />
+  <meta http-equiv="onion-location" content="http://hackthisjogneh42n5o7gbzrewxee3vyu6ex37ukyvdw6jm66npakiyd.onion/" />
+  <link rel="apple-touch-icon" sizes="180x180" href="https://data.htscdn.org/favicon/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="https://data.htscdn.org/favicon/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="https://data.htscdn.org/favicon/favicon-16x16.png" />
+  <link rel="manifest" href="https://www.hackthissite.org/manifest.webmanifest" />
+  <link href="https://data.htscdn.org/themes/Dark/Dark.css" rel="stylesheet" type="text/css" />
+  <link href="https://www.hackthissite.org/pages/hts.rss.php" rel="alternate" type="application/rss+xml" title="HTS RSS feed" />
+  <base href="https://www.hackthissite.org" />
+  <script type="text/javascript" src="https://data.htscdn.org/js/jquery-1.8.1.min.js"></script>
+  </head>
+<body>
+<span id="blank-element" style="display: none"></span>
+
+<div id="topbar" align="center">
+<a href="https://www.hackthissite.org" id="active">Hack This Site</a> (<a href="https://hackthisjogneh42n5o7gbzrewxee3vyu6ex37ukyvdw6jm66npakiyd.onion">TOR .onion HTTPS</a> - <a href="http://hackthisjogneh42n5o7gbzrewxee3vyu6ex37ukyvdw6jm66npakiyd.onion">HTTP</a>) - <a href="https://www.irc.hackthissite.org/chat">IRC</a> - <a href="/discord">Discord</a> - <a href="https://www.hackthissite.org/forums">Forums</a> - <a href="https://www.cafepress.com/htsstore" target="_new">Store</a> - <a href="https://hts.io" target="_new">URL Shortener</a> - <a href="https://cryptopaste.org" target="_new">CryptoPaste</a>&nbsp;&nbsp;&nbsp;---&nbsp;&nbsp;&nbsp;<a href="https://www.facebook.com/HackThisSite.org" target="_new">Like Us</a> - <a href="https://twitter.com/hackthissite" target="_new">Follow Us</a> - <a href="https://github.com/HackThisSite" target="_new">Fork Us</a>
+</div>
+<div class="hts-header">
+<a href="/"><img src="https://data.htscdn.org/themes/Dark/images/header.jpg" alt="Hack This Site" border="0" /></a>
+<br />
+<a href="https://www.hackthissite.org/advertise"><img src="https://data.htscdn.org/images/support-hts.gif" alt="Support HackThisSite - Advertise with us!" title="Support HackThisSite - Advertise with us!" id="atpimg" class="abstaimg" border="0" /><img src="https://www.hackthissite.org/images/px.png" border="0"></a></div>
+  <table width="780" border="0" cellpadding="0" cellspacing="0" class="siteheader cmTable">
+    <tr>
+      <td class="sitetopheader"><blockquote>Today is the first day of the rest of your life.</blockquote></td>
+    </tr>
+    <tr>
+      <td><table width="100%"  border="0" cellspacing="0" cellpadding="0">
+        <tr>
+          <td width="160" valign="top" class="navbar"><div align="center">
+            <br />
+            	<!-- login form start -->
+	<div id="ourlogin">
+		<span id="loginclick"><a class="nav" href="/user/login">Login</a></span> (or <a class="nav" href="/register">Register</a>):<br />
+				<form id="loginform" method="post" action="/user/login">
+		<div id="innerlogin">
+		<script type="text/javascript">var userclicked=0; var passclicked=0;</script>
+		<p><input type="text" name="username" class="login" value="" onclick="if(userclicked==0){this.value='';userclicked=1;};" title="Username" /></p>
+		<p><input type="password" name="password" class="login" value="" onclick="if(passclicked==0){this.value='';passclicked=1;};" title="Password" /></p>
+				<p><input type="submit" value="Login" name="btn_submit" class="submit-button" /></p>
+		</div>
+	</form>
+	<!-- login form end -->
+	<a href="/user/resetpass">Lost your password?</a><br />
+        <a href="/user/forgotusername">Forgot your username?</a></br />
+		</div>
+	<h4 class="header">Donate</h4>
+<p>
+  <a href="https://www.hackthissite.org/donate/">
+    <img
+      src="https://data.htscdn.org/images/donate.png"
+      border="0"
+      title="Donate to HackThisSite.org"
+      alt="Donate to HackThisSite.org" />
+  </a>
+  <br />
+  <img
+    src="https://data.htscdn.org/images/donate-bat.png"
+    border="0"
+    title="Donate using Brave Basic Attention Tokens"
+    alt="Donate using Brave Basic Attention Tokens" />
+  <br /><br />
+  HTS costs up to $300 a month to operate. We <strong>need</strong> your help!
+</p>
+<h4 class="header">Challenges</h4>
+<ul class="navigation">
+  <li><a class="nav" href="/missions/basic/">Basic</a></li><li><a class="nav" href="/missions/realistic/">Realistic</a></li><li><a class="nav" href="/missions/application/">Application</a></li><li><a class="nav" href="/missions/programming/">Programming</a></li><li><a class="nav" href="/missions/javascript/">Javascript</a></li><li><a class="nav" href="/missions/forensic/">Forensic</a></li><li><a class="nav" href="/missions/playit/extbasic/0/">Extended Basic</a></li><li><a class="nav" href="/missions/playit/stego/0/">Steganography</a></li><li><a class="nav" href="ircs://irc.hackthissite.org:7000/#htb">IRC</a></li></ul>
+
+<h4 class="header">Get Informed</h4><ul class="navigation"><li><a class="nav" href="/blogs">Blogs</a></li><li><a class="nav" href="/news">News</a></li><li><a class="nav" href="/pages/articles/article.php">Articles</a></li><li><a class="nav" href="/lectures">Lectures</a></li><li><a class="nav" href="/pages/programs/programs.php">Useful Stuff</a></li><!--<li><a class="nav" href="ebooks">E-books</a></li>--><li><a class="nav" href="https://mirror.hackthissite.org/hackthiszine/">HackThisZine</a></li><li><a class="nav" href=""></a></li></ul><h4 class="header">Get Involved</h4><ul class="navigation"><li><a class="nav" href="/donate"><span class="completed">Donate to HackThisSite!</span></a></li><li><a class="nav" href="https://www.cafepress.com/htsstore">Store</a></li><li><a class="nav" href="/submit/article">Submit Article</a></li><li><a class="nav" href="/pages/bugManagement/index.php">Submit Bug Report</a></li><li><a class="nav" href="/submit/lecture">Submit Lecture</a></li><li><a class="nav" href="/pages/programs/insert.php">Submit Useful Stuff</a></li><!--<li><a class="nav" href="/pages/showsource/loopdeloop.php">We Want You!</a></li>--><li><a class="nav" href=""></a></li></ul><h4 class="header">Communicate</h4><ul class="navigation"><li><a class="nav" href="/forums">Forums</a></li><li><a class="nav" href="/discord">Discord</a></li><li><a class="nav" href="https://www.hackthissite.org/forums/ucp.php?i=pm">Private Messages</a></li><li><a class="nav" href="https://www.irc.hackthissite.org/chat">IRC Web Chat</a></li><li><a class="nav" href="https://www.irc.hackthissite.org/idlerpg">IRC IdleRPG</a></li><li><a class="nav" href="https://www.hackthissite.org/irc/stats.php">IRC Stats</a></li><li><a class="nav" href="https://qdb.hackthissite.org">IRC Quotes</a></li><li><a class="nav" href="/pages/irc/reference.php">IRC Command Reference</a></li><li><a class="nav" href="/user/search">Search Users</a></li><li><a class="nav" href="/user/online">Who is Online</a></li><li><a class="nav" href="/user/rankings/">Rankings</a></li><li><a class="nav" href=""></a></li></ul><h4 class="header">About HTS</h4><ul class="navigation"><li><a class="nav" href="/info/about">About the Project</a></li><li><a class="nav" href="/info/billofrights">Bill of Rights</a></li><li><a class="nav" href="https://legal.hackthissite.org/terms">Terms &amp; Conditions</a></li><li><a class="nav" href="https://legal.hackthissite.org/privacy">Privacy Policy</a></li><li><a class="nav" href="/info/staff">Meet the Staff</a></li><li><a class="nav" href="/info/underthehood">Under the Hood</a></li><li><a class="nav" href="/advertise">Advertise with HTS</a></li><li><a class="nav" href="/ipv6">IPv6</a></li><li><a class="nav" href="/hof">Hall of Fame</a></li><li><a class="nav" href=""></a></li></ul><h4 class="header"></h4><ul class="navigation"><li><a class="nav" href=""></a></li></ul>
+<br />
+<a href="/">
+  <img
+    src="https://data.htscdn.org/images/hts_80x15.gif"
+    width="80"
+    height="15"
+    border="0"
+    alt="" />
+</a>
+<br />
+<a class="nav" href="https://www.hackthissite.org/pages/info/linktous.php">
+  Link to us!
+</a>
+
+<h4 class="header">
+  Partners
+</h4>
+<br />
+<a class="nav" target="_new" href="https://www.hellboundhackers.org/">
+  <img
+    src="https://data.htscdn.org/images/hbhlogo.jpg"
+    alt="Hellbound Hackers"
+    title="Hellbound Hackers"
+    width="88"
+    height="31"
+    border="0" />
+</a>
+<br />
+<a class="nav" target="_new" href="https://www.netsparker.com/blog">
+  <img
+    src="https://data.htscdn.org/images/netsparker.gif"
+    alt="Netsparker Security Blog"
+    title="Netsparker Security Blog"
+    width="88"
+    height="31"
+    border="0" />
+</a>
+<br />
+<a class="nav" target="_new" href="https://www.acunetix.com/blog">
+  <img
+   src="https://data.htscdn.org/images/acunetixblog.gif"
+   alt="Acunetix Security Blog"
+   title="Acunetix Security Blog"
+   width="88"
+   height="31"
+   border="0" />
+</a>
+<br />
+<a class="nav" target="_new" href="https://www.buddyns.com">
+<img
+  src="https://data.htscdn.org/images/buddyns88x31.png"
+  alt="BuddyNS Secondary DNS"
+  title="BuddyNS Secondary DNS"
+  width="88"
+  height="31"
+  border="0" />
+</a>
+<br />
+<a class="nav" target="_new" href="https://redirect.pizza/?utm_source=partner&utm_medium=banner&utm_campaign=hackthissite.org">
+<img
+  src="https://data.htscdn.org/images/redirectpizza88x31.png"
+  alt="Redirect.pizza - HTTPS Redirect Service"
+  title="Redirect.pizza - HTTPS Redirect Service"
+  width="88"
+  height="31"
+  border="0" />
+</a>
+<br />
+<a class="nav" target="_new" href="https://brave.com/hac977">
+<img
+  src="https://data.htscdn.org/images/brave-88x31.png"
+  alt="Brave Browser - Secure, fast, and private web browser with a built-in adblocker"
+  title="Brave Browser - Secure, fast, and private web browser with a built-in adblocker"
+  width="88"
+  height="31"
+  border="0" />
+</a>
+<br />
+
+          </td>
+          <td valign="top" class="sitebuffer">
+	<br />
+<table border="0" width="100%" cellspacing="5" cellpadding="0">
+	<tr>
+	  <td width="66%" rowspan="3" valign="top" class="normal-td">
+		 <center>		 <div class="training"></div></center><br />
+		 <div class="mainintro">HackThisSite.org is a free, safe and legal training ground for hackers to test and expand their ethical hacking skills with challenges, CTFs, and more. Active since 2003, we are more than just another hacker wargames site. We are a living, breathing community devoted to learning and sharing ethical hacking knowledge, technical hobbies, programming expertise, with many active projects in development. Join our IRC, Discord, and our forums where users can discuss hacking, network security, and more. Tune in to the hacker underground and get involved with the project!<br /> <br />
+		</div>
+		<div id="notice">
+		First timers should read the <a href="/info/about">HTS Project Guide</a> and <a href="/register">create an account</a> to get started.
+		All users are also required to read and adhere to our <a href="https://legal.hackthissite.org/terms">Terms and Conditions</a>.
+		<br />
+
+		<strong>Get involved on <a href="https://www.irc.hackthissite.org/chat">our IRC server</a> (irc.hackthissite.org SSL port 7000), <a href="/discord">Discord</a>, and our <a href="/forums">web forums</a></strong>.</div>
+<br />
+<table border="0" width="100%" cellspacing="0" cellpadding="0"><tr>
+<td width="50%" valign="top" class="light-td-shortnews"><strong>
+<img src="https://data.htscdn.org/images/tick.gif" alt="#" /> LAST CHALLENGE COMPLETED:</strong><br />&raquo; <a href="/missions/basic">Basic 3</a> completed 52 seconds ago by <i>[<a href="/user/login">login</a> to see this feature]</i></td></tr></table>
+</td>
+<td width="37%" valign="top" class="light-td-shortnews">
+<strong><img src="https://data.htscdn.org/images/tick.gif" alt="#" /> STAFF BLOGS / SHORT NEWS:</strong><br />
+&nbsp;<span style="font-weight: bold; font-style: italic; color: #55AA55">blog</span> <a href="/news/view/728" title="Status Pages 2.0 - Now With Pizza!">Status Pages 2.0 - N...</a><br />&nbsp;<span style="font-weight: bold; font-style: italic; color: #AAAAAA">news</span> <a href="/news/view/725" title="Application 2">Application 2</a><br />&nbsp;<span style="font-weight: bold; font-style: italic; color: #AAAAAA">news</span> <a href="/news/view/724" title="Application 7 &amp; 17">Application 7 &amp; ...</a><br />&nbsp;<span style="font-weight: bold; font-style: italic; color: #55AA55">blog</span> <a href="/news/view/718" title="Github for Status Pages">Github for Status Pa...</a><br />&nbsp;<span style="font-weight: bold; font-style: italic; color: #55AA55">blog</span> <a href="/news/view/703" title="Internetwache CTF 2016">Internetwache CTF 20...</a><br /><br /><strong> <img src="https://data.htscdn.org/images/tick.gif" alt="#" /> LATEST ARTICLES:</strong><br />&nbsp;<a href="/articles/read/1158" title="How are websites defaced?">How are websites defaced?</a><br />&nbsp;<a href="/articles/read/1157" title="What is OSINT and what are the most common techniques?">What is OSINT and what are t...</a><br />&nbsp;<a href="/articles/read/1156" title="How to stay anonymous &amp;amp; safe online">How to stay anonymous &amp;a...</a><br />&nbsp;<a href="/articles/read/1155" title="Realistic mission 1 tutorial">Realistic mission 1 tutorial</a><br />&nbsp;<a href="/articles/read/1154" title="Cryptanalysis">Cryptanalysis</a><br /></td>
+  </tr>
+  <tr>
+    <td valign="top" class="light-td-shortnews">
+<strong> <img src="https://data.htscdn.org/images/tick.gif" alt="#" /> HackThisSite on <a href="https://github.com/HackThisSite" target="_new">GitHub</a>:</strong><br /><table style="width:100%;"><tr><td>Repositories</td><td align="right">17</td></tr><tr><td>Forks</td><td align="right">109</td></tr><tr><td>Watchers</td><td align="right">383</td></tr><tr><td>Stargazers</td><td align="right">383</td></tr><tr><td>Contributors</td><td align="right">0</td></tr><tr><td>Commits This Week</td><td align="right">0</td></tr></table></center></td>
+  </tr><tr>
+<td valign="top" class="light-td-shortnews">
+<strong><img src="https://data.htscdn.org/images/tick.gif" alt="#" />CONTRIBUTE:</strong><br />
+&raquo; <a href="ircs://irc.hackthissite.org:7000/">IRC</a> / <a href="https://discord.com/invite/6YfYHNhX" target="_new">Discord (1245 online, 0 voice)</a> - Chat<br />
+&raquo; <a href="https://www.hackthissite.org/forums">Forums</a> - Discussion<br />
+&raquo; <a href="https://github.com/HackThisSite" target="_new">GitHub</a> - Open Source<br />
+</td>
+</tr>
+</table>
+<table border="0" width="100%" cellspacing="5" cellpadding="0">
+<tr>
+<td width="50%" valign="top" class="light-td-shortnews"><strong><img src="https://data.htscdn.org/images/tick.gif" alt="#" />LATEST <a href="/forums">FORUM</a> POSTS:</strong><br />
+<center><i>[<a href="/user/login">Login</a> to see this feature]</i></center></td>
+<td width="50%" valign="top" class="light-td-shortnews"><strong><img src="https://data.htscdn.org/images/tick.gif" alt="#" />LATEST <a href="ircs://irc.hackthissite.org:7000">IRC</a> LINES: (<a href="https://www.irc.hackthissite.org/chat">WEB CHAT</a>)</strong><br /><center><i>[<a href="/user/login">Login</a> to see this feature]</i></center></td></tr></table>
+
+<div style="border-bottom: 1px dashed #000000;">Latest site news: <a href="/pages/hts.rss.php" title="HTS RSS feed"><img src="https://data.htscdn.org/images/feed-icon.png" alt="RSS!" border="0" /></a></div><br />
+<div>
+
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+			<tr>
+				<td class="normal-td" style="font-size: 16px;"></td>
+			</tr>
+			<tr>
+				<td></td>
+			</tr>
+	<tr>
+		<td class="normal-td" style="font-size: 16px;">
+      		<b><span style="font-size: 12px"><img src="https://data.htscdn.org/images/tick.gif" alt="#" />Jun 2 2021:</span>&nbsp;&nbsp;Celebrating Pride</b><span style="display:none;font-size: 9px;"><br /></span>
+    		</td>
+	</tr>
+       
+	<tr>
+		<td class="normal-td" style="font-size: 10px;">
+      	<br /><div class="news"><div align="left"><div align="center"><img src='https://data.htscdn.org/images/pride-world-map.png' /></div><br />
+<br />
+At HackThisSite, we have always tried to be a safe, welcoming place for people from every walk of life. This year we would like you to join us in celebrating LGBTQ+ Pride Month for the month of June. Pride is a reminder that while a lot of progress has been made over the past few decades, the fight is far from over and your help is needed.<br />
+<br />
+You may wonder <a href='https://www.huffpost.com/entry/why-pride-an-explanation-for-straight-people_b_5931ccdae4b0649fff2118ee' target='_new'>why people are flying those rainbow flags</a> every year shouting that they are proud. Why do they feel the need to announce it, and <a href='https://www.amnesty.org/en/latest/campaigns/2015/10/5-reasons-why-prides-matter/' target='_new'>why does there need to be a whole month for it</a>? In the perfect world, this would not be necessary.<br />
+<br />
+On June 28, 1969 at the Stonewall Inn in Manhattan, New York, a riot happened. This riot would be the tipping point, starting the path for equality. This was the start of the <a href='https://en.wikipedia.org/wiki/Stonewall_riots' target='_new'>Stonewall Riots</a>, a violent stand against the police criminalizing LGBTQ+ identities. Pride is a celebration, yes; but it is also a protest against the struggles people face while living in a homophobic society. Its a celebration of people's identities, in a world that discourages people from doing so. Pride is resistance.<br />
+<br />
+Prior to the Stonewall Riots, being gay or queer was seen as a sickness. Something to be corrected. Sometimes it was even criminalized. This line of thinking unfortunately continued for quite some time, and even has remnants today. In the 1950s, not long before the Stonewall Riots, <a href='https://en.wikipedia.org/wiki/Robert_Galbraith_Heath' target='_new'>Robert Galbraith Heath</a> was experimenting on deep brain stimulation in a hope to cure homosexuality. This process later become known as <a href='https://en.wikipedia.org/wiki/Conversion_therapy' target='_new'>Conversion Therapy</a> and has yet to be outlawed in many parts of the world.<br />
+<br />
+At a time when more and more people are finding the courage to come out and be proud of who they truly are, it is disheartening to see that people all over the world are being pushed out against their will and ostracized, and sometimes killed, for being themselves.<br />
+<br />
+This year, there have been over 250 anti-LGBTQ+ bills introduced in state legislatures across the United States, and this trend is increasing across the world, too. Most of the laws target transgender people, specifically young people in sports. Doctors are finding it a real possibility that providing life-affirming care may be criminalized. These proposed laws are cruel, unnecessary, and blatant discrimination. Unfortunately, some have passed, and in some nations not being straight is a criminal offense, even punishable by death. At such a crucial point in the fight for equality, we cannot let up. In the U.S. alone, more than half the states allow the use of the <a href='https://en.wikipedia.org/wiki/Gay_panic_defense' target='_new'>&quot;Gay Panic&quot; defense</a>. This is unacceptable. Just when the LGBTQ+ community was finally beginning to gain small steps forward in civil rights, those may soon be gone.<br />
+<br />
+The time to fight back is now, more than ever. There are <a href='https://en.wikipedia.org/wiki/List_of_LGBT_rights_organizations' target='_new'>hundreds of LGBTQ+ rights organizations</a> around the world that you can join and find out what you can do to make sure LGBTQ+ persons get the equal and equitable rights they justly deserve. In the U.S., <a href='https://www.glaad.org' target='_new'>GLAAD</a> is one of many such organizations. The American Psychological Association provides <a href='https://www.apa.org/advocacy/guide/phone-call' target='_new'>a great guide</a> for finding your Senators and Congresspersons and tips for how to communicate with them. Your help is needed, please act now.<br />
+<br />
+Pride is not just for people to stand up and let their presence be known. Pride is a reminder of what people who are not LGBTQ+ can do to be an ally, to be supportive and provide a safe place. Pride is a reminder that the fight is not over.</div></div>
+  		<br />
+       	<br />
+  		<span style="font-size: 10px;"><a href="/news/view/729">read more...</a> | comments disabled<br /><br /></span>
+    </td>
+	</tr>
+	<tr>
+
+		<td>&nbsp;</td>
+	</tr>
+       
+	<tr>
+		<td class="normal-td" style="font-size: 16px;">
+      		<b><span style="font-size: 12px"><img src="https://data.htscdn.org/images/tick.gif" alt="#" />Dec 6 2020:</span>&nbsp;&nbsp;HackThisSite @ rC3</b><span style="display:none;font-size: 9px;"><br /></span>
+    		</td>
+	</tr>
+       
+	<tr>
+		<td class="normal-td" style="font-size: 10px;">
+      	<br /><div class="news"><div align="left"><div align="center"><img src='https://data.htscdn.org/images/rc3/htsatrc3-sm.png' /></div><br />
+<br />
+HackThisSite will be present at the Chaos Computer Congress again this year from December 27 - 30. However, with the ongoing human malware pandemic, CCC will be held entirely remotely and online only as <i>rC3</i>. Therefore, we will be present on both our <a href='ircs://irc.hackthissite.org:7000/#rc3' target='_new'>IRC server (#rc3 channel)</a> and <a href='https://discord.gg/khEkhgJ' target='_new'>Discord (#irc-rc3 channel)</a>, as well as the official rC3 communication platforms (when announced).<br />
+<br />
+Make sure to follow the <a href='https://events.ccc.de' target='_new'>CCC blog</a> and the <a href='https://rc3.world' target='_new'>official rC3 website</a> for more details. The <a href='https://fahrplan.events.ccc.de' target='_new'>schedule of events</a> will soon be posted, and as always, <a href='https://media.ccc.de' target='_new'>talks can be viewed online</a> without a ticket.<br />
+<br />
+See you soon in the virtual world!</div></div>
+  		<br />
+       	<br />
+  		<span style="font-size: 10px;"><a href="/news/view/727">read more...</a> | <a href="/news/view/727/#comments">comments (74)</a><br /><br /></span>
+    </td>
+	</tr>
+	<tr>
+
+		<td>&nbsp;</td>
+	</tr>
+       
+	<tr>
+		<td class="normal-td" style="font-size: 16px;">
+      		<b><span style="font-size: 12px"><img src="https://data.htscdn.org/images/tick.gif" alt="#" />Sep 8 2020:</span>&nbsp;&nbsp;GO VOTE!</b><span style="display:none;font-size: 9px;"><br /></span>
+    		</td>
+	</tr>
+       
+	<tr>
+		<td class="normal-td" style="font-size: 10px;">
+      	<br /><div class="news"><div align="left"><div align="center"><img src='https://data.htscdn.org/images/vote.jpg' /><br />
+&quot;Vote as if your life depends on it - because it does!&quot;</div><br />
+<br />
+Those are the famous words of the late and venerable <a href='https://en.wikipedia.org/wiki/Justin_Dart_Jr.' target='_new'>Justin Dart Jr.</a>, co-founder of the American Association of People with Disabilities (AAPD) and 'Godfather of the Americans with Disabilities Act (ADA)'. He said this long ago to underscore the importance of electing politicians, at all levels, that will be an ally to those less fortunate. Especially those whose lives literally depend on the outcome of an election.<br />
+<br />
+<b>All of our lives hinge on the result of this election in November.</b> The current administration and those that side with it seek to inflict as much pain, suffering, and even death on people they disagree with. That is not hyperbole, that is <a href='https://www.politico.com/news/magazine/2020/08/24/republicanmeltdown-trump-convention-400039' target='_new'>literally their political ideology</a>. From destroying decades of work building civil rights for Black people and LGBTQ+, to empowering and encouraging Nazis and white nationalists, to countless impeachable acts of outright fascism -- and lately the criminal and malicious negligence with the COVID-19 pandemic -- it is indisputable that we <u>absolutely cannot</u> allow these monsters to stay in power any longer, at any level of government. To allow them to stay in power is to invite fascism, suffering, and death at unimaginable levels, both domestically and abroad.<br />
+<br />
+There are previously unthinkable efforts taking place every day to undermine this election. This may very indeed well be the last chance we ever have to elect politicians that do not seek to harm a huge portion of the population for simply existing. If you do not vote this time, and for the right people, you might never have a real chance to again. Listed below are some resources to ensure your ballot gets counted.<br />
+<br />
+<u>Resources</u><ul><li><a href='https://www.businessinsider.com/mistakes-that-can-disqualify-your-mail-absentee-ballot-2020-9' target='_new'>5 mistakes that can disqualify your November mail ballot and how to avoid them</a></li><li><a href='https://www.vote.org/am-i-registered-to-vote/' target='_new'>Check your voter registration status</a></li><li><a href='https://www.vote.org/register-to-vote/' target='_new'>Register to vote</a></li><li><a href='https://www.vote.org/absentee-ballot/' target='_new'>Request an absentee/mail-in ballot</a></li><li><a href='https://www.vote.org/absentee-voting-rules/' target='_new'>Rules</a> and <a href='https://www.vote.org/absentee-ballot-deadlines/' target='_new'>deadlines</a> for absentee/mail-in voting</li><li><a href='https://www.vote.org/covid-19/' target='_new'>COVID-19 voting guidelines</a></li><li><a href='https://www.vote.org/election-protection/' target='_new'>Your voting rights &amp; election protection hotline</a></li></ul><b>Vote as if your life depends on it - because this time, it really does.</b></div></div>
+  		<br />
+       	<br />
+  		<span style="font-size: 10px;"><a href="/news/view/726">read more...</a> | comments disabled<br /><br /></span>
+    </td>
+	</tr>
+	<tr>
+
+		<td>&nbsp;</td>
+	</tr>
+       
+	<tr>
+		<td class="normal-td" style="font-size: 16px;">
+      		<b><span style="font-size: 12px"><img src="https://data.htscdn.org/images/tick.gif" alt="#" />Jun 4 2020:</span>&nbsp;&nbsp;Black Lives Matter</b><span style="display:none;font-size: 9px;"><br /></span>
+    		</td>
+	</tr>
+       
+	<tr>
+		<td class="normal-td" style="font-size: 10px;">
+      	<br /><div class="news"><div align="left"><div align="center"><img src='https://data.htscdn.org/images/blm_breonnataylor-ahmaudarbery-georgefloyd.jpg' /></div><br />
+The unjustifiable murders of George Floyd, Ahmaud Arbery, Breonna Taylor, and so many more have inspired uprisings not just in the United States but across the globe. The world is grieving, and we grieve with them. But <a href='https://www.newyorker.com/news/q-and-a/bryan-stevenson-on-the-frustration-behind-the-george-floyd-protests' target='_new'>the world is also angry</a>, and rightfully so. For far too long, innocent people, especially minorities and persons of color, have been slaughtered by police with utter impunity, and now police are committing outright acts of terrorism against people protesting this injustice, against the press reporting on their heinous actions, and against innocent bystanders and even children that are not participating in any protests. Furthermore, state and federal officials up to and including the White House are using this as an excuse to implement the most egregiously fascist authoritarianism in the US.<br />
+<br />
+This must end <b>now</b>. We must demand justice and accountability and we cannot stop until all police officers, their unions, and police departments are held to the highest possible standards and are mercilessly and unconditionally punished to the highest degree allowed by law when they brutalize the citizens they are sworn to protect, and when they shield the countless violent officers among their ranks. We must put an absolute end to the ongoing fascism, the empowerment of white supremacists, and the encouragement of violence all coming from our government. Anything less is entirely unacceptable.<br />
+<br />
+Black Lives Matter. It's not just a movement, it's an indisputable truth. However, because of the <a href='https://soapboxie.com/social-issues/Racism-and-Its-Effect-on-Society' target='_new'>racism that has been a cornerstone of the US</a> since its inception (and <a href='https://www.benjerry.com/home/whats-new/2016/systemic-racism-is-real' target='_new'>still is to this day</a>), Black Lives Matter <a href='https://www.reddit.com/r/explainlikeimfive/comments/3du1qm/eli5_why_is_it_so_controversial_when_someone_says/' target='_new'>remains controversial</a>. The only thing that will destroy that cornerstone once and for all is education, acceptance, humility, <a href='https://publichealthonline.gwu.edu/blog/equity-vs-equality/' target='_new'>equity (not just equality)</a>, and actively tearing down all institutions that reinforce this toxic and deadly culture. Now is the time not only to educate yourself and others, but to actively fight back against racism and its supporting institutions until they are permanently eradicated. Here is how you can do that:<br />
+<br />
+<u>Information and Resources</u><ul><li><a href='https://blacklivesmatter.com' target='_new'>Black Lives Matter - Official Website</a></li><li><a href='https://blacklivesmatters.carrd.co' target='_new'>Ways you can help</a></li><br />
+<li><a href='https://www.newyorker.com/news/q-and-a/bryan-stevenson-on-the-frustration-behind-the-george-floyd-protests' target='_new'>The frustrations behind the George Floyd protests</a></li><li><a href='https://sojo.net/articles/6-harmful-consequences-white-savior-complex' target='_new'>6 harmful consequences of the 'White Savior' complex</a></li><li><a href='https://www.forbes.com/sites/pragyaagarwaleurope/2019/03/29/how-microaggressions-can-affect-wellbeing-in-the-workplace/' target='_new'>How microaggressions can affect wellbeing in the workplace</a></li><li><a href='https://medium.com/@shenequagolding/maintaining-professionalism-in-the-age-of-black-death-is-a-lot-5eaec5e17585' target='_new'>Maintaining professionalism in the age of black death is...a lot</a></li><li><a href='https://phys.org/news/2019-10-racism-shortens-health-blacks-genes.html' target='_new'>How racism shortens lives by impacting genes</a></li><li><a href='https://www.health.harvard.edu/blog/how-racism-harms-children-2019091417788' target='_new'>How racism harms children</a></li><br />
+<li><a href='https://mappingpoliceviolence.org' target='_new'>Police Violence Map</a></li><li><a href='https://www.nlg-npap.org' target='_new'>National Police Accountability Project</a></li><li><a href='https://www.joincampaignzero.org' target='_new'>Campaign Zero - End police violence in America</a></li></ul><u>Protesting Safely</u><ul><li><a href='https://docs.google.com/document/d/1CjZMORRVuv-I-qo4B0YfmOTqIOa3GUS207t5iuLZmyA/mobilebasic' target='_new'>Protesting resources mega-list</a> (<a href='https://docs.google.com/spreadsheets/d/1fpdRY5fwoyt04Il6y9bToWjv4wUaIoMAQERoE2A140U/edit?usp=sharing' target='_new'>Spreadsheet version - more frequently updated</a>)</li><li><a href='https://docs.google.com/document/d/1o1VSvdRvQYr-5puhJHfQx7vh3mza64P02Mbs1yE6oPQ/edit' target='_new'>How to protest safely during COVID-19</a></li><li><a href='https://docs.google.com/document/d/1Hn99eJ-TfsH7Je45OC4ErgkEzvmZYXyu0WZN9msRCjU/mobilebasic' target='_new'>Protest Safety Zine</a></li><li><a href='https://newssafety.org/safety/advisories/protecting-yourself-from-tear-gas' target='_new'>How to protect yourself from tear gas</a></li><li><a href='https://www.aclu.org/issues/criminal-law-reform/reforming-police/aclu-apps-record-police-conduct' target='_new'>Phone apps to record and upload police misconduct (iOS and Android)</a></li><li><a href='https://www.aclu.org/know-your-rights/protesters-rights/' target='_new'>Know your rights as a protester</a></li><li><a href='https://www.reddit.com/r/Portland/comments/gxxivu/lessons_from_hong_kong_protesters/' target='_new'>Lessons from Hong Kong protesters</a></li><li><a href='https://www.youtube.com/watch?v=ihKSHT7gIBY' target='_new'>Video: Hong Kong protest tactics: occupy, disrupt, disperse, repeat</a></li><li><a href='https://www.youtube.com/watch?v=32KTKXZZ-BI' target='_new'>Video: How Hong Kong protesters evade surveillance with technology</a></li></ul></div></div>
+  		<br />
+       	<br />
+  		<span style="font-size: 10px;"><a href="/news/view/723">read more...</a> | comments disabled<br /><br /></span>
+    </td>
+	</tr>
+	<tr>
+
+		<td>&nbsp;</td>
+	</tr>
+       
+	<tr>
+		<td class="normal-td" style="font-size: 16px;">
+      		<b><span style="font-size: 12px"><img src="https://data.htscdn.org/images/tick.gif" alt="#" />Dec 25 2019:</span>&nbsp;&nbsp;HackThisSite @ 36C3</b><span style="display:none;font-size: 9px;"><br /></span>
+    		</td>
+	</tr>
+       
+	<tr>
+		<td class="normal-td" style="font-size: 10px;">
+      	<br /><div class="news"><div align="left"><div align="center"><img src='https://data.htscdn.org/images/36c3/HTSat36C3.png' /></div><br />
+<br />
+Come meet HackThisSite community members and staff at our <a href='https://36c3.c3nav.de/l/hackthissite/' target='_new'>assembly table</a>, located near Chaos.Jetzt and WikiPaka WG in Hall 2 -- and check out our <a href='https://twitter.com/hackthissite/status/1209610531046219776' target='_new'>blinkenlights</a> while you're there! You can also chat with us on our IRC channel at <a href='irc://irc.hackthissite.org/#36c3' target='_new'>irc.hackthissite.org #36c3</a>, or <a href='https://irc.hackthissite.org/chat/?join=%2336c3' target='_new'>click here</a> to join IRC by web. We will be competing again this year in the <a href='https://2019.ctf.link' target='_new'>C3 CTF</a>, so stop by our assembly table or join us on IRC if you'd like to join our team (regardless of whether you're at C3 or not).<br />
+<br />
+If you aren't able to make it this year, you can always watch the talks <a href='https://streaming.media.ccc.de/36c3/' target='_new'>live online</a> (<a href='https://fahrplan.events.ccc.de/congress/2019/Fahrplan/' target='_new'>schedule here</a>). If you are attending, make sur...</div>
+  		<br />
+       	<br />
+  		<span style="font-size: 10px;"><a href="/news/view/722">read more...</a> | <a href="/news/view/722/#comments">comments (108)</a><br /><br /></span>
+    </td>
+	</tr>
+	<tr>
+
+		<td>&nbsp;</td>
+	</tr>
+       </table>
+</div>
+<br />
+	<div style="font-size: 10px;"><b> Current Online Users:</b> (<a href="/user/online/">16 Users (1 Anonymous), 45 Guests, 61 Total; <span title="On May 11th, 2025 @ 11:38:01 AM UTC">7,125</span> Most Ever</a>)</div>
+		<div style="font-size: 10px;" class="light-td-shortnews">
+<center><i>[<a href="/user/login">Login</a> to see this feature]</i></center><br /><b>Newest User</b>: <i>[<a href="/user/login">Login</a> to see this feature]</i> (Joined 44 seconds ago)		  </div>
+	</td>
+        </tr>
+      </table></td>
+    </tr>
+ <tr>
+      <td class="sitebottomheader"><img src="https://data.htscdn.org/themes/Dark/images/hts_bottomheadern.jpg" alt="End Footer" width="780" height="60" /></td>
+    </tr>
+  </table>
+  <br />
+<div align="center" style="font-family:Verdana, Arial, Helvetica, sans-serif; font-size:10px; color:#CCCCCC">HackThisSite is the collective work of the HackThisSite staff, licensed under a <a rel="license" href="http://hts.io/x/http://creativecommons.org/licenses/by-nc/3.0/" target="_new">CC BY-NC</a> license.<br />
+We ask that you inform us upon sharing or distributing.<br /><br />
+<sub>Page Generated: Tue, 14 Oct 2025 07:24:53 +0000<br />Web Node: www03 | Page Gen: 0.055s | DB: 12q<br />Current Code Revision: <a href="https://www.hackthissite.org/CHANGELOG">v3.2.5
+ (Sun, 22 May 2016 20:29:51 +0000)</a></sub><br />
+</div>
+</div>
+<div align="center">
+  <p>
+   <a target="_new" href="http://hts.io/x/http://creativecommons.org/licenses/by-nc/3.0/"><img src="https://data.htscdn.org/images/cc_80x15.png" width="80" height="15" border="0" alt="" /></a>
+   <a target="_new" href="http://hts.io/x/http://validator.w3.org/check?uri=referer"><img src="https://data.htscdn.org/images/xhtml10.png" width="80" height="15" border="0" alt="" /></a>&nbsp;
+   <a target="_new" href="http://hts.io/x/http://jigsaw.w3.org/css-validator/check/referer"><img src="https://data.htscdn.org/images/css.png" width="80" height="15" border="0" alt="" /></a> 
+   <a target="_new" href="http://hts.io/x/http://www.php.net/"> <img src="https://data.htscdn.org/images/phppow.gif" width="80" height="15" border="0" alt="" /></a>
+   <!--<a href="http://www.linux.com/"> <img src="../../images/linux2.gif" width="80" height="15" border="0" alt="" /></a>-->
+   <a target="_new" href="http://hts.io/x/http://www.freebsd.org/"> <img src="https://data.htscdn.org/images/freebsd.png" width="80" height="15" border="0" alt="" /></a>
+   <img src="https://data.htscdn.org/images/counter.php" height="14" border="0" alt="Page View Counter" />
+  </p>
+</div>
+<!-- <a href="http://hackthissite.org/hp.php">retired</a> -->    </body>
+</html>

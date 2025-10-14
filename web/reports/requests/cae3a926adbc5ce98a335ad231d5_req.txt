@@ -1,0 +1,6 @@
+GET https://crawler-test.com/urls/parameter?parameter_1=foo%C2%B6meter_1=foo
+
+Headers:
+
+Body/data:
+null

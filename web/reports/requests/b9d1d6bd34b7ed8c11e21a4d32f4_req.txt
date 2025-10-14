@@ -1,0 +1,6 @@
+GET http://testphp.vulnweb.com/showimage.php?file=./pictures/1.jpg&size=160
+
+Headers:
+
+Body/data:
+null

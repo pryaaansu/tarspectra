@@ -1,0 +1,6 @@
+GET https://www.hackthissite.org/missions/playit/stego/0/
+
+Headers:
+
+Body/data:
+null

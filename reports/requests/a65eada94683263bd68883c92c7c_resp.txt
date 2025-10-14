@@ -1,0 +1,845 @@
+Status: 200
+
+Headers:
+Date: Tue, 14 Oct 2025 07:25:26 GMT
+Upgrade: h2,h2c
+Connection: Upgrade
+Set-Cookie: HackThisSite=ed2hmtrt1i2nsnn3k32gqae7j1; expires=Wed, 15-Oct-2025 07:25:26 GMT; path=/
+Expires: Thu, 19 Nov 1981 08:52:00 GMT
+Cache-Control: no-store, no-cache, must-revalidate, post-check=0, pre-check=0
+Pragma: no-cache
+Onion-Location: http://hackthisjogneh42n5o7gbzrewxee3vyu6ex37ukyvdw6jm66npakiyd.onion/register
+Vary: Accept-Encoding
+Content-Encoding: gzip
+Content-Length: 9081
+Content-Type: text/html
+Content-Language: en
+Server: HackThisSite
+Access-Control-Allow-Origin: *
+Content-Security-Policy: child-src 'self' hackthissite.org *.hackthissite.org htscdn.org *.htscdn.org discord.com; form-action 'self' hackthissite.org *.hackthissite.org htscdn.org *.htscdn.org; upgrade-insecure-requests; report-uri https://hackthissite.report-uri.com/r/d/csp/enforce
+Referrer-Policy: origin-when-cross-origin
+X-XSS-Protection: 0
+Feature-Policy: fullscreen *
+Public-Key-Pins-Report-Only: pin-sha256="YLh1dUR9y6Kja30RrAn7JKnbQG/uEtLMkBgFF2Fuihg="; pin-sha256="Vjs8r4z+80wjNcr1YKepWQboSIRi63WsWXhIMN+eWys="; max-age=2592000; includeSubDomains; report-uri="https://hackthissite.report-uri.com/r/d/hpkp/reportOnly"
+Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
+Report-To: {"group":"default","max_age":31536000,"endpoints":[{"url":"https://hackthissite.report-uri.com/a/d/g"}],"include_subdomains":true}
+NEL: {"report_to":"default","max_age":31536000,"include_subdomains":true,"success_fraction":0.0,"failure_fraction":0.1}
+
+Body (trimmed):
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<head>
+  <title>Hack This Site :: Register</title>
+  <meta name="verify-v1" content="s/YXn7eQrMBoF9PL5jLJDiWpAxEXpJzE9JLg/zM4C2Y=" />
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta name="author" content="HackThisSite.org Staff" />
+  <meta name="keywords" content="challenge, computer, culture, deface, digital, ethics, games, guide, hack, hack forums, hacker, hackers, hacking, hacking challenges, hacking forums, mission, net, programming, radical, revolution, root, rooting, security, site, society, tutorial, tutorials, war, wargame, wargames, web, website" />
+  <meta name="title" content="HackThisSite" />
+  <meta name="description" content="HackThisSite.org is a free, safe and legal training ground for hackers to test and expand their ethical hacking skills with challenges, CTFs, and more." />
+  <meta itemprop="name" content="HackThisSite" />
+  <meta itemprop="description" content="HackThisSite.org is a free, safe and legal training ground for hackers to test and expand their ethical hacking skills with challenges, CTFs, and more." />
+  <meta itemprop="image" content="https://data.htscdn.org/images/hackthissite-meta-card.png" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://www.hackthissite.org/" />
+  <meta property="og:title" content="HackThisSite" />
+  <meta property="og:description" content="HackThisSite.org is a free, safe and legal training ground for hackers to test and expand their ethical hacking skills with challenges, CTFs, and more." />
+  <meta property="og:image" content="https://data.htscdn.org/images/hackthissite-meta-card.png" />
+  <meta property="twitter:card" content="summary_large_image" />
+  <meta property="twitter:url" content="https://www.hackthissite.org/" />
+  <meta property="twitter:title" content="HackThisSite" />
+  <meta property="twitter:description" content="HackThisSite.org is a free, safe and legal training ground for hackers to test and expand their ethical hacking skills with challenges, CTFs, and more." />
+  <meta property="twitter:image" content="https://data.htscdn.org/images/hackthissite-meta-card.png" />
+  <meta name="viewport" content="width=820, initial-scale=0.5" />
+  <meta name="theme-color" content="#163ea7" />
+  <meta name="color-scheme" content="dark" />
+  <meta http-equiv="onion-location" content="http://hackthisjogneh42n5o7gbzrewxee3vyu6ex37ukyvdw6jm66npakiyd.onion/register" />
+  <link rel="apple-touch-icon" sizes="180x180" href="https://data.htscdn.org/favicon/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="https://data.htscdn.org/favicon/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="https://data.htscdn.org/favicon/favicon-16x16.png" />
+  <link rel="manifest" href="https://www.hackthissite.org/manifest.webmanifest" />
+  <link href="https://data.htscdn.org/themes/Dark/Dark.css" rel="stylesheet" type="text/css" />
+  <link href="https://www.hackthissite.org/pages/hts.rss.php" rel="alternate" type="application/rss+xml" title="HTS RSS feed" />
+  <base href="https://www.hackthissite.org" />
+  <script type="text/javascript" src="https://data.htscdn.org/js/jquery-1.8.1.min.js"></script>
+  <style>
+form.register {
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+div.form-ui {
+  color:#444;
+  background:#fff;
+  border:solid 1px rgba(44,44,44,.3);
+  box-shadow:0 0px 40px -10px #eee;
+  text-shadow: 0 1px 0 #fff;
+  padding:10px 15px;
+  border-radius:4px;
+  margin:15px;
+}
+div.buttons button {
+  min-height: 30px;
+  padding: 0 12px;
+  border: 0;
+  background: #f7f7f7;
+  line-height: 28px;
+  color: #666;
+  letter-spacing: normal;
+  border: 1px solid rgba(0,0,0,.2);
+  border-bottom-color: rgba(0,0,0,.3);
+  background-origin: border-box;
+  background-image: -webkit-linear-gradient(top,#fff,#eee);
+  background-image: linear-gradient(to bottom,#fff,#eee);
+  border-radius: 4px;
+  text-shadow: 0 1px 0 #fff;
+  background-color: #009dd8;
+  color: #fff;
+  background-image: -webkit-linear-gradient(top,#00b4f5,#008dc5);
+  background-image: linear-gradient(to bottom,#00b4f5,#008dc5);
+  border-color: rgba(0,0,0,.2);
+  border-bottom-color: rgba(0,0,0,.4);
+  text-shadow: 0 -1px 0 rgba(0,0,0,.2);
+  display: inline-block;
+  float:right;
+  margin-right:15px;
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-size: 14px;
+  font-weight:normal;
+  margin: 0;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  margin-right:15px;
+}
+div.buttons button:hover {
+  background-color: #00aff2;
+  color: #fff;
+  background-image: none;
+  outline:0;
+}
+div.buttons button:active {
+  background-color: #008abf;
+  color: #fff;
+  background-image: none;
+  border-color: rgba(0,0,0,.2);
+  border-top-color: rgba(0,0,0,.4);
+  box-shadow: inset 0 2px 4px rgba(0,0,0,.2);
+}
+
+div.field:before, div.field:after {
+  clear:both;
+  content: " ";
+  display:table;
+}
+div.field > label {
+  width: 200px;
+  margin-top: 5px;
+  float: left;
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-size:14px;
+  line-height:20px;
+  font-weight:400;
+}
+div.field > div.input {
+  margin-left:215px;
+}
+div.field + div.field {
+  margin-top:15px;
+}
+div.captcha > img {
+  display: block;
+  padding: 4px;
+  background: #222;
+  margin: 0 auto;
+  width: auto;
+  margin-top: 15px;
+  border-radius:4px;
+}
+div.field > div.input input {
+  width:200px;
+  height: 30px;
+  max-width: 100%;
+  padding: 4px 6px;
+  border: 1px solid #e5e5e5;
+  background: #fff;
+  color: #666;
+  -webkit-transition: all linear .2s;
+  transition: all linear .2s;
+  border-radius: 4px;
+  vertical-align: middle;
+  line-height:normal;
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-size: 100%;
+  margin: 0;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+div.field > div.input span.info-block {
+  display:block;
+  -webkit-transition: all linear .2s;
+  transition: all linear .2s;
+}
+div.field > div.input span.info-block a.show-infobox {
+  font-style: italic;
+}
+div.field > div.input span.info-block:last-child {
+  margin-bottom: 5px;
+}
+div.field > div.input span.test1,
+div.field > div.input span.test2,
+div.field > div.input span.test3,
+div.field > div.input span.test4,
+div.field > div.input span.test5 {
+  color:#cc0000;
+}
+div.field > div.input.test1 span.test1,
+div.field > div.input.test2 span.test2,
+div.field > div.input.test3 span.test3,
+div.field > div.input.test4 span.test4,
+div.field > div.input.test5 span.test5 {
+  color: #00cc00;
+}
+
+
+form.register div.field > div.input input:focus {
+  border-color: #99baca;
+  outline: 0;
+  background: #f5fbfe;
+}
+form.register div.captcha a.new-captcha {
+  display:block;
+  text-align:center;
+  margin-top:10px;
+  font-size:15px;
+}
+
+form.register > div.alertbox {
+  margin: 0px 15px;
+  padding: 10px;
+  border: 1px solid rgba(270,180,180,.3);
+  border-radius: 4px;
+  text-shadow: 0 1px 0 #fff;
+  background: #f9fbf9;
+  color: #5a5c5a;
+  border-color: rgba(255,210,210,.3);
+  font-size:14px;
+  font-family:inherit;
+}
+
+form.register > div.infobox {
+  margin: 0px 15px;
+  padding: 10px;
+  border: 1px solid rgba(180,180,180,.3);
+  border-radius: 4px;
+  text-shadow: 0 1px 0 #fff;
+  background: #f9fbf9;
+  color: #5a5c5a;
+  border-color: rgba(240,240,240,.3);
+  font-size:14px;
+  font-family:inherit;
+}
+form.register > div.infobox a.infobox-close {
+  font-style: italic;
+}
+
+form.register > div.error {
+  margin: 0px 15px;
+  padding: 10px;
+  border: 1px solid rgba(45,112,145,.3);
+  border-radius: 4px;
+  text-shadow: 0 1px 0 #fff;
+  background: #fff1f0;
+  color: #d85030;
+  border-color: rgba(216,80,48,.3);
+  font-size:14px;
+  font-family:inherit;
+}
+
+div.field.error input {
+  border:solid 1px #aa5555 !important;
+}
+div.field.error input:focus {
+  background:#FEF5F5 !important;
+}
+
+.register-intro {
+  max-height: 105px;
+  position: relative;
+  overflow: hidden;
+}
+.register-intro .read-more {
+  position: absolute;
+  bottom: 0; left: 0;
+  width: 100%;
+  text-align: center;
+  margin: 0; padding: 30px 0;
+  background-image: -webkit-gradient(linear,left top,left bottom,color-stop(0, transparent),color-stop(1, #161616));
+  background-image: -webkit-linear-gradient(top, transparent, #161616);
+  background-image: -moz-linear-gradient(top, transparent, #161616);
+  background-image: -ms-linear-gradient(top, transparent, #161616);
+  background-image: -o-linear-gradient(top, transparent, #161616);
+}
+</style>
+</head>
+<body>
+<span id="blank-element" style="display: none"></span>
+
+<div id="topbar" align="center">
+<a href="https://www.hackthissite.org" id="active">Hack This Site</a> (<a href="https://hackthisjogneh42n5o7gbzrewxee3vyu6ex37ukyvdw6jm66npakiyd.onion">TOR .onion HTTPS</a> - <a href="http://hackthisjogneh42n5o7gbzrewxee3vyu6ex37ukyvdw6jm66npakiyd.onion">HTTP</a>) - <a href="https://www.irc.hackthissite.org/chat">IRC</a> - <a href="/discord">Discord</a> - <a href="https://www.hackthissite.org/forums">Forums</a> - <a href="https://www.cafepress.com/htsstore" target="_new">Store</a> - <a href="https://hts.io" target="_new">URL Shortener</a> - <a href="https://cryptopaste.org" target="_new">CryptoPaste</a>&nbsp;&nbsp;&nbsp;---&nbsp;&nbsp;&nbsp;<a href="https://www.facebook.com/HackThisSite.org" target="_new">Like Us</a> - <a href="https://twitter.com/hackthissite" target="_new">Follow Us</a> - <a href="https://github.com/HackThisSite" target="_new">Fork Us</a>
+</div>
+<div class="hts-header">
+<a href="/"><img src="https://data.htscdn.org/themes/Dark/images/header.jpg" alt="Hack This Site" border="0" /></a>
+<br />
+<a href="https://www.hackthissite.org/advertise"><img src="https://data.htscdn.org/images/support-hts.gif" alt="Support HackThisSite - Advertise with us!" title="Support HackThisSite - Advertise with us!" id="atpimg" class="abstaimg" border="0" /><img src="https://www.hackthissite.org/images/px.png" border="0"></a></div>
+  <table width="780" border="0" cellpadding="0" cellspacing="0" class="siteheader cmTable">
+    <tr>
+      <td class="sitetopheader"><blockquote>"One who annoys you, has conquered you - xenoix "</blockquote></td>
+    </tr>
+    <tr>
+      <td><table width="100%"  border="0" cellspacing="0" cellpadding="0">
+        <tr>
+          <td width="160" valign="top" class="navbar"><div align="center">
+            <br />
+            	<!-- login form start -->
+	<div id="ourlogin">
+		<span id="loginclick"><a class="nav" href="/user/login">Login</a></span> (or <a class="nav" href="/register">Register</a>):<br />
+				<form id="loginform" method="post" action="/user/login">
+		<div id="innerlogin">
+		<script type="text/javascript">var userclicked=0; var passclicked=0;</script>
+		<p><input type="text" name="username" class="login" value="" onclick="if(userclicked==0){this.value='';userclicked=1;};" title="Username" /></p>
+		<p><input type="password" name="password" class="login" value="" onclick="if(passclicked==0){this.value='';passclicked=1;};" title="Password" /></p>
+				<p><input type="submit" value="Login" name="btn_submit" class="submit-button" /></p>
+		</div>
+	</form>
+	<!-- login form end -->
+	<a href="/user/resetpass">Lost your password?</a><br />
+        <a href="/user/forgotusername">Forgot your username?</a></br />
+		</div>
+	<h4 class="header">Donate</h4>
+<p>
+  <a href="https://www.hackthissite.org/donate/">
+    <img
+      src="https://data.htscdn.org/images/donate.png"
+      border="0"
+      title="Donate to HackThisSite.org"
+      alt="Donate to HackThisSite.org" />
+  </a>
+  <br />
+  <img
+    src="https://data.htscdn.org/images/donate-bat.png"
+    border="0"
+    title="Donate using Brave Basic Attention Tokens"
+    alt="Donate using Brave Basic Attention Tokens" />
+  <br /><br />
+  HTS costs up to $300 a month to operate. We <strong>need</strong> your help!
+</p>
+<h4 class="header">Challenges</h4>
+<ul class="navigation">
+  <li><a class="nav" href="/missions/basic/">Basic</a></li><li><a class="nav" href="/missions/realistic/">Realistic</a></li><li><a class="nav" href="/missions/application/">Application</a></li><li><a class="nav" href="/missions/programming/">Programming</a></li><li><a class="nav" href="/missions/javascript/">Javascript</a></li><li><a class="nav" href="/missions/forensic/">Forensic</a></li><li><a class="nav" href="/missions/playit/extbasic/0/">Extended Basic</a></li><li><a class="nav" href="/missions/playit/stego/0/">Steganography</a></li><li><a class="nav" href="ircs://irc.hackthissite.org:7000/#htb">IRC</a></li></ul>
+
+<h4 class="header">Get Informed</h4><ul class="navigation"><li><a class="nav" href="/blogs">Blogs</a></li><li><a class="nav" href="/news">News</a></li><li><a class="nav" href="/pages/articles/article.php">Articles</a></li><li><a class="nav" href="/lectures">Lectures</a></li><li><a class="nav" href="/pages/programs/programs.php">Useful Stuff</a></li><!--<li><a class="nav" href="ebooks">E-books</a></li>--><li><a class="nav" href="https://mirror.hackthissite.org/hackthiszine/">HackThisZine</a></li><li><a class="nav" href=""></a></li></ul><h4 class="header">Get Involved</h4><ul class="navigation"><li><a class="nav" href="/donate"><span class="completed">Donate to HackThisSite!</span></a></li><li><a class="nav" href="https://www.cafepress.com/htsstore">Store</a></li><li><a class="nav" href="/submit/article">Submit Article</a></li><li><a class="nav" href="/pages/bugManagement/index.php">Submit Bug Report</a></li><li><a class="nav" href="/submit/lecture">Submit Lecture</a></li><li><a class="nav" href="/pages/programs/insert.php">Submit Useful Stuff</a></li><!--<li><a class="nav" href="/pages/showsource/loopdeloop.php">We Want You!</a></li>--><li><a class="nav" href=""></a></li></ul><h4 class="header">Communicate</h4><ul class="navigation"><li><a class="nav" href="/forums">Forums</a></li><li><a class="nav" href="/discord">Discord</a></li><li><a class="nav" href="https://www.hackthissite.org/forums/ucp.php?i=pm">Private Messages</a></li><li><a class="nav" href="https://www.irc.hackthissite.org/chat">IRC Web Chat</a></li><li><a class="nav" href="https://www.irc.hackthissite.org/idlerpg">IRC IdleRPG</a></li><li><a class="nav" href="https://www.hackthissite.org/irc/stats.php">IRC Stats</a></li><li><a class="nav" href="https://qdb.hackthissite.org">IRC Quotes</a></li><li><a class="nav" href="/pages/irc/reference.php">IRC Command Reference</a></li><li><a class="nav" href="/user/search">Search Users</a></li><li><a class="nav" href="/user/online">Who is Online</a></li><li><a class="nav" href="/user/rankings/">Rankings</a></li><li><a class="nav" href=""></a></li></ul><h4 class="header">About HTS</h4><ul class="navigation"><li><a class="nav" href="/info/about">About the Project</a></li><li><a class="nav" href="/info/billofrights">Bill of Rights</a></li><li><a class="nav" href="https://legal.hackthissite.org/terms">Terms &amp; Conditions</a></li><li><a class="nav" href="https://legal.hackthissite.org/privacy">Privacy Policy</a></li><li><a class="nav" href="/info/staff">Meet the Staff</a></li><li><a class="nav" href="/info/underthehood">Under the Hood</a></li><li><a class="nav" href="/advertise">Advertise with HTS</a></li><li><a class="nav" href="/ipv6">IPv6</a></li><li><a class="nav" href="/hof">Hall of Fame</a></li><li><a class="nav" href=""></a></li></ul><h4 class="header"></h4><ul class="navigation"><li><a class="nav" href=""></a></li></ul>
+<br />
+<a href="/">
+  <img
+    src="https://data.htscdn.org/images/hts_80x15.gif"
+    width="80"
+    height="15"
+    border="0"
+    alt="" />
+</a>
+<br />
+<a class="nav" href="https://www.hackthissite.org/pages/info/linktous.php">
+  Link to us!
+</a>
+
+<h4 class="header">
+  Partners
+</h4>
+<br />
+<a class="nav" target="_new" href="https://www.hellboundhackers.org/">
+  <img
+    src="https://data.htscdn.org/images/hbhlogo.jpg"
+    alt="Hellbound Hackers"
+    title="Hellbound Hackers"
+    width="88"
+    height="31"
+    border="0" />
+</a>
+<br />
+<a class="nav" target="_new" href="https://www.netsparker.com/blog">
+  <img
+    src="https://data.htscdn.org/images/netsparker.gif"
+    alt="Netsparker Security Blog"
+    title="Netsparker Security Blog"
+    width="88"
+    height="31"
+    border="0" />
+</a>
+<br />
+<a class="nav" target="_new" href="https://www.acunetix.com/blog">
+  <img
+   src="https://data.htscdn.org/images/acunetixblog.gif"
+   alt="Acunetix Security Blog"
+   title="Acunetix Security Blog"
+   width="88"
+   height="31"
+   border="0" />
+</a>
+<br />
+<a class="nav" target="_new" href="https://www.buddyns.com">
+<img
+  src="https://data.htscdn.org/images/buddyns88x31.png"
+  alt="BuddyNS Secondary DNS"
+  title="BuddyNS Secondary DNS"
+  width="88"
+  height="31"
+  border="0" />
+</a>
+<br />
+<a class="nav" target="_new" href="https://redirect.pizza/?utm_source=partner&utm_medium=banner&utm_campaign=hackthissite.org">
+<img
+  src="https://data.htscdn.org/images/redirectpizza88x31.png"
+  alt="Redirect.pizza - HTTPS Redirect Service"
+  title="Redirect.pizza - HTTPS Redirect Service"
+  width="88"
+  height="31"
+  border="0" />
+</a>
+<br />
+<a class="nav" target="_new" href="https://brave.com/hac977">
+<img
+  src="https://data.htscdn.org/images/brave-88x31.png"
+  alt="Brave Browser - Secure, fast, and private web browser with a built-in adblocker"
+  title="Brave Browser - Secure, fast, and private web browser with a built-in adblocker"
+  width="88"
+  height="31"
+  border="0" />
+</a>
+<br />
+
+          </td>
+          <td valign="top" class="sitebuffer">
+	<br />
+
+<form class='register' method='POST' action='/register/submit'>
+  <div class='alertbox'>
+    <h3>Notice to Microsoft Mail Users</h3>
+    <p>We are receiving reports of mail silently going undelivered for Microsoft users (MSN, Hotmail, Live, etc.).  Our mail
+    returns proper <i>200</i> codes when destined for Microsoft, and we are reportedly within their compliance requirements.</p>
+    <p>Be advised, registering requires email confirmation, and Microsoft users may experience difficulty.  We would recommend
+    those users either contact Microsoft email support, or use another email provider.</p>
+    <p>We apologize for the inconvenience and we are working to correct it.</p>
+  </div><br />
+  <div class='infobox' style="display:none">
+    <h3>Passphrase Requirements</h3>
+    <p>Our new policy is to encourage pass<i>phrases</i>, that is whole sentences in lieu of garbled and obfuscated short words.
+    It is for this reason that passphrases must be at least 15 characters.  While this sounds absurdly complex, consider
+    that the sentence, "<i> A short sentence. </i>", is 18 characters.  (Please do not use our example passphrase as
+    your own.  That's just unwise.)  You are far more likely to remember that short sentence than you are a garbled mess
+    of letters and numbers.  You can use anything from a very short sentence to a full tweet, but remember it is
+    <b>case-sensitive</b>!</p>
+    <p>&raquo; <a href="#" class="infobox-close">Close</a></p>
+  </div>
+  <div class='error' style="display:none">
+      </div>
+  <div class='form-ui'>
+    <h1>Register</h1>
+    <h3>
+      Your HackThisSite.org account will track all of your mission accomplishments, messages and will also allow you
+      to post on our extensive forums.
+    </h3>
+    <div class='field username required'>
+      <label for='username'>Username:</label>
+      <div class='input'>
+        <input
+          name='username'
+          value=''
+          placeholder='Username' />
+        <span class='info-block'>4 to 32 characters; Alphanumeric, - _ and space allowed</span>
+      </div>
+    </div>
+    <!-- gecos -->
+    <div class='field required passphrase'>
+      <label for='password'>Passphrase:</label>
+      <div class='input'>
+        <input
+          name='password'
+          value=''
+          placeholder='Passphrase'
+          type='password' />
+        <span class='test1 info-block'>Must contain a lowercase letter</span>
+        <span class='test2 info-block'>Must contain an uppercase letter</span>
+        <span class='test3 info-block'>Must contain a non-alphabet character</span>
+        <span class='test4 info-block'>Must be at least 15 characters</span>
+        <span class='test5 info-block'>Must be no more than 140 characters</span>
+        <span class='info-block'><a href="#" class="show-infobox">Why these requirements?</a></span>
+      </div>
+    </div>
+    <div class='field required passphrase-conf'>
+      <label for='password2'>Passphrase (Confirm):</label>
+      <div class='input'>
+        <input
+          name='password2'
+          value=''
+          placeholder='Confirm Passphrase'
+          type='password' />
+        <span class='info-block'>Case-sensitive</span>
+      </div>
+    </div>
+    <div class='field required question'>
+      <label for='question'>Secret Question:</label>
+      <div class='input'>
+        <input
+          name='question'
+          value=''
+          placeholder='Question' />
+        <span class='info-block'>Used during password reset</span>
+      </div>
+    </div>
+    <div class='field required answer'>
+      <label for='answer'>Secret Answer:</label>
+      <div class='input'>
+        <input
+          name='answer'
+          value=''
+          placeholder='Answer' />
+      </div>
+    </div>
+    <div class='field required answer-confirm'>
+      <label for='answer2'>Secret Answer (Confirm):</label>
+      <div class='input'>
+        <input
+          name='answer2'
+          value=''
+          placeholder='Confirm Answer' />
+        <span class='info-block'>Case-sensitive</span>
+      </div>
+    </div>
+    <div class='field required email'>
+      <label for='email'>Email Address:</label>
+      <div class='input'>
+        <input
+          name='email'
+          value=''
+          placeholder='Email Address'
+          type='email' />
+      </div>
+    </div>
+    <div class='field required email-conf'>
+      <label for='email2'>Email Address (Confirm):</label>
+      <div class='input'>
+        <input
+          name='email2'
+          value=''
+          placeholder='Confirm Email Address'
+          type='email' />
+        <span class='info-block'>You will receive a confirmation email</span>
+      </div>
+    </div>
+    <div class='field required legal-agree'>
+      <label for='legal-agree'>Terms of Service:</label>
+      <div class='input'>
+        <input type="checkbox" id="agree">
+        <span class='info-block'>Agree to adhere to our
+          <a href="https://legal.hackthissite.org/terms" target="_new" title="Opens in new window">Terms and Conditions</a>.
+        </span>
+        <br>
+      </div>
+    </div>
+    <div class='field required validation'>
+      <label for='validation'>Image Validation</label>
+      <div class='input'>
+        <input name='validation' placeholder='Image Validation' />
+        <span class='info-block'>Enter characters shown in image below</span>
+      </div>
+    </div>
+    <div class='captcha'>
+      <img
+        name="CAPTCHA"
+        src="/user/captcha/17604267267712" />
+      <a href='#' class='new-captcha'>Request New Image</a>
+    </div>
+  </div>
+  <div class='buttons'>
+    <button name='submit'>Register</button>
+  </div>
+</form>
+<div class='success' style="display:none">
+  <hr />
+  <h1>Congratz!</h1>
+  <p>
+    Thanks for registering and welcome to HackThisSite.org!  We have sent a
+    confirmation email to the address you provided.  Please click on the URL
+    provided within this email within the next 24 hours, or your registration
+    will be forfeit.<br /><br />
+
+    We hope that you enjoy your time here and that you use this community as a
+    resource and not as a crutch. We hope that you will learn something from
+    this experience and from our vast databases of knowledge and we also hope
+    that you will repay us somehow for providing you with that knowledge. ;)
+    <strong>
+      HackThisSite.org is advertisement and user donation supported.
+    </strong>
+  </p>
+  <p>-The HackThisSite.org Staff</p>
+  <div>
+    <a href="//www.mozilla.org/firefox/">
+      <img
+        style="display:inline-block"
+        src="//mozorg.cdn.mozilla.net/media/img/firefox/new/header-firefox.png" />
+    </a>
+    <a href="//www.google.com/chrome/">
+      <img
+        style="display:inline-block"
+        src="//www.google.com/intl/en/chrome/assets/common/images/chrome_logo_2x.png" />
+    </a>
+  </div>
+
+  <p>
+    Also, we seriously recommend that all users use either Mozilla Firefox or
+    Google Chrome as their primary browser. They are faster, more secure, more
+    standards compliant, and officially supported by us here at
+    HackThisSite.org.
+  </p>
+
+</div>
+
+<center><a href="/user/resetpass">Forgot Password</a> - <a href="/user/forgotusername">Forgot Username</a> - <a href="/user/login">Login</a></center>
+
+<script type="text/javascript">
+;(function(window, $){
+
+  var $el, $ps, $up, totalHeight;
+  $(".register-intro .read-more-btn").click(function() {
+    totalHeight = 0
+    $el = $(this);
+    $p  = $el.parent();
+    $up = $p.parent();
+    $ps = $up.find("p:not('.read-more')");
+    $ps.each(function() {
+      totalHeight += $(this).outerHeight();
+    });
+    $up.css({
+      "height": $up.height(),
+      "max-height": 9999
+    }).animate({
+      "height": totalHeight
+    });
+    $p.fadeOut();
+    return false; // Prevent jump-down
+  });
+
+  var form = $('form.register'),
+      passphrases = $('div.field.passphrase, div.field.passphrase-conf', form).find('input'),
+      emails = $('div.field.email, div.field.email-conf', form).find('input'),
+      required = $('div.field.required').find('input'),
+      question = $('div.field.question').find('input'),
+      answers = $('div.field.answer, div.field.answer-confirm', form).find('input'),
+      agree = $('form input:checkbox'),
+      infobox = $('div.infobox'),
+      error = $('div.error'),
+      requesting = false,
+      resetbutton = $(),
+      validation = $('div.validation input');
+
+  $(".register .form-ui .show-infobox").click(function() {
+    infobox.slideDown(250, function(){
+      $("html, body").animate({ scrollTop: 0 }, "fast");
+    });
+    return false;
+  });
+  $(".register .infobox .infobox-close").click(function() {
+    infobox.slideUp(250);
+    return false;
+  });
+
+  function showError(err) {
+    error.fadeOut(250, function(){
+      error.html(err);
+      error.fadeIn(250);
+    });
+  }
+
+  $('div.buttons > button', form).click(function(e) {
+
+    var required_filled = true;
+    required.each(function(){
+      var me = $(this);
+      if (me.val().length == 0) {
+        required_filled = false;
+        me.closest('div.field').addClass('error');
+      } else {
+        me.closest('div.field').removeClass('error');
+      }
+    });
+    if (!required_filled) {
+      resetbutton.click();
+      showError('Some fields are required.');
+      setTimeout(function(){
+          required.each(function(){
+            $(this).closest('div.field').removeClass('error');
+          });
+        }, 500);
+    } else if (passphrases.eq(0).val() == 'A short sentence.' ||
+	passphrases.eq(1).val() == 'A short sentence.') {
+      passphrases.addClass('error');
+      resetbutton.click();
+      showError('Please do not use our example passphrase. :/');
+    } else if (!(passphrases.eq(0).val() === passphrases.eq(1).val())) {
+      passphrases.addClass('error');
+      resetbutton.click();
+      showError('Oh no! Your passphrases do not match.');
+    } else if (!(answers.eq(0).val() === answers.eq(1).val())) {
+      answers.addClass('error');
+      resetbutton.click();
+      showError('Oh no! Your secret answers do not match.');
+    } else if (question.val() === answers.eq(0).val()) {
+      question.addClass('error');
+      answers.addClass('error');
+      resetbutton.click();
+      showError('Oh no! Your secret question and answer cannot match.');
+    } else if (!(emails.eq(0).val().toLowerCase() === emails.eq(1).val().toLowerCase())) {
+      emails.addClass('error');
+      resetbutton.click();
+      showError('Oh no! Your email addresses do not match.');
+    } else if (!agree.is(':checked')) {
+      resetbutton.click();
+      showError('Oh no! You must agree to our Legal Disclaimer to register.');
+    } else {
+      if (requesting) return;
+      requesting = true;
+      $.post(form.attr('action') + '/1', form.serialize(), function(result){
+        requesting = false;
+        var obj = JSON.parse(result);
+        if (obj.error) {
+          showError(obj.message);
+          resetbutton.click();
+        } else {
+          form.slideUp(250, function(){
+            $("html, body").animate({ scrollTop: 0 }, "fast");
+            form.remove();
+            $('div.success').fadeIn(500);
+          });
+        }
+      });
+    }
+    e.preventDefault();
+    return false;
+  });
+
+  resetbutton = form.find('a.new-captcha').click(function(e){
+    e.preventDefault();
+
+    var captcha = $(this).parent().find('img').get(0);
+    captcha.src = captcha.src;
+    validation.val('');
+
+    return false;
+  });
+
+  var username_field = $('.field.username', form).find('input').keyup(function(){
+    var name = $(this).val();
+
+    if (name.length > 3) {
+      username_taken(name);
+    }
+  }).end(), username_taken = (function () {
+    'use strict';
+
+    var timeWindow = 250;
+    var timeout;
+    var running = false;
+
+    var username_taken = function (username) {
+      running = true;
+      $.getJSON('/register/isTaken' + '/' + encodeURIComponent(username), function(ob) {
+        switch (ob.code) {
+          case 3:
+            return setTimeout(function(){
+              username_taken(username);
+            }, ob.wait);
+          case 2:
+            username_field.addClass('error');
+            break;
+          case 1:
+            username_field.removeClass('error');
+            break;
+        }
+        running = false;
+      });
+    };
+
+    return function() {
+      if (running == true) return;
+      var context = this;
+      var args = arguments;
+      clearTimeout(timeout);
+      timeout = setTimeout(function(){
+        username_taken.apply(context, args);
+      }, timeWindow);
+    };
+  }());
+
+  function test_pass(pass, elem) {
+    (pass.search(/[a-z]/) >= 0 ? elem.addClass : elem.removeClass).call(elem, 'test1');
+    (pass.search(/[A-Z]/) >= 0 ? elem.addClass : elem.removeClass).call(elem, 'test2');
+    (pass.search(/[^a-z]/i) >= 0 ? elem.addClass : elem.removeClass).call(elem, 'test3');
+    (pass.length > 14 ? elem.addClass : elem.removeClass).call(elem, 'test4');
+    (pass.length < 141 ? elem.addClass : elem.removeClass).call(elem, 'test5');
+    return pass.length > 14 &&
+           pass.length < 141 &&
+           pass.search(/[a-z]/) >= 0 &&
+           pass.search(/[A-Z]/) >= 0 &&
+           pass.search(/[^a-z]/i) >= 0;
+  }
+  var passphrase = passphrases.first().keyup(function(){
+    var my = $(this), me = my.closest('.field');
+    me.assertTrue(test_pass(my.val(), me.find('.input')));
+    pass_confirm.keyup();
+  }),
+  pass_confirm = passphrases.last().keyup(function() {
+    var my = $(this), me = my.closest('.field');
+    me.assertTrue(passphrase.val() === my.val());
+  }),
+// TODO: Validate secret Q/A for min/max (4 < Secret < 256)
+  email = emails.first().keyup(function(){
+    email_confirm.keyup();
+  }),
+  email_confirm = emails.last().keyup(function() {
+    var my = $(this), me = my.closest('.field');
+    me.assertTrue(email_confirm.val() === email.val());
+  });
+  $.fn.assertTrue = function(cond) {
+    (!cond ? $.fn.addClass : $.fn.removeClass).call(this, 'error');
+  };
+
+}(window, jQuery));
+</script>
+</td>
+        </tr>
+      </table></td>
+    </tr>
+ <tr>
+      <td class="sitebottomheader"><img src="https://data.htscdn.org/themes/Dark/images/hts_bottomheadern.jpg" alt="End Footer" width="780" height="60" /></td>
+    </tr>
+  </table>
+  <br />
+<div align="center" style="font-family:Verdana, Arial, Helvetica, sans-serif; font-size:10px; color:#CCCCCC">HackThisSite is the collective work of the HackThisSite staff, licensed under a <a rel="license" href="http://hts.io/x/http://creativecommons.org/licenses/by-nc/3.0/" target="_new">CC BY-NC</a> license.<br />
+We ask that you inform us upon sharing or distributing.<br /><br />
+<sub>Page Generated: Tue, 14 Oct 2025 07:25:26 +0000<br />Web Node:  | Page Gen: 0.003s | DB: 3q<br />Current Code Revision: <a href="https://www.hackthissite.org/CHANGELOG">v3.2.5
+ (Sun, 22 May 2016 20:29:51 +0000)</a></sub><br />
+</div>
+</div>
+<div align="center">
+  <p>
+   <a target="_new" href="http://hts.io/x/http://creativecommons.org/licenses/by-nc/3.0/"><img src="https://data.htscdn.org/images/cc_80x15.png" width="80" height="15" border="0" alt="" /></a>
+   <a target="_new" href="http://hts.io/x/http://validator.w3.org/check?uri=referer"><img src="https://data.htscdn.org/images/xhtml10.png" width="80" height="15" border="0" alt="" /></a>&nbsp;
+   <a target="_new" href="http://hts.io/x/http://jigsaw.w3.org/css-validator/check/referer"><img src="https://data.htscdn.org/images/css.png" width="80" height="15" border="0" alt="" /></a> 
+   <a target="_new" href="http://hts.io/x/http://www.php.net/"> <img src="https://data.htscdn.org/images/phppow.gif" width="80" height="15" border="0" alt="" /></a>
+   <!--<a href="http://www.linux.com/"> <img src="../../images/linux2.gif" width="80" height="15" border="0" alt="" /></a>-->
+   <a target="_new" href="http://hts.io/x/http://www.freebsd.org/"> <img src="https://data.htscdn.org/images/freebsd.png" width="80" height="15" border="0" alt="" /></a>
+   <img src="https://data.htscdn.org/images/counter.php" height="14" border="0" alt="Page View Counter" />
+  </p>
+</div>
+<a href="http://hackthissite.org/hp.php"><div style="height: 0px; width: 0px;"></div></a>    </body>
+</html>

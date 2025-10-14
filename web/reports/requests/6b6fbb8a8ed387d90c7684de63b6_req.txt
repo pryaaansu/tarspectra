@@ -1,0 +1,6 @@
+GET https://crawler-test.com/other/duplicated_body_content_1
+
+Headers:
+
+Body/data:
+null

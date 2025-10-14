@@ -1,0 +1,14 @@
+POST https://crawler-test.com/content/non_secure_form_fields_password_and_cc
+
+Headers:
+User-Agent: ExploitFinder-Active/0.3 (+https://example.local)
+Accept-Encoding: gzip, deflate
+Accept: */*
+Connection: keep-alive
+Content-Length: 35
+Content-Type: application/x-www-form-urlencoded
+
+Body/data:
+{
+  "cc-exp": "INJECT-MARKER-PRYANSU-374721"
+}

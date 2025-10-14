@@ -1,0 +1,14 @@
+POST https://www.hackthissite.org/pages/bugManagement/index.php
+
+Headers:
+User-Agent: ExploitFinder-Active/0.3 (+https://example.local)
+Accept-Encoding: gzip, deflate
+Accept: */*
+Connection: keep-alive
+Content-Length: 37
+Content-Type: application/x-www-form-urlencoded
+
+Body/data:
+{
+  "username": "INJECT-MARKER-PRYANSU-998843"
+}

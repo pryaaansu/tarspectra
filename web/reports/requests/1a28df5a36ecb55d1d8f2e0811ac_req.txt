@@ -1,0 +1,14 @@
+POST https://crawler-test.com/content/non_secure_form_fields_text
+
+Headers:
+User-Agent: ExploitFinder-Active/0.3 (+https://example.local)
+Accept-Encoding: gzip, deflate
+Accept: */*
+Connection: keep-alive
+Content-Length: 33
+Content-Type: application/x-www-form-urlencoded
+
+Body/data:
+{
+  "text": "INJECT-MARKER-PRYANSU-859363"
+}

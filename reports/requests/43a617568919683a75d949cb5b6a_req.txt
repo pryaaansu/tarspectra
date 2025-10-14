@@ -1,0 +1,6 @@
+GET https://www.hackthissite.org/advertise
+
+Headers:
+
+Body/data:
+null

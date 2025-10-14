@@ -1,0 +1,990 @@
+[
+  {
+    "url": "http://testphp.vulnweb.com/",
+    "status_code": 200,
+    "content_type": "text/html; charset=UTF-8",
+    "body_snippet": "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\"\n\"http://www.w3.org/TR/html4/loose.dtd\">\n<html><!-- InstanceBegin template=\"/Templates/main_dynamic_template.dwt.php\" codeOutsideHTMLIsLocked=\"false\" -->\n<head>\n<meta http-equiv=\"Content-Type\" content=\"text/html; charset=iso-8859-2\">\n\n<!-- InstanceBeginEditable name=\"document_title_rgn\" -->\n<title>Home of Acunetix Art</title>\n<!-- InstanceEndEditable -->\n<link rel=\"stylesheet\" href=\"style.css\" type=\"text/css\">\n<!-- InstanceBeginEditable name=\"headers_rgn\" -->\n<!-- here goes headers headers -->\n<!-- InstanceEndEditable -->\n<script language=\"JavaScript\" type=\"text/JavaScript\">\n<!--\nfunction MM_reloadPage(init) {  //reloads the window if Nav4 resized\n  if (init==true) with (navigator) {if ((appName==\"Netscape\")&&(parseInt(appVersion)==4)) {\n    document.MM_pgW=innerWidth; document.MM_pgH=innerHeight; onresize=MM_reloadPage; }}\n  else if (innerWidth!=document.MM_pgW || innerHeight!=document.MM_pgH) location.reload();\n}\nMM_reloadPage(true);\n//-->\n</script>\n\n</head>\n<body> \n<div id=\"mainLayer\" style=\"position:absolute; width:700px; z-index:1\">\n<div id=\"masthead\"> \n  <h1 id=\"siteName\"><a href=\"https://www.acunetix.com/\"><img src=\"images/logo.gif\" width=\"306\" height=\"38\" border=\"0\" alt=\"Acunetix website security\"></a></h1>   \n  <h6 id=\"siteInfo\">TEST and Demonstration site for <a href=\"https://www.acunetix.com/vulnerability-scanner/\">Acunetix Web Vulnerability Scanner</a></h6>\n  <div id=\"globalNav\"> \n      \t<table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"100%\"><tr>\n\t<td align=\"left\">\n\t\t<a href=\"index.php\">home</a> | <a href=\"categories.php\">categories</a> | <a href=\"artists.php\">artists\n\t\t</a> | <a href=\"disclaimer.php\">disclaimer</a> | <a href=\"cart.php\">your cart</a> | \n\t\t<a href=\"guestbook.php\">guestbook</a> | \n\t\t<a href=\"AJAX/index.php\">AJAX Demo</a>\n\t</td>\n\t<td align=\"right\">\n\t\t</td>\n\t</tr></table>\n  </div> \n</div> \n<!-- end masthead --> \n\n<!-- begin content -->\n<!-- InstanceBeginEditable name=\"cont",
+    "query_params": [],
+    "form_inputs": [
+      "searchFor",
+      "goButton"
+    ],
+    "form_actions": [
+      "search.php?test=query"
+    ],
+    "headers": {
+      "Server": "nginx/1.19.0",
+      "Date": "Tue, 14 Oct 2025 11:03:49 GMT",
+      "Content-Type": "text/html; charset=UTF-8",
+      "Transfer-Encoding": "chunked",
+      "Connection": "keep-alive",
+      "X-Powered-By": "PHP/5.6.40-38+ubuntu20.04.1+deb.sury.org+1",
+      "Content-Encoding": "gzip"
+    },
+    "timestamp": 1760439827,
+    "vuln_findings": []
+  },
+  {
+    "url": "http://testphp.vulnweb.com/AJAX/index.php",
+    "status_code": 200,
+    "content_type": "text/html; charset=UTF-8",
+    "body_snippet": "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\">\r\n<html xmlns=\"http://www.w3.org/1999/xhtml\">\r\n<head>\r\n<meta http-equiv=\"Content-Type\" content=\"text/html; charset=iso-8859-1\" />\r\n<title>ajax test</title>\r\n<link href=\"styles.css\" rel=\"stylesheet\" type=\"text/css\" />\r\n<script type=\"text/javascript\">\r\n\tvar httpreq = null;\t\r\n\r\n\tfunction SetContent(XML) {\r\n\t\tvar items = XML.getElementsByTagName('items').item(0).getElementsByTagName('item');\r\n\t\tvar inner = '<ul>';\r\n\t\tfor(i=0; i<items.length; i++){\r\n\t\t\tinner = inner + '<li><a href=\"javascript:getInfo(\\'' + items[i].attributes.item(0).value + '\\', \\'' + items[i].attributes.item(1).value + '\\')\">' + items[i].firstChild.nodeValue + '</a></li>';\r\n\t\t}\r\n\t\t\r\n\t\tinner = inner + '</ul>'\r\n\t\t\r\n\t\tcd = document.getElementById('contentDiv');\r\n\t\tcd.innerHTML = inner;\r\n\t\t\r\n\t\tid = document.getElementById('infoDiv');\r\n\t\tid.innerHTML = '';\r\n\t}\r\n\r\n\tfunction httpCompleted() {\r\n\t\tif (httpreq.readyState==4 && httpreq.status==200) {\t\t\t\t\t\t\r\n\t\t\tSetContent(httpreq.responseXML);\r\n\t\t\thttpreq = null;\r\n\t\t}\t\t\r\n\t}\r\n\t\r\n\tfunction SetInfo(XML) {\r\n\t\tvar ii = XML.getElementsByTagName('iteminfo').item(0);\r\n\t\tvar inner = '';\r\n\t\t\r\n\t\tinner = inner + '<p><strong>' + ii.getElementsByTagName('name').item(0).firstChild.nodeValue + '</strong></p>';\r\n\t\t\r\n\t\tpict  = ii.getElementsByTagName('picture');\r\n\t\tif(pict.length>0){\r\n\t\t\tinner = inner + '<img src=\"../showimage.php?file=' + pict.item(0).firstChild.nodeValue + '\"/>';\r\n\t\t}\r\n\t\t\r\n\t\tdescs = ii.getElementsByTagName('description');\r\n\t\tfor (i=0; i<descs.length; i++){\r\n\t\t\tinner = inner + '<p>' + descs.item(i).firstChild.nodeValue + '</p>';\r\n\t\t}\r\n\t\t\r\n\t\tid = document.getElementById('infoDiv');\r\n\t\tid.innerHTML = inner;\r\n\t}\r\n\t\r\n\tfunction httpInfoCompleted() {\t\t\r\n\t\tif (httpreq.readyState==4 && httpreq.status==200) {\r\n\t\t\tSetInfo(httpreq.responseXML);\r\n\t\t\thttpreq = null;\r\n\t\t}\t\t\r\n\t}\r\n\t\r\n\tfunction loadSomething(what) {\t\t\t\r\n\t\tgetHttpRequest();\t\t\r\n\t\thttpreq.open('GET",
+    "query_params": [],
+    "form_inputs": [],
+    "form_actions": [],
+    "headers": {
+      "Server": "nginx/1.19.0",
+      "Date": "Tue, 14 Oct 2025 11:03:50 GMT",
+      "Content-Type": "text/html; charset=UTF-8",
+      "Transfer-Encoding": "chunked",
+      "Connection": "keep-alive",
+      "X-Powered-By": "PHP/5.6.40-38+ubuntu20.04.1+deb.sury.org+1",
+      "Content-Encoding": "gzip"
+    },
+    "timestamp": 1760439827,
+    "vuln_findings": [
+      {
+        "type": "xss",
+        "count": 2,
+        "severity": "medium",
+        "evidence": [
+          {
+            "evidence": "javascript:",
+            "location": "body"
+          },
+          {
+            "evidence": "innerhtml",
+            "location": "body"
+          }
+        ]
+      },
+      {
+        "type": "lfi",
+        "count": 1,
+        "severity": "low",
+        "evidence": [
+          {
+            "evidence": "../",
+            "location": "body"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "url": "http://testphp.vulnweb.com/images/logo.gif",
+    "status_code": 200,
+    "content_type": "image/gif",
+    "body_snippet": "GIF89a2\u0001&\u0000\ufffd\u0000\u0000\ufffd|\ufffd\ufffd{\ufffd\ufffdQ\ufffd\ufffds\ufffd\ufffdQ\ufffd\ufffd\ufffd\ufffd\ufffd[\ufffd\ufffd\ufffd\ufffd\u05c9\ufffd\ufffd\ufffdGNQ\ufffd\ufffdi\ufffd\ufffde\ufffd\ufffdR\ufffd\ufffd\ufffd\ufffd\ufffdz\ufffd\ufffdR\ufffd\ufffdQ\ufffd\ufffd\ufffd\ufffd\ufffdQ\ufffd\ufffd\u0001\u0001\u0001r\ufffd\ufffd\ufffd\ufffd\ufffd\ufffdlq\ufffd\ufffd\ufffdT\ufffd\ufffdR\ufffd\ufffdm\ufffd\ufffdh\ufffd\ufffdQ\ufffd\ufffdu\ufffd\ufffd\\\ufffd\ufffd}\ufffd\ufffdj\ufffd\ufffdb\ufffd\ufffdT\ufffd\ufffd\ufffd\n\u0014\ufffd,5t\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffdQ\ufffd\ufffd{\ufffd\ufffd\ufffd\ufffd\ufffd\u0245\ufffd\ufffdX\ufffd\ufffd\ufffd\ufffd\u0545\ufffd\ufffdQ\ufffd\ufffdQ\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffdR\ufffd\ufffdR\ufffd\ufffdZ\ufffd\ufffdR\ufffd\ufffdt\ufffd\ufffd\ufffd\ufffd\u06c1\ufffd\ufffd[\ufffd\ufffd\ufffd\ufffd\ufffd[\ufffd\ufffd|\ufffd\ufffd]\ufffd\ufffd]\ufffd\ufffd\ufffd\ufffd\ufffd~\ufffd\ufffdQ\ufffd\ufffdR\ufffd\ufffd\ufffd\ufffd\ufffdQ\ufffd\u0085\ufffd\ufffdd\ufffd\ufffdt\ufffd\ufffd\ufffd\ufffd\ufffda\ufffd\ufffdn\ufffd\ufffdQ\ufffd\ufffd\ufffd\ufffd\ufffd]\ufffd\ufffdR\ufffd\ufffdR\ufffd\ufffd\ufffdR\ufffd\ufffde\ufffd\ufffdy\ufffd\ufffdR\ufffd\ufffdu\ufffd\ufffd\ufffd\ufffd\ufffdU\ufffd\ufffdR\ufffd\u0201\ufffd\ufffd\ufffd\ufffd\ufffdU\ufffd\ufffdR\ufffd\ufffdQ\ufffd\ufffda\ufffd\ufffd\ufffd\u001a$R\ufffd\ufffdZ\ufffd\ufffdR\ufffd\ufffdR\ufffd\ufffd\ufffd\ufffd\ufffdR\ufffd\ufffdy\ufffd\ufffdR\ufffd\ufffda\ufffd\ufffdz\ufffd\ufffd\ufffd\ufffd\ufffd|\ufffd\ufffd\\\ufffd\ufffdY\ufffd\ufffdg\ufffd\u0272\ufffd\ufffd]\ufffd\ufffdy\ufffd\ufffdW\ufffd\ufffd\ufffd\ufffd\ufffdY\ufffd\ufffdT\ufffd\ufffd\ufffd\ufffd\ufffdR\ufffd\ufffdW\ufffd\ufffd\ufffd\ufffd\ufffdU\ufffd\ufffdi\ufffd\ufffdf\ufffd\ufffd[\ufffd\ufffdQ\ufffd\ufffdn\ufffd\ufffdV\ufffd\ufffdR\ufffd\ufffdx\ufffd\ufffdn\ufffd\ufffdm\ufffd\ufffdR\ufffd\ufffdQ\ufffd\ufffda\ufffd\ufffd|\ufffd\ufffdT\ufffd\ufffdU\ufffd\ufffdU\ufffd\ufffdS\ufffd\ufffdU\ufffd\ufffdR\ufffd\ufffd|\ufffd\ufffdT\ufffd\ufffdQ\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\u0013\u001cR\ufffd\ufffdi\ufffd\ufffdV\ufffd\ufffd\ufffd\ufffd\ufffdZ\ufffd\ufffdf\ufffd\ufffd\ufffd\ufffd\u00c7\ufffd\ufffdQ\ufffd\ufffd\\\ufffd\ufffd\ufffd\ufffd\ufffdQ\ufffd\ufffdR\ufffd\ufffdu\ufffd\ufffdT\ufffd\ufffdR\ufffd\ufffdo\ufffd\ufffd\ufffd\ufffd\ufffdQ\ufffd\ufffdt\ufffd\ufffd]\ufffd\ufffdR\ufffd\ufffdg\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffda\ufffd\ufffdV\ufffd\ufffdR\ufffd\ufffd\ufffd\ufffd\ufffdR\ufffd\ufffdR\ufffd\ufffdS\ufffd\ufffdg\ufffd\ufffd\ufffd\ufffd\uf173\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd[\ufffd\ufffd\ufffd\ufffd\ufffdQ\ufffd\ufffdT\ufffd\ufffdR\ufffd\ufffdQ\ufffd\ufffdU\ufffd\ufffdT\ufffd\ufffd[\ufffd\ufffdT\ufffd\ufffdU\ufffd\ufffd\ufffd\ufffd\ufffdQ\ufffd\ufffdR\ufffd\ufffdQ\ufffd\ufffdR\ufffd\ufffdQ\ufffd\ufffdU\ufffd\ufffde\ufffd\ufffdS\ufffd\ufffd\ufffd\ufffd\ufffdR\ufffd\ufffd3MU\ufffd\ufffd\ufffd???\ufffd\ufffd\ufffd\u007f\u007f\u007f\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd///\ufffd\ufffd\ufffd___OOO\u001f\u001f\u001f\ufffd\ufffd\ufffd\ufffd\ufffd\ufffdQ\ufffd\ufffd\ufffd\ufffd\u07ef\ufffd\ufffdQ\ufffd\ufffdooo\ufffd<C_\ufffd\ufffd\ufffd]c\ufffd\ufffd\ufffdR\ufffd\ufffd\\\ufffd\ufffdg\ufffd\ufffdj\ufffd\ufffdX\ufffd\ufffdQ\ufffd\ufffdS\ufffd\ufffd\ufffd\ufffd\ufffdT\ufffd\ufffdR\ufffd\ufffdT\ufffd\ufffdY\ufffd\ufffd\ufffd}\ufffd\ufffd\ufffd\ufffds\ufffd\ufffd\ufffd\ufffd\ufffdw\ufffd\ufffdQ\ufffd\ufffdW\ufffd\ufffd\ufffd\ufffd\ufffd!\ufffd\u0004\u0000\u0000\u0000\u0000\u0000,\u0000\u0000\u0000\u00002\u0001&\u0000\u0000\b\ufffd\u0000\ufffd\t\u001cH\ufffd\ufffd\ufffd\ufffd\b\u0013*\\\u0230\ufffd\u00c7\u0010#J\ufffdH\ufffd\ufffd\u014b\u0018\u000f\u0002\ufffd\u0231\ufffd\u01cf C\ufffd\u001cI\ufffd\ufffd\u0253(S\ufffdT\ufffd\ufffd\u0778q\ufffdb\ufffd{\ufffd\ufffdK\u0015f\u000e\u001a\u0261\u0011\ufffd\u0401Y\ufffd\u0000\u0019\ufffd\u0010\ufffd\u0003\ufffd.\u0011\"\ufffd\ufffd\u0017 \ufffd\u001b\u0006\ufffd8\ufffd\ufffd\u0010\ufffd\u034e\\\ufffd<,\ufffd\ufffd\ufffd\ufffd\u05d72e~\u001d\u02f5,\ufffdeZ\ufffd1cV\ufffdP\u001b\u0007\ufffd\ufffd\u0001\ufffd\ufffd\ufffd\u001413fr\u0014\ufffdc,\r\t2$Xl`\ufffd\ufffd\t\ufffd\u0001\u0003H\ufffdAT\bQ\ufffd$_`$P\ufffd$I\n\ufffd+3k\ufffd\u0339\ufffd\ufffd\ufffd\u0682P\u0018K\ufffdl.I\ufffd:\ufffd\ufffdUH\u0017\u00016X\u001eAJ\ufffd\ufffdH\ufffd{18@\ufffd\u08c8\ufffd$\ufffd4l\ufffd\ufffd&\u0621\u001a\u0336R\ufffd2\ufffd\ufffds\ufffdf\u0362E\ufffd\ufffd\u019a\u001dW\ufffd\u0010\ufffdB\u0003\t\ufffd(w\ufffd\ufffd\ufffd\u80ea\ufffd\u001e\"\u0011\ufffd\ufffd\ufffd\u0405D\ufffd\b$\ufffd\ufffd9\ufffd*\ufffd\ufffd\u0000)\ufffd\ufffd0`\ufffd\u0012\ufffd\ufffd\u0000\u0006(\ufffd\ufffd\u0004v\u0014\ufffdV^\ufffd\ufffd\ufffd8\\-SE.W\ufffd!G\u000ex\ufffd2G\b\u0006\ufffd\ufffd\ufffd#\ufffd\u0005\u0000E:\u0002\ufffd\ufffdN%Y\ufffd\u0010M\u0000\"\ufffd\ufffd\ufffd\u0018\ufffd$3\ufffd%\ufffdT\ufffd\fs\ufffd%HVt\u04a5\ufffd\ufffdZl\ufffda\ufffd\u000e\ufffd]\ufffd\u0006\rD\"AL\u000e\u000e\ufffd0\ufffd\u001d\ufffdl\ufffd\ufffd\u0002\ufffd\r\ufffdBR\ufffd\ufffd\ufffd\ufffd\f\t\ufffd\ufffd\ufffd\u0011\u00160 \ufffd\u007f\u0005\ufffd)\ufffddrt \ufffd\ufffd(\ufffdc3\ufffdX2I*HH\ufffdF\"P|\ufffdH\u0003\ufffd\u0014\ufffd\u0004\u0001\u0016| \ufffd\u001f$\ufffdA\u0004$\ufffd\ufffd\ufffdH\u0004x\u001c@\u0004\u001e\ufffd\ufffd\"\u030ce\ufffd\ufffd\u0913\ufffd\ufffd\ufffd\rz\ufffd#\ufffd\ufffd\u001d\ufffd\ufffd\u0004J(\ufffd\ufffd\u0011\ufffd\u0010\u0019\ufffd\u0019h@\ufffd\ufffd\u001eTP!\u0193il\ufffd\ufffdARv\u0004\u0080n@\ufffd\ufffd\u0004\u0010\ufffdp\u0400\u001b`\ufffd)\ufffd\u0132\u0014\ufffd\ufffd8z\ufffd\ufffd2\u000e\nC\ufffd)\ufffdLr\u00054x\ufffd\u0010\ufffd\u000e\ufffd\ufffd\ufffdF\u0000!\ufffd\ufffd\ufffd'\ufffd\f\ufffdA\u0017~\ufffd\b\u0001\ufffd\ufffd2H$f\\\ufffdK\u0015\ufffdF\ufffd\u017c\ufffdD7#\ufffd\ufffd&\ufffd\u001cZ\ufffdj\ufffdcuk\ufffd\ufffd\ufffd\ufffdJ\u001cq\ufffdv\ufffd\u001e\u0019\u000f\u001a\u000e\ufffd\u302bT,\u0010\ufffdd\ufffd @\u0011B\u0004\ufffd\ufffd\u001a(\u0000\ufffd\u0003\u0004\u0010(\u0012l\ufffd$\ufffd<R9\ufffd`C`hUh5/\ufffd^0\ufffd)\ufffdk\ufffd\u0003!\ufffd\ufffd\u0010\ufffd\u001e\ufffd<\u0012\ufffd\u001c\r\ufffd\u0011@\u0000\u001c<\ufffd\ufffda\u001b\ufffd\ufffd\ufffd+d\ufffd\u0000\ufffd\u0019;\ufffd\ufffd\ufffdt\ufffd\ufffdi\u00155\ufffd\u0018oY\ufffd2+s\ufffd\ufffd\u0001|\ufffd\ufffd@^q0\ufffdQ\ufffdW\u0001h\ufffdA\ufffd1T\ufffd\u0794$@\ufffdJ\u0012y\b\ufffd\u0005\ufffd\t\ufffd\ufffd \u0004\u0014_Vc\ufffd\ufffd\ufffdwDN\u0005\ufffdo3 \ufffd\ufffdhQE\u00151\u007f=\ufffdu6\ufffd\u0002\r<\ufffdA\ufffd\u001e\ufffd\ufffd0E\u0016\u0001$a\u0004\u001b!`1\ufffd?b0\ufffd\ufffd$\u0005 \u00130r`3w\ufffd\u0016\ufffd.s\ufffd\u000eU\b\u0013c\ufffd\u0336\ufffd5\ufffd7\ufffd\u001c\ufffd\u001a\u0012\ufffdjpvE\ufffd!^\u000eh0\ufffd\u0003\ufffd\u0011\ufffd\ufffd\u001cT\u0002\ufffd\u00120\ufffd\u0011b\nj@\ufffd@\u0003#kf\u0003\u0000\ufffd(`\ufffd:\ufffd\ufffd0O\ufffd\ufffd$\u000e\ufffd\u0015\ufffd\ufffdx\u00105h\ufffd\ufffd\u0007-\ufffd\ufffdo\ufffdA\"\ufffd\ufffd\u0003\u000bx\ufffdb\ufffd\ufffd\ufffd\"\u0014!\u0005PpC\u0017@\ufffd\u0000i\ufffd\ufffd\u0006W\ufffd\ufffd%.\u0001;\ufffd)g9\ufffdi\ufffd\ufffd\u000e\ufffd\ufffdHP\ufffd\u0003\ufffdx\u0014\ufffd,\ufffd\ufffd\ufffd\ufffdG\ufffd+\u001e\ufffd\ufffdV\ufffd\ufffd\ufffd\ufffdm\f\u0013C\u001a@\ufffd\tH\ufffd\ufffd\u0003>P\ufffd\f@\ufffd\u0002\u001f\ufffd\ufffd\u0017y\u0010\u0002\u0003\ufffd\u001a\u0011\ufffd\ufffd\ufffd\u0003\u0000&(\ufffd\u0012\ufffd\ufffd\ufffdL\ufffd\ufffd\u0005\ufffd\u001b\u001c6\u0010\ufffd2\ufffdx\u0003\u001c\ufffdXY\u0010rQ\u0003J\u0402\u0016\u001f,\ufffdz$\u0001\ufffd\ufffd\u0006\ufffd\ufffd\u0006 \ufffd0\ufffdD,\ufffd\u0017E\ufffd\u0000\u0003\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\u000190\u0003\u0012\bq\ufffd\ufffdp\ufffd\u0019\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd5\u000fX'\u0012a0\ufffd\u0012j\u0001H\u001dI\ufffdqcDa\ufffd\ufffd\ufffd)\ufffd\ufffd\ufffd;c\ufffd\ufffd\ufffd\u0018F\ufffd4tA\u00117\ufffd\ufffd*F\ufffd\u000f\u00064\ufffd\u0002\tH\ufffd)\u0012\u0000\u0004\b\ufffd\"\u0010E<\t>2\ufffd\ufffdZ\ufffdR\u0001\ufffd\ufffd\"\u0266X\ufffd*\ufffd)4\ufffd\ufffdF\u0007\ufffdp\ufffd\u0013rj\r\ufffd\ufffd\ufffd3\ufffd\ufffd\ufffd\u001cH\ufffd\u0018 \ufffd\ufffd*B\ufffd\u0005~\u0120\\\u001b\u0010\ufffd\u0003\ufffd\ufffd\u0003\\ \ufffd\n\ufffd\ufffd\ufffd\u001fc\u0004\ufffd~\ufffd\ufffdq\u0529\ufffd\u0004&\ufffd$@\ufffd\u00039\ufffd|\ufffd\ufffd yB\ufffd\f\ufffdx",
+    "query_params": [],
+    "form_inputs": [],
+    "form_actions": [],
+    "headers": {
+      "Server": "nginx/1.19.0",
+      "Date": "Tue, 14 Oct 2025 11:03:50 GMT",
+      "Content-Type": "image/gif",
+      "Content-Length": "6660",
+      "Last-Modified": "Wed, 11 May 2011 10:27:46 GMT",
+      "Connection": "keep-alive",
+      "ETag": "\"4dca64a2-1a04\"",
+      "Accept-Ranges": "bytes"
+    },
+    "timestamp": 1760439828,
+    "vuln_findings": []
+  },
+  {
+    "url": "http://testphp.vulnweb.com/hpp/",
+    "status_code": 200,
+    "content_type": "text/html; charset=UTF-8",
+    "body_snippet": "<title>HTTP Parameter Pollution Example</title>\r\n\r\n<a href=\"?pp=12\">check</a><br/>\r\n\r\n<hr>\r\n<a href='http://blog.mindedsecurity.com/2009/05/client-side-http-parameter-pollution.html'>Original article</a>",
+    "query_params": [],
+    "form_inputs": [],
+    "form_actions": [],
+    "headers": {
+      "Server": "nginx/1.19.0",
+      "Date": "Tue, 14 Oct 2025 11:03:51 GMT",
+      "Content-Type": "text/html; charset=UTF-8",
+      "Transfer-Encoding": "chunked",
+      "Connection": "keep-alive",
+      "X-Powered-By": "PHP/5.6.40-38+ubuntu20.04.1+deb.sury.org+1",
+      "Content-Encoding": "gzip"
+    },
+    "timestamp": 1760439829,
+    "vuln_findings": []
+  },
+  {
+    "url": "http://testphp.vulnweb.com/guestbook.php",
+    "status_code": 200,
+    "content_type": "text/html; charset=UTF-8",
+    "body_snippet": "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\"\n\"http://www.w3.org/TR/html4/loose.dtd\">\n<html><!-- InstanceBegin template=\"/Templates/main_dynamic_template.dwt.php\" codeOutsideHTMLIsLocked=\"false\" -->\n<head>\n<meta http-equiv=\"Content-Type\" content=\"text/html; charset=iso-8859-2\">\n\n<!-- InstanceBeginEditable name=\"document_title_rgn\" -->\n<title>guestbook</title>\n<!-- InstanceEndEditable -->\n<link rel=\"stylesheet\" href=\"style.css\" type=\"text/css\">\n<!-- InstanceBeginEditable name=\"headers_rgn\" -->\n<!-- InstanceEndEditable -->\n<script language=\"JavaScript\" type=\"text/JavaScript\">\n<!--\nfunction MM_reloadPage(init) {  //reloads the window if Nav4 resized\n  if (init==true) with (navigator) {if ((appName==\"Netscape\")&&(parseInt(appVersion)==4)) {\n    document.MM_pgW=innerWidth; document.MM_pgH=innerHeight; onresize=MM_reloadPage; }}\n  else if (innerWidth!=document.MM_pgW || innerHeight!=document.MM_pgH) location.reload();\n}\nMM_reloadPage(true);\n//-->\n</script>\n\n</head>\n<body> \n<div id=\"mainLayer\" style=\"position:absolute; width:700px; z-index:1\">\n<div id=\"masthead\"> \n  <h1 id=\"siteName\"><a href=\"https://www.acunetix.com/\"><img src=\"images/logo.gif\" width=\"306\" height=\"38\" border=\"0\" alt=\"Acunetix website security\"></a></h1>   \n  <h6 id=\"siteInfo\">TEST and Demonstration site for <a href=\"https://www.acunetix.com/vulnerability-scanner/\">Acunetix Web Vulnerability Scanner</a></h6>\n  <div id=\"globalNav\"> \n      \t<table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"100%\"><tr>\n\t<td align=\"left\">\n\t\t<a href=\"index.php\">home</a> | <a href=\"categories.php\">categories</a> | <a href=\"artists.php\">artists\n\t\t</a> | <a href=\"disclaimer.php\">disclaimer</a> | <a href=\"cart.php\">your cart</a> | \n\t\t<a href=\"guestbook.php\">guestbook</a> | \n\t\t<a href=\"AJAX/index.php\">AJAX Demo</a>\n\t</td>\n\t<td align=\"right\">\n\t\t</td>\n\t</tr></table>\n  </div> \n</div> \n<!-- end masthead --> \n\n<!-- begin content -->\n<!-- InstanceBeginEditable name=\"content_rgn\" -->\n<div id=\"content\">\n\t<div class=\"s",
+    "query_params": [],
+    "form_inputs": [
+      "name",
+      "submit",
+      "searchFor",
+      "goButton"
+    ],
+    "form_actions": [
+      "",
+      "search.php?test=query"
+    ],
+    "headers": {
+      "Server": "nginx/1.19.0",
+      "Date": "Tue, 14 Oct 2025 11:03:52 GMT",
+      "Content-Type": "text/html; charset=UTF-8",
+      "Transfer-Encoding": "chunked",
+      "Connection": "keep-alive",
+      "X-Powered-By": "PHP/5.6.40-38+ubuntu20.04.1+deb.sury.org+1",
+      "Content-Encoding": "gzip"
+    },
+    "timestamp": 1760439829,
+    "vuln_findings": []
+  },
+  {
+    "url": "http://testphp.vulnweb.com/style.css",
+    "status_code": 200,
+    "content_type": "text/css",
+    "body_snippet": "body{\r\n\tfont-family: Arial,sans-serif;\r\n\tcolor: #333333;\r\n\tline-height: 1.166;\t\r\n\tmargin: 0px;\r\n\tpadding: 0px;\r\n}\r\n\r\na:link, a:visited{\r\n\tcolor: #006699;\r\n\ttext-decoration: none;\r\n}\r\n\r\na:hover {\r\n\ttext-decoration: underline;\r\n}\r\n\r\nh1, h2, h3, h4, h5, h6 {\r\n\tfont-family: Arial,sans-serif;\r\n\tmargin: 0px;\r\n\tpadding: 0px;\r\n}\r\n\r\nh1{\r\n font-family: Verdana,Arial,sans-serif;\r\n font-size: 120%;\r\n color: #334d55;\r\n}\r\n\r\nh2{\r\n font-size: 114%;\r\n color: #006699;\r\n}\r\n\r\nh3{\r\n font-size: 100%;\r\n color: #334d55;\r\n}\r\n\r\nh4{\r\n font-size: 100%;\r\n font-weight: normal;\r\n color: #333333;\r\n}\r\n\r\nh5{\r\n font-size: 100%;\r\n color: #334d55;\r\n}\r\n\r\nul{\r\n list-style-type: square;\r\n}\r\n\r\nul ul{\r\n list-style-type: disc;\r\n}\r\n\r\nul ul ul{\r\n list-style-type: none;\r\n}\r\n\r\nlabel{\r\n font: bold 100% Arial,sans-serif;\r\n color: #334d55;\r\n}\r\n\t\t\t\t\r\n\r\n/***********************************************/\r\n/* Layout Divs                                 */\r\n/***********************************************/\r\n\r\n#masthead{\r\n\tmargin: 0;\r\n\tpadding: 10px 0px;\r\n\tborder-bottom: 1px solid #cccccc;\r\n\twidth: 100%;\r\n}\r\n\r\n#navBar{\r\n\tmargin: 0 79% 0 0;\r\n\tpadding: 0px;\r\n\tbackground-color: #eeeeee;\r\n\tborder-right: 1px solid #ccc;\r\n\tborder-bottom: 1px solid #ccc;\r\n}\r\n\r\n#content{\r\n  float:right;\r\n\twidth: 75%;\r\n\tmargin: 0;\r\n\tpadding: 0 3% 0 0;\r\n}\r\n\r\n\r\n/***********************************************/\r\n/*Component Divs                               */\r\n/***********************************************/\r\n\r\n#siteName{\r\n\tmargin: 0px;\r\n\tpadding: 0px 0px 10px 10px;\r\n}\r\n\r\n\r\n/*************** #pageName styles **************/\r\n\r\n#pageName{\r\n\tpadding: 0px 0px 10px 10px;\r\n}\r\n\r\n\r\n/************* #globalNav styles **************/\r\n\r\n#globalNav{\r\ncolor: #cccccc;\r\npadding: 0px 0px 0px 10px;\r\nwhite-space: nowrap;\r\n}\r\n/* 'nowrap' prevents links from line-wrapping if there are too many to fit in one line\r\n   this will force a horizontal scrollbar if there isn't enough room for all links\r\n   remove rule or change value to 'normal' if you want the links to line-",
+    "query_params": [],
+    "form_inputs": [],
+    "form_actions": [],
+    "headers": {
+      "Server": "nginx/1.19.0",
+      "Date": "Tue, 14 Oct 2025 11:03:52 GMT",
+      "Content-Type": "text/css",
+      "Content-Length": "5482",
+      "Last-Modified": "Wed, 11 May 2011 10:27:48 GMT",
+      "Connection": "keep-alive",
+      "ETag": "\"4dca64a4-156a\"",
+      "Accept-Ranges": "bytes"
+    },
+    "timestamp": 1760439830,
+    "vuln_findings": []
+  },
+  {
+    "url": "http://testphp.vulnweb.com/login.php",
+    "status_code": 200,
+    "content_type": "text/html; charset=UTF-8",
+    "body_snippet": "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\"\n\"http://www.w3.org/TR/html4/loose.dtd\">\n<html><!-- InstanceBegin template=\"/Templates/main_dynamic_template.dwt.php\" codeOutsideHTMLIsLocked=\"false\" -->\n<head>\n<meta http-equiv=\"Content-Type\" content=\"text/html; charset=iso-8859-2\">\n\n<!-- InstanceBeginEditable name=\"document_title_rgn\" -->\n<title>login page</title>\n<!-- InstanceEndEditable -->\n<link rel=\"stylesheet\" href=\"style.css\" type=\"text/css\">\n<!-- InstanceBeginEditable name=\"headers_rgn\" -->\n<!-- here goes headers headers -->\n<!-- InstanceEndEditable -->\n<script language=\"JavaScript\" type=\"text/JavaScript\">\n<!--\nfunction MM_reloadPage(init) {  //reloads the window if Nav4 resized\n  if (init==true) with (navigator) {if ((appName==\"Netscape\")&&(parseInt(appVersion)==4)) {\n    document.MM_pgW=innerWidth; document.MM_pgH=innerHeight; onresize=MM_reloadPage; }}\n  else if (innerWidth!=document.MM_pgW || innerHeight!=document.MM_pgH) location.reload();\n}\nMM_reloadPage(true);\n//-->\n</script>\n\n</head>\n<body> \n<div id=\"mainLayer\" style=\"position:absolute; width:700px; z-index:1\">\n<div id=\"masthead\"> \n  <h1 id=\"siteName\"><a href=\"https://www.acunetix.com/\"><img src=\"images/logo.gif\" width=\"306\" height=\"38\" border=\"0\" alt=\"Acunetix website security\"></a></h1>   \n  <h6 id=\"siteInfo\">TEST and Demonstration site for <a href=\"https://www.acunetix.com/vulnerability-scanner/\">Acunetix Web Vulnerability Scanner</a></h6>\n  <div id=\"globalNav\"> \n      \t<table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"100%\"><tr>\n\t<td align=\"left\">\n\t\t<a href=\"index.php\">home</a> | <a href=\"categories.php\">categories</a> | <a href=\"artists.php\">artists\n\t\t</a> | <a href=\"disclaimer.php\">disclaimer</a> | <a href=\"cart.php\">your cart</a> | \n\t\t<a href=\"guestbook.php\">guestbook</a> | \n\t\t<a href=\"AJAX/index.php\">AJAX Demo</a>\n\t</td>\n\t<td align=\"right\">\n\t\t</td>\n\t</tr></table>\n  </div> \n</div> \n<!-- end masthead --> \n\n<!-- begin content -->\n<!-- InstanceBeginEditable name=\"content_rgn\" -",
+    "query_params": [],
+    "form_inputs": [
+      "uname",
+      "pass",
+      "searchFor",
+      "goButton"
+    ],
+    "form_actions": [
+      "userinfo.php",
+      "search.php?test=query"
+    ],
+    "headers": {
+      "Server": "nginx/1.19.0",
+      "Date": "Tue, 14 Oct 2025 11:03:53 GMT",
+      "Content-Type": "text/html; charset=UTF-8",
+      "Transfer-Encoding": "chunked",
+      "Connection": "keep-alive",
+      "X-Powered-By": "PHP/5.6.40-38+ubuntu20.04.1+deb.sury.org+1",
+      "Content-Encoding": "gzip"
+    },
+    "timestamp": 1760439831,
+    "vuln_findings": []
+  },
+  {
+    "url": "http://testphp.vulnweb.com/artists.php",
+    "status_code": 200,
+    "content_type": "text/html; charset=UTF-8",
+    "body_snippet": "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\"\n\"http://www.w3.org/TR/html4/loose.dtd\">\n<html><!-- InstanceBegin template=\"/Templates/main_dynamic_template.dwt.php\" codeOutsideHTMLIsLocked=\"false\" -->\n<head>\n<meta http-equiv=\"Content-Type\" content=\"text/html; charset=iso-8859-2\">\n\n<!-- InstanceBeginEditable name=\"document_title_rgn\" -->\n<title>artists</title>\n<!-- InstanceEndEditable -->\n<link rel=\"stylesheet\" href=\"style.css\" type=\"text/css\">\n<!-- InstanceBeginEditable name=\"headers_rgn\" -->\n<!-- here goes headers headers -->\n<!-- InstanceEndEditable -->\n<script language=\"JavaScript\" type=\"text/JavaScript\">\n<!--\nfunction MM_reloadPage(init) {  //reloads the window if Nav4 resized\n  if (init==true) with (navigator) {if ((appName==\"Netscape\")&&(parseInt(appVersion)==4)) {\n    document.MM_pgW=innerWidth; document.MM_pgH=innerHeight; onresize=MM_reloadPage; }}\n  else if (innerWidth!=document.MM_pgW || innerHeight!=document.MM_pgH) location.reload();\n}\nMM_reloadPage(true);\n//-->\n</script>\n\n</head>\n<body> \n<div id=\"mainLayer\" style=\"position:absolute; width:700px; z-index:1\">\n<div id=\"masthead\"> \n  <h1 id=\"siteName\"><a href=\"https://www.acunetix.com/\"><img src=\"images/logo.gif\" width=\"306\" height=\"38\" border=\"0\" alt=\"Acunetix website security\"></a></h1>   \n  <h6 id=\"siteInfo\">TEST and Demonstration site for <a href=\"https://www.acunetix.com/vulnerability-scanner/\">Acunetix Web Vulnerability Scanner</a></h6>\n  <div id=\"globalNav\"> \n      \t<table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"100%\"><tr>\n\t<td align=\"left\">\n\t\t<a href=\"index.php\">home</a> | <a href=\"categories.php\">categories</a> | <a href=\"artists.php\">artists\n\t\t</a> | <a href=\"disclaimer.php\">disclaimer</a> | <a href=\"cart.php\">your cart</a> | \n\t\t<a href=\"guestbook.php\">guestbook</a> | \n\t\t<a href=\"AJAX/index.php\">AJAX Demo</a>\n\t</td>\n\t<td align=\"right\">\n\t\t</td>\n\t</tr></table>\n  </div> \n</div> \n<!-- end masthead --> \n\n<!-- begin content -->\n<!-- InstanceBeginEditable name=\"content_rgn\" -->\n",
+    "query_params": [],
+    "form_inputs": [
+      "searchFor",
+      "goButton"
+    ],
+    "form_actions": [
+      "search.php?test=query"
+    ],
+    "headers": {
+      "Server": "nginx/1.19.0",
+      "Date": "Tue, 14 Oct 2025 11:03:54 GMT",
+      "Content-Type": "text/html; charset=UTF-8",
+      "Transfer-Encoding": "chunked",
+      "Connection": "keep-alive",
+      "X-Powered-By": "PHP/5.6.40-38+ubuntu20.04.1+deb.sury.org+1",
+      "Content-Encoding": "gzip"
+    },
+    "timestamp": 1760439831,
+    "vuln_findings": []
+  },
+  {
+    "url": "http://testphp.vulnweb.com/index.php",
+    "status_code": 200,
+    "content_type": "text/html; charset=UTF-8",
+    "body_snippet": "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\"\n\"http://www.w3.org/TR/html4/loose.dtd\">\n<html><!-- InstanceBegin template=\"/Templates/main_dynamic_template.dwt.php\" codeOutsideHTMLIsLocked=\"false\" -->\n<head>\n<meta http-equiv=\"Content-Type\" content=\"text/html; charset=iso-8859-2\">\n\n<!-- InstanceBeginEditable name=\"document_title_rgn\" -->\n<title>Home of Acunetix Art</title>\n<!-- InstanceEndEditable -->\n<link rel=\"stylesheet\" href=\"style.css\" type=\"text/css\">\n<!-- InstanceBeginEditable name=\"headers_rgn\" -->\n<!-- here goes headers headers -->\n<!-- InstanceEndEditable -->\n<script language=\"JavaScript\" type=\"text/JavaScript\">\n<!--\nfunction MM_reloadPage(init) {  //reloads the window if Nav4 resized\n  if (init==true) with (navigator) {if ((appName==\"Netscape\")&&(parseInt(appVersion)==4)) {\n    document.MM_pgW=innerWidth; document.MM_pgH=innerHeight; onresize=MM_reloadPage; }}\n  else if (innerWidth!=document.MM_pgW || innerHeight!=document.MM_pgH) location.reload();\n}\nMM_reloadPage(true);\n//-->\n</script>\n\n</head>\n<body> \n<div id=\"mainLayer\" style=\"position:absolute; width:700px; z-index:1\">\n<div id=\"masthead\"> \n  <h1 id=\"siteName\"><a href=\"https://www.acunetix.com/\"><img src=\"images/logo.gif\" width=\"306\" height=\"38\" border=\"0\" alt=\"Acunetix website security\"></a></h1>   \n  <h6 id=\"siteInfo\">TEST and Demonstration site for <a href=\"https://www.acunetix.com/vulnerability-scanner/\">Acunetix Web Vulnerability Scanner</a></h6>\n  <div id=\"globalNav\"> \n      \t<table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"100%\"><tr>\n\t<td align=\"left\">\n\t\t<a href=\"index.php\">home</a> | <a href=\"categories.php\">categories</a> | <a href=\"artists.php\">artists\n\t\t</a> | <a href=\"disclaimer.php\">disclaimer</a> | <a href=\"cart.php\">your cart</a> | \n\t\t<a href=\"guestbook.php\">guestbook</a> | \n\t\t<a href=\"AJAX/index.php\">AJAX Demo</a>\n\t</td>\n\t<td align=\"right\">\n\t\t</td>\n\t</tr></table>\n  </div> \n</div> \n<!-- end masthead --> \n\n<!-- begin content -->\n<!-- InstanceBeginEditable name=\"cont",
+    "query_params": [],
+    "form_inputs": [
+      "searchFor",
+      "goButton"
+    ],
+    "form_actions": [
+      "search.php?test=query"
+    ],
+    "headers": {
+      "Server": "nginx/1.19.0",
+      "Date": "Tue, 14 Oct 2025 11:03:55 GMT",
+      "Content-Type": "text/html; charset=UTF-8",
+      "Transfer-Encoding": "chunked",
+      "Connection": "keep-alive",
+      "X-Powered-By": "PHP/5.6.40-38+ubuntu20.04.1+deb.sury.org+1",
+      "Content-Encoding": "gzip"
+    },
+    "timestamp": 1760439832,
+    "vuln_findings": []
+  },
+  {
+    "url": "http://testphp.vulnweb.com/disclaimer.php",
+    "status_code": 200,
+    "content_type": "text/html; charset=UTF-8",
+    "body_snippet": "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\"\n\"http://www.w3.org/TR/html4/loose.dtd\">\n<html><!-- InstanceBegin template=\"/Templates/main_dynamic_template.dwt.php\" codeOutsideHTMLIsLocked=\"false\" -->\n<head>\n<meta http-equiv=\"Content-Type\" content=\"text/html; charset=iso-8859-2\">\n\n<!-- InstanceBeginEditable name=\"document_title_rgn\" -->\n<title>disclaimer</title>\n<!-- InstanceEndEditable -->\n<link rel=\"stylesheet\" href=\"style.css\" type=\"text/css\">\n<!-- InstanceBeginEditable name=\"headers_rgn\" -->\n<!-- here goes headers headers -->\n<!-- InstanceEndEditable -->\n<script language=\"JavaScript\" type=\"text/JavaScript\">\n<!--\nfunction MM_reloadPage(init) {  //reloads the window if Nav4 resized\n  if (init==true) with (navigator) {if ((appName==\"Netscape\")&&(parseInt(appVersion)==4)) {\n    document.MM_pgW=innerWidth; document.MM_pgH=innerHeight; onresize=MM_reloadPage; }}\n  else if (innerWidth!=document.MM_pgW || innerHeight!=document.MM_pgH) location.reload();\n}\nMM_reloadPage(true);\n//-->\n</script>\n\n</head>\n<body> \n<div id=\"mainLayer\" style=\"position:absolute; width:700px; z-index:1\">\n<div id=\"masthead\"> \n  <h1 id=\"siteName\"><a href=\"https://www.acunetix.com/\"><img src=\"images/logo.gif\" width=\"306\" height=\"38\" border=\"0\" alt=\"Acunetix website security\"></a></h1>   \n  <h6 id=\"siteInfo\">TEST and Demonstration site for <a href=\"https://www.acunetix.com/vulnerability-scanner/\">Acunetix Web Vulnerability Scanner</a></h6>\n  <div id=\"globalNav\"> \n      \t<table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"100%\"><tr>\n\t<td align=\"left\">\n\t\t<a href=\"index.php\">home</a> | <a href=\"categories.php\">categories</a> | <a href=\"artists.php\">artists\n\t\t</a> | <a href=\"disclaimer.php\">disclaimer</a> | <a href=\"cart.php\">your cart</a> | \n\t\t<a href=\"guestbook.php\">guestbook</a> | \n\t\t<a href=\"AJAX/index.php\">AJAX Demo</a>\n\t</td>\n\t<td align=\"right\">\n\t\t</td>\n\t</tr></table>\n  </div> \n</div> \n<!-- end masthead --> \n\n<!-- begin content -->\n<!-- InstanceBeginEditable name=\"content_rgn\" -",
+    "query_params": [],
+    "form_inputs": [
+      "searchFor",
+      "goButton"
+    ],
+    "form_actions": [
+      "search.php?test=query"
+    ],
+    "headers": {
+      "Server": "nginx/1.19.0",
+      "Date": "Tue, 14 Oct 2025 11:03:55 GMT",
+      "Content-Type": "text/html; charset=UTF-8",
+      "Transfer-Encoding": "chunked",
+      "Connection": "keep-alive",
+      "X-Powered-By": "PHP/5.6.40-38+ubuntu20.04.1+deb.sury.org+1",
+      "Content-Encoding": "gzip"
+    },
+    "timestamp": 1760439833,
+    "vuln_findings": []
+  },
+  {
+    "url": "http://testphp.vulnweb.com/userinfo.php",
+    "status_code": 200,
+    "content_type": "text/html; charset=UTF-8",
+    "body_snippet": "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\"\n\"http://www.w3.org/TR/html4/loose.dtd\">\n<html><!-- InstanceBegin template=\"/Templates/main_dynamic_template.dwt.php\" codeOutsideHTMLIsLocked=\"false\" -->\n<head>\n<meta http-equiv=\"Content-Type\" content=\"text/html; charset=iso-8859-2\">\n\n<!-- InstanceBeginEditable name=\"document_title_rgn\" -->\n<title>login page</title>\n<!-- InstanceEndEditable -->\n<link rel=\"stylesheet\" href=\"style.css\" type=\"text/css\">\n<!-- InstanceBeginEditable name=\"headers_rgn\" -->\n<!-- here goes headers headers -->\n<!-- InstanceEndEditable -->\n<script language=\"JavaScript\" type=\"text/JavaScript\">\n<!--\nfunction MM_reloadPage(init) {  //reloads the window if Nav4 resized\n  if (init==true) with (navigator) {if ((appName==\"Netscape\")&&(parseInt(appVersion)==4)) {\n    document.MM_pgW=innerWidth; document.MM_pgH=innerHeight; onresize=MM_reloadPage; }}\n  else if (innerWidth!=document.MM_pgW || innerHeight!=document.MM_pgH) location.reload();\n}\nMM_reloadPage(true);\n//-->\n</script>\n\n</head>\n<body> \n<div id=\"mainLayer\" style=\"position:absolute; width:700px; z-index:1\">\n<div id=\"masthead\"> \n  <h1 id=\"siteName\"><a href=\"https://www.acunetix.com/\"><img src=\"images/logo.gif\" width=\"306\" height=\"38\" border=\"0\" alt=\"Acunetix website security\"></a></h1>   \n  <h6 id=\"siteInfo\">TEST and Demonstration site for <a href=\"https://www.acunetix.com/vulnerability-scanner/\">Acunetix Web Vulnerability Scanner</a></h6>\n  <div id=\"globalNav\"> \n      \t<table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"100%\"><tr>\n\t<td align=\"left\">\n\t\t<a href=\"index.php\">home</a> | <a href=\"categories.php\">categories</a> | <a href=\"artists.php\">artists\n\t\t</a> | <a href=\"disclaimer.php\">disclaimer</a> | <a href=\"cart.php\">your cart</a> | \n\t\t<a href=\"guestbook.php\">guestbook</a> | \n\t\t<a href=\"AJAX/index.php\">AJAX Demo</a>\n\t</td>\n\t<td align=\"right\">\n\t\t</td>\n\t</tr></table>\n  </div> \n</div> \n<!-- end masthead --> \n\n<!-- begin content -->\n<!-- InstanceBeginEditable name=\"content_rgn\" -",
+    "query_params": [],
+    "form_inputs": [
+      "uname",
+      "pass",
+      "searchFor",
+      "goButton"
+    ],
+    "form_actions": [
+      "userinfo.php",
+      "search.php?test=query"
+    ],
+    "headers": {
+      "Server": "nginx/1.19.0",
+      "Date": "Tue, 14 Oct 2025 11:03:56 GMT",
+      "Content-Type": "text/html; charset=UTF-8",
+      "Transfer-Encoding": "chunked",
+      "Connection": "keep-alive",
+      "X-Powered-By": "PHP/5.6.40-38+ubuntu20.04.1+deb.sury.org+1",
+      "Content-Encoding": "gzip"
+    },
+    "timestamp": 1760439834,
+    "vuln_findings": []
+  },
+  {
+    "url": "http://testphp.vulnweb.com/privacy.php",
+    "status_code": 404,
+    "content_type": "text/html; charset=UTF-8",
+    "body_snippet": "File not found.\n",
+    "query_params": [],
+    "form_inputs": [],
+    "form_actions": [],
+    "headers": {
+      "Server": "nginx/1.19.0",
+      "Date": "Tue, 14 Oct 2025 11:03:57 GMT",
+      "Content-Type": "text/html; charset=UTF-8",
+      "Transfer-Encoding": "chunked",
+      "Connection": "keep-alive",
+      "X-Powered-By": "PHP/5.6.40-38+ubuntu20.04.1+deb.sury.org+1",
+      "Content-Encoding": "gzip"
+    },
+    "timestamp": 1760439835,
+    "vuln_findings": []
+  },
+  {
+    "url": "http://testphp.vulnweb.com/search.php?test=query",
+    "status_code": 200,
+    "content_type": "text/html; charset=UTF-8",
+    "body_snippet": "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\"\n\"http://www.w3.org/TR/html4/loose.dtd\">\n<html><!-- InstanceBegin template=\"/Templates/main_dynamic_template.dwt.php\" codeOutsideHTMLIsLocked=\"false\" -->\n<head>\n<meta http-equiv=\"Content-Type\" content=\"text/html; charset=iso-8859-2\">\n\n<!-- InstanceBeginEditable name=\"document_title_rgn\" -->\n<title>search</title>\n<!-- InstanceEndEditable -->\n<link rel=\"stylesheet\" href=\"style.css\" type=\"text/css\">\n<!-- InstanceBeginEditable name=\"headers_rgn\" -->\n<!-- here goes headers headers -->\n<!-- InstanceEndEditable -->\n<script language=\"JavaScript\" type=\"text/JavaScript\">\n<!--\nfunction MM_reloadPage(init) {  //reloads the window if Nav4 resized\n  if (init==true) with (navigator) {if ((appName==\"Netscape\")&&(parseInt(appVersion)==4)) {\n    document.MM_pgW=innerWidth; document.MM_pgH=innerHeight; onresize=MM_reloadPage; }}\n  else if (innerWidth!=document.MM_pgW || innerHeight!=document.MM_pgH) location.reload();\n}\nMM_reloadPage(true);\n//-->\n</script>\n\n</head>\n<body> \n<div id=\"mainLayer\" style=\"position:absolute; width:700px; z-index:1\">\n<div id=\"masthead\"> \n  <h1 id=\"siteName\"><a href=\"https://www.acunetix.com/\"><img src=\"images/logo.gif\" width=\"306\" height=\"38\" border=\"0\" alt=\"Acunetix website security\"></a></h1>   \n  <h6 id=\"siteInfo\">TEST and Demonstration site for <a href=\"https://www.acunetix.com/vulnerability-scanner/\">Acunetix Web Vulnerability Scanner</a></h6>\n  <div id=\"globalNav\"> \n      \t<table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"100%\"><tr>\n\t<td align=\"left\">\n\t\t<a href=\"index.php\">home</a> | <a href=\"categories.php\">categories</a> | <a href=\"artists.php\">artists\n\t\t</a> | <a href=\"disclaimer.php\">disclaimer</a> | <a href=\"cart.php\">your cart</a> | \n\t\t<a href=\"guestbook.php\">guestbook</a> | \n\t\t<a href=\"AJAX/index.php\">AJAX Demo</a>\n\t</td>\n\t<td align=\"right\">\n\t\t</td>\n\t</tr></table>\n  </div> \n</div> \n<!-- end masthead --> \n\n<!-- begin content -->\n<!-- InstanceBeginEditable name=\"content_rgn\" -->\n<",
+    "query_params": [
+      "test"
+    ],
+    "form_inputs": [
+      "searchFor",
+      "goButton"
+    ],
+    "form_actions": [
+      "search.php?test=query"
+    ],
+    "headers": {
+      "Server": "nginx/1.19.0",
+      "Date": "Tue, 14 Oct 2025 11:03:58 GMT",
+      "Content-Type": "text/html; charset=UTF-8",
+      "Transfer-Encoding": "chunked",
+      "Connection": "keep-alive",
+      "X-Powered-By": "PHP/5.6.40-38+ubuntu20.04.1+deb.sury.org+1",
+      "Content-Encoding": "gzip"
+    },
+    "timestamp": 1760439835,
+    "vuln_findings": []
+  },
+  {
+    "url": "http://testphp.vulnweb.com/cart.php",
+    "status_code": 200,
+    "content_type": "text/html; charset=UTF-8",
+    "body_snippet": "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\"\n\"http://www.w3.org/TR/html4/loose.dtd\">\n<html><!-- InstanceBegin template=\"/Templates/main_dynamic_template.dwt.php\" codeOutsideHTMLIsLocked=\"false\" -->\n<head>\n<meta http-equiv=\"Content-Type\" content=\"text/html; charset=iso-8859-2\">\n\n<!-- InstanceBeginEditable name=\"document_title_rgn\" -->\n<title>you cart</title>\n<!-- InstanceEndEditable -->\n<link rel=\"stylesheet\" href=\"style.css\" type=\"text/css\">\n<!-- InstanceBeginEditable name=\"headers_rgn\" -->\n<!-- here goes headers headers -->\n<!-- InstanceEndEditable -->\n<script language=\"JavaScript\" type=\"text/JavaScript\">\n<!--\nfunction MM_reloadPage(init) {  //reloads the window if Nav4 resized\n  if (init==true) with (navigator) {if ((appName==\"Netscape\")&&(parseInt(appVersion)==4)) {\n    document.MM_pgW=innerWidth; document.MM_pgH=innerHeight; onresize=MM_reloadPage; }}\n  else if (innerWidth!=document.MM_pgW || innerHeight!=document.MM_pgH) location.reload();\n}\nMM_reloadPage(true);\n//-->\n</script>\n\n</head>\n<body> \n<div id=\"mainLayer\" style=\"position:absolute; width:700px; z-index:1\">\n<div id=\"masthead\"> \n  <h1 id=\"siteName\"><a href=\"https://www.acunetix.com/\"><img src=\"images/logo.gif\" width=\"306\" height=\"38\" border=\"0\" alt=\"Acunetix website security\"></a></h1>   \n  <h6 id=\"siteInfo\">TEST and Demonstration site for <a href=\"https://www.acunetix.com/vulnerability-scanner/\">Acunetix Web Vulnerability Scanner</a></h6>\n  <div id=\"globalNav\"> \n      \t<table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"100%\"><tr>\n\t<td align=\"left\">\n\t\t<a href=\"index.php\">home</a> | <a href=\"categories.php\">categories</a> | <a href=\"artists.php\">artists\n\t\t</a> | <a href=\"disclaimer.php\">disclaimer</a> | <a href=\"cart.php\">your cart</a> | \n\t\t<a href=\"guestbook.php\">guestbook</a> | \n\t\t<a href=\"AJAX/index.php\">AJAX Demo</a>\n\t</td>\n\t<td align=\"right\">\n\t\t</td>\n\t</tr></table>\n  </div> \n</div> \n<!-- end masthead --> \n\n<!-- begin content -->\n<!-- InstanceBeginEditable name=\"content_rgn\" -->",
+    "query_params": [],
+    "form_inputs": [
+      "searchFor",
+      "goButton"
+    ],
+    "form_actions": [
+      "search.php?test=query"
+    ],
+    "headers": {
+      "Server": "nginx/1.19.0",
+      "Date": "Tue, 14 Oct 2025 11:03:58 GMT",
+      "Content-Type": "text/html; charset=UTF-8",
+      "Transfer-Encoding": "chunked",
+      "Connection": "keep-alive",
+      "X-Powered-By": "PHP/5.6.40-38+ubuntu20.04.1+deb.sury.org+1",
+      "Content-Encoding": "gzip"
+    },
+    "timestamp": 1760439836,
+    "vuln_findings": []
+  },
+  {
+    "url": "http://testphp.vulnweb.com/Mod_Rewrite_Shop/",
+    "status_code": 200,
+    "content_type": "text/html; charset=UTF-8",
+    "body_snippet": "<html>\r\n<div id=\"content\">\r\n\t<div class='product'><table><tr><td width='180px'><img src='images/1.jpg'></td><td width='400px'><a href='Details/network-attached-storage-dlink/1/'>Network Storage D-Link DNS-313 enclosure 1 x SATA</a></td><td width='50px' bgcolor='#F8F8F8'><a href='Details/network-attached-storage-dlink/1/'>Price<br>359 &euro;</a></td></table></tr></div><div class='product'><table><tr><td width='180px'><img src='images/2.jpg'></td><td width='400px'><a href='Details/web-camera-a4tech/2/'>Web Camera A4Tech PK-335E</a></td><td width='50px' bgcolor='#F8F8F8'><a href='Details/web-camera-a4tech/2/'>Price<br>10 &euro;</a></td></table></tr></div><div class='product'><table><tr><td width='180px'><img src='images/3.jpg'></td><td width='400px'><a href='Details/color-printer/3/'>Laser Color Printer HP LaserJet M551dn, A4</a></td><td width='50px' bgcolor='#F8F8F8'><a href='Details/color-printer/3/'>Price<br>812 &euro;</a></td></table></tr></div></div>\r\n</html>",
+    "query_params": [],
+    "form_inputs": [],
+    "form_actions": [],
+    "headers": {
+      "Server": "nginx/1.19.0",
+      "Date": "Tue, 14 Oct 2025 11:03:59 GMT",
+      "Content-Type": "text/html; charset=UTF-8",
+      "Transfer-Encoding": "chunked",
+      "Connection": "keep-alive",
+      "X-Powered-By": "PHP/5.6.40-38+ubuntu20.04.1+deb.sury.org+1",
+      "Content-Encoding": "gzip"
+    },
+    "timestamp": 1760439837,
+    "vuln_findings": []
+  },
+  {
+    "url": "http://testphp.vulnweb.com/categories.php",
+    "status_code": 200,
+    "content_type": "text/html; charset=UTF-8",
+    "body_snippet": "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\"\n\"http://www.w3.org/TR/html4/loose.dtd\">\n<html><!-- InstanceBegin template=\"/Templates/main_dynamic_template.dwt.php\" codeOutsideHTMLIsLocked=\"false\" -->\n<head>\n<meta http-equiv=\"Content-Type\" content=\"text/html; charset=iso-8859-2\">\n\n<!-- InstanceBeginEditable name=\"document_title_rgn\" -->\n<title>picture categories</title>\n<!-- InstanceEndEditable -->\n<link rel=\"stylesheet\" href=\"style.css\" type=\"text/css\">\n<!-- InstanceBeginEditable name=\"headers_rgn\" -->\n<!-- here goes headers headers -->\n<!-- InstanceEndEditable -->\n<script language=\"JavaScript\" type=\"text/JavaScript\">\n<!--\nfunction MM_reloadPage(init) {  //reloads the window if Nav4 resized\n  if (init==true) with (navigator) {if ((appName==\"Netscape\")&&(parseInt(appVersion)==4)) {\n    document.MM_pgW=innerWidth; document.MM_pgH=innerHeight; onresize=MM_reloadPage; }}\n  else if (innerWidth!=document.MM_pgW || innerHeight!=document.MM_pgH) location.reload();\n}\nMM_reloadPage(true);\n//-->\n</script>\n\n</head>\n<body> \n<div id=\"mainLayer\" style=\"position:absolute; width:700px; z-index:1\">\n<div id=\"masthead\"> \n  <h1 id=\"siteName\"><a href=\"https://www.acunetix.com/\"><img src=\"images/logo.gif\" width=\"306\" height=\"38\" border=\"0\" alt=\"Acunetix website security\"></a></h1>   \n  <h6 id=\"siteInfo\">TEST and Demonstration site for <a href=\"https://www.acunetix.com/vulnerability-scanner/\">Acunetix Web Vulnerability Scanner</a></h6>\n  <div id=\"globalNav\"> \n      \t<table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"100%\"><tr>\n\t<td align=\"left\">\n\t\t<a href=\"index.php\">home</a> | <a href=\"categories.php\">categories</a> | <a href=\"artists.php\">artists\n\t\t</a> | <a href=\"disclaimer.php\">disclaimer</a> | <a href=\"cart.php\">your cart</a> | \n\t\t<a href=\"guestbook.php\">guestbook</a> | \n\t\t<a href=\"AJAX/index.php\">AJAX Demo</a>\n\t</td>\n\t<td align=\"right\">\n\t\t</td>\n\t</tr></table>\n  </div> \n</div> \n<!-- end masthead --> \n\n<!-- begin content -->\n<!-- InstanceBeginEditable name=\"conten",
+    "query_params": [],
+    "form_inputs": [
+      "searchFor",
+      "goButton"
+    ],
+    "form_actions": [
+      "search.php?test=query"
+    ],
+    "headers": {
+      "Server": "nginx/1.19.0",
+      "Date": "Tue, 14 Oct 2025 11:04:00 GMT",
+      "Content-Type": "text/html; charset=UTF-8",
+      "Transfer-Encoding": "chunked",
+      "Connection": "keep-alive",
+      "X-Powered-By": "PHP/5.6.40-38+ubuntu20.04.1+deb.sury.org+1",
+      "Content-Encoding": "gzip"
+    },
+    "timestamp": 1760439837,
+    "vuln_findings": []
+  },
+  {
+    "url": "http://testphp.vulnweb.com/AJAX/styles.css",
+    "status_code": 200,
+    "content_type": "text/css",
+    "body_snippet": "body {\r\n  font-family: Verdana, Geneva, Arial, helvetica, sans-serif;\r\n}\r\n\r\ntd {\r\n\tfont-family: Verdana, Geneva, Arial, helvetica, sans-serif;\r\n}\r\n\r\nth {\r\n\tfont-family: Verdana, Geneva, Arial, helvetica, sans-serif;\r\n}\r\n\r\na {\r\n\ttext-decoration: none;\r\n\tcolor:#333333;\r\n}\r\n\r\na:hover {\r\n\tbackground-color: #FFEE00;\r\n}\r\n\r\ntd.bordered {\r\n\tborder: 1px solid #CCCCCC;\r\n\tbackground:#FFCC00;\r\n}\r\n\r\n#contentDiv {\r\n\tborder: 1px solid #CCCCCC;\r\n}\r\n\r\n#xmlDiv {\r\n\tfont-family: \"Courier New\", Courier, mono;\r\n\tfont-size: 12px;\r\n\tcolor: #33CC00;\r\n\tbackground-color: #000000;\r\n}",
+    "query_params": [],
+    "form_inputs": [],
+    "form_actions": [],
+    "headers": {
+      "Server": "nginx/1.19.0",
+      "Date": "Tue, 14 Oct 2025 11:04:00 GMT",
+      "Content-Type": "text/css",
+      "Content-Length": "562",
+      "Last-Modified": "Wed, 11 May 2011 10:27:48 GMT",
+      "Connection": "keep-alive",
+      "ETag": "\"4dca64a4-232\"",
+      "Accept-Ranges": "bytes"
+    },
+    "timestamp": 1760439838,
+    "vuln_findings": []
+  },
+  {
+    "url": "http://testphp.vulnweb.com/hpp/?pp=12",
+    "status_code": 200,
+    "content_type": "text/html; charset=UTF-8",
+    "body_snippet": "<title>HTTP Parameter Pollution Example</title>\r\n\r\n<a href=\"?pp=12\">check</a><br/>\r\n<a href=\"params.php?p=valid&pp=12\">link1</a><br/><a href=\"params.php?p=valid&pp=12\">link2</a><br/><form action=\"params.php?p=valid&pp=12\"><input type=submit name=aaaa/></form><br/>\r\n<hr>\r\n<a href='http://blog.mindedsecurity.com/2009/05/client-side-http-parameter-pollution.html'>Original article</a>",
+    "query_params": [
+      "pp"
+    ],
+    "form_inputs": [
+      "aaaa/"
+    ],
+    "form_actions": [
+      "params.php?p=valid&pp=12"
+    ],
+    "headers": {
+      "Server": "nginx/1.19.0",
+      "Date": "Tue, 14 Oct 2025 11:04:01 GMT",
+      "Content-Type": "text/html; charset=UTF-8",
+      "Transfer-Encoding": "chunked",
+      "Connection": "keep-alive",
+      "X-Powered-By": "PHP/5.6.40-38+ubuntu20.04.1+deb.sury.org+1",
+      "Content-Encoding": "gzip"
+    },
+    "timestamp": 1760439839,
+    "vuln_findings": []
+  },
+  {
+    "url": "http://testphp.vulnweb.com/images/remark.gif",
+    "status_code": 200,
+    "content_type": "image/gif",
+    "body_snippet": "GIF89a\u0010\u0000\u0010\u0000\ufffd\u0000\u0000\ufffd\ufffd\ufffd\u0000\u0000\u0000!\ufffd\u0004\u0000\u0000\u0000\u0000\u0000,\u0000\u0000\u0000\u0000\u0010\u0000\u0010\u0000\u0000\u0002&\ufffd\ufffdy\ufffd\ufffd\n\u0002dJV\ufffd\ufffdL\ufffdim\ufffd\ufffd\ufffdQ\ufffd\ufffd\ufffde4Bl\ufffd\ufffd*\ufffd\ud595\ufffdQ\u0000\u0000;",
+    "query_params": [],
+    "form_inputs": [],
+    "form_actions": [],
+    "headers": {
+      "Server": "nginx/1.19.0",
+      "Date": "Tue, 14 Oct 2025 11:04:02 GMT",
+      "Content-Type": "image/gif",
+      "Content-Length": "79",
+      "Last-Modified": "Wed, 11 May 2011 10:27:46 GMT",
+      "Connection": "keep-alive",
+      "ETag": "\"4dca64a2-4f\"",
+      "Accept-Ranges": "bytes"
+    },
+    "timestamp": 1760439839,
+    "vuln_findings": []
+  },
+  {
+    "url": "http://testphp.vulnweb.com/signup.php",
+    "status_code": 200,
+    "content_type": "text/html; charset=UTF-8",
+    "body_snippet": "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\"\n\"http://www.w3.org/TR/html4/loose.dtd\">\n<html><!-- InstanceBegin template=\"/Templates/main_dynamic_template.dwt.php\" codeOutsideHTMLIsLocked=\"false\" -->\n<head>\n<meta http-equiv=\"Content-Type\" content=\"text/html; charset=iso-8859-2\">\n\n<!-- InstanceBeginEditable name=\"document_title_rgn\" -->\n<title>signup</title>\n<!-- InstanceEndEditable -->\n<link rel=\"stylesheet\" href=\"style.css\" type=\"text/css\">\n<!-- InstanceBeginEditable name=\"headers_rgn\" -->\n\n<!-- InstanceEndEditable -->\n<script language=\"JavaScript\" type=\"text/JavaScript\">\n<!--\nfunction MM_reloadPage(init) {  //reloads the window if Nav4 resized\n  if (init==true) with (navigator) {if ((appName==\"Netscape\")&&(parseInt(appVersion)==4)) {\n    document.MM_pgW=innerWidth; document.MM_pgH=innerHeight; onresize=MM_reloadPage; }}\n  else if (innerWidth!=document.MM_pgW || innerHeight!=document.MM_pgH) location.reload();\n}\nMM_reloadPage(true);\n//-->\n</script>\n\n</head>\n<body> \n<div id=\"mainLayer\" style=\"position:absolute; width:700px; z-index:1\">\n<div id=\"masthead\"> \n  <h1 id=\"siteName\"><a href=\"https://www.acunetix.com/\"><img src=\"images/logo.gif\" width=\"306\" height=\"38\" border=\"0\" alt=\"Acunetix website security\"></a></h1>   \n  <h6 id=\"siteInfo\">TEST and Demonstration site for <a href=\"https://www.acunetix.com/vulnerability-scanner/\">Acunetix Web Vulnerability Scanner</a></h6>\n  <div id=\"globalNav\"> \n      \t<table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"100%\"><tr>\n\t<td align=\"left\">\n\t\t<a href=\"index.php\">home</a> | <a href=\"categories.php\">categories</a> | <a href=\"artists.php\">artists\n\t\t</a> | <a href=\"disclaimer.php\">disclaimer</a> | <a href=\"cart.php\">your cart</a> | \n\t\t<a href=\"guestbook.php\">guestbook</a> | \n\t\t<a href=\"AJAX/index.php\">AJAX Demo</a>\n\t</td>\n\t<td align=\"right\">\n\t\t</td>\n\t</tr></table>\n  </div> \n</div> \n<!-- end masthead --> \n\n<!-- begin content -->\n<!-- InstanceBeginEditable name=\"content_rgn\" -->\n<div id=\"content\">\n<div class=\"stor",
+    "query_params": [],
+    "form_inputs": [
+      "uuname",
+      "upass",
+      "upass2",
+      "urname",
+      "ucc",
+      "uemail",
+      "uphone",
+      "signup",
+      "searchFor",
+      "goButton"
+    ],
+    "form_actions": [
+      "/secured/newuser.php",
+      "search.php?test=query"
+    ],
+    "headers": {
+      "Server": "nginx/1.19.0",
+      "Date": "Tue, 14 Oct 2025 11:04:02 GMT",
+      "Content-Type": "text/html; charset=UTF-8",
+      "Transfer-Encoding": "chunked",
+      "Connection": "keep-alive",
+      "X-Powered-By": "PHP/5.6.40-38+ubuntu20.04.1+deb.sury.org+1",
+      "Content-Encoding": "gzip"
+    },
+    "timestamp": 1760439840,
+    "vuln_findings": []
+  },
+  {
+    "url": "http://testphp.vulnweb.com/artists.php?artist=3",
+    "status_code": 200,
+    "content_type": "text/html; charset=UTF-8",
+    "body_snippet": "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\"\n\"http://www.w3.org/TR/html4/loose.dtd\">\n<html><!-- InstanceBegin template=\"/Templates/main_dynamic_template.dwt.php\" codeOutsideHTMLIsLocked=\"false\" -->\n<head>\n<meta http-equiv=\"Content-Type\" content=\"text/html; charset=iso-8859-2\">\n\n<!-- InstanceBeginEditable name=\"document_title_rgn\" -->\n<title>artists</title>\n<!-- InstanceEndEditable -->\n<link rel=\"stylesheet\" href=\"style.css\" type=\"text/css\">\n<!-- InstanceBeginEditable name=\"headers_rgn\" -->\n<!-- here goes headers headers -->\n<!-- InstanceEndEditable -->\n<script language=\"JavaScript\" type=\"text/JavaScript\">\n<!--\nfunction MM_reloadPage(init) {  //reloads the window if Nav4 resized\n  if (init==true) with (navigator) {if ((appName==\"Netscape\")&&(parseInt(appVersion)==4)) {\n    document.MM_pgW=innerWidth; document.MM_pgH=innerHeight; onresize=MM_reloadPage; }}\n  else if (innerWidth!=document.MM_pgW || innerHeight!=document.MM_pgH) location.reload();\n}\nMM_reloadPage(true);\n//-->\n</script>\n\n</head>\n<body> \n<div id=\"mainLayer\" style=\"position:absolute; width:700px; z-index:1\">\n<div id=\"masthead\"> \n  <h1 id=\"siteName\"><a href=\"https://www.acunetix.com/\"><img src=\"images/logo.gif\" width=\"306\" height=\"38\" border=\"0\" alt=\"Acunetix website security\"></a></h1>   \n  <h6 id=\"siteInfo\">TEST and Demonstration site for <a href=\"https://www.acunetix.com/vulnerability-scanner/\">Acunetix Web Vulnerability Scanner</a></h6>\n  <div id=\"globalNav\"> \n      \t<table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"100%\"><tr>\n\t<td align=\"left\">\n\t\t<a href=\"index.php\">home</a> | <a href=\"categories.php\">categories</a> | <a href=\"artists.php\">artists\n\t\t</a> | <a href=\"disclaimer.php\">disclaimer</a> | <a href=\"cart.php\">your cart</a> | \n\t\t<a href=\"guestbook.php\">guestbook</a> | \n\t\t<a href=\"AJAX/index.php\">AJAX Demo</a>\n\t</td>\n\t<td align=\"right\">\n\t\t</td>\n\t</tr></table>\n  </div> \n</div> \n<!-- end masthead --> \n\n<!-- begin content -->\n<!-- InstanceBeginEditable name=\"content_rgn\" -->\n",
+    "query_params": [
+      "artist"
+    ],
+    "form_inputs": [
+      "searchFor",
+      "goButton"
+    ],
+    "form_actions": [
+      "search.php?test=query"
+    ],
+    "headers": {
+      "Server": "nginx/1.19.0",
+      "Date": "Tue, 14 Oct 2025 11:04:03 GMT",
+      "Content-Type": "text/html; charset=UTF-8",
+      "Transfer-Encoding": "chunked",
+      "Connection": "keep-alive",
+      "X-Powered-By": "PHP/5.6.40-38+ubuntu20.04.1+deb.sury.org+1",
+      "Content-Encoding": "gzip"
+    },
+    "timestamp": 1760439841,
+    "vuln_findings": []
+  },
+  {
+    "url": "http://testphp.vulnweb.com/artists.php?artist=2",
+    "status_code": 200,
+    "content_type": "text/html; charset=UTF-8",
+    "body_snippet": "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\"\n\"http://www.w3.org/TR/html4/loose.dtd\">\n<html><!-- InstanceBegin template=\"/Templates/main_dynamic_template.dwt.php\" codeOutsideHTMLIsLocked=\"false\" -->\n<head>\n<meta http-equiv=\"Content-Type\" content=\"text/html; charset=iso-8859-2\">\n\n<!-- InstanceBeginEditable name=\"document_title_rgn\" -->\n<title>artists</title>\n<!-- InstanceEndEditable -->\n<link rel=\"stylesheet\" href=\"style.css\" type=\"text/css\">\n<!-- InstanceBeginEditable name=\"headers_rgn\" -->\n<!-- here goes headers headers -->\n<!-- InstanceEndEditable -->\n<script language=\"JavaScript\" type=\"text/JavaScript\">\n<!--\nfunction MM_reloadPage(init) {  //reloads the window if Nav4 resized\n  if (init==true) with (navigator) {if ((appName==\"Netscape\")&&(parseInt(appVersion)==4)) {\n    document.MM_pgW=innerWidth; document.MM_pgH=innerHeight; onresize=MM_reloadPage; }}\n  else if (innerWidth!=document.MM_pgW || innerHeight!=document.MM_pgH) location.reload();\n}\nMM_reloadPage(true);\n//-->\n</script>\n\n</head>\n<body> \n<div id=\"mainLayer\" style=\"position:absolute; width:700px; z-index:1\">\n<div id=\"masthead\"> \n  <h1 id=\"siteName\"><a href=\"https://www.acunetix.com/\"><img src=\"images/logo.gif\" width=\"306\" height=\"38\" border=\"0\" alt=\"Acunetix website security\"></a></h1>   \n  <h6 id=\"siteInfo\">TEST and Demonstration site for <a href=\"https://www.acunetix.com/vulnerability-scanner/\">Acunetix Web Vulnerability Scanner</a></h6>\n  <div id=\"globalNav\"> \n      \t<table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"100%\"><tr>\n\t<td align=\"left\">\n\t\t<a href=\"index.php\">home</a> | <a href=\"categories.php\">categories</a> | <a href=\"artists.php\">artists\n\t\t</a> | <a href=\"disclaimer.php\">disclaimer</a> | <a href=\"cart.php\">your cart</a> | \n\t\t<a href=\"guestbook.php\">guestbook</a> | \n\t\t<a href=\"AJAX/index.php\">AJAX Demo</a>\n\t</td>\n\t<td align=\"right\">\n\t\t</td>\n\t</tr></table>\n  </div> \n</div> \n<!-- end masthead --> \n\n<!-- begin content -->\n<!-- InstanceBeginEditable name=\"content_rgn\" -->\n",
+    "query_params": [
+      "artist"
+    ],
+    "form_inputs": [
+      "searchFor",
+      "goButton"
+    ],
+    "form_actions": [
+      "search.php?test=query"
+    ],
+    "headers": {
+      "Server": "nginx/1.19.0",
+      "Date": "Tue, 14 Oct 2025 11:04:04 GMT",
+      "Content-Type": "text/html; charset=UTF-8",
+      "Transfer-Encoding": "chunked",
+      "Connection": "keep-alive",
+      "X-Powered-By": "PHP/5.6.40-38+ubuntu20.04.1+deb.sury.org+1",
+      "Content-Encoding": "gzip"
+    },
+    "timestamp": 1760439841,
+    "vuln_findings": []
+  },
+  {
+    "url": "http://testphp.vulnweb.com/artists.php?artist=1",
+    "status_code": 200,
+    "content_type": "text/html; charset=UTF-8",
+    "body_snippet": "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\"\n\"http://www.w3.org/TR/html4/loose.dtd\">\n<html><!-- InstanceBegin template=\"/Templates/main_dynamic_template.dwt.php\" codeOutsideHTMLIsLocked=\"false\" -->\n<head>\n<meta http-equiv=\"Content-Type\" content=\"text/html; charset=iso-8859-2\">\n\n<!-- InstanceBeginEditable name=\"document_title_rgn\" -->\n<title>artists</title>\n<!-- InstanceEndEditable -->\n<link rel=\"stylesheet\" href=\"style.css\" type=\"text/css\">\n<!-- InstanceBeginEditable name=\"headers_rgn\" -->\n<!-- here goes headers headers -->\n<!-- InstanceEndEditable -->\n<script language=\"JavaScript\" type=\"text/JavaScript\">\n<!--\nfunction MM_reloadPage(init) {  //reloads the window if Nav4 resized\n  if (init==true) with (navigator) {if ((appName==\"Netscape\")&&(parseInt(appVersion)==4)) {\n    document.MM_pgW=innerWidth; document.MM_pgH=innerHeight; onresize=MM_reloadPage; }}\n  else if (innerWidth!=document.MM_pgW || innerHeight!=document.MM_pgH) location.reload();\n}\nMM_reloadPage(true);\n//-->\n</script>\n\n</head>\n<body> \n<div id=\"mainLayer\" style=\"position:absolute; width:700px; z-index:1\">\n<div id=\"masthead\"> \n  <h1 id=\"siteName\"><a href=\"https://www.acunetix.com/\"><img src=\"images/logo.gif\" width=\"306\" height=\"38\" border=\"0\" alt=\"Acunetix website security\"></a></h1>   \n  <h6 id=\"siteInfo\">TEST and Demonstration site for <a href=\"https://www.acunetix.com/vulnerability-scanner/\">Acunetix Web Vulnerability Scanner</a></h6>\n  <div id=\"globalNav\"> \n      \t<table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"100%\"><tr>\n\t<td align=\"left\">\n\t\t<a href=\"index.php\">home</a> | <a href=\"categories.php\">categories</a> | <a href=\"artists.php\">artists\n\t\t</a> | <a href=\"disclaimer.php\">disclaimer</a> | <a href=\"cart.php\">your cart</a> | \n\t\t<a href=\"guestbook.php\">guestbook</a> | \n\t\t<a href=\"AJAX/index.php\">AJAX Demo</a>\n\t</td>\n\t<td align=\"right\">\n\t\t</td>\n\t</tr></table>\n  </div> \n</div> \n<!-- end masthead --> \n\n<!-- begin content -->\n<!-- InstanceBeginEditable name=\"content_rgn\" -->\n",
+    "query_params": [
+      "artist"
+    ],
+    "form_inputs": [
+      "searchFor",
+      "goButton"
+    ],
+    "form_actions": [
+      "search.php?test=query"
+    ],
+    "headers": {
+      "Server": "nginx/1.19.0",
+      "Date": "Tue, 14 Oct 2025 11:04:04 GMT",
+      "Content-Type": "text/html; charset=UTF-8",
+      "Transfer-Encoding": "chunked",
+      "Connection": "keep-alive",
+      "X-Powered-By": "PHP/5.6.40-38+ubuntu20.04.1+deb.sury.org+1",
+      "Content-Encoding": "gzip"
+    },
+    "timestamp": 1760439842,
+    "vuln_findings": []
+  },
+  {
+    "url": "http://testphp.vulnweb.com/Mod_Rewrite_Shop/images/3.jpg",
+    "status_code": 200,
+    "content_type": "image/jpeg",
+    "body_snippet": "\ufffd\ufffd\ufffd\ufffd\u0000\u0010JFIF\u0000\u0001\u0001\u0000\u0000\u0001\u0000\u0001\u0000\u0000\ufffd\ufffd\u0000;CREATOR: gd-jpeg v1.0 (using IJG JPEG v80), quality = 80\n\ufffd\ufffd\u0000C\u0000\u0006\u0004\u0005\u0006\u0005\u0004\u0006\u0006\u0005\u0006\u0007\u0007\u0006\b\n\u0010\n\n\t\t\n\u0014\u000e\u000f\f\u0010\u0017\u0014\u0018\u0018\u0017\u0014\u0016\u0016\u001a\u001d%\u001f\u001a\u001b#\u001c\u0016\u0016 , #&')*)\u0019\u001f-0-(0%()(\ufffd\ufffd\u0000C\u0001\u0007\u0007\u0007\n\b\n\u0013\n\n\u0013(\u001a\u0016\u001a((((((((((((((((((((((((((((((((((((((((((((((((((\ufffd\ufffd\u0000\u0011\b\u0000\ufffd\u0000\ufffd\u0003\u0001\"\u0000\u0002\u0011\u0001\u0003\u0011\u0001\ufffd\ufffd\u0000\u001f\u0000\u0000\u0001\u0005\u0001\u0001\u0001\u0001\u0001\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0001\u0002\u0003\u0004\u0005\u0006\u0007\b\t\n\u000b\ufffd\ufffd\u0000\ufffd\u0010\u0000\u0002\u0001\u0003\u0003\u0002\u0004\u0003\u0005\u0005\u0004\u0004\u0000\u0000\u0001}\u0001\u0002\u0003\u0000\u0004\u0011\u0005\u0012!1A\u0006\u0013Qa\u0007\"q\u00142\ufffd\ufffd\ufffd\b#B\ufffd\ufffd\u0015R\ufffd\ufffd$3br\ufffd\t\n\u0016\u0017\u0018\u0019\u001a%&'()*456789:CDEFGHIJSTUVWXYZcdefghijstuvwxyz\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\u0000\u001f\u0001\u0000\u0003\u0001\u0001\u0001\u0001\u0001\u0001\u0001\u0001\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\u0002\u0003\u0004\u0005\u0006\u0007\b\t\n\u000b\ufffd\ufffd\u0000\ufffd\u0011\u0000\u0002\u0001\u0002\u0004\u0004\u0003\u0004\u0007\u0005\u0004\u0004\u0000\u0001\u0002w\u0000\u0001\u0002\u0003\u0011\u0004\u0005!1\u0006\u0012AQ\u0007aq\u0013\"2\ufffd\b\u0014B\ufffd\ufffd\ufffd\ufffd\t#3R\ufffd\u0015br\ufffd\n\u0016$4\ufffd%\ufffd\u0017\u0018\u0019\u001a&'()*56789:CDEFGHIJSTUVWXYZcdefghijstuvwxyz\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\u0000\f\u0003\u0001\u0000\u0002\u0011\u0003\u0011\u0000?\u0000\ufffd\ufffd\ufffd(\ufffd\u0002\ufffd(\ufffd\u0002\ufffd(\ufffd\u0002\ufffd(\ufffd\u0002\ufffd(\ufffd\u0002\ufffd(\ufffd\u0002\ufffd(\ufffd\u0002\ufffd(\ufffd\u0002\ufffd(\ufffd\u0002\ufffd(\ufffd\u0002\ufffd)\ufffdH\ufffdF\ufffd\ufffd\n\u0006M\u0000`\ufffd\u001a\ufffd\ufffd+\ufffdo)U\ufffd\ufffd\ufffd^\ufffd\u001c\u001e~\ufffdTj2\u007f\ufffd\ufffd\u07d9\ufffd>\u001f\ufffdM\ufffd\ufffd\fW\ufffdd\ufffd\ufffd<\ufffd:\u0016f$\ufffd\u0000:\ufffd\u0016\ufffd\ufffd\u0000pP\u0004cR\u007f\ufffd\ufffd\ufffd\ufffd4\ufffd\ufffd\ufffd\ufffd\ufffd4\ufffd\u001d\ufffd3\u0004T\u073cr*F\ufffd\ufffd\ufffdc\u0003\ufffdq@\u0000\u051b\ufffd{I\ufffd\ufffdp\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd`?\u56d1\ufffd\ufffd5VKY\ufffd\ufffd7\u000fU\ufffd4\ufffd\ufffd?\u9b14\u007fj\ufffd\ufffd\ufffd%b\ufffd`\ufffd\ufffd}\rB\ufffd\u001e\ufffd;F[\ufffd\ufffd\u0000t\u0007VQ\ufffd\u0000-\ufffd\ufffd\ufffd_\ufffdK\ufffdky/6Mp\ufffd\"V8.\ufffd\ufffd\u0007\ufffd\u0000\ufffd;,`\u000f\ufffdw\ufffd\ufffdET\ufffd\ufffd\ufffd-sJHe\ufffdYm\\\ufffd\ufffd\ufffd\u0016\ufffdM\ufffdT\u001d\ufffd\b\n~ld\ufffdJ\u0000\ufffd\ufffd\ufffd\ufffd~t\ufffdh\ufffd$y\ufffd\ufffd;g\ufffd4\ufffd\u000bg4\u0000}\ufffd_\ufffd\ufffd\ufffd}\ufffd_\ufffd\ufffd\ufffd\u076b\ufffd\ufffd\ufffd\u0471{0\ufffd\ufffd\u0002\ufffdz\ufffdQ\ufffd\ufffd\ufffd\u0002\u0016`\ufffd\u01c0I8\u0003\ufffd\ufffd\ufffd\u001c\ufffd\ufffd\ufffd\u000b\ufffd2\ufffd\ufffd\ufffd\ufffd\u0007\ufffd\ufffd|?\ufffd\ufffd\ufffd\ufffd\ufffd\u001d\ufffd\ufffd\ufffdm\ufffd<n\ufffdf\ufffd\ufffd\u000f\ufffd\u00e1\ufffdg\ufffd\u0000tTQE\u00002ic\ufffd\u0017\ufffdgX\ufffdE,\ufffd\ufffd\u0001@\ufffdI\ufffd+\nK\ufffd\ufffd\ufffdI\ufffd}\ufffd\ufffd7FGF\u0007\ufffdV?\u019b\ufffd\ufffd\ufffd\u07a3\u001a\u0016\u0006\u58b7%N\u000e\u05d1C~\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd(!\\G\u001a\ufffdQ\ufffd\ufffdb\ufffd6\ufffd\u0007\ufffd<(\ufffd\ufffd\ufffd\u007f\ufffd\ufffd\u04c5\ufffd\u0000\ufffd\ufffd@\u001a\ufffd\ufffd?\ufffd~U*\ufffd\ufffd\u0007\u0015\ufffd\ufffd\ufffd\u0000o\u0597\ufffd\ufffd\ufffd\ufffd\ufffd\r\ufffd\u001a\ufffd\ufffd\u0188\ufffd\ufffd\ufffd\ufffdv\ufffd\ufffdt\ufffd\ufffd\u0000\ufffd,!\ufffd$@\ufffd\ufffdf\ufffdMa\u0013gf\ufffd>\ufffd\"\ufffd\ufffd\ufffd\u000bq +\ufffd\ufffd\ufffd^\t\ufffdQ\u057e\ufffd\ufffd9\u02fb)\ufffdIL8\ufffd\ufffd\ufffdG\ufffd\u001aQ\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd$q\ufffd$\\g\ufffd\ufffd\ufffd\u0011\ufffd\ufffd\ufffd\u0014a\ufffd\ufffd&\ufffd\ufffd\u0014#?\ufffd\ufffd\u000e\ufffd\ufffd\ufffd\ufffd\ufffdr\u000e\rc\ufffd\ufffdz\u001a\ufffd\ny\u01fd\u0000x?\ufffd>\fx\ufffdQ\ufffd\u000e\ufffd{g\ufffdi\ufffdoqs$\ufffd\ufffd\ufffd\ufffd\n\ufffdH\ufffd\ufffd\ufffdV|\r\ufffd\ufffd\ufffdz\u0017\ufffdt\ufffdN\ufffd\ufffdO{{i\ufffd\u0229;\ufffdG|\u0002\ufffd\ufffd\ufffd{\ufffd\ufffd?7'\ufffd>\ufffd\r\ufffd\ufffd\u001a|\ufffd\u000f\ufffd\u0018(`#\ufffd\ufffd\ufffdg\ufffd\u0000\ufffd<\uf5d3\ufffdx\ufffd\ufffd\ufffdGP\u04bcm\ufffd\ufffdil\ufffd2[+\ufffd\\pC\ufffd\ufffd\ufffdJ\ufffd\ufffd\ufffd([;\ufffd\ufffd\ufffd\ufffds\ufffd\ufffd\ufffd?J\ufffd\u000f\ufffd\ufffd\ufffd\ufffd\ufffd4\ufffd(o2\u00029\ufffdo\ufffd\ufffd\u0000}\u0011\ufffd\ufffd@j\ufffd\u0016\ufffd\ufffd\ufffd\n.\ufffd\ufffdo\ufffd\ufffd\u0007\u001f\ufffd\u0015\ufffd\ufffdO7\ufffd\u0780\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffdP\u00075\ufffdC\ufffda\ufffd\u0014\u001bN7\ufffd\u0016\ufffd\ufffd\ufffd\ufffd*\u0011#z\ufffd\ufffd\ufffd\ufffd\ufffd(+c\ufffd\ufffd\u007fF\ufffd\ufffd\ufffd\t\ufffd\ufffd\ufffdJ%oZ\ufffd\u001aPh\u0002o5\ufffdh\ufffd[\u05a2\ufffdA\u007f?\ufffd\ufffd\ufffd\ufffd\ufffdh\ufffdv\ufffd\ufffd\u0000\ufffd\u0000\ufffd\ufffd\u000b\ufffdsz\ufffd\ufffd7\ufffdq\ufffd\u0014\ufffdn\ufffd'[;\ufffd\ufffd\ufffd\u00123O)\ufffd 6\ufffd\ufffd\u001d\be#\ufffd\ufffd\u001a\ufffd\u0005\u0000K\ufffd7\ufffd\u001eku\u0007\u0006\ufffd&\ufffd\ufffd\u0005\ufffd\ufffd.\ufffd`L\ufffd\ufffd<\ufffdu\u05a2\ufffd[\ufffd#\u0012\ufffd\u001c\ufffd0\ufffd\f\u0002\ufffd\ufffd\ufffd\ufffd?Z\ufffd5\ufffd|\ufffd.\ufffdmu\f&u\ufffd\u0019#dV\u0001\ufffd\ufffd\b#$\f|\ufffd\ufffd\ufffd\u0000k\ufffd\ufffd\ufffdK\ufffd1\ufffd5\ufffd\ufffd\ufffd\ufffd\u0005]\u007f\ufffd\u023f\ufffd\ufffd>\ufffdu\ufffd\u0000@\ufffd\ufffd\ufffd\ufffd\u0017\ufffd\u0000\u0017@\u0017\ufffdJ\ufffdL|/P\u0007\u001c\ufffdQ\ufffd\ufffd1\ufffdG\ufffd8\u00e9\ufffd\ufffdR\u0017\ufffd'\ufffd\ufffdr=\ufffd\ufffd\ufffd\u0000\ufffd\ufffd\ufffdZ\u07cc\ufffd\ufffdGR\ufffdu\ufffdo-\ufffd.vC\f\u030a\ufffd\ufffd\u0006\u0014\ufffd\ufffd\u0001\ufffd\ufffd\ufffdH\u00a8\u06aa0\u0000\u0018\u0000W\ufffd|p\ufffdK\ufffdz\ufffd\bfS%\ufffd$H\u0000\ufffd\t9\u0003\ufffd\ufffd\\Q\ufffd&\ufffdA\u0007X\u0508?\ufffd\ufffd\ufffd\u0000\ufffdY\ufffd\ufffd\u073b\ufffdf'$\ufffd\ufffdh\u0003\ufffd\u007f\ufffd\ufffd\ufffd\ufffd/\u000f\u0002r~\ufffd2\u007f\u0013E?\ufffd \ufffd\ufffdo\u000f\u007f\u05ea\ufffd\u00003E\u0000s_\ufffdx\ufffd\u0000\ufffd}\u0011\ufffd\ufffd\ufffd\ufffd\u0000\ufffdU\u0000\ufffd?\ufffdh\ufffd\u0000\ufffdu\ufffdK\ufffdO\ufffdj\ufffd\ufffd\u0005\u0000?4\ufffd\ufffd\ufffd\u0000x4\ufffd\ufffdA\u0007\u0004S3K@\to\u0018\ufffd'D'\u000f#J\ufffd\ufffd\ufffd\ufffd$\ufffd\ufffd\ufffd\n\ufffdSis@\ni(&\ufffd4\u0000\ufffd\ufffdA\ufffd\ufffd\u0000\ufffd\u0004\u0504\ufffdK\ufffd\ufffd\ufffd\u0002\u007f\ufffd\u0000M\ufffd3I\ufffdnh\u0001I\ufffd\ufffd$\ufffd\u0000X\ufffd\u0000\ufffd\u001a\ufffd\ufffd\ufffd\ufffdE\ufffd\ufffd}M\u00004\u04d2\ufffd&\ufffdM\u0000}\ufffd\ufffdc\u1fc7\ufffd\ufffd\ufffd(\ufffd\ufffdT1\ufffd\ufffd\u00ff",
+    "query_params": [],
+    "form_inputs": [],
+    "form_actions": [],
+    "headers": {
+      "Server": "nginx/1.19.0",
+      "Date": "Tue, 14 Oct 2025 11:04:05 GMT",
+      "Content-Type": "image/jpeg",
+      "Content-Length": "3560",
+      "Last-Modified": "Wed, 15 Feb 2012 08:28:15 GMT",
+      "Connection": "keep-alive",
+      "ETag": "\"4f3b6c9f-de8\"",
+      "Accept-Ranges": "bytes"
+    },
+    "timestamp": 1760439842,
+    "vuln_findings": []
+  },
+  {
+    "url": "http://testphp.vulnweb.com/Mod_Rewrite_Shop/Details/web-camera-a4tech/2/",
+    "status_code": 200,
+    "content_type": "text/html; charset=UTF-8",
+    "body_snippet": "<div><img src='/Mod_Rewrite_Shop/images/2.jpg'><b>Web Camera A4Tech PK-335E</b><br><br>Web Camera A4Tech PK-335E<br><a href='/Mod_Rewrite_Shop/BuyProduct-2/'>Buy</a>&nbsp;<a href='/Mod_Rewrite_Shop/RateProduct-2.html'>Rate</a></div><hr><a href='/Mod_Rewrite_Shop/'>Back</a>\r\n\t\t\t\t",
+    "query_params": [],
+    "form_inputs": [],
+    "form_actions": [],
+    "headers": {
+      "Server": "nginx/1.19.0",
+      "Date": "Tue, 14 Oct 2025 11:04:06 GMT",
+      "Content-Type": "text/html; charset=UTF-8",
+      "Transfer-Encoding": "chunked",
+      "Connection": "keep-alive",
+      "X-Powered-By": "PHP/5.6.40-38+ubuntu20.04.1+deb.sury.org+1",
+      "Content-Encoding": "gzip"
+    },
+    "timestamp": 1760439843,
+    "vuln_findings": []
+  },
+  {
+    "url": "http://testphp.vulnweb.com/Mod_Rewrite_Shop/images/2.jpg",
+    "status_code": 200,
+    "content_type": "image/jpeg",
+    "body_snippet": "\ufffd\ufffd\ufffd\ufffd\u0000\u0010JFIF\u0000\u0001\u0001\u0000\u0000\u0001\u0000\u0001\u0000\u0000\ufffd\ufffd\u0000;CREATOR: gd-jpeg v1.0 (using IJG JPEG v80), quality = 80\n\ufffd\ufffd\u0000C\u0000\u0006\u0004\u0005\u0006\u0005\u0004\u0006\u0006\u0005\u0006\u0007\u0007\u0006\b\n\u0010\n\n\t\t\n\u0014\u000e\u000f\f\u0010\u0017\u0014\u0018\u0018\u0017\u0014\u0016\u0016\u001a\u001d%\u001f\u001a\u001b#\u001c\u0016\u0016 , #&')*)\u0019\u001f-0-(0%()(\ufffd\ufffd\u0000C\u0001\u0007\u0007\u0007\n\b\n\u0013\n\n\u0013(\u001a\u0016\u001a((((((((((((((((((((((((((((((((((((((((((((((((((\ufffd\ufffd\u0000\u0011\b\u0000\ufffd\u0000\ufffd\u0003\u0001\"\u0000\u0002\u0011\u0001\u0003\u0011\u0001\ufffd\ufffd\u0000\u001f\u0000\u0000\u0001\u0005\u0001\u0001\u0001\u0001\u0001\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0001\u0002\u0003\u0004\u0005\u0006\u0007\b\t\n\u000b\ufffd\ufffd\u0000\ufffd\u0010\u0000\u0002\u0001\u0003\u0003\u0002\u0004\u0003\u0005\u0005\u0004\u0004\u0000\u0000\u0001}\u0001\u0002\u0003\u0000\u0004\u0011\u0005\u0012!1A\u0006\u0013Qa\u0007\"q\u00142\ufffd\ufffd\ufffd\b#B\ufffd\ufffd\u0015R\ufffd\ufffd$3br\ufffd\t\n\u0016\u0017\u0018\u0019\u001a%&'()*456789:CDEFGHIJSTUVWXYZcdefghijstuvwxyz\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\u0000\u001f\u0001\u0000\u0003\u0001\u0001\u0001\u0001\u0001\u0001\u0001\u0001\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\u0002\u0003\u0004\u0005\u0006\u0007\b\t\n\u000b\ufffd\ufffd\u0000\ufffd\u0011\u0000\u0002\u0001\u0002\u0004\u0004\u0003\u0004\u0007\u0005\u0004\u0004\u0000\u0001\u0002w\u0000\u0001\u0002\u0003\u0011\u0004\u0005!1\u0006\u0012AQ\u0007aq\u0013\"2\ufffd\b\u0014B\ufffd\ufffd\ufffd\ufffd\t#3R\ufffd\u0015br\ufffd\n\u0016$4\ufffd%\ufffd\u0017\u0018\u0019\u001a&'()*56789:CDEFGHIJSTUVWXYZcdefghijstuvwxyz\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\u0000\f\u0003\u0001\u0000\u0002\u0011\u0003\u0011\u0000?\u0000\ufffd\ufffd\ufffd(\ufffd\u0002\ufffd(\ufffd\u0002\ufffd(\ufffd\u0002\ufffd(\ufffd\u0002\ufffd(\ufffd\u0002\ufffd(\ufffd\u0002\ufffd(\ufffd\u0002\ufffd(\ufffd\u0002\ufffd(\ufffd\u0002\ufffd(\ufffd\u0002\ufffd(\ufffd\u0002\ufffd(\ufffd\u0002\ufffd(\ufffd\u0002\ufffd+\u001bX\ufffd.\ufffd\ufffd\ufffd\ufffdwK\ufffd\ufffdf\ufffd3~C\ufffd\ufffd@\u001b4W\ufffdj\u001f\u0017t\ufffd{\ufffd\ufffd\ufffd\ufffdi\ufffdN\u000e\ufffd\u000b\ufffd\ufffdO\ufffd\ufffd\ufffd']\ufffd\ufffdM\u001a\ufffd\ufffd\ufffd\ufffd\ufffdmS\ufffd\ufffd\ufffdkA&\ufffd\ufffd=*\ufffd\ufffd\ufffd\ufffd\u0000\u001d\ufffd\u0017D,\ufffd-\ufffd\u001f\ufffd\ufffd\u001f\ufffd\ufffd\ufffd\ufffdx\ufffd\"Y`\ufffd$\ufffd\ufffd2\u0010A\ufffd\u001d\ufffdh\ufffd\ufffd\u0000(\ufffd\ufffd\u0000(\ufffd\ufffd\u0000(\ufffd\ufffd\u0000(\ufffd\ufffd\u0000(\ufffd\ufffd\u0000(\ufffd\ufffd\ufffd\ufffd^ \ufffd\u0000\ufffdo\ufffdS\u07a3\ufffd\ufffd\ufffd\u001cd\ufffd\ufffd\ufffd\ufffd?\ufffd(\u0003\u0007\ufffd7\ufffd\ufffd\ufffd\ufffdL\ufffd\ufffd\u0017\u0018\ufffd\ufffd\ufffd\ufffd\u007fz\ufffdi\ufffdv,\ufffd9$\ufffdI5\ufffdu\ufffd\ufffd%\ufffdy\ufffdcvv,\ufffd\ufffdKg\u050a\ufffd4w\ufffd\ufffdF\ufffd-\u058f2\ufffd\ufffd\ufffd}\ufffd\ufffd\\3\u01a7\ufffd\ufffd\ufffd\ufffd\ufffd\u000f \u285a-\f\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffdJ\t$\ufffd\ufffd'\ufffd\ufffd\ufffdu@\ufffd\ufffdt\ufffd^\u0004\ufffd\ufffdX^\t\ufffd\ufffd(\f\ufffd;\ufffd\ufffdm\ufffd\u0018\u06ac \ufffd\u0004\ufffdXh\ufffd6\ufffd\ufffd6\ufffd\u0343[\ufffd\u000f\ufffdn\udbec\udd56\ufffdc\ufffd?4d\ufffd\\{\ufffd\ufffd\ufffd?\u0003\ufffdg\u000b4m\ufffd\u0007\u0015\ufffdR_\ufffd\ufffd|av\u0700\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\u017e\ufffd\ufffd\ufffd\u0771\ufffdxt'\ufffdn\ufffd\ufffd\ufffd>\r\ufffdlu\ufffdm\ufffd\ufffd\u0014\ufffd\u0012\u0017\u0546\b\ufffd7W\ufffd\ufffd\"\u001a\ufffdQE\u0014\ufffd\u0014QE\u0000\u0014QE\u0000\u0014QE\u0000\u0014QE\u0000\u0015\ufffd\u007f\ufffdj\\\ufffdi\ufffdE\ufffd\u0001\ufffd4\ufffd\ufffd\u0007\ufffd\u0015\ufffd\ufffd\ufffd@\u045bV\ufffdRH#\ufffd.-[\ufffdT\ufffd\ufffd2\ufffd|\u007f*Lks\ufffd/\u001b\ufffd\ufffd\ufffd\ufffdH\u0015\ufffd3\u0004o`\u007f\ufffd?\u001a\ufffd\ufffdn\ufffd?\ufffd|y\r\ufffdr\u0015G\ufffdH\ufffdN\ufffd6\ufffd\ufffd \u001a\ufffd_\u0015>\ufffdqi=\ufffd\ufffd\ufffd\ufffdU\ufffd\ufffd\ufffd\u001f\ufffd\ufffd\ufffd\u001f\ufffd\ufffd\u0001\ufffd\ufffd\ufffd\ufffdb\ufffd\ufffd[\u001d\ufffd\ufffd\u001e\u01f2\ufffd\f\ufffd\ufffdR\ufffd=\u0007H\ufffd\ufffd\u0012\ufffdndkt\ufffd\ufffd&|e\ufffd\ufffdA\ufffd\ufffdWmc\ufffd\ufffd\ufffd}\u0440\u0013\ufffd\ufffdk\ufffd\u001e\u001a\ufffd\ufffd2\u0016 \ufffd\ufffd\ufffd\u05a5\ufffd\ufffd\ufffdx\f9G\ufffd\ufffd\u000e\ufffd\ufffd\ufffdF\ufffdA\ufffd\ufffd\ufffd\ufffd\ufffdQ\ufffd\u001c\ufffdB\ufffd\uec6f \u0012I\ufffd\ufffdG\u0003\ufffd\ufffd\ufffd]{J\ufffd\ufffd\\\u0112G;!\ufffdd\u0018\u0005\ufffd\ufffd\ufffd<~\ufffdsT\u0418\ufffdAso\f.\ufffd\ufffd\ufffd%7\u007fCV\u0016\ufffd)\u03d7\ufffdd'\ufffd\ufffd;\u0001\ufffd\ufffd\ufffd)\u0013\ufffd\ufffdj\ufffd\ufffdD\ufffd\ufffd\u0000\u07f6\ufffd~\ufffd8\ufffdE\ufffd\u0116\ufffd\u001a\ufffd\ufffd\ufffdY\ufffd)\ufffd\ufffd\u0014`\ufffd=rx\ufffd+\ufffd\ua216\ufffdE\u0014P \ufffd\ufffd(\u0000\ufffd\ufffd(\u0000\ufffd\ufffd(\u0000\ufffd\ufffd(\u0000\ufffd\ufffd(\u0003\ufffd\ufffd/\ufffd4\ufffdj)\u001dc[k\ufffd\ufffd\ufffd\u0220\ufffd\ufffd:\u001f\ufffd^9\ufffd?\u000fk\ufffd\u001f\ufffd\u0012_\ufffd=\u015a\ufffd\ufffd\ufffdnP=\ufffd?\u001a\ufffd*\ufffd3@\ufffd>h:\ufffd;G\ufffd)'\ufffd\ufffdM\ufffd\ufffd\ufffd\ufffd\u001c\u05e4\ufffd_\ufffd\ufffd\ufffdkKs.\ufffdeq%\ufffd\u020bpP+D\ufffd\r\ufffd\ufffd#'\u05bc\ufffd\ufffd\ufffd\ufffdE\ufffdYi\ufffd\u0791\u001e\ufffd%\ufffd\ufffd,2\ufffd\ufffdDq\ufffdw\ufffd\ufffd\ufffd\u00158#\ufffd4\ufffd\ufffd\ufffd\ufffd\u032c\u0015#vf\ufffd\u00003]\ufffd\ufffd\ufffd\u0013\ufffdj\ufffd$\ufffd\ufffd=\ufffd\ufffdrC\fH\ufffd\ufffd\u000e\ufffdS^\ufffd\ufffdh\ufffdn\ufffd\ufffd\u0000\u001e\u00166\ufffd\u001fX\ufffd\u0000\ufffd}kB\ufffd\ufffd\ufffdl\ufffda\ufffd\ufffd\ufffd\ufffd\ufffd5\ufffd\u0018\ufffd*\ufffd\ufffd\u00155\u0014PHQE\u0014\u0000QE\u0014\u0000QE\u0014\u0000QE\u0014\u0000QE\u0014\u0000QEcx\ufffd\ufffdv:\u0005\ufffd\ufffdx\ufffd\ufffd\ufffd\ufffd~\ufffd\u007f\ufffd\ufffd\ufffd\r\ufffd\ufffd|g\ufffd{m\u000fu\ufffd\ufffd[\ufffd\ufffd\ub7d6?\ufffd\ufffd\ufffd\ufffd\ufffdq:\ufffd\ufffd\r^\ufffd\ufffdm\u0019l\ufffd<\u0001\u0018\ufffd\u0011\ufffd\ufffd\ufffd\ufffd\ufffd\u0013P\ufffd\ufffde\ufffd\ufffdNI'$\ufffdW)D\ufffd\ufffd-z\ufffdZ\ufffd\ufffd\ufffd)\ufffdTV\ufffd\t\u00a8\ufffd\u0018\ufffd\ufffd\ufffdu\u000f\ufffdCb\u0593\u0015\ufffdB_\ufffdV\ufffd'\ufffd\b\ufffd5\ufffd!2!w\ufffd\ufffd\ufffd\ufffd\ufffd)\ufffd\ufffd2\ufffd\ufffd\ufffd\u0004\bd\ufffd\ufffd\ufffd\"\ufffdS\u0682\ufffd\u007f\ufffdm\ufffdI\ufffd\ufffdn9n\u001b}\ufffd-\ufffdH\ufffdcw\u0019\u0007\ufffd?\ufffduu\ufffd\ufffd\ufffd\u000f\ufffd\ufffd\n\u001b\u0018\ufffd\ufffd>\ufffd\ufffd\ufffd\ufffd=\u007f\u000e\ufffd\ufffd[\ufffd\ufffd\u0092\ufffd\ufffd\u0000(\ufffd\ufffd\u0000JZ(\ufffd\u0004\ufffd\ufffd\ufffd\u0000(\ufffd\ufffd\u0000(\ufffd\ufffd\u0000\ufffd\ufffd\ufffdXtm*{\ufffd\ufffd\u0011\ufffd\ufffd\u007f\ufffd\u01e0\ufffd\ufffd\ufffd-N\ufffd[\ufffde\ufffd\ufffdr\ufffd\ufffd$\ufffd\u0003\ufffd{W\ufffd\ufffda\ufffd\ufffd~\ufffdh3\ufffd\u0010\u0491\ufffdz\u000f\u02df\u03bc\ufffd\ufffd\u001b\ufffd\ufffd\u000b'\ufffd9w\u0002K\ufffdA\u001e\ufffd\ufffdqD\ufffd\ufffd\ufffd\u0003\ufffd\u0015\u001a\ufffd\ufffd\ufffd\u032a\u0011\ufffdH\u0001GV'\ufffd\ufffd}#O\ufffd\u001e@g\ufffd",
+    "query_params": [],
+    "form_inputs": [],
+    "form_actions": [],
+    "headers": {
+      "Server": "nginx/1.19.0",
+      "Date": "Tue, 14 Oct 2025 11:04:06 GMT",
+      "Content-Type": "image/jpeg",
+      "Content-Length": "2739",
+      "Last-Modified": "Wed, 15 Feb 2012 08:27:20 GMT",
+      "Connection": "keep-alive",
+      "ETag": "\"4f3b6c68-ab3\"",
+      "Accept-Ranges": "bytes"
+    },
+    "timestamp": 1760439844,
+    "vuln_findings": []
+  },
+  {
+    "url": "http://testphp.vulnweb.com/Mod_Rewrite_Shop/Details/color-printer/3/",
+    "status_code": 200,
+    "content_type": "text/html; charset=UTF-8",
+    "body_snippet": "<div><img src='/Mod_Rewrite_Shop/images/3.jpg'><b>Laser Color Printer HP LaserJet M551dn, A4</b><br><br>Laser Color Printer HP LaserJet M551dn, A4<br><a href='/Mod_Rewrite_Shop/BuyProduct-3/'>Buy</a>&nbsp;<a href='/Mod_Rewrite_Shop/RateProduct-3.html'>Rate</a></div><hr><a href='/Mod_Rewrite_Shop/'>Back</a>\r\n\t\t\t\t",
+    "query_params": [],
+    "form_inputs": [],
+    "form_actions": [],
+    "headers": {
+      "Server": "nginx/1.19.0",
+      "Date": "Tue, 14 Oct 2025 11:04:07 GMT",
+      "Content-Type": "text/html; charset=UTF-8",
+      "Transfer-Encoding": "chunked",
+      "Connection": "keep-alive",
+      "X-Powered-By": "PHP/5.6.40-38+ubuntu20.04.1+deb.sury.org+1",
+      "Content-Encoding": "gzip"
+    },
+    "timestamp": 1760439845,
+    "vuln_findings": []
+  },
+  {
+    "url": "http://testphp.vulnweb.com/Mod_Rewrite_Shop/images/1.jpg",
+    "status_code": 200,
+    "content_type": "image/jpeg",
+    "body_snippet": "\ufffd\ufffd\ufffd\ufffd\u0000\u0010JFIF\u0000\u0001\u0001\u0000\u0000\u0001\u0000\u0001\u0000\u0000\ufffd\ufffd\u0000;CREATOR: gd-jpeg v1.0 (using IJG JPEG v80), quality = 80\n\ufffd\ufffd\u0000C\u0000\u0006\u0004\u0005\u0006\u0005\u0004\u0006\u0006\u0005\u0006\u0007\u0007\u0006\b\n\u0010\n\n\t\t\n\u0014\u000e\u000f\f\u0010\u0017\u0014\u0018\u0018\u0017\u0014\u0016\u0016\u001a\u001d%\u001f\u001a\u001b#\u001c\u0016\u0016 , #&')*)\u0019\u001f-0-(0%()(\ufffd\ufffd\u0000C\u0001\u0007\u0007\u0007\n\b\n\u0013\n\n\u0013(\u001a\u0016\u001a((((((((((((((((((((((((((((((((((((((((((((((((((\ufffd\ufffd\u0000\u0011\b\u0000\ufffd\u0000\ufffd\u0003\u0001\"\u0000\u0002\u0011\u0001\u0003\u0011\u0001\ufffd\ufffd\u0000\u001f\u0000\u0000\u0001\u0005\u0001\u0001\u0001\u0001\u0001\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0001\u0002\u0003\u0004\u0005\u0006\u0007\b\t\n\u000b\ufffd\ufffd\u0000\ufffd\u0010\u0000\u0002\u0001\u0003\u0003\u0002\u0004\u0003\u0005\u0005\u0004\u0004\u0000\u0000\u0001}\u0001\u0002\u0003\u0000\u0004\u0011\u0005\u0012!1A\u0006\u0013Qa\u0007\"q\u00142\ufffd\ufffd\ufffd\b#B\ufffd\ufffd\u0015R\ufffd\ufffd$3br\ufffd\t\n\u0016\u0017\u0018\u0019\u001a%&'()*456789:CDEFGHIJSTUVWXYZcdefghijstuvwxyz\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\u0000\u001f\u0001\u0000\u0003\u0001\u0001\u0001\u0001\u0001\u0001\u0001\u0001\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\u0002\u0003\u0004\u0005\u0006\u0007\b\t\n\u000b\ufffd\ufffd\u0000\ufffd\u0011\u0000\u0002\u0001\u0002\u0004\u0004\u0003\u0004\u0007\u0005\u0004\u0004\u0000\u0001\u0002w\u0000\u0001\u0002\u0003\u0011\u0004\u0005!1\u0006\u0012AQ\u0007aq\u0013\"2\ufffd\b\u0014B\ufffd\ufffd\ufffd\ufffd\t#3R\ufffd\u0015br\ufffd\n\u0016$4\ufffd%\ufffd\u0017\u0018\u0019\u001a&'()*56789:CDEFGHIJSTUVWXYZcdefghijstuvwxyz\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\u0000\f\u0003\u0001\u0000\u0002\u0011\u0003\u0011\u0000?\u0000\ufffd\ufffd\ufffd(\ufffd\u0002\ufffd(\ufffd\u0002\ufffd(\ufffd\u0002\ufffd*\ufffd\ufffdeb\t\ufffd\ufffd\ufffd,vg\u0019\ufffd\ufffd\ufffd\u0005\ufffd+\ufffd\ufffd~&\ufffd{L\ufffd\r\ufffd\ufffd\ufffda\ufffd\u007f>\u007fJ\ufffd?\ufffd\n\ufffd\u0011\ufffdX\ufffd\ufffd\ufffd\u0000\ufffd\ufffd\ufffd\ufffdr?\ufffd\u0000{m\u0015\ufffd\ufffd\ufffdq\u050b~\ufffdI\ufffda\ufffd\ufffd\ufffd}O\ufffd|te\u0018\ufffdAV?\ufffd]\ufffd\ufffdl4\u0001\ufffd\ufffdW\ufffd\ufffd\ufffd\ufffdO?\ufffd{\ufffd\u001f\ufffd\u032d\ufffd\ufffd+N\ufffd\ufffd.\ufffdrv\ufffd;T\ufffdC\ufffd4`>\ufffdwJ\u0000\ufffd\ufffd+\ufffd\ufffd\u23c6\ufffd\ufffd\ufffd\ufffd\ufffd\u0012\ufffd'\ufffd6P1\ufffd\u0013\ufffd\u00b6|!\ufffd\u001d\u000b\ufffd\ufffd\ufffdM\ufffd\ufffd\ufffd\ufffdXX,\ufffd\ufffd\ufffd\ufffd=2\u0018\u0003\ufffd\ufffd=(\u0003\ufffd\ufffd\ufffd(\u0000\ufffd\ufffd(\u0000\ufffd\ufffd(\u0000\ufffd\ufffd\ufffd\u059au\ufffd\ufffd\ufffd\ufffd\u001bhG\u001b\ufffdp\ufffd?SVk\ufffd\ufffdh\u000b\ufffd\ufffd_\u0011X\ufffdgy\u0014i\u0005\ufffd\u0011;\ufffde\ufffd\ufffd\ufffd?(\ufffd;}[\ufffd\ufffdl%h\u3e9a\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd-c\ufffdxU?\ufffd\ufffd$\fg%Y\ufffd\ufffd\u001f\u03bc\ufffd|a\ufffd\ufffd\u001f\ufffd>\ufffdw\ufffd)\ufffd\ufffd\ufffd\u0000\ufffdI\u000b\ufffdq\ufffd\ufffdI\ufffd*\ufffd#\u007fX\ufffd\ufffd\ufffd-H\ufffd\ufffd\ufffd$'\u001bA\ufffdG\ufffd\u0018\ufffdN\ufffdY\ufffdo\ufffd\ufffd\ufffd\ufffdH;\ufffdp\u0001S\ufffd\u0003\ufffd\\> \ufffdO\ufffd\ufffd\u0014\ufffd\u007f\ufffd\ufffd\ufffdT\ufffdW\ufffd\u053cKms\u001f\ufffd\r\ufffd\u0016\u0003 \ufffd\"\ufffd\ufffd\ufffd8o\u01e58!_\ufffdpA\ufffd\ufffd\u01f7\ufffdZy\ufffd\u0124\u0014\ufffd\ufffd\":p\ufffdg\ufffd)V\ufffdE8\ufffd5R\ufffd\u001b@e\ufffd=8\ufffd\u001e\ufffdX\n\u0011\ufffd=\u00d4\ufffdY\ufffd\ufffd\u0000\u0012T\ufffd\ufffd;V\ufffd:+\ufffd\ufffd\ufffds\ufffdn\ufffd\ufffd\ufffd\ufffd=}\ufffd\ufffd\ufffd\u000f\ufffd\ufffdFt\ufffd\ufffdZf\ufffd'p1\ufffdC\ufffd\u0007\ufffd\u0628\ufffd\ufffd\u000bQ\ufffde2j\ufffd\ufffdP\u0000\ufffdf\ufffd\u00078\ufffd\ufffd\u0690\u037b\ufffdk\ufffd\ufffdo\ufffd\b\ufffdP\ufffdt\u000b\ufffd\u0001\ud798\ufffd\ufffd\rc\ufffd:\ufffd\u0666[-\ufffd\ufffd@\ufffd2@\ufffd\ufffd\u0007\ufffd+oN\ufffdt\ufffd5AHD\ufffd\u000f\u24df\u04afMv1\ufffd\ufffd\u0007@)\ufffd\ufffdb\ufffd\ufffd<\ufffdR\ufffd\ufffdf\ufffdY\ufffd~\ufffd\ufffd\ufffd\ufffd{\ufffd\ufffd\ufffd\ufffd:\ufffd\ufffd\ufffd\u0017\ufffd\ufffd\u03b5\ufffd\ufffdL[8\ufffdW\ufffd~\ufffdP\ufffd\ufffd'=U!@~\ufffd\ufffd\ufffdB\ufffd\ufffd\u001e\ufffdE\u0014T\ufffd(\ufffd\ufffd\u0000(\ufffd\ufffd\u0000+\ufffd~1J\ufffd\ufffd \ufffd\u0385eW\ufffdF\u0000\ufffd\u007f\ufffd;\ufffd+\u06ab\ufffd\ufffd9\ufffd5h\u001b\ufffd\u0580~L\ufffd\u0000\ufffd@\u001e!s\ufffd\ufffdvY\u000bI\ufffd\"\ufffd\ufffd$\ufffd\ufffdjo\u0005i\ufffde\ufffd\ufffd}\"\ufffdmUt\ufffd\ufffdQ,)\ufffd\r\ufffd{\u001a\ufffd\u007f\ufffdkG\ufffd\ufffd\u0000\ufffd\ufffd\ufffd\ufffd\ufffdG\ufffd=V\u040fo\ufffd\ufffd{\u1958\ufffd>\ufffdy\u0010.\u028fmr\u0350\u000e\u0001\ufffd=O^\ufffd\ufffd\ufffd`\ufffd.\ufffd\ufffd\ufffd\u0000\ufffd\ufffd\ufffd\ufffd\ufffd&\ufffd\u0005\ufffd\u000f\u001cj\ufffd{pw0\u0007\ufffd3\ufffd\ufffd\u0000\ufffdj\ufffd\ufffdW\ufffdP\ufffd^\ufffd\ufffd\ufffdq\u6b2d\u001cN$#\ufffdPp\ufffdG@1\ufffd\ufffd$\ufffd\ufffdW\ufffd\u0006\ufffd\ufffd\u000f\ufffdkP\ufffdW\ufffd\u7e35\ufffdKQ;\ufffdeE\ufffd\b$\ufffd\ufffd\ufffdQ(J)7\ufffd\u0013OC\ufffd.4\ufffd\ufffdP\ufffd\ufffd\ufffd*\ufffd,J?\ufffd\ufffdw\ufffd\ufffd\ufffdA$\ufffd\u0598Q\ufffd\u04df\ufffdW\ufffdc\ufffd'\ufffdV\u0519\ufffd\ufffd(\ufffd\ufffd\ufffd\ufffd\u0007\u0019\u0001y.\u000b\u0012\t<\ufffdk\ufffd|9%\ufffd07\u06a6\u0013;\ufffdl\ufffd]\ufffdA\\\ufffd\ufffd\ufffd^M`37\ufffd^\ufffd`6\ufffd\ufffd\u0001\u0017\ufffd@*P\ufffdc;\ufffdSM\ufffd\u0015\n\ufffd;uP\ufffd\u0013^\ufffd\ufffd=E\ufffd\u0000\u0012m^o\ufffd\\\ufffd\u007f\ufffd\ufffdg\ufffd\u0000f\ufffd\r-\ufffd^\ufffd\ufffd>\ufffd\ufffd\ufffd/\u06f9\ufffdo\ufffd\u0017\u001d&\u0007\ufffd\ufffdE\u0015#\n(\ufffd\ufffd\n(\ufffd\ufffd\n\ufffd\uf3ab\ufffd\ufffd\ufffd\ufffdX\u001c~G\ufffd\u0000\ufffd^\ufffd^E\ufffd\ufffdfm0\ufffd\ufffd\ufffdk@\u001e\u00051\ufffd\ufffdl\ufffd.\u0019\ufffd\ufffd\ufffd\u001c\ufffd\ufffd/\ufffd\ufffdX\ufffd\ufffd\ufffdUw\ufffdi\ufffdY\ufffdY\ufffd\ufffd]\ufffd*l\ufffdN\b\ufffd\ufffd\ufffd85lG\ufffd~,\ufffd\u0016\ufffd\ufffd{\ufffd\ufffd\ufffd#\ufffd.@\u0001\ufffd\u0007\ufffd\ufffd\u0001\ufffd0 \ufffd\ufffdW\u000b\ufffdBiVZ'\ufffd\ufffd\ufffd\r2\ufffd-\ufffdb\ufffd\u0010\ufffd\ufffd\u0003\ufffd\u0001'\ufffdM.\ufffd\ufffd\ufffd\ufffdZ6\ufffd}#Y\ufffdqu\ufffd[\ufffd*\ufffd\ufffdK3\ufffd|\ufffdzg\ufffd\ufffdp?\ufffd\u0017\ufffd.olt_\u0004\ufffd*\ufffdMi\u0005\ufffd\ufffd\ufffdrX\ufffd\ufffd\u001fA\ufffd\ufffd\ufffd\ufffd\ufffd/}\n\ufffd\ufffd<\ufffd\u000ea\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\u0000\u001es\u007f\ufffdj\u06a8\ufffdB\ufffd\ufffd\ufffd\u0019\ufffdZ\ufffd\ufffd\u0000C\ufffd\ufffd\ufffdV\ufffd9-(n\ufffdQ\ufffd\u00bd^\ufffd\ufffd8\u001f\ufffd?\ufffd^W\ufffd\f\ufffd\ufffd\ufffd\ufffdO\ufffd\ufffdc\ufffd\ufffd\ufffd\ufffdJ\u0019yM?5]Z\ufffd\ufffd\ufffdD\ufffd\ufffd\ufffd?g\ufffd\ufffd\u0013o?\ufffd\ufffd\ufffd\u0000\ufffd\\u\ufffd\ufffdj\ufffd\u0003\ufffdz|\ufffdF\ufffd}/\ufffd\ufffd\u0000\ufffd8\ufffd0",
+    "query_params": [],
+    "form_inputs": [],
+    "form_actions": [],
+    "headers": {
+      "Server": "nginx/1.19.0",
+      "Date": "Tue, 14 Oct 2025 11:04:08 GMT",
+      "Content-Type": "image/jpeg",
+      "Content-Length": "3551",
+      "Last-Modified": "Wed, 15 Feb 2012 08:33:19 GMT",
+      "Connection": "keep-alive",
+      "ETag": "\"4f3b6dcf-ddf\"",
+      "Accept-Ranges": "bytes"
+    },
+    "timestamp": 1760439845,
+    "vuln_findings": []
+  },
+  {
+    "url": "http://testphp.vulnweb.com/Mod_Rewrite_Shop/Details/network-attached-storage-dlink/1/",
+    "status_code": 200,
+    "content_type": "text/html; charset=UTF-8",
+    "body_snippet": "<div><img src='/Mod_Rewrite_Shop/images/1.jpg'><b>Network Storage D-Link DNS-313 enclosure 1 x SATA</b><br><br>NET STORAGE ENCLOSURE SATA DNS-313 D-LINK<br><a href='/Mod_Rewrite_Shop/BuyProduct-1/'>Buy</a>&nbsp;<a href='/Mod_Rewrite_Shop/RateProduct-1.html'>Rate</a></div><hr><a href='/Mod_Rewrite_Shop/'>Back</a>\r\n\t\t\t\t",
+    "query_params": [],
+    "form_inputs": [],
+    "form_actions": [],
+    "headers": {
+      "Server": "nginx/1.19.0",
+      "Date": "Tue, 14 Oct 2025 11:04:08 GMT",
+      "Content-Type": "text/html; charset=UTF-8",
+      "Transfer-Encoding": "chunked",
+      "Connection": "keep-alive",
+      "X-Powered-By": "PHP/5.6.40-38+ubuntu20.04.1+deb.sury.org+1",
+      "Content-Encoding": "gzip"
+    },
+    "timestamp": 1760439846,
+    "vuln_findings": []
+  },
+  {
+    "url": "http://testphp.vulnweb.com/listproducts.php?cat=2",
+    "status_code": 200,
+    "content_type": "text/html; charset=UTF-8",
+    "body_snippet": "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\"\n\"http://www.w3.org/TR/html4/loose.dtd\">\n<html><!-- InstanceBegin template=\"/Templates/main_dynamic_template.dwt.php\" codeOutsideHTMLIsLocked=\"false\" -->\n<head>\n<meta http-equiv=\"Content-Type\" content=\"text/html; charset=iso-8859-2\">\n\n<!-- InstanceBeginEditable name=\"document_title_rgn\" -->\n<title>pictures</title>\n<!-- InstanceEndEditable -->\n<link rel=\"stylesheet\" href=\"style.css\" type=\"text/css\">\n<!-- InstanceBeginEditable name=\"headers_rgn\" -->\n<!-- InstanceEndEditable -->\n<script language=\"JavaScript\" type=\"text/JavaScript\">\n<!--\nfunction MM_reloadPage(init) {  //reloads the window if Nav4 resized\n  if (init==true) with (navigator) {if ((appName==\"Netscape\")&&(parseInt(appVersion)==4)) {\n    document.MM_pgW=innerWidth; document.MM_pgH=innerHeight; onresize=MM_reloadPage; }}\n  else if (innerWidth!=document.MM_pgW || innerHeight!=document.MM_pgH) location.reload();\n}\nMM_reloadPage(true);\n//-->\n</script>\n\n</head>\n<body> \n<div id=\"mainLayer\" style=\"position:absolute; width:700px; z-index:1\">\n<div id=\"masthead\"> \n  <h1 id=\"siteName\"><a href=\"https://www.acunetix.com/\"><img src=\"images/logo.gif\" width=\"306\" height=\"38\" border=\"0\" alt=\"Acunetix website security\"></a></h1>   \n  <h6 id=\"siteInfo\">TEST and Demonstration site for <a href=\"https://www.acunetix.com/vulnerability-scanner/\">Acunetix Web Vulnerability Scanner</a></h6>\n  <div id=\"globalNav\"> \n      \t<table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"100%\"><tr>\n\t<td align=\"left\">\n\t\t<a href=\"index.php\">home</a> | <a href=\"categories.php\">categories</a> | <a href=\"artists.php\">artists\n\t\t</a> | <a href=\"disclaimer.php\">disclaimer</a> | <a href=\"cart.php\">your cart</a> | \n\t\t<a href=\"guestbook.php\">guestbook</a> | \n\t\t<a href=\"AJAX/index.php\">AJAX Demo</a>\n\t</td>\n\t<td align=\"right\">\n\t\t</td>\n\t</tr></table>\n  </div> \n</div> \n<!-- end masthead --> \n\n<!-- begin content -->\n<!-- InstanceBeginEditable name=\"content_rgn\" -->\n<div id=\"content\">\n\t<h2 id='pageNa",
+    "query_params": [
+      "cat"
+    ],
+    "form_inputs": [
+      "searchFor",
+      "goButton"
+    ],
+    "form_actions": [
+      "search.php?test=query"
+    ],
+    "headers": {
+      "Server": "nginx/1.19.0",
+      "Date": "Tue, 14 Oct 2025 11:04:09 GMT",
+      "Content-Type": "text/html; charset=UTF-8",
+      "Transfer-Encoding": "chunked",
+      "Connection": "keep-alive",
+      "X-Powered-By": "PHP/5.6.40-38+ubuntu20.04.1+deb.sury.org+1",
+      "Content-Encoding": "gzip"
+    },
+    "timestamp": 1760439847,
+    "vuln_findings": []
+  },
+  {
+    "url": "http://testphp.vulnweb.com/listproducts.php?cat=1",
+    "status_code": 200,
+    "content_type": "text/html; charset=UTF-8",
+    "body_snippet": "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\"\n\"http://www.w3.org/TR/html4/loose.dtd\">\n<html><!-- InstanceBegin template=\"/Templates/main_dynamic_template.dwt.php\" codeOutsideHTMLIsLocked=\"false\" -->\n<head>\n<meta http-equiv=\"Content-Type\" content=\"text/html; charset=iso-8859-2\">\n\n<!-- InstanceBeginEditable name=\"document_title_rgn\" -->\n<title>pictures</title>\n<!-- InstanceEndEditable -->\n<link rel=\"stylesheet\" href=\"style.css\" type=\"text/css\">\n<!-- InstanceBeginEditable name=\"headers_rgn\" -->\n<!-- InstanceEndEditable -->\n<script language=\"JavaScript\" type=\"text/JavaScript\">\n<!--\nfunction MM_reloadPage(init) {  //reloads the window if Nav4 resized\n  if (init==true) with (navigator) {if ((appName==\"Netscape\")&&(parseInt(appVersion)==4)) {\n    document.MM_pgW=innerWidth; document.MM_pgH=innerHeight; onresize=MM_reloadPage; }}\n  else if (innerWidth!=document.MM_pgW || innerHeight!=document.MM_pgH) location.reload();\n}\nMM_reloadPage(true);\n//-->\n</script>\n\n</head>\n<body> \n<div id=\"mainLayer\" style=\"position:absolute; width:700px; z-index:1\">\n<div id=\"masthead\"> \n  <h1 id=\"siteName\"><a href=\"https://www.acunetix.com/\"><img src=\"images/logo.gif\" width=\"306\" height=\"38\" border=\"0\" alt=\"Acunetix website security\"></a></h1>   \n  <h6 id=\"siteInfo\">TEST and Demonstration site for <a href=\"https://www.acunetix.com/vulnerability-scanner/\">Acunetix Web Vulnerability Scanner</a></h6>\n  <div id=\"globalNav\"> \n      \t<table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"100%\"><tr>\n\t<td align=\"left\">\n\t\t<a href=\"index.php\">home</a> | <a href=\"categories.php\">categories</a> | <a href=\"artists.php\">artists\n\t\t</a> | <a href=\"disclaimer.php\">disclaimer</a> | <a href=\"cart.php\">your cart</a> | \n\t\t<a href=\"guestbook.php\">guestbook</a> | \n\t\t<a href=\"AJAX/index.php\">AJAX Demo</a>\n\t</td>\n\t<td align=\"right\">\n\t\t</td>\n\t</tr></table>\n  </div> \n</div> \n<!-- end masthead --> \n\n<!-- begin content -->\n<!-- InstanceBeginEditable name=\"content_rgn\" -->\n<div id=\"content\">\n\t<h2 id='pageNa",
+    "query_params": [
+      "cat"
+    ],
+    "form_inputs": [
+      "searchFor",
+      "goButton"
+    ],
+    "form_actions": [
+      "search.php?test=query"
+    ],
+    "headers": {
+      "Server": "nginx/1.19.0",
+      "Date": "Tue, 14 Oct 2025 11:04:10 GMT",
+      "Content-Type": "text/html; charset=UTF-8",
+      "Transfer-Encoding": "chunked",
+      "Connection": "keep-alive",
+      "X-Powered-By": "PHP/5.6.40-38+ubuntu20.04.1+deb.sury.org+1",
+      "Content-Encoding": "gzip"
+    },
+    "timestamp": 1760439847,
+    "vuln_findings": []
+  },
+  {
+    "url": "http://testphp.vulnweb.com/listproducts.php?cat=3",
+    "status_code": 200,
+    "content_type": "text/html; charset=UTF-8",
+    "body_snippet": "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\"\n\"http://www.w3.org/TR/html4/loose.dtd\">\n<html><!-- InstanceBegin template=\"/Templates/main_dynamic_template.dwt.php\" codeOutsideHTMLIsLocked=\"false\" -->\n<head>\n<meta http-equiv=\"Content-Type\" content=\"text/html; charset=iso-8859-2\">\n\n<!-- InstanceBeginEditable name=\"document_title_rgn\" -->\n<title>pictures</title>\n<!-- InstanceEndEditable -->\n<link rel=\"stylesheet\" href=\"style.css\" type=\"text/css\">\n<!-- InstanceBeginEditable name=\"headers_rgn\" -->\n<!-- InstanceEndEditable -->\n<script language=\"JavaScript\" type=\"text/JavaScript\">\n<!--\nfunction MM_reloadPage(init) {  //reloads the window if Nav4 resized\n  if (init==true) with (navigator) {if ((appName==\"Netscape\")&&(parseInt(appVersion)==4)) {\n    document.MM_pgW=innerWidth; document.MM_pgH=innerHeight; onresize=MM_reloadPage; }}\n  else if (innerWidth!=document.MM_pgW || innerHeight!=document.MM_pgH) location.reload();\n}\nMM_reloadPage(true);\n//-->\n</script>\n\n</head>\n<body> \n<div id=\"mainLayer\" style=\"position:absolute; width:700px; z-index:1\">\n<div id=\"masthead\"> \n  <h1 id=\"siteName\"><a href=\"https://www.acunetix.com/\"><img src=\"images/logo.gif\" width=\"306\" height=\"38\" border=\"0\" alt=\"Acunetix website security\"></a></h1>   \n  <h6 id=\"siteInfo\">TEST and Demonstration site for <a href=\"https://www.acunetix.com/vulnerability-scanner/\">Acunetix Web Vulnerability Scanner</a></h6>\n  <div id=\"globalNav\"> \n      \t<table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"100%\"><tr>\n\t<td align=\"left\">\n\t\t<a href=\"index.php\">home</a> | <a href=\"categories.php\">categories</a> | <a href=\"artists.php\">artists\n\t\t</a> | <a href=\"disclaimer.php\">disclaimer</a> | <a href=\"cart.php\">your cart</a> | \n\t\t<a href=\"guestbook.php\">guestbook</a> | \n\t\t<a href=\"AJAX/index.php\">AJAX Demo</a>\n\t</td>\n\t<td align=\"right\">\n\t\t</td>\n\t</tr></table>\n  </div> \n</div> \n<!-- end masthead --> \n\n<!-- begin content -->\n<!-- InstanceBeginEditable name=\"content_rgn\" -->\n<div id=\"content\">\n\t</div>\n<!-- In",
+    "query_params": [
+      "cat"
+    ],
+    "form_inputs": [
+      "searchFor",
+      "goButton"
+    ],
+    "form_actions": [
+      "search.php?test=query"
+    ],
+    "headers": {
+      "Server": "nginx/1.19.0",
+      "Date": "Tue, 14 Oct 2025 11:04:10 GMT",
+      "Content-Type": "text/html; charset=UTF-8",
+      "Transfer-Encoding": "chunked",
+      "Connection": "keep-alive",
+      "X-Powered-By": "PHP/5.6.40-38+ubuntu20.04.1+deb.sury.org+1",
+      "Content-Encoding": "gzip"
+    },
+    "timestamp": 1760439848,
+    "vuln_findings": []
+  },
+  {
+    "url": "http://testphp.vulnweb.com/listproducts.php?cat=4",
+    "status_code": 200,
+    "content_type": "text/html; charset=UTF-8",
+    "body_snippet": "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\"\n\"http://www.w3.org/TR/html4/loose.dtd\">\n<html><!-- InstanceBegin template=\"/Templates/main_dynamic_template.dwt.php\" codeOutsideHTMLIsLocked=\"false\" -->\n<head>\n<meta http-equiv=\"Content-Type\" content=\"text/html; charset=iso-8859-2\">\n\n<!-- InstanceBeginEditable name=\"document_title_rgn\" -->\n<title>pictures</title>\n<!-- InstanceEndEditable -->\n<link rel=\"stylesheet\" href=\"style.css\" type=\"text/css\">\n<!-- InstanceBeginEditable name=\"headers_rgn\" -->\n<!-- InstanceEndEditable -->\n<script language=\"JavaScript\" type=\"text/JavaScript\">\n<!--\nfunction MM_reloadPage(init) {  //reloads the window if Nav4 resized\n  if (init==true) with (navigator) {if ((appName==\"Netscape\")&&(parseInt(appVersion)==4)) {\n    document.MM_pgW=innerWidth; document.MM_pgH=innerHeight; onresize=MM_reloadPage; }}\n  else if (innerWidth!=document.MM_pgW || innerHeight!=document.MM_pgH) location.reload();\n}\nMM_reloadPage(true);\n//-->\n</script>\n\n</head>\n<body> \n<div id=\"mainLayer\" style=\"position:absolute; width:700px; z-index:1\">\n<div id=\"masthead\"> \n  <h1 id=\"siteName\"><a href=\"https://www.acunetix.com/\"><img src=\"images/logo.gif\" width=\"306\" height=\"38\" border=\"0\" alt=\"Acunetix website security\"></a></h1>   \n  <h6 id=\"siteInfo\">TEST and Demonstration site for <a href=\"https://www.acunetix.com/vulnerability-scanner/\">Acunetix Web Vulnerability Scanner</a></h6>\n  <div id=\"globalNav\"> \n      \t<table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"100%\"><tr>\n\t<td align=\"left\">\n\t\t<a href=\"index.php\">home</a> | <a href=\"categories.php\">categories</a> | <a href=\"artists.php\">artists\n\t\t</a> | <a href=\"disclaimer.php\">disclaimer</a> | <a href=\"cart.php\">your cart</a> | \n\t\t<a href=\"guestbook.php\">guestbook</a> | \n\t\t<a href=\"AJAX/index.php\">AJAX Demo</a>\n\t</td>\n\t<td align=\"right\">\n\t\t</td>\n\t</tr></table>\n  </div> \n</div> \n<!-- end masthead --> \n\n<!-- begin content -->\n<!-- InstanceBeginEditable name=\"content_rgn\" -->\n<div id=\"content\">\n\t</div>\n<!-- In",
+    "query_params": [
+      "cat"
+    ],
+    "form_inputs": [
+      "searchFor",
+      "goButton"
+    ],
+    "form_actions": [
+      "search.php?test=query"
+    ],
+    "headers": {
+      "Server": "nginx/1.19.0",
+      "Date": "Tue, 14 Oct 2025 11:04:11 GMT",
+      "Content-Type": "text/html; charset=UTF-8",
+      "Transfer-Encoding": "chunked",
+      "Connection": "keep-alive",
+      "X-Powered-By": "PHP/5.6.40-38+ubuntu20.04.1+deb.sury.org+1",
+      "Content-Encoding": "gzip"
+    },
+    "timestamp": 1760439849,
+    "vuln_findings": []
+  },
+  {
+    "url": "http://testphp.vulnweb.com/hpp/params.php?p=valid&pp=12",
+    "status_code": 200,
+    "content_type": "text/html; charset=UTF-8",
+    "body_snippet": "valid12",
+    "query_params": [
+      "p",
+      "pp"
+    ],
+    "form_inputs": [],
+    "form_actions": [],
+    "headers": {
+      "Server": "nginx/1.19.0",
+      "Date": "Tue, 14 Oct 2025 11:04:12 GMT",
+      "Content-Type": "text/html; charset=UTF-8",
+      "Transfer-Encoding": "chunked",
+      "Connection": "keep-alive",
+      "X-Powered-By": "PHP/5.6.40-38+ubuntu20.04.1+deb.sury.org+1",
+      "Content-Encoding": "gzip"
+    },
+    "timestamp": 1760439849,
+    "vuln_findings": []
+  },
+  {
+    "url": "http://testphp.vulnweb.com/secured/newuser.php",
+    "status_code": 200,
+    "content_type": "text/html; charset=UTF-8",
+    "body_snippet": "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\" \"http://www.w3.org/TR/html4/loose.dtd\">\r\n<html>\r\n<head>\r\n<title>add new user</title>\r\n<meta http-equiv=\"Content-Type\" content=\"text/html; charset=iso-8859-1\">\r\n<link href=\"style.css\" rel=\"stylesheet\" type=\"text/css\">\r\n</head>\r\n<body>\r\n<div id=\"masthead\"> \r\n  <h1 id=\"siteName\">ACUNETIX ART</h1> \r\n</div>\r\n<div id=\"content\">\r\n\t</div>\r\n</body>\r\n</html>\r\n",
+    "query_params": [],
+    "form_inputs": [],
+    "form_actions": [],
+    "headers": {
+      "Server": "nginx/1.19.0",
+      "Date": "Tue, 14 Oct 2025 11:04:12 GMT",
+      "Content-Type": "text/html; charset=UTF-8",
+      "Transfer-Encoding": "chunked",
+      "Connection": "keep-alive",
+      "X-Powered-By": "PHP/5.6.40-38+ubuntu20.04.1+deb.sury.org+1",
+      "Content-Encoding": "gzip"
+    },
+    "timestamp": 1760439850,
+    "vuln_findings": []
+  },
+  {
+    "url": "http://testphp.vulnweb.com/listproducts.php?artist=3",
+    "status_code": 200,
+    "content_type": "text/html; charset=UTF-8",
+    "body_snippet": "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\"\n\"http://www.w3.org/TR/html4/loose.dtd\">\n<html><!-- InstanceBegin template=\"/Templates/main_dynamic_template.dwt.php\" codeOutsideHTMLIsLocked=\"false\" -->\n<head>\n<meta http-equiv=\"Content-Type\" content=\"text/html; charset=iso-8859-2\">\n\n<!-- InstanceBeginEditable name=\"document_title_rgn\" -->\n<title>pictures</title>\n<!-- InstanceEndEditable -->\n<link rel=\"stylesheet\" href=\"style.css\" type=\"text/css\">\n<!-- InstanceBeginEditable name=\"headers_rgn\" -->\n<!-- InstanceEndEditable -->\n<script language=\"JavaScript\" type=\"text/JavaScript\">\n<!--\nfunction MM_reloadPage(init) {  //reloads the window if Nav4 resized\n  if (init==true) with (navigator) {if ((appName==\"Netscape\")&&(parseInt(appVersion)==4)) {\n    document.MM_pgW=innerWidth; document.MM_pgH=innerHeight; onresize=MM_reloadPage; }}\n  else if (innerWidth!=document.MM_pgW || innerHeight!=document.MM_pgH) location.reload();\n}\nMM_reloadPage(true);\n//-->\n</script>\n\n</head>\n<body> \n<div id=\"mainLayer\" style=\"position:absolute; width:700px; z-index:1\">\n<div id=\"masthead\"> \n  <h1 id=\"siteName\"><a href=\"https://www.acunetix.com/\"><img src=\"images/logo.gif\" width=\"306\" height=\"38\" border=\"0\" alt=\"Acunetix website security\"></a></h1>   \n  <h6 id=\"siteInfo\">TEST and Demonstration site for <a href=\"https://www.acunetix.com/vulnerability-scanner/\">Acunetix Web Vulnerability Scanner</a></h6>\n  <div id=\"globalNav\"> \n      \t<table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"100%\"><tr>\n\t<td align=\"left\">\n\t\t<a href=\"index.php\">home</a> | <a href=\"categories.php\">categories</a> | <a href=\"artists.php\">artists\n\t\t</a> | <a href=\"disclaimer.php\">disclaimer</a> | <a href=\"cart.php\">your cart</a> | \n\t\t<a href=\"guestbook.php\">guestbook</a> | \n\t\t<a href=\"AJAX/index.php\">AJAX Demo</a>\n\t</td>\n\t<td align=\"right\">\n\t\t</td>\n\t</tr></table>\n  </div> \n</div> \n<!-- end masthead --> \n\n<!-- begin content -->\n<!-- InstanceBeginEditable name=\"content_rgn\" -->\n<div id=\"content\">\n\t</div>\n<!-- In",
+    "query_params": [
+      "artist"
+    ],
+    "form_inputs": [
+      "searchFor",
+      "goButton"
+    ],
+    "form_actions": [
+      "search.php?test=query"
+    ],
+    "headers": {
+      "Server": "nginx/1.19.0",
+      "Date": "Tue, 14 Oct 2025 11:04:13 GMT",
+      "Content-Type": "text/html; charset=UTF-8",
+      "Transfer-Encoding": "chunked",
+      "Connection": "keep-alive",
+      "X-Powered-By": "PHP/5.6.40-38+ubuntu20.04.1+deb.sury.org+1",
+      "Content-Encoding": "gzip"
+    },
+    "timestamp": 1760439851,
+    "vuln_findings": []
+  },
+  {
+    "url": "http://testphp.vulnweb.com/listproducts.php?artist=2",
+    "status_code": 200,
+    "content_type": "text/html; charset=UTF-8",
+    "body_snippet": "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\"\n\"http://www.w3.org/TR/html4/loose.dtd\">\n<html><!-- InstanceBegin template=\"/Templates/main_dynamic_template.dwt.php\" codeOutsideHTMLIsLocked=\"false\" -->\n<head>\n<meta http-equiv=\"Content-Type\" content=\"text/html; charset=iso-8859-2\">\n\n<!-- InstanceBeginEditable name=\"document_title_rgn\" -->\n<title>pictures</title>\n<!-- InstanceEndEditable -->\n<link rel=\"stylesheet\" href=\"style.css\" type=\"text/css\">\n<!-- InstanceBeginEditable name=\"headers_rgn\" -->\n<!-- InstanceEndEditable -->\n<script language=\"JavaScript\" type=\"text/JavaScript\">\n<!--\nfunction MM_reloadPage(init) {  //reloads the window if Nav4 resized\n  if (init==true) with (navigator) {if ((appName==\"Netscape\")&&(parseInt(appVersion)==4)) {\n    document.MM_pgW=innerWidth; document.MM_pgH=innerHeight; onresize=MM_reloadPage; }}\n  else if (innerWidth!=document.MM_pgW || innerHeight!=document.MM_pgH) location.reload();\n}\nMM_reloadPage(true);\n//-->\n</script>\n\n</head>\n<body> \n<div id=\"mainLayer\" style=\"position:absolute; width:700px; z-index:1\">\n<div id=\"masthead\"> \n  <h1 id=\"siteName\"><a href=\"https://www.acunetix.com/\"><img src=\"images/logo.gif\" width=\"306\" height=\"38\" border=\"0\" alt=\"Acunetix website security\"></a></h1>   \n  <h6 id=\"siteInfo\">TEST and Demonstration site for <a href=\"https://www.acunetix.com/vulnerability-scanner/\">Acunetix Web Vulnerability Scanner</a></h6>\n  <div id=\"globalNav\"> \n      \t<table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"100%\"><tr>\n\t<td align=\"left\">\n\t\t<a href=\"index.php\">home</a> | <a href=\"categories.php\">categories</a> | <a href=\"artists.php\">artists\n\t\t</a> | <a href=\"disclaimer.php\">disclaimer</a> | <a href=\"cart.php\">your cart</a> | \n\t\t<a href=\"guestbook.php\">guestbook</a> | \n\t\t<a href=\"AJAX/index.php\">AJAX Demo</a>\n\t</td>\n\t<td align=\"right\">\n\t\t</td>\n\t</tr></table>\n  </div> \n</div> \n<!-- end masthead --> \n\n<!-- begin content -->\n<!-- InstanceBeginEditable name=\"content_rgn\" -->\n<div id=\"content\">\n\t<h2 id='pageNa",
+    "query_params": [
+      "artist"
+    ],
+    "form_inputs": [
+      "searchFor",
+      "goButton"
+    ],
+    "form_actions": [
+      "search.php?test=query"
+    ],
+    "headers": {
+      "Server": "nginx/1.19.0",
+      "Date": "Tue, 14 Oct 2025 11:04:14 GMT",
+      "Content-Type": "text/html; charset=UTF-8",
+      "Transfer-Encoding": "chunked",
+      "Connection": "keep-alive",
+      "X-Powered-By": "PHP/5.6.40-38+ubuntu20.04.1+deb.sury.org+1",
+      "Content-Encoding": "gzip"
+    },
+    "timestamp": 1760439851,
+    "vuln_findings": []
+  },
+  {
+    "url": "http://testphp.vulnweb.com/listproducts.php?artist=1",
+    "status_code": 200,
+    "content_type": "text/html; charset=UTF-8",
+    "body_snippet": "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\"\n\"http://www.w3.org/TR/html4/loose.dtd\">\n<html><!-- InstanceBegin template=\"/Templates/main_dynamic_template.dwt.php\" codeOutsideHTMLIsLocked=\"false\" -->\n<head>\n<meta http-equiv=\"Content-Type\" content=\"text/html; charset=iso-8859-2\">\n\n<!-- InstanceBeginEditable name=\"document_title_rgn\" -->\n<title>pictures</title>\n<!-- InstanceEndEditable -->\n<link rel=\"stylesheet\" href=\"style.css\" type=\"text/css\">\n<!-- InstanceBeginEditable name=\"headers_rgn\" -->\n<!-- InstanceEndEditable -->\n<script language=\"JavaScript\" type=\"text/JavaScript\">\n<!--\nfunction MM_reloadPage(init) {  //reloads the window if Nav4 resized\n  if (init==true) with (navigator) {if ((appName==\"Netscape\")&&(parseInt(appVersion)==4)) {\n    document.MM_pgW=innerWidth; document.MM_pgH=innerHeight; onresize=MM_reloadPage; }}\n  else if (innerWidth!=document.MM_pgW || innerHeight!=document.MM_pgH) location.reload();\n}\nMM_reloadPage(true);\n//-->\n</script>\n\n</head>\n<body> \n<div id=\"mainLayer\" style=\"position:absolute; width:700px; z-index:1\">\n<div id=\"masthead\"> \n  <h1 id=\"siteName\"><a href=\"https://www.acunetix.com/\"><img src=\"images/logo.gif\" width=\"306\" height=\"38\" border=\"0\" alt=\"Acunetix website security\"></a></h1>   \n  <h6 id=\"siteInfo\">TEST and Demonstration site for <a href=\"https://www.acunetix.com/vulnerability-scanner/\">Acunetix Web Vulnerability Scanner</a></h6>\n  <div id=\"globalNav\"> \n      \t<table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"100%\"><tr>\n\t<td align=\"left\">\n\t\t<a href=\"index.php\">home</a> | <a href=\"categories.php\">categories</a> | <a href=\"artists.php\">artists\n\t\t</a> | <a href=\"disclaimer.php\">disclaimer</a> | <a href=\"cart.php\">your cart</a> | \n\t\t<a href=\"guestbook.php\">guestbook</a> | \n\t\t<a href=\"AJAX/index.php\">AJAX Demo</a>\n\t</td>\n\t<td align=\"right\">\n\t\t</td>\n\t</tr></table>\n  </div> \n</div> \n<!-- end masthead --> \n\n<!-- begin content -->\n<!-- InstanceBeginEditable name=\"content_rgn\" -->\n<div id=\"content\">\n\t<h2 id='pageNa",
+    "query_params": [
+      "artist"
+    ],
+    "form_inputs": [
+      "searchFor",
+      "goButton"
+    ],
+    "form_actions": [
+      "search.php?test=query"
+    ],
+    "headers": {
+      "Server": "nginx/1.19.0",
+      "Date": "Tue, 14 Oct 2025 11:04:14 GMT",
+      "Content-Type": "text/html; charset=UTF-8",
+      "Transfer-Encoding": "chunked",
+      "Connection": "keep-alive",
+      "X-Powered-By": "PHP/5.6.40-38+ubuntu20.04.1+deb.sury.org+1",
+      "Content-Encoding": "gzip"
+    },
+    "timestamp": 1760439852,
+    "vuln_findings": []
+  },
+  {
+    "url": "http://testphp.vulnweb.com/Mod_Rewrite_Shop/RateProduct-2.html",
+    "status_code": 200,
+    "content_type": "text/html; charset=UTF-8",
+    "body_snippet": "<div>Thanks for rating <b> Web Camera A4Tech PK-335E</b><br><br></div>\r\n\t\t\t\t",
+    "query_params": [],
+    "form_inputs": [],
+    "form_actions": [],
+    "headers": {
+      "Server": "nginx/1.19.0",
+      "Date": "Tue, 14 Oct 2025 11:04:15 GMT",
+      "Content-Type": "text/html; charset=UTF-8",
+      "Transfer-Encoding": "chunked",
+      "Connection": "keep-alive",
+      "X-Powered-By": "PHP/5.6.40-38+ubuntu20.04.1+deb.sury.org+1",
+      "Content-Encoding": "gzip"
+    },
+    "timestamp": 1760439853,
+    "vuln_findings": []
+  },
+  {
+    "url": "http://testphp.vulnweb.com/Mod_Rewrite_Shop/BuyProduct-2/",
+    "status_code": 200,
+    "content_type": "text/html; charset=UTF-8",
+    "body_snippet": "<div>Thanks for buying <b> Web Camera A4Tech PK-335E</b><br><br></div>\r\n\t\t\t\t",
+    "query_params": [],
+    "form_inputs": [],
+    "form_actions": [],
+    "headers": {
+      "Server": "nginx/1.19.0",
+      "Date": "Tue, 14 Oct 2025 11:04:16 GMT",
+      "Content-Type": "text/html; charset=UTF-8",
+      "Transfer-Encoding": "chunked",
+      "Connection": "keep-alive",
+      "X-Powered-By": "PHP/5.6.40-38+ubuntu20.04.1+deb.sury.org+1",
+      "Content-Encoding": "gzip"
+    },
+    "timestamp": 1760439853,
+    "vuln_findings": []
+  }
+]

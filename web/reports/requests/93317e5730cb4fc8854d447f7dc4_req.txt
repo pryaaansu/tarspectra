@@ -1,0 +1,10 @@
+GET http://testphp.vulnweb.com/product.php?pic=INJECT-MARKER-PRYANSU-158526
+
+Headers:
+User-Agent: ExploitFinder-Active/0.3 (+https://example.local)
+Accept-Encoding: gzip, deflate
+Accept: */*
+Connection: keep-alive
+
+Body/data:
+null

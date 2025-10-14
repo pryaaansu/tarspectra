@@ -1,0 +1,14 @@
+POST https://www.hackthissite.org/pages/programs/insert.php
+
+Headers:
+User-Agent: ExploitFinder-Active/0.3 (+https://example.local)
+Accept-Encoding: gzip, deflate
+Accept: */*
+Connection: keep-alive
+Content-Length: 39
+Content-Type: application/x-www-form-urlencoded
+
+Body/data:
+{
+  "btn_submit": "INJECT-MARKER-PRYANSU-993326"
+}

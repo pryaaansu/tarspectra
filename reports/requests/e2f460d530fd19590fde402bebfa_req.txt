@@ -1,0 +1,6 @@
+GET https://www.hackthissite.org/blogs
+
+Headers:
+
+Body/data:
+null

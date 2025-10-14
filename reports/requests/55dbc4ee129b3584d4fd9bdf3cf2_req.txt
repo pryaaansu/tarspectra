@@ -1,0 +1,6 @@
+GET http://testphp.vulnweb.com/guestbook.php
+
+Headers:
+
+Body/data:
+null

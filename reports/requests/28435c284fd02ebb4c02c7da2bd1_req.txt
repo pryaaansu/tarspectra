@@ -1,0 +1,6 @@
+GET https://www.hackthissite.org/missions/basic/
+
+Headers:
+
+Body/data:
+null

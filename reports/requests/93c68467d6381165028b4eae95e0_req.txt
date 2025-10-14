@@ -1,0 +1,6 @@
+GET http://testphp.vulnweb.com/listproducts.php?artist=1
+
+Headers:
+
+Body/data:
+null

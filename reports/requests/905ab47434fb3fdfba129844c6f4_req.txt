@@ -1,0 +1,6 @@
+GET https://www.hackthissite.org/missions/javascript/
+
+Headers:
+
+Body/data:
+null

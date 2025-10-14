@@ -1,0 +1,473 @@
+Status: 200
+
+Headers:
+Date: Tue, 14 Oct 2025 07:29:25 GMT
+Upgrade: h2,h2c
+Connection: Upgrade
+Set-Cookie: HackThisSite=gn6641smt4rihjjoretohd2096; expires=Wed, 15-Oct-2025 07:29:25 GMT; path=/
+Expires: Thu, 19 Nov 1981 08:52:00 GMT
+Cache-Control: no-store, no-cache, must-revalidate, post-check=0, pre-check=0
+Pragma: no-cache
+Onion-Location: http://hackthisjogneh42n5o7gbzrewxee3vyu6ex37ukyvdw6jm66npakiyd.onion/news
+Vary: Accept-Encoding
+Content-Encoding: gzip
+Content-Length: 7923
+Content-Type: text/html
+Content-Language: en
+Server: HackThisSite
+Access-Control-Allow-Origin: *
+Content-Security-Policy: child-src 'self' hackthissite.org *.hackthissite.org htscdn.org *.htscdn.org discord.com; form-action 'self' hackthissite.org *.hackthissite.org htscdn.org *.htscdn.org; upgrade-insecure-requests; report-uri https://hackthissite.report-uri.com/r/d/csp/enforce
+Referrer-Policy: origin-when-cross-origin
+X-XSS-Protection: 0
+Feature-Policy: fullscreen *
+Public-Key-Pins-Report-Only: pin-sha256="YLh1dUR9y6Kja30RrAn7JKnbQG/uEtLMkBgFF2Fuihg="; pin-sha256="Vjs8r4z+80wjNcr1YKepWQboSIRi63WsWXhIMN+eWys="; max-age=2592000; includeSubDomains; report-uri="https://hackthissite.report-uri.com/r/d/hpkp/reportOnly"
+Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
+Report-To: {"group":"default","max_age":31536000,"endpoints":[{"url":"https://hackthissite.report-uri.com/a/d/g"}],"include_subdomains":true}
+NEL: {"report_to":"default","max_age":31536000,"include_subdomains":true,"success_fraction":0.0,"failure_fraction":0.1}
+
+Body (trimmed):
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<head>
+  <title>Hack This Site :: News</title>
+  <meta name="verify-v1" content="s/YXn7eQrMBoF9PL5jLJDiWpAxEXpJzE9JLg/zM4C2Y=" />
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta name="author" content="HackThisSite.org Staff" />
+  <meta name="keywords" content="challenge, computer, culture, deface, digital, ethics, games, guide, hack, hack forums, hacker, hackers, hacking, hacking challenges, hacking forums, mission, net, programming, radical, revolution, root, rooting, security, site, society, tutorial, tutorials, war, wargame, wargames, web, website" />
+  <meta name="title" content="HackThisSite" />
+  <meta name="description" content="HackThisSite.org is a free, safe and legal training ground for hackers to test and expand their ethical hacking skills with challenges, CTFs, and more." />
+  <meta itemprop="name" content="HackThisSite" />
+  <meta itemprop="description" content="HackThisSite.org is a free, safe and legal training ground for hackers to test and expand their ethical hacking skills with challenges, CTFs, and more." />
+  <meta itemprop="image" content="https://data.htscdn.org/images/hackthissite-meta-card.png" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://www.hackthissite.org/" />
+  <meta property="og:title" content="HackThisSite" />
+  <meta property="og:description" content="HackThisSite.org is a free, safe and legal training ground for hackers to test and expand their ethical hacking skills with challenges, CTFs, and more." />
+  <meta property="og:image" content="https://data.htscdn.org/images/hackthissite-meta-card.png" />
+  <meta property="twitter:card" content="summary_large_image" />
+  <meta property="twitter:url" content="https://www.hackthissite.org/" />
+  <meta property="twitter:title" content="HackThisSite" />
+  <meta property="twitter:description" content="HackThisSite.org is a free, safe and legal training ground for hackers to test and expand their ethical hacking skills with challenges, CTFs, and more." />
+  <meta property="twitter:image" content="https://data.htscdn.org/images/hackthissite-meta-card.png" />
+  <meta name="viewport" content="width=820, initial-scale=0.5" />
+  <meta name="theme-color" content="#163ea7" />
+  <meta name="color-scheme" content="dark" />
+  <meta http-equiv="onion-location" content="http://hackthisjogneh42n5o7gbzrewxee3vyu6ex37ukyvdw6jm66npakiyd.onion/news" />
+  <link rel="apple-touch-icon" sizes="180x180" href="https://data.htscdn.org/favicon/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="https://data.htscdn.org/favicon/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="https://data.htscdn.org/favicon/favicon-16x16.png" />
+  <link rel="manifest" href="https://www.hackthissite.org/manifest.webmanifest" />
+  <link href="https://data.htscdn.org/themes/Dark/Dark.css" rel="stylesheet" type="text/css" />
+  <link href="https://www.hackthissite.org/pages/hts.rss.php" rel="alternate" type="application/rss+xml" title="HTS RSS feed" />
+  <base href="https://www.hackthissite.org" />
+  <script type="text/javascript" src="https://data.htscdn.org/js/jquery-1.8.1.min.js"></script>
+  </head>
+<body>
+<span id="blank-element" style="display: none"></span>
+
+<div id="topbar" align="center">
+<a href="https://www.hackthissite.org" id="active">Hack This Site</a> (<a href="https://hackthisjogneh42n5o7gbzrewxee3vyu6ex37ukyvdw6jm66npakiyd.onion">TOR .onion HTTPS</a> - <a href="http://hackthisjogneh42n5o7gbzrewxee3vyu6ex37ukyvdw6jm66npakiyd.onion">HTTP</a>) - <a href="https://www.irc.hackthissite.org/chat">IRC</a> - <a href="/discord">Discord</a> - <a href="https://www.hackthissite.org/forums">Forums</a> - <a href="https://www.cafepress.com/htsstore" target="_new">Store</a> - <a href="https://hts.io" target="_new">URL Shortener</a> - <a href="https://cryptopaste.org" target="_new">CryptoPaste</a>&nbsp;&nbsp;&nbsp;---&nbsp;&nbsp;&nbsp;<a href="https://www.facebook.com/HackThisSite.org" target="_new">Like Us</a> - <a href="https://twitter.com/hackthissite" target="_new">Follow Us</a> - <a href="https://github.com/HackThisSite" target="_new">Fork Us</a>
+</div>
+<div class="hts-header">
+<a href="/"><img src="https://data.htscdn.org/themes/Dark/images/header.jpg" alt="Hack This Site" border="0" /></a>
+<br />
+<a href="https://www.hackthissite.org/advertise"><img src="https://data.htscdn.org/images/support-hts.gif" alt="Support HackThisSite - Advertise with us!" title="Support HackThisSite - Advertise with us!" id="atpimg" class="abstaimg" border="0" /><img src="https://www.hackthissite.org/images/px.png" border="0"></a></div>
+  <table width="780" border="0" cellpadding="0" cellspacing="0" class="siteheader cmTable">
+    <tr>
+      <td class="sitetopheader"><blockquote>"Unless we change direction, we are likely to end up where we are headed. " -- Chinese proverb </blockquote></td>
+    </tr>
+    <tr>
+      <td><table width="100%"  border="0" cellspacing="0" cellpadding="0">
+        <tr>
+          <td width="160" valign="top" class="navbar"><div align="center">
+            <br />
+            	<!-- login form start -->
+	<div id="ourlogin">
+		<span id="loginclick"><a class="nav" href="/user/login">Login</a></span> (or <a class="nav" href="/register">Register</a>):<br />
+				<form id="loginform" method="post" action="/user/login">
+		<div id="innerlogin">
+		<script type="text/javascript">var userclicked=0; var passclicked=0;</script>
+		<p><input type="text" name="username" class="login" value="" onclick="if(userclicked==0){this.value='';userclicked=1;};" title="Username" /></p>
+		<p><input type="password" name="password" class="login" value="" onclick="if(passclicked==0){this.value='';passclicked=1;};" title="Password" /></p>
+				<p><input type="submit" value="Login" name="btn_submit" class="submit-button" /></p>
+		</div>
+	</form>
+	<!-- login form end -->
+	<a href="/user/resetpass">Lost your password?</a><br />
+        <a href="/user/forgotusername">Forgot your username?</a></br />
+		</div>
+	<h4 class="header">Donate</h4>
+<p>
+  <a href="https://www.hackthissite.org/donate/">
+    <img
+      src="https://data.htscdn.org/images/donate.png"
+      border="0"
+      title="Donate to HackThisSite.org"
+      alt="Donate to HackThisSite.org" />
+  </a>
+  <br />
+  <img
+    src="https://data.htscdn.org/images/donate-bat.png"
+    border="0"
+    title="Donate using Brave Basic Attention Tokens"
+    alt="Donate using Brave Basic Attention Tokens" />
+  <br /><br />
+  HTS costs up to $300 a month to operate. We <strong>need</strong> your help!
+</p>
+<h4 class="header">Challenges</h4>
+<ul class="navigation">
+  <li><a class="nav" href="/missions/basic/">Basic</a></li><li><a class="nav" href="/missions/realistic/">Realistic</a></li><li><a class="nav" href="/missions/application/">Application</a></li><li><a class="nav" href="/missions/programming/">Programming</a></li><li><a class="nav" href="/missions/javascript/">Javascript</a></li><li><a class="nav" href="/missions/forensic/">Forensic</a></li><li><a class="nav" href="/missions/playit/extbasic/0/">Extended Basic</a></li><li><a class="nav" href="/missions/playit/stego/0/">Steganography</a></li><li><a class="nav" href="ircs://irc.hackthissite.org:7000/#htb">IRC</a></li></ul>
+
+<h4 class="header">Get Informed</h4><ul class="navigation"><li><a class="nav" href="/blogs">Blogs</a></li><li><a class="nav" href="/news">News</a></li><li><a class="nav" href="/pages/articles/article.php">Articles</a></li><li><a class="nav" href="/lectures">Lectures</a></li><li><a class="nav" href="/pages/programs/programs.php">Useful Stuff</a></li><!--<li><a class="nav" href="ebooks">E-books</a></li>--><li><a class="nav" href="https://mirror.hackthissite.org/hackthiszine/">HackThisZine</a></li><li><a class="nav" href=""></a></li></ul><h4 class="header">Get Involved</h4><ul class="navigation"><li><a class="nav" href="/donate"><span class="completed">Donate to HackThisSite!</span></a></li><li><a class="nav" href="https://www.cafepress.com/htsstore">Store</a></li><li><a class="nav" href="/submit/article">Submit Article</a></li><li><a class="nav" href="/pages/bugManagement/index.php">Submit Bug Report</a></li><li><a class="nav" href="/submit/lecture">Submit Lecture</a></li><li><a class="nav" href="/pages/programs/insert.php">Submit Useful Stuff</a></li><!--<li><a class="nav" href="/pages/showsource/loopdeloop.php">We Want You!</a></li>--><li><a class="nav" href=""></a></li></ul><h4 class="header">Communicate</h4><ul class="navigation"><li><a class="nav" href="/forums">Forums</a></li><li><a class="nav" href="/discord">Discord</a></li><li><a class="nav" href="https://www.hackthissite.org/forums/ucp.php?i=pm">Private Messages</a></li><li><a class="nav" href="https://www.irc.hackthissite.org/chat">IRC Web Chat</a></li><li><a class="nav" href="https://www.irc.hackthissite.org/idlerpg">IRC IdleRPG</a></li><li><a class="nav" href="https://www.hackthissite.org/irc/stats.php">IRC Stats</a></li><li><a class="nav" href="https://qdb.hackthissite.org">IRC Quotes</a></li><li><a class="nav" href="/pages/irc/reference.php">IRC Command Reference</a></li><li><a class="nav" href="/user/search">Search Users</a></li><li><a class="nav" href="/user/online">Who is Online</a></li><li><a class="nav" href="/user/rankings/">Rankings</a></li><li><a class="nav" href=""></a></li></ul><h4 class="header">About HTS</h4><ul class="navigation"><li><a class="nav" href="/info/about">About the Project</a></li><li><a class="nav" href="/info/billofrights">Bill of Rights</a></li><li><a class="nav" href="https://legal.hackthissite.org/terms">Terms &amp; Conditions</a></li><li><a class="nav" href="https://legal.hackthissite.org/privacy">Privacy Policy</a></li><li><a class="nav" href="/info/staff">Meet the Staff</a></li><li><a class="nav" href="/info/underthehood">Under the Hood</a></li><li><a class="nav" href="/advertise">Advertise with HTS</a></li><li><a class="nav" href="/ipv6">IPv6</a></li><li><a class="nav" href="/hof">Hall of Fame</a></li><li><a class="nav" href=""></a></li></ul><h4 class="header"></h4><ul class="navigation"><li><a class="nav" href=""></a></li></ul>
+<br />
+<a href="/">
+  <img
+    src="https://data.htscdn.org/images/hts_80x15.gif"
+    width="80"
+    height="15"
+    border="0"
+    alt="" />
+</a>
+<br />
+<a class="nav" href="https://www.hackthissite.org/pages/info/linktous.php">
+  Link to us!
+</a>
+
+<h4 class="header">
+  Partners
+</h4>
+<br />
+<a class="nav" target="_new" href="https://www.hellboundhackers.org/">
+  <img
+    src="https://data.htscdn.org/images/hbhlogo.jpg"
+    alt="Hellbound Hackers"
+    title="Hellbound Hackers"
+    width="88"
+    height="31"
+    border="0" />
+</a>
+<br />
+<a class="nav" target="_new" href="https://www.netsparker.com/blog">
+  <img
+    src="https://data.htscdn.org/images/netsparker.gif"
+    alt="Netsparker Security Blog"
+    title="Netsparker Security Blog"
+    width="88"
+    height="31"
+    border="0" />
+</a>
+<br />
+<a class="nav" target="_new" href="https://www.acunetix.com/blog">
+  <img
+   src="https://data.htscdn.org/images/acunetixblog.gif"
+   alt="Acunetix Security Blog"
+   title="Acunetix Security Blog"
+   width="88"
+   height="31"
+   border="0" />
+</a>
+<br />
+<a class="nav" target="_new" href="https://www.buddyns.com">
+<img
+  src="https://data.htscdn.org/images/buddyns88x31.png"
+  alt="BuddyNS Secondary DNS"
+  title="BuddyNS Secondary DNS"
+  width="88"
+  height="31"
+  border="0" />
+</a>
+<br />
+<a class="nav" target="_new" href="https://redirect.pizza/?utm_source=partner&utm_medium=banner&utm_campaign=hackthissite.org">
+<img
+  src="https://data.htscdn.org/images/redirectpizza88x31.png"
+  alt="Redirect.pizza - HTTPS Redirect Service"
+  title="Redirect.pizza - HTTPS Redirect Service"
+  width="88"
+  height="31"
+  border="0" />
+</a>
+<br />
+<a class="nav" target="_new" href="https://brave.com/hac977">
+<img
+  src="https://data.htscdn.org/images/brave-88x31.png"
+  alt="Brave Browser - Secure, fast, and private web browser with a built-in adblocker"
+  title="Brave Browser - Secure, fast, and private web browser with a built-in adblocker"
+  width="88"
+  height="31"
+  border="0" />
+</a>
+<br />
+
+          </td>
+          <td valign="top" class="sitebuffer">
+	<br />
+[1] <a class="nav" href="/news/2">[2]</a> <a class="nav" href="/news/3">[3]</a> <a class="nav" href="/news/4">[4]</a> <a class="nav" href="/news/5">[5]</a> <a class="nav" href="/news/6">[6]</a> <a class="nav" href="/news/7">[7]</a> <a class="nav" href="/news/8">[8]</a> <a class="nav" href="/news/9">[9]</a> <a class="nav" href="/news/10">[10]</a> <a class="nav" href="/news/11">[11]</a> <a class="nav" href="/news/12">[12]</a> <a class="nav" href="/news/13">[13]</a> <a class="nav" href="/news/14">[14]</a> <a class="nav" href="/news/15">[15]</a> <a class="nav" href="/news/16">[16]</a> <a class="nav" href="/news/17">[17]</a> <a class="nav" href="/news/18">[18]</a> <a class="nav" href="/news/19">[19]</a> <a class="nav" href="/news/20">[20]</a> <a class="nav" href="/news/21">[21]</a> <a class="nav" href="/news/22">[22]</a> <a class="nav" href="/news/23">[23]</a> <a class="nav" href="/news/24">[24]</a> <a class="nav" href="/news/25">[25]</a> <a class="nav" href="/news/26">[26]</a> <a class="nav" href="/news/27">[27]</a> <a class="nav" href="/news/28">[28]</a> <h1>Small News</h1><br />    <table width="100%">      <td class="dark-td">
+       <table width="100%">
+        <tr>
+         <td align="left" width="60%">
+          <b>Application 2</b>
+         </td>
+         <td align="left" width="40%">
+          03/07/20 by: <a href="/user/view/Amelia">Amelia</a>
+         </td>
+        </tr>
+        <tr>
+         <td colspan="2" align="left">
+         <div align="left">Application 2 has been fixed.<br />
+<br />
+If you had to skip it before, please re-download the binary before attempting it again.</div>
+         </td>
+        </tr>
+        <tr>
+         <td align="left" width="60%" style="font-size: 10px;">
+          <a href="/news/view/725">read more...</a> | <a href="/news/view/725/#comments">comments (94)</a>
+         </td>
+         <td align="left" width="40%">&nbsp;
+         </td>
+        </tr>
+       </table>
+      </td>
+     </tr>
+     <tr><td colspan="2">&nbsp;</td></tr>      <td class="dark-td">
+       <table width="100%">
+        <tr>
+         <td align="left" width="60%">
+          <b>Application 7 &amp; 17</b>
+         </td>
+         <td align="left" width="40%">
+          08/06/20 by: <a href="/user/view/Amelia">Amelia</a>
+         </td>
+        </tr>
+        <tr>
+         <td colspan="2" align="left">
+         <div align="left">Application 7 has been updated with a unix version (Compiled with Ubuntu), and mac OSX version.<br />
+<br />
+Application 17 has been updated to address an issue that would generate an invalid ...
+         </td>
+        </tr>
+        <tr>
+         <td align="left" width="60%" style="font-size: 10px;">
+          <a href="/news/view/724">read more...</a> | <a href="/news/view/724/#comments">comments (32)</a>
+         </td>
+         <td align="left" width="40%">&nbsp;
+         </td>
+        </tr>
+       </table>
+      </td>
+     </tr>
+     <tr><td colspan="2">&nbsp;</td></tr>      <td class="dark-td">
+       <table width="100%">
+        <tr>
+         <td align="left" width="60%">
+          <b>Hacker News: Hacking Tesla &amp; Airlines, and More</b>
+         </td>
+         <td align="left" width="40%">
+          07/06/15 by: <a href="/user/view/parakkafaith">parakkafaith</a>
+         </td>
+        </tr>
+        <tr>
+         <td colspan="2" align="left">
+         <div align="left"><a href='http://www.csoonline.com/article/2915963/disaster-recovery/tesla-attack-started-with-a-single-phone-call.html' target='_new'>Tesla attack started with a single phone cal ...
+         </td>
+        </tr>
+        <tr>
+         <td align="left" width="60%" style="font-size: 10px;">
+          <a href="/news/view/699">read more...</a> | <a href="/news/view/699/#comments">comments (89)</a>
+         </td>
+         <td align="left" width="40%">&nbsp;
+         </td>
+        </tr>
+       </table>
+      </td>
+     </tr>
+     <tr><td colspan="2">&nbsp;</td></tr>      <td class="dark-td">
+       <table width="100%">
+        <tr>
+         <td align="left" width="60%">
+          <b>Security News - March 26, 2015</b>
+         </td>
+         <td align="left" width="40%">
+          27/03/15 by: <a href="/user/view/parakkafaith">parakkafaith</a>
+         </td>
+        </tr>
+        <tr>
+         <td colspan="2" align="left">
+         <div align="left"><a href='http://www.bbc.com/news/technology-31753934' target='_new'>Dozens arrested in cybercrime &quot;strike week&quot;</a><br />
+<br />
+In a strike against cybercrime, 56 suspected cyber cr...
+         </td>
+        </tr>
+        <tr>
+         <td align="left" width="60%" style="font-size: 10px;">
+          <a href="/news/view/697">read more...</a> | <a href="/news/view/697/#comments">comments (23)</a>
+         </td>
+         <td align="left" width="40%">&nbsp;
+         </td>
+        </tr>
+       </table>
+      </td>
+     </tr>
+     <tr><td colspan="2">&nbsp;</td></tr>      <td class="dark-td">
+       <table width="100%">
+        <tr>
+         <td align="left" width="60%">
+          <b>[UPDATE] CDN TLS Certificate</b>
+         </td>
+         <td align="left" width="40%">
+          10/01/15 by: <a href="/user/view/Kage">Kage</a>
+         </td>
+        </tr>
+        <tr>
+         <td colspan="2" align="left">
+         <div align="left"><strike>We appreciate all the reports that our CDN's TLS certificate has expired.  The certificate authority we use is currently offline for an extended period of time and as such we...
+         </td>
+        </tr>
+        <tr>
+         <td align="left" width="60%" style="font-size: 10px;">
+          <a href="/news/view/694">read more...</a> | <a href="/news/view/694/#comments">comments (13)</a>
+         </td>
+         <td align="left" width="40%">&nbsp;
+         </td>
+        </tr>
+       </table>
+      </td>
+     </tr>
+     <tr><td colspan="2">&nbsp;</td></tr>    </table><br /><br /><hr /><br /><br /><h1>Main News</h1><br /><table border="0" width="100%" cellspacing="0" cellpadding="0">
+                        <tr>
+                                <td class="normal-td" style="font-size: 16px;"></td>
+                        </tr>
+                        <tr>
+                                <td></td>
+                        </tr>
+        <tr>
+                <td class="normal-td" style="font-size: 16px;">
+                <b><span style="font-size: 12px"><img src="https://static.htscdn.org/images/tick.gif" alt="#" />02/06/21:</span>&nbsp;&nbsp;Celebrating Pride</b>
+                </td>
+        </tr>
+        <tr>
+                <td class="normal-td" style="font-size: 10px;">
+        <br /><div class="news"><div align="left"><div align="center"><img src='https://data.htscdn.org/images/pride-world-map.png' /></div><br />
+<br />
+At HackThisSite, we have always tried to be a safe, welcoming place for people from every walk of life. This year we would like you to join us in celebrating LGBTQ+ Pride Month for the month of June. Pride is a reminder that while a lot of progress has been made over the past few decades, the fight is far from over and your help is needed.<br />
+<br />
+You may wonder <a href='https://www.huffpost.com/entry/why-pride-an-explanation-for-straight-people_b_5931ccdae4b0649fff2118ee' target='_new'>why people are flying those rainbow flags</a> every year shouting that they are proud. Why do they feel the need to announce it, and <a href='https://www.amnesty.org/en/latest/campaigns/2015/10/5-reasons-why-prides-matter/' target='_new'>why does there need to be a whole month for it</a>? In the perfect world, this would not be necessary.<br />
+<br />
+On June 28, 1969 at the Stonewall Inn in Manhattan, New York, a riot happened. This riot would be the tipping point, starting the path for equality. This was the start of the <a href='https://en.wikipedia.org/wiki/Stonewall_riots' target='_new'>Stonewall Ri...</div>
+                <br />
+        <br />
+                <span style="font-size: 10px;"><a href="/news/view/729">read more...</a>        <br /><br /></span>
+    </td>
+        </tr>
+        <tr>
+                <td>&nbsp;</td>
+        </tr>
+        <tr>
+                <td class="normal-td" style="font-size: 16px;">
+                <b><span style="font-size: 12px"><img src="https://static.htscdn.org/images/tick.gif" alt="#" />06/12/20:</span>&nbsp;&nbsp;HackThisSite @ rC3</b>
+                </td>
+        </tr>
+        <tr>
+                <td class="normal-td" style="font-size: 10px;">
+        <br /><div class="news"><div align="left"><div align="center"><img src='https://data.htscdn.org/images/rc3/htsatrc3-sm.png' /></div><br />
+<br />
+HackThisSite will be present at the Chaos Computer Congress again this year from December 27 - 30. However, with the ongoing human malware pandemic, CCC will be held entirely remotely and online only as <i>rC3</i>. Therefore, we will be present on both our <a href='ircs://irc.hackthissite.org:7000/#rc3' target='_new'>IRC server (#rc3 channel)</a> and <a href='https://discord.gg/khEkhgJ' target='_new'>Discord (#irc-rc3 channel)</a>, as well as the official rC3 communication platforms (when announced).<br />
+<br />
+Make sure to follow the <a href='https://events.ccc.de' target='_new'>CCC blog</a> and the <a href='https://rc3.world' target='_new'>official rC3 website</a> for more details. The <a href='https://fahrplan.events.ccc.de' target='_new'>schedule of events</a> will soon be posted, and as always, <a href='https://media.ccc.de' target='_new'>talks can be viewed online</a> without a ticket.<br />
+<br />
+See you soon in the virtual world!</div></div>
+                <br />
+        <br />
+                <span style="font-size: 10px;"><a href="/news/view/727">read more...</a> | <a href="/news/view/727/#comments">comments (74)</a>        <br /><br /></span>
+    </td>
+        </tr>
+        <tr>
+                <td>&nbsp;</td>
+        </tr>
+        <tr>
+                <td class="normal-td" style="font-size: 16px;">
+                <b><span style="font-size: 12px"><img src="https://static.htscdn.org/images/tick.gif" alt="#" />08/09/20:</span>&nbsp;&nbsp;GO VOTE!</b>
+                </td>
+        </tr>
+        <tr>
+                <td class="normal-td" style="font-size: 10px;">
+        <br /><div class="news"><div align="left"><div align="center"><img src='https://data.htscdn.org/images/vote.jpg' /><br />
+&quot;Vote as if your life depends on it - because it does!&quot;</div><br />
+<br />
+Those are the famous words of the late and venerable <a href='https://en.wikipedia.org/wiki/Justin_Dart_Jr.' target='_new'>Justin Dart Jr.</a>, co-founder of the American Association of People with Disabilities (AAPD) and 'Godfather of the Americans with Disabilities Act (ADA)'. He said this long ago to underscore the importance of electing politicians, at all levels, that will be an ally to those less fortunate. Especially those whose lives literally depend on the outcome of an election.<br />
+<br />
+<b>All of our lives hinge on the result of this election in November.</b> The current administration and those that side with it seek to inflict as much pain, suffering, and even death on people they disagree with. That is not hyperbole, that is <a href='https://www.politico.com/news/magazine/2020/08/24/republicanmeltdown-trump-convention-400039' target='_new'>literally their political ideology</a>. From destroying decades of work building civil rights for Black people and LGBTQ+, to empowering and encouraging Nazis and white nat...</div>
+                <br />
+        <br />
+                <span style="font-size: 10px;"><a href="/news/view/726">read more...</a>        <br /><br /></span>
+    </td>
+        </tr>
+        <tr>
+                <td>&nbsp;</td>
+        </tr>
+        <tr>
+                <td class="normal-td" style="font-size: 16px;">
+                <b><span style="font-size: 12px"><img src="https://static.htscdn.org/images/tick.gif" alt="#" />04/06/20:</span>&nbsp;&nbsp;Black Lives Matter</b>
+                </td>
+        </tr>
+        <tr>
+                <td class="normal-td" style="font-size: 10px;">
+        <br /><div class="news"><div align="left"><div align="center"><img src='https://data.htscdn.org/images/blm_breonnataylor-ahmaudarbery-georgefloyd.jpg' /></div><br />
+The unjustifiable murders of George Floyd, Ahmaud Arbery, Breonna Taylor, and so many more have inspired uprisings not just in the United States but across the globe. The world is grieving, and we grieve with them. But <a href='https://www.newyorker.com/news/q-and-a/bryan-stevenson-on-the-frustration-behind-the-george-floyd-protests' target='_new'>the world is also angry</a>, and rightfully so. For far too long, innocent people, especially minorities and persons of color, have been slaughtered by police with utter impunity, and now police are committing outright acts of terrorism against people protesting this injustice, against the press reporting on their heinous actions, and against innocent bystanders and even children that are not participating in any protests. Furthermore, state and federal officials up to and including the White House are using this as an excuse to implement the most egregiously fascist authoritarianism in the US.<br />
+<br />
+This must end <b>now</b>. We must demand justice and accountability and we cannot stop until all police offi...</div>
+                <br />
+        <br />
+                <span style="font-size: 10px;"><a href="/news/view/723">read more...</a>        <br /><br /></span>
+    </td>
+        </tr>
+        <tr>
+                <td>&nbsp;</td>
+        </tr>
+        <tr>
+                <td class="normal-td" style="font-size: 16px;">
+                <b><span style="font-size: 12px"><img src="https://static.htscdn.org/images/tick.gif" alt="#" />25/12/19:</span>&nbsp;&nbsp;HackThisSite @ 36C3</b>
+                </td>
+        </tr>
+        <tr>
+                <td class="normal-td" style="font-size: 10px;">
+        <br /><div class="news"><div align="left"><div align="center"><img src='https://data.htscdn.org/images/36c3/HTSat36C3.png' /></div><br />
+<br />
+Come meet HackThisSite community members and staff at our <a href='https://36c3.c3nav.de/l/hackthissite/' target='_new'>assembly table</a>, located near Chaos.Jetzt and WikiPaka WG in Hall 2 -- and check out our <a href='https://twitter.com/hackthissite/status/1209610531046219776' target='_new'>blinkenlights</a> while you're there! You can also chat with us on our IRC channel at <a href='irc://irc.hackthissite.org/#36c3' target='_new'>irc.hackthissite.org #36c3</a>, or <a href='https://irc.hackthissite.org/chat/?join=%2336c3' target='_new'>click here</a> to join IRC by web. We will be competing again this year in the <a href='https://2019.ctf.link' target='_new'>C3 CTF</a>, so stop by our assembly table or join us on IRC if you'd like to join our team (regardless of whether you're at C3 or not).<br />
+<br />
+If you aren't able to make it this year, you can always watch the talks <a href='https://streaming.media.ccc.de/36c3/' target='_new'>live online</a> (<a href='https://fahrplan.events.ccc.de/congress/2019/Fahrplan/' target='_new'>schedule here</a>). If you are attending, make sur...</div>
+                <br />
+        <br />
+                <span style="font-size: 10px;"><a href="/news/view/722">read more...</a> | <a href="/news/view/722/#comments">comments (108)</a>        <br /><br /></span>
+    </td>
+        </tr>
+        <tr>
+                <td>&nbsp;</td>
+        </tr></table>[1] <a class="nav" href="/news/2">[2]</a> <a class="nav" href="/news/3">[3]</a> <a class="nav" href="/news/4">[4]</a> <a class="nav" href="/news/5">[5]</a> <a class="nav" href="/news/6">[6]</a> <a class="nav" href="/news/7">[7]</a> <a class="nav" href="/news/8">[8]</a> <a class="nav" href="/news/9">[9]</a> <a class="nav" href="/news/10">[10]</a> <a class="nav" href="/news/11">[11]</a> <a class="nav" href="/news/12">[12]</a> <a class="nav" href="/news/13">[13]</a> <a class="nav" href="/news/14">[14]</a> <a class="nav" href="/news/15">[15]</a> <a class="nav" href="/news/16">[16]</a> <a class="nav" href="/news/17">[17]</a> <a class="nav" href="/news/18">[18]</a> <a class="nav" href="/news/19">[19]</a> <a class="nav" href="/news/20">[20]</a> <a class="nav" href="/news/21">[21]</a> <a class="nav" href="/news/22">[22]</a> <a class="nav" href="/news/23">[23]</a> <a class="nav" href="/news/24">[24]</a> <a class="nav" href="/news/25">[25]</a> <a class="nav" href="/news/26">[26]</a> <a class="nav" href="/news/27">[27]</a> <a class="nav" href="/news/28">[28]</a> </td>
+        </tr>
+      </table></td>
+    </tr>
+ <tr>
+      <td class="sitebottomheader"><img src="https://data.htscdn.org/themes/Dark/images/hts_bottomheadern.jpg" alt="End Footer" width="780" height="60" /></td>
+    </tr>
+  </table>
+  <br />
+<div align="center" style="font-family:Verdana, Arial, Helvetica, sans-serif; font-size:10px; color:#CCCCCC">HackThisSite is the collective work of the HackThisSite staff, licensed under a <a rel="license" href="http://hts.io/x/http://creativecommons.org/licenses/by-nc/3.0/" target="_new">CC BY-NC</a> license.<br />
+We ask that you inform us upon sharing or distributing.<br /><br />
+<sub>Page Generated: Tue, 14 Oct 2025 07:29:25 +0000<br />Web Node: www02 | Page Gen: 0.033s | DB: 17q<br />Current Code Revision: <a href="https://www.hackthissite.org/CHANGELOG">v3.2.5
+ (Sun, 22 May 2016 20:29:51 +0000)</a></sub><br />
+</div>
+</div>
+<div align="center">
+  <p>
+   <a target="_new" href="http://hts.io/x/http://creativecommons.org/licenses/by-nc/3.0/"><img src="https://data.htscdn.org/images/cc_80x15.png" width="80" height="15" border="0" alt="" /></a>
+   <a target="_new" href="http://hts.io/x/http://validator.w3.org/check?uri=referer"><img src="https://data.htscdn.org/images/xhtml10.png" width="80" height="15" border="0" alt="" /></a>&nbsp;
+   <a target="_new" href="http://hts.io/x/http://jigsaw.w3.org/css-validator/check/referer"><img src="https://data.htscdn.org/images/css.png" width="80" height="15" border="0" alt="" /></a> 
+   <a target="_new" href="http://hts.io/x/http://www.php.net/"> <img src="https://data.htscdn.org/images/phppow.gif" width="80" height="15" border="0" alt="" /></a>
+   <!--<a href="http://www.linux.com/"> <img src="../../images/linux2.gif" width="80" height="15" border="0" alt="" /></a>-->
+   <a target="_new" href="http://hts.io/x/http://www.freebsd.org/"> <img src="https://data.htscdn.org/images/freebsd.png" width="80" height="15" border="0" alt="" /></a>
+   <img src="https://data.htscdn.org/images/counter.php" height="14" border="0" alt="Page View Counter" />
+  </p>
+</div>
+<div style="display: none;"><a href="http://hackthissite.org/hp.php">retired</a></div>    </body>
+</html>

@@ -1,0 +1,669 @@
+Status: 200
+
+Headers:
+Date: Tue, 14 Oct 2025 07:30:53 GMT
+Upgrade: h2,h2c
+Connection: Upgrade
+Set-Cookie: HackThisSite=6o1kbpv314r25sekm2d9q291n7; expires=Wed, 15-Oct-2025 07:30:53 GMT; path=/
+Expires: Thu, 19 Nov 1981 08:52:00 GMT
+Cache-Control: no-store, no-cache, must-revalidate, post-check=0, pre-check=0
+Pragma: no-cache
+Onion-Location: http://hackthisjogneh42n5o7gbzrewxee3vyu6ex37ukyvdw6jm66npakiyd.onion/articles/read/1155
+Vary: Accept-Encoding
+Content-Encoding: gzip
+Content-Length: 7847
+Content-Type: text/html
+Content-Language: en
+Server: HackThisSite
+Access-Control-Allow-Origin: *
+Content-Security-Policy: child-src 'self' hackthissite.org *.hackthissite.org htscdn.org *.htscdn.org discord.com; form-action 'self' hackthissite.org *.hackthissite.org htscdn.org *.htscdn.org; upgrade-insecure-requests; report-uri https://hackthissite.report-uri.com/r/d/csp/enforce
+Referrer-Policy: origin-when-cross-origin
+X-XSS-Protection: 0
+Feature-Policy: fullscreen *
+Public-Key-Pins-Report-Only: pin-sha256="YLh1dUR9y6Kja30RrAn7JKnbQG/uEtLMkBgFF2Fuihg="; pin-sha256="Vjs8r4z+80wjNcr1YKepWQboSIRi63WsWXhIMN+eWys="; max-age=2592000; includeSubDomains; report-uri="https://hackthissite.report-uri.com/r/d/hpkp/reportOnly"
+Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
+Report-To: {"group":"default","max_age":31536000,"endpoints":[{"url":"https://hackthissite.report-uri.com/a/d/g"}],"include_subdomains":true}
+NEL: {"report_to":"default","max_age":31536000,"include_subdomains":true,"success_fraction":0.0,"failure_fraction":0.1}
+
+Body (trimmed):
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<head>
+  <title>Hack This Site</title>
+  <meta name="verify-v1" content="s/YXn7eQrMBoF9PL5jLJDiWpAxEXpJzE9JLg/zM4C2Y=" />
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta name="author" content="HackThisSite.org Staff" />
+  <meta name="keywords" content="challenge, computer, culture, deface, digital, ethics, games, guide, hack, hack forums, hacker, hackers, hacking, hacking challenges, hacking forums, mission, net, programming, radical, revolution, root, rooting, security, site, society, tutorial, tutorials, war, wargame, wargames, web, website" />
+  <meta name="title" content="HackThisSite" />
+  <meta name="description" content="HackThisSite.org is a free, safe and legal training ground for hackers to test and expand their ethical hacking skills with challenges, CTFs, and more." />
+  <meta itemprop="name" content="HackThisSite" />
+  <meta itemprop="description" content="HackThisSite.org is a free, safe and legal training ground for hackers to test and expand their ethical hacking skills with challenges, CTFs, and more." />
+  <meta itemprop="image" content="https://data.htscdn.org/images/hackthissite-meta-card.png" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://www.hackthissite.org/" />
+  <meta property="og:title" content="HackThisSite" />
+  <meta property="og:description" content="HackThisSite.org is a free, safe and legal training ground for hackers to test and expand their ethical hacking skills with challenges, CTFs, and more." />
+  <meta property="og:image" content="https://data.htscdn.org/images/hackthissite-meta-card.png" />
+  <meta property="twitter:card" content="summary_large_image" />
+  <meta property="twitter:url" content="https://www.hackthissite.org/" />
+  <meta property="twitter:title" content="HackThisSite" />
+  <meta property="twitter:description" content="HackThisSite.org is a free, safe and legal training ground for hackers to test and expand their ethical hacking skills with challenges, CTFs, and more." />
+  <meta property="twitter:image" content="https://data.htscdn.org/images/hackthissite-meta-card.png" />
+  <meta name="viewport" content="width=820, initial-scale=0.5" />
+  <meta name="theme-color" content="#163ea7" />
+  <meta name="color-scheme" content="dark" />
+  <meta http-equiv="onion-location" content="http://hackthisjogneh42n5o7gbzrewxee3vyu6ex37ukyvdw6jm66npakiyd.onion/articles/read/1155" />
+  <link rel="apple-touch-icon" sizes="180x180" href="https://data.htscdn.org/favicon/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="https://data.htscdn.org/favicon/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="https://data.htscdn.org/favicon/favicon-16x16.png" />
+  <link rel="manifest" href="https://www.hackthissite.org/manifest.webmanifest" />
+  <link href="https://data.htscdn.org/themes/Dark/Dark.css" rel="stylesheet" type="text/css" />
+  <link href="https://www.hackthissite.org/pages/hts.rss.php" rel="alternate" type="application/rss+xml" title="HTS RSS feed" />
+  <base href="https://www.hackthissite.org" />
+  <script type="text/javascript" src="https://data.htscdn.org/js/jquery-1.8.1.min.js"></script>
+  </head>
+<body>
+<span id="blank-element" style="display: none"></span>
+
+<div id="topbar" align="center">
+<a href="https://www.hackthissite.org" id="active">Hack This Site</a> (<a href="https://hackthisjogneh42n5o7gbzrewxee3vyu6ex37ukyvdw6jm66npakiyd.onion">TOR .onion HTTPS</a> - <a href="http://hackthisjogneh42n5o7gbzrewxee3vyu6ex37ukyvdw6jm66npakiyd.onion">HTTP</a>) - <a href="https://www.irc.hackthissite.org/chat">IRC</a> - <a href="/discord">Discord</a> - <a href="https://www.hackthissite.org/forums">Forums</a> - <a href="https://www.cafepress.com/htsstore" target="_new">Store</a> - <a href="https://hts.io" target="_new">URL Shortener</a> - <a href="https://cryptopaste.org" target="_new">CryptoPaste</a>&nbsp;&nbsp;&nbsp;---&nbsp;&nbsp;&nbsp;<a href="https://www.facebook.com/HackThisSite.org" target="_new">Like Us</a> - <a href="https://twitter.com/hackthissite" target="_new">Follow Us</a> - <a href="https://github.com/HackThisSite" target="_new">Fork Us</a>
+</div>
+<div class="hts-header">
+<a href="/"><img src="https://data.htscdn.org/themes/Dark/images/header.jpg" alt="Hack This Site" border="0" /></a>
+<br />
+<a href="https://www.hackthissite.org/advertise"><img src="https://data.htscdn.org/images/support-hts.gif" alt="Support HackThisSite - Advertise with us!" title="Support HackThisSite - Advertise with us!" id="atpimg" class="abstaimg" border="0" /><img src="https://www.hackthissite.org/images/px.png" border="0"></a></div>
+  <table width="780" border="0" cellpadding="0" cellspacing="0" class="siteheader cmTable">
+    <tr>
+      <td class="sitetopheader"><blockquote>No one gossips about other peoples secret virtues.</blockquote></td>
+    </tr>
+    <tr>
+      <td><table width="100%"  border="0" cellspacing="0" cellpadding="0">
+        <tr>
+          <td width="160" valign="top" class="navbar"><div align="center">
+            <br />
+            	<!-- login form start -->
+	<div id="ourlogin">
+		<span id="loginclick"><a class="nav" href="/user/login">Login</a></span> (or <a class="nav" href="/register">Register</a>):<br />
+				<form id="loginform" method="post" action="/user/login">
+		<div id="innerlogin">
+		<script type="text/javascript">var userclicked=0; var passclicked=0;</script>
+		<p><input type="text" name="username" class="login" value="" onclick="if(userclicked==0){this.value='';userclicked=1;};" title="Username" /></p>
+		<p><input type="password" name="password" class="login" value="" onclick="if(passclicked==0){this.value='';passclicked=1;};" title="Password" /></p>
+				<p><input type="submit" value="Login" name="btn_submit" class="submit-button" /></p>
+		</div>
+	</form>
+	<!-- login form end -->
+	<a href="/user/resetpass">Lost your password?</a><br />
+        <a href="/user/forgotusername">Forgot your username?</a></br />
+		</div>
+	<h4 class="header">Donate</h4>
+<p>
+  <a href="https://www.hackthissite.org/donate/">
+    <img
+      src="https://data.htscdn.org/images/donate.png"
+      border="0"
+      title="Donate to HackThisSite.org"
+      alt="Donate to HackThisSite.org" />
+  </a>
+  <br />
+  <img
+    src="https://data.htscdn.org/images/donate-bat.png"
+    border="0"
+    title="Donate using Brave Basic Attention Tokens"
+    alt="Donate using Brave Basic Attention Tokens" />
+  <br /><br />
+  HTS costs up to $300 a month to operate. We <strong>need</strong> your help!
+</p>
+<h4 class="header">Challenges</h4>
+<ul class="navigation">
+  <li><a class="nav" href="/missions/basic/">Basic</a></li><li><a class="nav" href="/missions/realistic/">Realistic</a></li><li><a class="nav" href="/missions/application/">Application</a></li><li><a class="nav" href="/missions/programming/">Programming</a></li><li><a class="nav" href="/missions/javascript/">Javascript</a></li><li><a class="nav" href="/missions/forensic/">Forensic</a></li><li><a class="nav" href="/missions/playit/extbasic/0/">Extended Basic</a></li><li><a class="nav" href="/missions/playit/stego/0/">Steganography</a></li><li><a class="nav" href="ircs://irc.hackthissite.org:7000/#htb">IRC</a></li></ul>
+
+<h4 class="header">Get Informed</h4><ul class="navigation"><li><a class="nav" href="/blogs">Blogs</a></li><li><a class="nav" href="/news">News</a></li><li><a class="nav" href="/pages/articles/article.php">Articles</a></li><li><a class="nav" href="/lectures">Lectures</a></li><li><a class="nav" href="/pages/programs/programs.php">Useful Stuff</a></li><!--<li><a class="nav" href="ebooks">E-books</a></li>--><li><a class="nav" href="https://mirror.hackthissite.org/hackthiszine/">HackThisZine</a></li><li><a class="nav" href=""></a></li></ul><h4 class="header">Get Involved</h4><ul class="navigation"><li><a class="nav" href="/donate"><span class="completed">Donate to HackThisSite!</span></a></li><li><a class="nav" href="https://www.cafepress.com/htsstore">Store</a></li><li><a class="nav" href="/submit/article">Submit Article</a></li><li><a class="nav" href="/pages/bugManagement/index.php">Submit Bug Report</a></li><li><a class="nav" href="/submit/lecture">Submit Lecture</a></li><li><a class="nav" href="/pages/programs/insert.php">Submit Useful Stuff</a></li><!--<li><a class="nav" href="/pages/showsource/loopdeloop.php">We Want You!</a></li>--><li><a class="nav" href=""></a></li></ul><h4 class="header">Communicate</h4><ul class="navigation"><li><a class="nav" href="/forums">Forums</a></li><li><a class="nav" href="/discord">Discord</a></li><li><a class="nav" href="https://www.hackthissite.org/forums/ucp.php?i=pm">Private Messages</a></li><li><a class="nav" href="https://www.irc.hackthissite.org/chat">IRC Web Chat</a></li><li><a class="nav" href="https://www.irc.hackthissite.org/idlerpg">IRC IdleRPG</a></li><li><a class="nav" href="https://www.hackthissite.org/irc/stats.php">IRC Stats</a></li><li><a class="nav" href="https://qdb.hackthissite.org">IRC Quotes</a></li><li><a class="nav" href="/pages/irc/reference.php">IRC Command Reference</a></li><li><a class="nav" href="/user/search">Search Users</a></li><li><a class="nav" href="/user/online">Who is Online</a></li><li><a class="nav" href="/user/rankings/">Rankings</a></li><li><a class="nav" href=""></a></li></ul><h4 class="header">About HTS</h4><ul class="navigation"><li><a class="nav" href="/info/about">About the Project</a></li><li><a class="nav" href="/info/billofrights">Bill of Rights</a></li><li><a class="nav" href="https://legal.hackthissite.org/terms">Terms &amp; Conditions</a></li><li><a class="nav" href="https://legal.hackthissite.org/privacy">Privacy Policy</a></li><li><a class="nav" href="/info/staff">Meet the Staff</a></li><li><a class="nav" href="/info/underthehood">Under the Hood</a></li><li><a class="nav" href="/advertise">Advertise with HTS</a></li><li><a class="nav" href="/ipv6">IPv6</a></li><li><a class="nav" href="/hof">Hall of Fame</a></li><li><a class="nav" href=""></a></li></ul><h4 class="header"></h4><ul class="navigation"><li><a class="nav" href=""></a></li></ul>
+<br />
+<a href="/">
+  <img
+    src="https://data.htscdn.org/images/hts_80x15.gif"
+    width="80"
+    height="15"
+    border="0"
+    alt="" />
+</a>
+<br />
+<a class="nav" href="https://www.hackthissite.org/pages/info/linktous.php">
+  Link to us!
+</a>
+
+<h4 class="header">
+  Partners
+</h4>
+<br />
+<a class="nav" target="_new" href="https://www.hellboundhackers.org/">
+  <img
+    src="https://data.htscdn.org/images/hbhlogo.jpg"
+    alt="Hellbound Hackers"
+    title="Hellbound Hackers"
+    width="88"
+    height="31"
+    border="0" />
+</a>
+<br />
+<a class="nav" target="_new" href="https://www.netsparker.com/blog">
+  <img
+    src="https://data.htscdn.org/images/netsparker.gif"
+    alt="Netsparker Security Blog"
+    title="Netsparker Security Blog"
+    width="88"
+    height="31"
+    border="0" />
+</a>
+<br />
+<a class="nav" target="_new" href="https://www.acunetix.com/blog">
+  <img
+   src="https://data.htscdn.org/images/acunetixblog.gif"
+   alt="Acunetix Security Blog"
+   title="Acunetix Security Blog"
+   width="88"
+   height="31"
+   border="0" />
+</a>
+<br />
+<a class="nav" target="_new" href="https://www.buddyns.com">
+<img
+  src="https://data.htscdn.org/images/buddyns88x31.png"
+  alt="BuddyNS Secondary DNS"
+  title="BuddyNS Secondary DNS"
+  width="88"
+  height="31"
+  border="0" />
+</a>
+<br />
+<a class="nav" target="_new" href="https://redirect.pizza/?utm_source=partner&utm_medium=banner&utm_campaign=hackthissite.org">
+<img
+  src="https://data.htscdn.org/images/redirectpizza88x31.png"
+  alt="Redirect.pizza - HTTPS Redirect Service"
+  title="Redirect.pizza - HTTPS Redirect Service"
+  width="88"
+  height="31"
+  border="0" />
+</a>
+<br />
+<a class="nav" target="_new" href="https://brave.com/hac977">
+<img
+  src="https://data.htscdn.org/images/brave-88x31.png"
+  alt="Brave Browser - Secure, fast, and private web browser with a built-in adblocker"
+  title="Brave Browser - Secure, fast, and private web browser with a built-in adblocker"
+  width="88"
+  height="31"
+  border="0" />
+</a>
+<br />
+
+          </td>
+          <td valign="top" class="sitebuffer">
+	<br />
+ <table border="0" width="100%" cellspacing="2" cellpadding="3">
+  <tr>
+   <td colspan="2" class="light-td">
+    <span style="font-size: 18px">
+     <b>Realistic mission 1 tutorial</b>
+    </span>
+   </td>
+  </tr>
+  <tr>
+   <td colspan="2" class="dark-td" style="font-size: 10px">
+    Published by: <span style="font-weight: bold;"><a href="/user/view/benedikt1/">benedikt1</a></span>, on 2020-12-13&nbsp;10:17:50   </td>
+  </tr>
+  <tr>
+   <td colspan="2" class="light-td" align="left" style="font-size: 12px">
+    <div align="left"><h2>Introduction</h2><br />
+Hello, since none else did a Tutorial of this mission, I am going to do it. <br />
+<br />
+<h2>Requirements:</h2><br />
+-<a href='http://www.hackthissite.org/missions/basic/'>Basic</a> challenges completion <br />
+-HTML moderate knowledge<br />
+-A web browser with an inspecting tool<br />
+<br />
+<h3>Ok. Now let&amp;#039;s take a look at the challenge.</h3><br />
+Message:<i>&quot;Hey man, I need a big favour from you. Remember that website I showed you once before? Uncle Arnold&amp;#039;s Band Review Page? Well, a long time ago I made a $500 bet with a friend that my band would be at the top of the list by the end of the year. Well, as you already know, two of my band members have died in a horrendous car accident... but this ass hole still insists that the bet is on!<br />
+I know you&amp;#039;re good with computers and stuff, so I was wondering, is there any way for you to hack this website and make my band on the top of the list? My band is Raging Inferno. Thanks a lot, man!&quot;</i><br />
+<br />
+We take note: he wants that his band comes on the top of the list.<br />
+<br />
+If we go on that page, we see that the bands are ordered from the best rated (top of the page) to the worst rated (end of the page). Also, we see that we can give a rate from 1 to 5. <br />
+That means the first one is more overrated than normal (so don&amp;#039;t feel guilty in doing this :P).<br />
+How can we move the customer&amp;#039;s band to the top of the page? I&amp;#039;ll let you think.<br />
+<br />
+This challenge is very easy, but if you&amp;#039;re stuck:<br />
+<br /> <b>spoiler:</b> <br /><div class="spoiler">Give your customer an enourmous rate.</div> <br />
+<br />
+<br />
+Thanks to all the HackThisSite team, they made a great job!<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+P.S If you try to do the same thing you&amp;#039;ve done in the challenge with this article.. find out by yourself :P<br />
+</div>   </td>
+  </tr>
+ <tr>
+  <td>
+     Cast your vote on this article<br />10 - Highest, 1 - Lowest
+   <form method="post" action="/articles/read/1155">
+    <select name="slcVote">
+     <option value="10">10</option><option value="9">9</option><option value="8">8</option><option value="7">7</option><option value="6">6</option><option value="5">5</option><option value="4">4</option><option value="3">3</option><option value="2">2</option><option value="1">1</option>    </select>
+    <input type="submit" class="submit-button" value="Vote!" />
+   </form>
+     </td>
+ </tr>
+ </table>
+ <div align="center">
+
+			<a name="comments"></a>
+			<script language ="JavaScript" type="text/javascript">
+				function go(site,page,other) {
+               		self.location=site+page+other;
+				}
+			</script>
+			<br /><div class="cmHeader"><b>Comments:</b> <br />&nbsp;<span style="font-size: 10px">Published: 30 comments.</span></div>
+			<br /><span style="font-size: 10pt;">Page:  [1] <a href="articles/read/1155/2/30">2</a> </span><br /><br />
+				<table class="cmTable" border="0" width="80%" cellspacing="0" cellpadding="0">
+					<form action="/pages/comments/com_delete.php" method="get" name="com_delete">
+						<tr><td width="12%"></td><td width="2%"></td><td width="77%"></td><td width="9%"></td></tr>
+			<div class="usercomment">
+					<div class="usercommentheader">
+						<div class="ucwho">&nbsp;<a href="/user/view/Eiden90">Eiden90</a> - 11:44 pm Thursday December 17th, 2020 </div>
+							<div class="ucreport">
+								<a href="/com/report/97838"><img src="/pages/messages/msys/images/flag.png" alt="Report this post" border="0" /></a>
+							</div>
+					</div>
+					<div class="usercommentbody">
+						<div class="usercommentavatar">
+							<img src="/pages/user/avatar.view.php?id=404" title="Avatar" alt="Avatar" height="70" width="70" /></div><p class="usercommentbody" align="left">very informative</p></div>
+						</div>
+						<br />
+				<div class="usercomment">
+					<div class="usercommentheader">
+						<div class="ucwho">&nbsp;<a href="/user/view/xyz147258">xyz147258</a> - 04:46 am Monday January 11th, 2021 </div>
+							<div class="ucreport">
+								<a href="/com/report/97917"><img src="/pages/messages/msys/images/flag.png" alt="Report this post" border="0" /></a>
+							</div>
+					</div>
+					<div class="usercommentbody">
+						<div class="usercommentavatar">
+							<img src="/pages/user/avatar.view.php?id=404" title="Avatar" alt="Avatar" height="70" width="70" /></div><p class="usercommentbody" align="left"></p></div>
+						</div>
+						<br />
+				<div class="usercomment">
+					<div class="usercommentheader">
+						<div class="ucwho">&nbsp;<a href="/user/view/Manish-sharma89">Manish-sharma89</a> - 09:48 pm Friday January 15th, 2021 </div>
+							<div class="ucreport">
+								<a href="/com/report/97934"><img src="/pages/messages/msys/images/flag.png" alt="Report this post" border="0" /></a>
+							</div>
+					</div>
+					<div class="usercommentbody">
+						<div class="usercommentavatar">
+							<img src="/pages/user/avatar.view.php?id=404" title="Avatar" alt="Avatar" height="70" width="70" /></div><p class="usercommentbody" align="left"></p></div>
+						</div>
+						<br />
+				<div class="usercomment">
+					<div class="usercommentheader">
+						<div class="ucwho">&nbsp;<a href="/user/view/abrahemmhmd">abrahemmhmd</a> - 07:14 pm Saturday January 16th, 2021 </div>
+							<div class="ucreport">
+								<a href="/com/report/97939"><img src="/pages/messages/msys/images/flag.png" alt="Report this post" border="0" /></a>
+							</div>
+					</div>
+					<div class="usercommentbody">
+						<div class="usercommentavatar">
+							<img src="/pages/user/avatar.view.php?id=404" title="Avatar" alt="Avatar" height="70" width="70" /></div><p class="usercommentbody" align="left">Raging Inferno</p></div>
+						</div>
+						<br />
+				<div class="usercomment">
+					<div class="usercommentheader">
+						<div class="ucwho">&nbsp;<a href="/user/view/GrayHat223">GrayHat223</a> - 07:24 pm Saturday February 13th, 2021 </div>
+							<div class="ucreport">
+								<a href="/com/report/98069"><img src="/pages/messages/msys/images/flag.png" alt="Report this post" border="0" /></a>
+							</div>
+					</div>
+					<div class="usercommentbody">
+						<div class="usercommentavatar">
+							<img src="/pages/user/avatar.view.php?id=404" title="Avatar" alt="Avatar" height="70" width="70" /></div><p class="usercommentbody" align="left">&lt;script&gt;alert(&quot;welcome to the 1337 \/\/365173&quot;)&lt;/script&gt;<br />
+lol i tried to do xss injection but it didn&#039;t work...</p></div>
+						</div>
+						<br />
+				<div class="usercomment">
+					<div class="usercommentheader">
+						<div class="ucwho">&nbsp;<a href="/user/view/KristyKnight">KristyKnight</a> - 06:20 am Wednesday March 03rd, 2021 </div>
+							<div class="ucreport">
+								<a href="/com/report/98132"><img src="/pages/messages/msys/images/flag.png" alt="Report this post" border="0" /></a>
+							</div>
+					</div>
+					<div class="usercommentbody">
+						<div class="usercommentavatar">
+							<img src="/pages/user/avatar.view.php?id=404" title="Avatar" alt="Avatar" height="70" width="70" /></div><p class="usercommentbody" align="left">If you are looking for &lt;a href=&quot; https://scholaron.com/homework-answers/95-list-the-categories-of-needs-1414482 &quot;&gt;95 List The Categories Of Needs&lt;/a&gt; the best place to get it would be ScholarOn. All questions including &lt;a href=&quot; https://scholaron.com/homework-answers/95-list-the-layers-of-the-1407241 &quot;&gt;95 List The Layers Of The&lt;/a&gt; are listed with complete solutions with exclusive offers on problems like &lt;a href=&quot; https://scholaron.com/homework-answers/95-probably-the-most-crucial-expression-1 401847 &quot;&gt;95 Probably The Most Crucial Expression&lt;/a&gt;, all under a single subscription.</p></div>
+						</div>
+						<br />
+				<div class="usercomment">
+					<div class="usercommentheader">
+						<div class="ucwho">&nbsp;<a href="/user/view/Ahmedborgi">Ahmedborgi</a> - 10:55 am Friday April 09th, 2021 </div>
+							<div class="ucreport">
+								<a href="/com/report/98246"><img src="/pages/messages/msys/images/flag.png" alt="Report this post" border="0" /></a>
+							</div>
+					</div>
+					<div class="usercommentbody">
+						<div class="usercommentavatar">
+							<img src="/pages/user/avatar.view.php?id=404" title="Avatar" alt="Avatar" height="70" width="70" /></div><p class="usercommentbody" align="left">&amp;#1578;&amp;#1593;&amp;#1575;&amp;#1605;&amp;#1604; &amp;#1605;&amp;#1593; &amp;#1575;&amp;#1604;&amp;#1575;&amp;#1605;&amp;#1585; &amp;#1576;&amp;#1584;&amp;#1603;&amp;#1609; &amp;#1608;&amp;#1603;&amp;#1604; &amp;#1575;&amp;#1582;&amp;#1604;&amp;#1575;&amp;#1602;</p></div>
+						</div>
+						<br />
+				<div class="usercomment">
+					<div class="usercommentheader">
+						<div class="ucwho">&nbsp;<a href="/user/view/babylunjuk169">babylunjuk169</a> - 10:50 am Saturday April 10th, 2021 </div>
+							<div class="ucreport">
+								<a href="/com/report/98249"><img src="/pages/messages/msys/images/flag.png" alt="Report this post" border="0" /></a>
+							</div>
+					</div>
+					<div class="usercommentbody">
+						<div class="usercommentavatar">
+							<img src="/pages/user/avatar.view.php?id=404" title="Avatar" alt="Avatar" height="70" width="70" /></div><p class="usercommentbody" align="left">waht answer please</p></div>
+						</div>
+						<br />
+				<div class="usercomment">
+					<div class="usercommentheader">
+						<div class="ucwho">&nbsp;<a href="/user/view/janvai40241">janvai40241</a> - 09:50 am Sunday May 23rd, 2021 </div>
+							<div class="ucreport">
+								<a href="/com/report/98393"><img src="/pages/messages/msys/images/flag.png" alt="Report this post" border="0" /></a>
+							</div>
+					</div>
+					<div class="usercommentbody">
+						<div class="usercommentavatar">
+							<img src="/pages/user/avatar.view.php?id=404" title="Avatar" alt="Avatar" height="70" width="70" /></div><p class="usercommentbody" align="left">i am new,can you please teach me</p></div>
+						</div>
+						<br />
+				<div class="usercomment">
+					<div class="usercommentheader">
+						<div class="ucwho">&nbsp;<a href="/user/view/hemo21">hemo21</a> - 12:12 am Thursday June 10th, 2021 </div>
+							<div class="ucreport">
+								<a href="/com/report/98471"><img src="/pages/messages/msys/images/flag.png" alt="Report this post" border="0" /></a>
+							</div>
+					</div>
+					<div class="usercommentbody">
+						<div class="usercommentavatar">
+							<img src="/pages/user/avatar.view.php?id=404" title="Avatar" alt="Avatar" height="70" width="70" /></div><p class="usercommentbody" align="left">OK</p></div>
+						</div>
+						<br />
+				<div class="usercomment">
+					<div class="usercommentheader">
+						<div class="ucwho">&nbsp;<a href="/user/view/Jayzzi">Jayzzi</a> - 10:51 am Monday June 21st, 2021 </div>
+							<div class="ucreport">
+								<a href="/com/report/98491"><img src="/pages/messages/msys/images/flag.png" alt="Report this post" border="0" /></a>
+							</div>
+					</div>
+					<div class="usercommentbody">
+						<div class="usercommentavatar">
+							<img src="/pages/user/avatar.view.php?id=404" title="Avatar" alt="Avatar" height="70" width="70" /></div><p class="usercommentbody" align="left">Am new please can you please teach me</p></div>
+						</div>
+						<br />
+				<div class="usercomment">
+					<div class="usercommentheader">
+						<div class="ucwho">&nbsp;<a href="/user/view/Albasha jafar">Albasha jafar</a> - 12:01 pm Monday June 28th, 2021 </div>
+							<div class="ucreport">
+								<a href="/com/report/98510"><img src="/pages/messages/msys/images/flag.png" alt="Report this post" border="0" /></a>
+							</div>
+					</div>
+					<div class="usercommentbody">
+						<div class="usercommentavatar">
+							<img src="/pages/user/avatar.view.php?id=404" title="Avatar" alt="Avatar" height="70" width="70" /></div><p class="usercommentbody" align="left">&amp;#1575;&amp;#1606;&amp;#1575; &amp;#1580;&amp;#1583;&amp;#1610;&amp;#1583; &amp;#1571;&amp;#1608;&amp;#1583; &amp;#1575;&amp;#1604;&amp;#1578;&amp;#1593;&amp;#1604;&amp;#1605; &amp;#1603;&amp;#1610;&amp;#1601; &amp;#1575;&amp;#1578;&amp;#1593;&amp;#1604;&amp;#1605; &amp;#1605;&amp;#1606; &amp;#1601;&amp;#1590;&amp;#1604;&amp;#1603;</p></div>
+						</div>
+						<br />
+				<div class="usercomment">
+					<div class="usercommentheader">
+						<div class="ucwho">&nbsp;<a href="/user/view/Smart Michael74">Smart Michael74</a> - 06:37 am Monday August 16th, 2021 </div>
+							<div class="ucreport">
+								<a href="/com/report/98692"><img src="/pages/messages/msys/images/flag.png" alt="Report this post" border="0" /></a>
+							</div>
+					</div>
+					<div class="usercommentbody">
+						<div class="usercommentavatar">
+							<img src="/pages/user/avatar.view.php?id=404" title="Avatar" alt="Avatar" height="70" width="70" /></div><p class="usercommentbody" align="left">Please am new in this group <br />
+Please can you teach me how to hack</p></div>
+						</div>
+						<br />
+				<div class="usercomment">
+					<div class="usercommentheader">
+						<div class="ucwho">&nbsp;<a href="/user/view/Shadowclipse">Shadowclipse</a> - 02:13 am Friday November 12th, 2021 </div>
+							<div class="ucreport">
+								<a href="/com/report/98917"><img src="/pages/messages/msys/images/flag.png" alt="Report this post" border="0" /></a>
+							</div>
+					</div>
+					<div class="usercommentbody">
+						<div class="usercommentavatar">
+							<img src="/pages/user/avatar.view.php?id=404" title="Avatar" alt="Avatar" height="70" width="70" /></div><p class="usercommentbody" align="left">I tried to do that before I went to this article, but my vote doesn&#039;t seem to change anything.<br />
+I voted about 100000000000000000000000000000000000000000 or something.</p></div>
+						</div>
+						<br />
+				<div class="usercomment">
+					<div class="usercommentheader">
+						<div class="ucwho">&nbsp;<a href="/user/view/MKCSMKCDS1DS">MKCSMKCDS1DS</a> - 02:18 am Tuesday May 24th, 2022 </div>
+							<div class="ucreport">
+								<a href="/com/report/99256"><img src="/pages/messages/msys/images/flag.png" alt="Report this post" border="0" /></a>
+							</div>
+					</div>
+					<div class="usercommentbody">
+						<div class="usercommentavatar">
+							<img src="/pages/user/avatar.view.php?id=404" title="Avatar" alt="Avatar" height="70" width="70" /></div><p class="usercommentbody" align="left">please i am new in this group<br />
+I am very interested in learning from you, I would like you to support me, thank you very much</p></div>
+						</div>
+						<br />
+				<div class="usercomment">
+					<div class="usercommentheader">
+						<div class="ucwho">&nbsp;<a href="/user/view/rickysha">rickysha</a> - 01:33 pm Friday July 15th, 2022 </div>
+							<div class="ucreport">
+								<a href="/com/report/99374"><img src="/pages/messages/msys/images/flag.png" alt="Report this post" border="0" /></a>
+							</div>
+					</div>
+					<div class="usercommentbody">
+						<div class="usercommentavatar">
+							<img src="/pages/user/avatar.view.php?id=404" title="Avatar" alt="Avatar" height="70" width="70" /></div><p class="usercommentbody" align="left">làm &amp;#417;n, tôi là ng&amp;#432;&amp;#7901;i m&amp;#7899;i trong nhóm này<br />
+tôi r&amp;#7845;t mu&amp;#7889;n h&amp;#7885;c h&amp;#7887;i t&amp;#7915; các b&amp;#7841;n, mong các b&amp;#7841;n &amp;#7911;ng h&amp;#7897; tôi, c&amp;#7843;m &amp;#417;n r&amp;#7845;t nhi&amp;#7873;u</p></div>
+						</div>
+						<br />
+				<div class="usercomment">
+					<div class="usercommentheader">
+						<div class="ucwho">&nbsp;<a href="/user/view/karimmania">karimmania</a> - 02:01 pm Thursday September 29th, 2022 </div>
+							<div class="ucreport">
+								<a href="/com/report/99505"><img src="/pages/messages/msys/images/flag.png" alt="Report this post" border="0" /></a>
+							</div>
+					</div>
+					<div class="usercommentbody">
+						<div class="usercommentavatar">
+							<img src="/pages/user/avatar.view.php?id=404" title="Avatar" alt="Avatar" height="70" width="70" /></div><p class="usercommentbody" align="left">HACKING LEARNING INFORMATION</p></div>
+						</div>
+						<br />
+				<div class="usercomment">
+					<div class="usercommentheader">
+						<div class="ucwho">&nbsp;<a href="/user/view/test_user_12345678">test_user_12345678</a> - 11:36 am Thursday January 19th, 2023 </div>
+							<div class="ucreport">
+								<a href="/com/report/99724"><img src="/pages/messages/msys/images/flag.png" alt="Report this post" border="0" /></a>
+							</div>
+					</div>
+					<div class="usercommentbody">
+						<div class="usercommentavatar">
+							<img src="/pages/user/avatar.view.php?id=404" title="Avatar" alt="Avatar" height="70" width="70" /></div><p class="usercommentbody" align="left"></p></div>
+						</div>
+						<br />
+				<div class="usercomment">
+					<div class="usercommentheader">
+						<div class="ucwho">&nbsp;<a href="/user/view/test_user_12345678">test_user_12345678</a> - 11:36 am Thursday January 19th, 2023 </div>
+							<div class="ucreport">
+								<a href="/com/report/99725"><img src="/pages/messages/msys/images/flag.png" alt="Report this post" border="0" /></a>
+							</div>
+					</div>
+					<div class="usercommentbody">
+						<div class="usercommentavatar">
+							<img src="/pages/user/avatar.view.php?id=404" title="Avatar" alt="Avatar" height="70" width="70" /></div><p class="usercommentbody" align="left">nessus_was_textjn42emyt</p></div>
+						</div>
+						<br />
+				<div class="usercomment">
+					<div class="usercommentheader">
+						<div class="ucwho">&nbsp;<a href="/user/view/test_user_12345678">test_user_12345678</a> - 11:36 am Thursday January 19th, 2023 </div>
+							<div class="ucreport">
+								<a href="/com/report/99726"><img src="/pages/messages/msys/images/flag.png" alt="Report this post" border="0" /></a>
+							</div>
+					</div>
+					<div class="usercommentbody">
+						<div class="usercommentavatar">
+							<img src="/pages/user/avatar.view.php?id=404" title="Avatar" alt="Avatar" height="70" width="70" /></div><p class="usercommentbody" align="left"></p></div>
+						</div>
+						<br />
+				<div class="usercomment">
+					<div class="usercommentheader">
+						<div class="ucwho">&nbsp;<a href="/user/view/test_user_12345678">test_user_12345678</a> - 11:36 am Thursday January 19th, 2023 </div>
+							<div class="ucreport">
+								<a href="/com/report/99727"><img src="/pages/messages/msys/images/flag.png" alt="Report this post" border="0" /></a>
+							</div>
+					</div>
+					<div class="usercommentbody">
+						<div class="usercommentavatar">
+							<img src="/pages/user/avatar.view.php?id=404" title="Avatar" alt="Avatar" height="70" width="70" /></div><p class="usercommentbody" align="left">nessus_was_text7hiagcdk</p></div>
+						</div>
+						<br />
+				<div class="usercomment">
+					<div class="usercommentheader">
+						<div class="ucwho">&nbsp;<a href="/user/view/test_user_12345678">test_user_12345678</a> - 11:36 am Thursday January 19th, 2023 </div>
+							<div class="ucreport">
+								<a href="/com/report/99728"><img src="/pages/messages/msys/images/flag.png" alt="Report this post" border="0" /></a>
+							</div>
+					</div>
+					<div class="usercommentbody">
+						<div class="usercommentavatar">
+							<img src="/pages/user/avatar.view.php?id=404" title="Avatar" alt="Avatar" height="70" width="70" /></div><p class="usercommentbody" align="left">nessus_was_text0wb97hny</p></div>
+						</div>
+						<br />
+				<div class="usercomment">
+					<div class="usercommentheader">
+						<div class="ucwho">&nbsp;<a href="/user/view/kaukaudograu">kaukaudograu</a> - 08:39 pm Wednesday August 02nd, 2023 </div>
+							<div class="ucreport">
+								<a href="/com/report/101633"><img src="/pages/messages/msys/images/flag.png" alt="Report this post" border="0" /></a>
+							</div>
+					</div>
+					<div class="usercommentbody">
+						<div class="usercommentavatar">
+							<img src="/pages/user/avatar.view.php?id=404" title="Avatar" alt="Avatar" height="70" width="70" /></div><p class="usercommentbody" align="left">&#039;</p></div>
+						</div>
+						<br />
+				<div class="usercomment">
+					<div class="usercommentheader">
+						<div class="ucwho">&nbsp;<a href="/user/view/End000">End000</a> - 12:59 pm Wednesday August 07th, 2024 </div>
+							<div class="ucreport">
+								<a href="/com/report/102241"><img src="/pages/messages/msys/images/flag.png" alt="Report this post" border="0" /></a>
+							</div>
+					</div>
+					<div class="usercommentbody">
+						<div class="usercommentavatar">
+							<img src="/pages/user/avatar.view.php?id=404" title="Avatar" alt="Avatar" height="70" width="70" /></div><p class="usercommentbody" align="left">WhatsApp messages hack someone</p></div>
+						</div>
+						<br />
+				<div class="usercomment">
+					<div class="usercommentheader">
+						<div class="ucwho">&nbsp;<a href="/user/view/Ali_smahnea1">Ali_smahnea1</a> - 10:03 pm Monday January 06th, 2025 </div>
+							<div class="ucreport">
+								<a href="/com/report/102440"><img src="/pages/messages/msys/images/flag.png" alt="Report this post" border="0" /></a>
+							</div>
+					</div>
+					<div class="usercommentbody">
+						<div class="usercommentavatar">
+							<img src="/pages/user/avatar.view.php?id=404" title="Avatar" alt="Avatar" height="70" width="70" /></div><p class="usercommentbody" align="left">&amp;#1575;&amp;#1604;&amp;#1575;&amp;#1582;&amp;#1578;&amp;#1585;&amp;#1575;&am p;#1602; &amp;#1593;&amp;#1576;&amp;#1585; &amp;#1585;&amp;#1608;&amp;#1575;&amp;#1576;&amp;#1591; &amp;#1578;&amp;#1589;&amp;#1606;&amp;#1593;&amp;#1607;&amp;#1575; &amp;#1604;&amp;#1604;&amp;#1608;&amp;#1589;&amp;#1608;&amp;#1604; &amp;#1575;&amp;#1604;&amp;#1609; &amp;#1585;&amp;#1602;&amp;#1605; &amp;#1575;&amp;#1604;&amp;#1607;&amp;#1575;&amp;#1578;&amp;#1601; &amp;#1608;&amp;#1605;&amp;#1606; &amp;#1579;&amp;#1605;&amp;#1607; &amp;#1610;&amp;#1585;&amp;#1587;&amp;#1604; &amp;#1604;&amp;#1603; &amp;#1588;&amp;#1582;&amp;#1589; &amp;#1575;&amp;#1604;&amp;#1585;&amp;#1605;&amp;#1586; &amp;#1608;&amp;#1578;&amp;#1590;&amp;#1593;&amp;#1607; &amp;#1608;&amp;#1578;&amp;#1583;&amp;#1582;&amp;#1604; &amp;#1575;&amp;#1604;&amp;#1575; &amp;#1605;&amp;#1575; &amp;#1578;&amp;#1588;&amp;#1575;&amp;#1569;</p></div>
+						</div>
+						<br />
+				<div class="usercomment">
+					<div class="usercommentheader">
+						<div class="ucwho">&nbsp;<a href="/user/view/Marina elizabeth 4567">Marina elizabeth 4567</a> - 02:38 am Tuesday March 25th, 2025 </div>
+							<div class="ucreport">
+								<a href="/com/report/102553"><img src="/pages/messages/msys/images/flag.png" alt="Report this post" border="0" /></a>
+							</div>
+					</div>
+					<div class="usercommentbody">
+						<div class="usercommentavatar">
+							<img src="/pages/user/avatar.view.php?id=404" title="Avatar" alt="Avatar" height="70" width="70" /></div><p class="usercommentbody" align="left">Ofrecerles una tarifa enorme</p></div>
+						</div>
+						<br />
+				<div class="usercomment">
+					<div class="usercommentheader">
+						<div class="ucwho">&nbsp;<a href="/user/view/Rijankhan2345678910">Rijankhan2345678910</a> - 04:38 am Thursday March 27th, 2025 </div>
+							<div class="ucreport">
+								<a href="/com/report/102556"><img src="/pages/messages/msys/images/flag.png" alt="Report this post" border="0" /></a>
+							</div>
+					</div>
+					<div class="usercommentbody">
+						<div class="usercommentavatar">
+							<img src="/pages/user/avatar.view.php?id=404" title="Avatar" alt="Avatar" height="70" width="70" /></div><p class="usercommentbody" align="left">Jsim</p></div>
+						</div>
+						<br />
+				<div class="usercomment">
+					<div class="usercommentheader">
+						<div class="ucwho">&nbsp;<a href="/user/view/MohsinSheikh">MohsinSheikh</a> - 09:00 pm Thursday May 29th, 2025 </div>
+							<div class="ucreport">
+								<a href="/com/report/102625"><img src="/pages/messages/msys/images/flag.png" alt="Report this post" border="0" /></a>
+							</div>
+					</div>
+					<div class="usercommentbody">
+						<div class="usercommentavatar">
+							<img src="/pages/user/avatar.view.php?id=404" title="Avatar" alt="Avatar" height="70" width="70" /></div><p class="usercommentbody" align="left">Ok</p></div>
+						</div>
+						<br />
+				<div class="usercomment">
+					<div class="usercommentheader">
+						<div class="ucwho">&nbsp;<a href="/user/view/Sani sug">Sani sug</a> - 07:22 pm Tuesday June 10th, 2025 </div>
+							<div class="ucreport">
+								<a href="/com/report/102639"><img src="/pages/messages/msys/images/flag.png" alt="Report this post" border="0" /></a>
+							</div>
+					</div>
+					<div class="usercommentbody">
+						<div class="usercommentavatar">
+							<img src="/pages/user/avatar.view.php?id=404" title="Avatar" alt="Avatar" height="70" width="70" /></div><p class="usercommentbody" align="left"></p></div>
+						</div>
+						<br />
+				<div class="usercomment">
+					<div class="usercommentheader">
+						<div class="ucwho">&nbsp;<a href="/user/view/Sani sug">Sani sug</a> - 07:24 pm Tuesday June 10th, 2025 </div>
+							<div class="ucreport">
+								<a href="/com/report/102640"><img src="/pages/messages/msys/images/flag.png" alt="Report this post" border="0" /></a>
+							</div>
+					</div>
+					<div class="usercommentbody">
+						<div class="usercommentavatar">
+							<img src="/pages/user/avatar.view.php?id=404" title="Avatar" alt="Avatar" height="70" width="70" /></div><p class="usercommentbody" align="left">I want learn hack some people account<br />
+And harc people devoce</p></div>
+						</div>
+						<br />
+				</form></table><br /><span style="font-size: 10pt;">Page:  [1] <a href="articles/read/1155/2/30">2</a> </span><br /><br /> </div>
+</td>
+        </tr>
+      </table></td>
+    </tr>
+ <tr>
+      <td class="sitebottomheader"><img src="https://data.htscdn.org/themes/Dark/images/hts_bottomheadern.jpg" alt="End Footer" width="780" height="60" /></td>
+    </tr>
+  </table>
+  <br />
+<div align="center" style="font-family:Verdana, Arial, Helvetica, sans-serif; font-size:10px; color:#CCCCCC">HackThisSite is the collective work of the HackThisSite staff, licensed under a <a rel="license" href="http://hts.io/x/http://creativecommons.org/licenses/by-nc/3.0/" target="_new">CC BY-NC</a> license.<br />
+We ask that you inform us upon sharing or distributing.<br /><br />
+<sub>Page Generated: Tue, 14 Oct 2025 07:30:53 +0000<br />Web Node: www01 | Page Gen: 0.058s | DB: 10q<br />Current Code Revision: <a href="https://www.hackthissite.org/CHANGELOG">v3.2.5
+ (Sun, 22 May 2016 20:29:51 +0000)</a></sub><br />
+</div>
+</div>
+<div align="center">
+  <p>
+   <a target="_new" href="http://hts.io/x/http://creativecommons.org/licenses/by-nc/3.0/"><img src="https://data.htscdn.org/images/cc_80x15.png" width="80" height="15" border="0" alt="" /></a>
+   <a target="_new" href="http://hts.io/x/http://validator.w3.org/check?uri=referer"><img src="https://data.htscdn.org/images/xhtml10.png" width="80" height="15" border="0" alt="" /></a>&nbsp;
+   <a target="_new" href="http://hts.io/x/http://jigsaw.w3.org/css-validator/check/referer"><img src="https://data.htscdn.org/images/css.png" width="80" height="15" border="0" alt="" /></a> 
+   <a target="_new" href="http://hts.io/x/http://www.php.net/"> <img src="https://data.htscdn.org/images/phppow.gif" width="80" height="15" border="0" alt="" /></a>
+   <!--<a href="http://www.linux.com/"> <img src="../../images/linux2.gif" width="80" height="15" border="0" alt="" /></a>-->
+   <a target="_new" href="http://hts.io/x/http://www.freebsd.org/"> <img src="https://data.htscdn.org/images/freebsd.png" width="80" height="15" border="0" alt="" /></a>
+   <img src="https://data.htscdn.org/images/counter.php" height="14" border="0" alt="Page View Counter" />
+  </p>
+</div>
+<div style="position: absolute; top: -250px; left: -250px;"><a href="http://hackthissite.org/hp.php">retired</a></div>    </body>
+</html>

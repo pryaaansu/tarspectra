@@ -1,0 +1,6 @@
+GET https://www.hackthissite.org/news/view/725
+
+Headers:
+
+Body/data:
+null
