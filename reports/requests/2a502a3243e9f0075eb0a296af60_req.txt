@@ -1,0 +1,6 @@
+GET https://www.hackthissite.org/pages/info/linktous.php
+
+Headers:
+
+Body/data:
+null

@@ -1,0 +1,6 @@
+GET https://www.hackthissite.org/lectures
+
+Headers:
+
+Body/data:
+null

@@ -1,0 +1,10 @@
+GET https://www.hackthissite.org/forums/ucp.php?i=INJECT-MARKER-PRYANSU-964049
+
+Headers:
+User-Agent: ExploitFinder-Active/0.3 (+https://example.local)
+Accept-Encoding: gzip, deflate
+Accept: */*
+Connection: keep-alive
+
+Body/data:
+null

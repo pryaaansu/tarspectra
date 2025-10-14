@@ -1,0 +1,6 @@
+GET http://testphp.vulnweb.com/artists.php?artist=2
+
+Headers:
+
+Body/data:
+null

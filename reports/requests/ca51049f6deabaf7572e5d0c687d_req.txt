@@ -1,0 +1,14 @@
+POST https://www.hackthissite.org/register
+
+Headers:
+User-Agent: ExploitFinder-Active/0.3 (+https://example.local)
+Accept-Encoding: gzip, deflate
+Accept: */*
+Connection: keep-alive
+Content-Length: 36
+Content-Type: application/x-www-form-urlencoded
+
+Body/data:
+{
+  "answer2": "INJECT-MARKER-PRYANSU-724121"
+}

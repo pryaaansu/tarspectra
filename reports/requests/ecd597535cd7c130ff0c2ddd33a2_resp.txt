@@ -1,0 +1,15 @@
+Status: 200
+
+Headers:
+Server: nginx/1.19.0
+Date: Tue, 14 Oct 2025 09:41:51 GMT
+Content-Type: image/jpeg
+Transfer-Encoding: chunked
+Connection: keep-alive
+X-Powered-By: PHP/5.6.40-38+ubuntu20.04.1+deb.sury.org+1
+
+Body (trimmed):
+
+Warning: fopen(INJECT-MARKER-PRYANSU-908041): failed to open stream: No such file or directory in /hj/var/www/showimage.php on line 31
+
+Warning: fpassthru() expects parameter 1 to be resource, boolean given in /hj/var/www/showimage.php on line 37

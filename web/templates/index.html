@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Tarspectra Web Crawler</title>
+    <style>
+      body { font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif; margin: 2rem; }
+      form { display: grid; gap: 0.75rem; max-width: 640px; }
+      label { font-weight: 600; }
+      input[type="text"], input[type="number"] { padding: 0.5rem; font-size: 1rem; width: 100%; }
+      button { padding: 0.6rem 1rem; font-size: 1rem; cursor: pointer; }
+      .error { color: #b00020; margin-bottom: 1rem; }
+      .hint { color: #666; }
+      fieldset { border: 1px solid #ddd; border-radius: 8px; padding: 1rem; }
+      legend { font-weight: 700; padding: 0 0.25rem; }
+    </style>
+  </head>
+  <body>
+    <h1>Start a Crawl</h1>
+    {% if error %}
+      <div class="error">{{ error }}</div>
+    {% endif %}
+    <form method="post" action="/crawl">
+      <div>
+        <label for="url">Start URL</label>
+        <input id="url" name="url" type="text" placeholder="https://example.com" required>
+      </div>
+      <div>
+        <label for="max_pages">Max pages</label>
+        <input id="max_pages" name="max_pages" type="number" value="50" min="1" max="1000">
+        <div class="hint">How many pages to visit at most.</div>
+      </div>
+      <div>
+        <label for="max_depth">Max depth</label>
+        <input id="max_depth" name="max_depth" type="number" value="2" min="0" max="10">
+        <div class="hint">How far to traverse from the start URL.</div>
+      </div>
+      <fieldset>
+        <legend>Active testing (optional, requires authorization)</legend>
+        <div>
+          <label>
+            <input type="checkbox" name="confirm_active" value="1">
+            I am authorized to test this target. Enable payload injections.
+          </label>
+        </div>
+        <div>
+          <label for="active_workers">Workers</label>
+          <input id="active_workers" name="active_workers" type="number" value="3" min="1" max="16">
+          <div class="hint">Parallel workers for active tests.</div>
+        </div>
+        <div>
+          <label for="active_delay">Delay (seconds)</label>
+          <input id="active_delay" name="active_delay" type="number" step="0.1" value="0.6" min="0" max="10">
+          <div class="hint">Throttle between completed tests.</div>
+        </div>
+        <div>
+          <label for="encodings">Encodings</label>
+          <input id="encodings" name="encodings" type="text" value="raw,url,html" placeholder="raw,url,html,double_url,base64,hex">
+          <div class="hint">Comma-separated encodings used for payloads.</div>
+        </div>
+        <div>
+          <label for="max_variants">Max variants per payload</label>
+          <input id="max_variants" name="max_variants" type="number" value="2" min="1" max="20">
+        </div>
+      </fieldset>
+      <div>
+        <button type="submit">Run</button>
+      </div>
+    </form>
+  </body>
+  </html>
+
+

@@ -1,0 +1,6 @@
+GET http://testphp.vulnweb.com/product.php?pic=7
+
+Headers:
+
+Body/data:
+null

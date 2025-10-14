@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Crawl Results</title>
+    <style>
+      body { font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif; margin: 2rem; }
+      a { text-decoration: none; }
+      .grid { display: grid; grid-template-columns: 1fr; gap: 1rem; }
+      .card { border: 1px solid #ddd; border-radius: 8px; padding: 1rem; }
+      .muted { color: #666; }
+      pre { white-space: pre-wrap; word-break: break-word; max-height: 14rem; overflow: auto; background: #fafafa; padding: 0.75rem; border-radius: 6px; }
+      table { border-collapse: collapse; width: 100%; }
+      th, td { padding: 0.5rem; border-bottom: 1px solid #eee; text-align: left; }
+      .topbar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; }
+      .btn { padding: 0.45rem 0.8rem; border: 1px solid #ccc; border-radius: 6px; background: #fff; cursor: pointer; }
+    </style>
+  </head>
+  <body>
+    <div class="topbar">
+      <h1>Results for {{ start_url }}</h1>
+      <a class="btn" href="/">Start another</a>
+    </div>
+
+    <div class="card">
+      <h2>Discovered URLs ({{ urls|length }})</h2>
+      <ul>
+        {% for u in urls %}
+          <li><a href="{{ u }}" target="_blank" rel="noopener">{{ u }}</a></li>
+        {% endfor %}
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>Analyzed Pages ({{ details|length }})</h2>
+      {% if summary and summary.by_type %}
+        <p><strong>Heuristic summary:</strong>
+          {% for k, v in summary.by_type.items() %}
+            <span class="muted">{{ k }}: {{ v }}</span>{% if not loop.last %}, {% endif %}
+          {% endfor %}
+        </p>
+      {% endif %}
+      {% if active_enabled %}
+        <p><strong>Active testing:</strong> enabled ({{ active_findings_count }} findings).{% if active_error %} Error: {{ active_error }}{% endif %}</p>
+      {% else %}
+        <p class="muted">Active testing disabled.</p>
+      {% endif %}
+      <table>
+        <thead>
+          <tr>
+            <th>URL</th>
+            <th>Status</th>
+            <th>Content-Type</th>
+            <th>Params</th>
+            <th>Inputs</th>
+            <th>Active Findings</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for r in details %}
+            <tr>
+              <td style="max-width: 360px;">
+                <a href="{{ r.url }}" target="_blank" rel="noopener">{{ r.url }}</a>
+              </td>
+              <td>{{ r.status_code }}</td>
+              <td class="muted">{{ r.content_type }}</td>
+              <td class="muted">{{ r.query_params | join(', ') }}</td>
+              <td class="muted">{{ r.form_inputs | join(', ') }}</td>
+              <td>
+                {% if r.active_findings %}
+                  <details>
+                    <summary>{{ r.active_findings | length }} items</summary>
+                    <ul>
+                      {% for f in r.active_findings %}
+                        <li>
+                          <span class="muted">{{ f.type or 'finding' }}</span>
+                          {% if f.payload %}- <code>{{ f.payload }}</code>{% endif %}
+                          {% if f.param %} on <em>{{ f.param }}</em>{% endif %}
+                        </li>
+                      {% endfor %}
+                    </ul>
+                  </details>
+                {% else %}
+                  <span class="muted">-</span>
+                {% endif %}
+              </td>
+            </tr>
+            <tr>
+              <td colspan="5">
+                <details>
+                  <summary>Body snippet</summary>
+                  <pre>{{ r.body_snippet }}</pre>
+                </details>
+              </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </body>
+  </html>
+
+
