@@ -34,12 +34,11 @@ def extract_links(base, html):
     hrefs.update([l.get("href") for l in soup.find_all("link", href=True)])
     hrefs.update([s.get("src") for s in soup.find_all(["script", "img", "iframe", "source"], src=True)])
     hrefs.update([f.get("action") for f in soup.find_all("form", action=True)])
-    # filter None and javascript/mailto
     urls = set()
     for h in hrefs:
         if not h:
             continue
-        if h.startswith("mailto:") or h.startswith("javascript:"):
+        if h.startswith("mailto:") or h.startswith("javascript:") or h.startswith("tel:"):
             continue
         try:
             normalized = normalize_url(base, h)
@@ -50,7 +49,7 @@ def extract_links(base, html):
 
 
 def fetch_html(url, timeout=10, headers=None):
-    headers = headers or {"User-Agent": "ExploitFinderCrawler/0.1 (+https://example.local)"}
+    headers = headers or {"User-Agent": "TarspectraCrawler/2.0 (+https://tarspectra.local)"}
     try:
         r = requests.get(url, headers=headers, timeout=timeout, allow_redirects=True, verify=True)
         return r.text or ""
@@ -58,11 +57,24 @@ def fetch_html(url, timeout=10, headers=None):
         return ""
 
 
-def crawl_site(start, max_pages=150, max_depth=2, respect_domain=True):
+def crawl_site_with_sitemap(start, max_pages=150, max_depth=2, respect_domain=True):
+    """
+    Crawls site and collects:
+      - found: list of URLs within page limit to fetch and analyze
+      - all_discovered: set of all URLs found on the target registered domain
+      - subdomains: set of all subdomains belonging to the registered domain
+    """
     start = normalize_url(start, start)
     visited = set([start])
     q = deque([(start, 0)])
     found = [start]
+    all_discovered = set([start])
+    discovered_subdomains = set()
+
+    start_host = urlparse(start).hostname or ""
+    if start_host:
+        discovered_subdomains.add(start_host.lower())
+
     while q:
         url, depth = q.popleft()
         html = fetch_html(url)
@@ -73,14 +85,26 @@ def crawl_site(start, max_pages=150, max_depth=2, respect_domain=True):
             u = normalize_url(url, u)
             if not is_http(u):
                 continue
+
+            host = urlparse(u).hostname or ""
+            if host and same_reg_domain(start, u):
+                discovered_subdomains.add(host.lower())
+                all_discovered.add(u)
+
             if respect_domain and not same_reg_domain(start, u):
                 continue
             if u in visited:
                 continue
             visited.add(u)
-            found.append(u)
-            if len(found) >= max_pages:
-                return found
-            if depth < max_depth:
+            if len(found) < max_pages:
+                found.append(u)
+            if depth < max_depth and len(found) < max_pages:
                 q.append((u, depth + 1))
+
+    return found, all_discovered, discovered_subdomains
+
+
+def crawl_site(start, max_pages=150, max_depth=2, respect_domain=True):
+    """Backward-compatible crawl returning list of URLs."""
+    found, _, _ = crawl_site_with_sitemap(start, max_pages, max_depth, respect_domain)
     return found

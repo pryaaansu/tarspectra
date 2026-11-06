@@ -1,0 +1,164 @@
+{
+  "target": "https://example.com",
+  "apex_domain": "example.com",
+  "summary": {
+    "total_pages": 2,
+    "total_findings": 8,
+    "by_type": {
+      "Missing Content Security Policy": 1,
+      "Missing HTTP Strict Transport Security": 1,
+      "Missing clickjacking protection": 1,
+      "[Nuclei] Weak Cipher Suites Detection": 1,
+      "Missing MIME-sniffing protection": 1,
+      "Missing Permissions-Policy": 1,
+      "Missing Referrer-Policy": 1,
+      "Technology disclosure header": 1
+    },
+    "by_severity": {
+      "high": 0,
+      "medium": 3,
+      "low": 5
+    },
+    "by_source": {
+      "passive_check": 7,
+      "nuclei": 1
+    }
+  },
+  "consolidated_findings": [
+    {
+      "id": "missing_content_security_policy",
+      "type": "Missing Content Security Policy",
+      "severity": "medium",
+      "confidence": "medium",
+      "evidence": "Content-Security-Policy header was not present. (Observed across 2 crawled pages on example.com: https://example.com/, https://example.com/s.js)",
+      "remediation": "Deploy a restrictive Content-Security-Policy and allow only the sources the application needs.",
+      "source": "passive_check",
+      "target_host": "example.com",
+      "scope": "Host Configuration",
+      "url": "https://example.com",
+      "affected_count": 2,
+      "sample_urls": [
+        "https://example.com/",
+        "https://example.com/s.js"
+      ]
+    },
+    {
+      "id": "missing_hsts",
+      "type": "Missing HTTP Strict Transport Security",
+      "severity": "medium",
+      "confidence": "medium",
+      "evidence": "The HTTPS response did not include Strict-Transport-Security. (Observed across 2 crawled pages on example.com: https://example.com/, https://example.com/s.js)",
+      "remediation": "After confirming every subdomain supports HTTPS, enable HSTS with an appropriate max-age.",
+      "source": "passive_check",
+      "target_host": "example.com",
+      "scope": "Host Configuration",
+      "url": "https://example.com",
+      "affected_count": 2,
+      "sample_urls": [
+        "https://example.com/",
+        "https://example.com/s.js"
+      ]
+    },
+    {
+      "id": "missing_frame_protection",
+      "type": "Missing clickjacking protection",
+      "severity": "medium",
+      "confidence": "medium",
+      "evidence": "Neither X-Frame-Options nor frame-ancestors in Content-Security-Policy was found. (Observed across 2 crawled pages on example.com: https://example.com/, https://example.com/s.js)",
+      "remediation": "Use CSP frame-ancestors (preferred) or X-Frame-Options to limit where pages may be framed.",
+      "source": "passive_check",
+      "target_host": "example.com",
+      "scope": "Host Configuration",
+      "url": "https://example.com",
+      "affected_count": 2,
+      "sample_urls": [
+        "https://example.com/",
+        "https://example.com/s.js"
+      ]
+    },
+    {
+      "source": "nuclei",
+      "template_id": "weak-cipher-suites",
+      "title": "[Nuclei] Weak Cipher Suites Detection",
+      "uri": "example.com:443",
+      "method": "SSL",
+      "severity": "low",
+      "original_severity": "low",
+      "confidence": "VERIFIED",
+      "evidence": "Matched rule: tls-1.0 | Extracted: [tls10 TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA]",
+      "remediation": "A weak cipher is defined as an encryption/decryption algorithm that uses a key of insufficient length. Using an insufficient length for a key in an encryption/decryption algorithm opens up the possibility (or probability) that the encryption scheme could be broken.",
+      "curl_command": "",
+      "references": "['https://www.acunetix.com/vulnerabilities/web/tls-ssl-weak-cipher-suites/', 'http://ciphersuite.info']",
+      "scope": "Automated Tool"
+    },
+    {
+      "id": "missing_x_content_type_options",
+      "type": "Missing MIME-sniffing protection",
+      "severity": "low",
+      "confidence": "medium",
+      "evidence": "X-Content-Type-Options header was not present. (Observed across 2 crawled pages on example.com: https://example.com/, https://example.com/s.js)",
+      "remediation": "Set X-Content-Type-Options: nosniff on responses that serve user-controlled content.",
+      "source": "passive_check",
+      "target_host": "example.com",
+      "scope": "Host Configuration",
+      "url": "https://example.com",
+      "affected_count": 2,
+      "sample_urls": [
+        "https://example.com/",
+        "https://example.com/s.js"
+      ]
+    },
+    {
+      "id": "missing_permissions_policy",
+      "type": "Missing Permissions-Policy",
+      "severity": "low",
+      "confidence": "medium",
+      "evidence": "Permissions-Policy header was not present. (Observed across 2 crawled pages on example.com: https://example.com/, https://example.com/s.js)",
+      "remediation": "Explicitly disable browser features that this application does not require.",
+      "source": "passive_check",
+      "target_host": "example.com",
+      "scope": "Host Configuration",
+      "url": "https://example.com",
+      "affected_count": 2,
+      "sample_urls": [
+        "https://example.com/",
+        "https://example.com/s.js"
+      ]
+    },
+    {
+      "id": "missing_referrer_policy",
+      "type": "Missing Referrer-Policy",
+      "severity": "low",
+      "confidence": "medium",
+      "evidence": "Referrer-Policy header was not present. (Observed across 2 crawled pages on example.com: https://example.com/, https://example.com/s.js)",
+      "remediation": "Set a policy such as strict-origin-when-cross-origin to reduce URL data leakage.",
+      "source": "passive_check",
+      "target_host": "example.com",
+      "scope": "Host Configuration",
+      "url": "https://example.com",
+      "affected_count": 2,
+      "sample_urls": [
+        "https://example.com/",
+        "https://example.com/s.js"
+      ]
+    },
+    {
+      "id": "technology_disclosure_server",
+      "type": "Technology disclosure header",
+      "severity": "low",
+      "confidence": "low",
+      "evidence": "server: cloudflare (Observed across 2 crawled pages on example.com: https://example.com/, https://example.com/s.js)",
+      "remediation": "Remove unnecessary implementation and version headers at the web-server or application layer.",
+      "source": "passive_check",
+      "target_host": "example.com",
+      "scope": "Host Configuration",
+      "url": "https://example.com",
+      "affected_count": 2,
+      "sample_urls": [
+        "https://example.com/",
+        "https://example.com/s.js"
+      ]
+    }
+  ],
+  "pages_analyzed": 2
+}

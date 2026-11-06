@@ -1,0 +1,28 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Environment
+.venv/
+venv/
+ENV/
+env/
+.env
+
+# OS-generated files
+.DS_Store
+.DS_Store?
+ehthumbs.db
+Thumbs.db
+
+# Build & codex artifacts
+.codex-build/
+.codex-finalizer/
+*.pptx.inspect.ndjson
+output/.DS_Store
+output/*.zip
+
+# Runtime temporary scan reports
+reports/web/

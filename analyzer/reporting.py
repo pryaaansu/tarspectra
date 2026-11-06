@@ -1,10 +1,23 @@
 # analyzer/reporting.py
+"""
+High-accuracy reporting and consolidation module for Tarspectra.
+
+Provides:
+  - True-positive finding consolidation (removes redundant per-page missing header spam)
+  - Severity scoring and summary generation
+  - Site map JSON and text tree exporters
+  - CSV and HTML report generators
+"""
+
 import os
 import csv
 import html
+import json
 from datetime import datetime
+from collections import defaultdict
+from urllib.parse import urlparse
 
-SEV_LEVEL = {"low": 1, "medium": 2, "high": 3}
+SEV_LEVEL = {"critical": 4, "high": 3, "medium": 2, "low": 1, "info": 0}
 
 
 def ensure_dir(path):
@@ -16,7 +29,140 @@ def ensure_dir(path):
 def severity_to_level(s):
     if not s:
         return 0
-    return SEV_LEVEL.get(s.lower(), 0)
+    return SEV_LEVEL.get(str(s).lower(), 1)
+
+
+# Host-level header check IDs that apply to the entire domain, not just a single page
+HOST_LEVEL_CHECK_IDS = {
+    "missing_content_security_policy",
+    "missing_x_content_type_options",
+    "missing_frame_protection",
+    "missing_referrer_policy",
+    "missing_permissions_policy",
+    "missing_hsts",
+    "permissive_cors_credentials",
+    "technology_disclosure_server",
+    "technology_disclosure_x_powered_by",
+    "technology_disclosure_x_aspnet_version",
+    "technology_disclosure_x_aspnetmvc_version",
+    "weak_csp_unsafe_inline",
+    "weak_csp_unsafe_eval",
+    "weak_csp_wildcard",
+    "hsts_short_max_age",
+}
+
+
+def consolidate_findings(annotated_results: list[dict], tool_findings: list[dict] = None) -> list[dict]:
+    """
+    Consolidate findings across pages into a true-positive, non-redundant list.
+
+    Instead of listing 'Missing CSP' 60 times for 60 crawled pages, it consolidates
+    host-wide configuration findings into a single actionable card per host, with
+    sample endpoints and affected page count.
+    """
+    consolidated = []
+    host_findings_tracker = defaultdict(lambda: {
+        "finding": None,
+        "affected_urls": [],
+        "count": 0,
+    })
+
+    # 1. Process passive and reflection findings from crawled pages
+    for item in annotated_results:
+        url = item.get("url", "")
+        host = urlparse(url).netloc or "target"
+
+        # Passive findings
+        for f in item.get("passive_findings", []):
+            fid = f.get("id", "")
+            if fid in HOST_LEVEL_CHECK_IDS:
+                # Group by host and finding ID
+                key = (host, fid)
+                tracker = host_findings_tracker[key]
+                if tracker["finding"] is None:
+                    tracker["finding"] = dict(f)
+                    tracker["finding"]["target_host"] = host
+                    tracker["finding"]["scope"] = "Host Configuration"
+                tracker["affected_urls"].append(url)
+                tracker["count"] += 1
+            else:
+                # Page-specific finding (e.g. form hygiene, sensitive disclosure, mixed content)
+                finding_copy = dict(f)
+                finding_copy["url"] = url
+                finding_copy["scope"] = "Page Endpoint"
+                consolidated.append(finding_copy)
+
+        # Reflection findings
+        for f in item.get("reflection_findings", []):
+            finding_copy = dict(f)
+            finding_copy["url"] = url
+            finding_copy["scope"] = "Parameter Reflection"
+            consolidated.append(finding_copy)
+
+    # Finalize consolidated host-level findings
+    for (host, fid), tracker in host_findings_tracker.items():
+        base_f = tracker["finding"]
+        total = tracker["count"]
+        samples = tracker["affected_urls"][:4]
+        samples_str = ", ".join(samples)
+        if total > 4:
+            samples_str += f" and {total - 4} more pages"
+
+        base_f["url"] = f"https://{host}" if not host.startswith("http") else host
+        base_f["affected_count"] = total
+        base_f["sample_urls"] = tracker["affected_urls"][:10]
+        base_f["evidence"] = f"{base_f.get('evidence', '')} (Observed across {total} crawled pages on {host}: {samples_str})"
+        consolidated.append(base_f)
+
+    # 2. Add open-source tool findings (Nuclei, Nikto, Nmap, sqlmap)
+    seen_tool_keys = set()
+    for tf in (tool_findings or []):
+        t_key = (tf.get("source"), tf.get("title"), tf.get("uri"))
+        if t_key in seen_tool_keys:
+            continue
+        seen_tool_keys.add(t_key)
+        tf_copy = dict(tf)
+        tf_copy.setdefault("scope", "Automated Tool")
+        consolidated.append(tf_copy)
+
+    # Sort: High -> Medium -> Low
+    consolidated.sort(
+        key=lambda item: (
+            -severity_to_level(item.get("severity", "low")),
+            item.get("source", ""),
+            item.get("type", item.get("title", ""))
+        )
+    )
+
+    return consolidated
+
+
+def generate_summary(annotated_results, tool_findings=None):
+    """
+    Generate accurate summary counts from consolidated findings.
+    """
+    findings = consolidate_findings(annotated_results, tool_findings)
+    summary = {
+        "total_pages": len(annotated_results),
+        "total_findings": len(findings),
+        "by_type": {},
+        "by_severity": {"high": 0, "medium": 0, "low": 0},
+        "by_source": {},
+    }
+
+    for f in findings:
+        sev = str(f.get("severity", "low")).lower()
+        if sev not in summary["by_severity"]:
+            summary["by_severity"][sev] = 0
+        summary["by_severity"][sev] += 1
+
+        ftype = f.get("type") or f.get("title") or "finding"
+        summary["by_type"][ftype] = summary["by_type"].get(ftype, 0) + 1
+
+        src = f.get("source", "passive_check")
+        summary["by_source"][src] = summary["by_source"].get(src, 0) + 1
+
+    return summary
 
 
 def filter_by_min_severity(annotated_results, min_sev):
@@ -25,7 +171,7 @@ def filter_by_min_severity(annotated_results, min_sev):
     min_level = severity_to_level(min_sev)
     filtered = []
     for item in annotated_results:
-        findings = item.get("vuln_findings", [])
+        findings = item.get("passive_findings", []) + item.get("tool_findings", [])
         keep = False
         for f in findings:
             if severity_to_level(f.get("severity")) >= min_level:
@@ -36,219 +182,146 @@ def filter_by_min_severity(annotated_results, min_sev):
     return filtered
 
 
-def generate_summary(annotated_results):
-    summary = {
-        "total_pages": len(annotated_results),
-        "total_findings": 0,
-        "by_type": {},
-        "by_severity": {}
-    }
-    for item in annotated_results:
-        for f in item.get("vuln_findings", []):
-            t = f.get("type", "unknown")
-            s = f.get("severity", "low")
-            count = f.get("count", 1)
-            summary["total_findings"] += count
-            summary["by_type"][t] = summary["by_type"].get(t, 0) + count
-            summary["by_severity"][s] = summary["by_severity"].get(s, 0) + count
-        for af in item.get("active_findings", []):
-            for fdet in af.get("findings", []):
-                t = fdet.get("type", "active")
-                summary["total_findings"] += 1
-                summary["by_type"][t] = summary["by_type"].get(t, 0) + 1
-                summary["by_severity"]["low"] = summary["by_severity"].get("low", 0) + 1
-    return summary
+def generate_sitemap_ascii_tree(sitemap_data: dict) -> str:
+    """Generate a clean ASCII tree representation of the site map."""
+    lines = []
+    root = sitemap_data.get("root_domain", "Target")
+    total_subs = sitemap_data.get("total_subdomains", 0)
+    total_eps = sitemap_data.get("total_endpoints", 0)
+
+    lines.append(f"🌐 Site Map: {root} ({total_subs} subdomains, {total_eps} endpoints)")
+    lines.append("─" * 60)
+
+    subdomains = sitemap_data.get("subdomains", {})
+    sub_keys = list(subdomains.keys())
+
+    for idx, (sub_host, sub_info) in enumerate(subdomains.items()):
+        is_last_sub = (idx == len(sub_keys) - 1)
+        sub_prefix = "└── " if is_last_sub else "├── "
+        child_prefix = "    " if is_last_sub else "│   "
+
+        status = sub_info.get("status_code", "")
+        status_tag = f" [{status}]" if status else ""
+        server = f" (Server: {sub_info['server']})" if sub_info.get("server") else ""
+        lines.append(f"{sub_prefix}🖥️  {sub_host}{status_tag}{server}")
+
+        endpoints = sub_info.get("endpoints", [])
+        for ep_idx, ep in enumerate(endpoints):
+            is_last_ep = (ep_idx == len(endpoints) - 1)
+            ep_connector = "└── " if is_last_ep else "├── "
+            path = ep.get("path_with_query", ep.get("path", "/"))
+            ep_status = ep.get("status_code", "")
+            forms_info = f" [Forms: {ep['forms_count']}]" if ep.get("forms_count") else ""
+            lines.append(f"{child_prefix}{ep_connector}📄 {path} ({ep_status}){forms_info}")
+
+    return "\n".join(lines)
 
 
-def write_csv_report(annotated_results, csv_path):
+def write_csv_report(annotated_results, csv_path, tool_findings=None):
     ensure_dir(csv_path)
-    headers = [
-        "url", "status_code", "content_type", "finding_type",
-        "finding_count", "severity", "evidence_snippets", "timestamp",
-        "active_findings_count", "active_payloads_sample", "active_artifacts_sample"
-    ]
+    findings = consolidate_findings(annotated_results, tool_findings)
+    headers = ["severity", "confidence", "source", "title_or_type", "url", "evidence", "remediation", "affected_count"]
+
     with open(csv_path, "w", newline="", encoding="utf-8") as fh:
         writer = csv.writer(fh)
         writer.writerow(headers)
-        for item in annotated_results:
-            url = item.get("url", "")
-            status = item.get("status_code", "")
-            ctype = item.get("content_type", "")
-            ts = item.get("timestamp", "")
-            vuln_written = False
-            for f in item.get("vuln_findings", []):
-                ftype = f.get("type", "")
-                count = f.get("count", 0)
-                sev = f.get("severity", "")
-                evid = "; ".join([html.escape(str(e.get("evidence", ""))) + "@" + e.get("location", "") for e in f.get("evidence", [])])
-
-                af_list = item.get("active_findings", []) or []
-                af_count = len(af_list)
-                payloads_sample = []
-                artifacts_sample = []
-                seenp = set()
-                for af in af_list:
-                    # prefer payload_variant inside findings
-                    for fd in af.get("findings", []):
-                        pv = fd.get("payload_variant")
-                        if pv and pv not in seenp:
-                            payloads_sample.append(pv)
-                            seenp.add(pv)
-                    # fallback to variants_tested if no payload_variant captured yet
-                    if not payloads_sample:
-                        for pv in af.get("variants_tested", []):
-                            if pv and pv not in seenp:
-                                payloads_sample.append(pv)
-                                seenp.add(pv)
-                    # artifacts filenames
-                    for fd in af.get("findings", []):
-                        if fd.get("request_file"):
-                            artifacts_sample.append(os.path.basename(fd.get("request_file")))
-                        if fd.get("response_file"):
-                            artifacts_sample.append(os.path.basename(fd.get("response_file")))
-                    if len(payloads_sample) >= 3:
-                        break
-
-                writer.writerow([url, status, ctype, ftype, count, sev, evid, ts, af_count, " | ".join(payloads_sample), " | ".join(artifacts_sample)])
-                vuln_written = True
-
-            if not vuln_written:
-                af_list = item.get("active_findings", []) or []
-                af_count = len(af_list)
-                payloads_sample = []
-                artifacts_sample = []
-                seenp = set()
-                for af in af_list:
-                    for fd in af.get("findings", []):
-                        pv = fd.get("payload_variant")
-                        if pv and pv not in seenp:
-                            payloads_sample.append(pv)
-                            seenp.add(pv)
-                    if not payloads_sample:
-                        for pv in af.get("variants_tested", []):
-                            if pv and pv not in seenp:
-                                payloads_sample.append(pv)
-                                seenp.add(pv)
-                    for fd in af.get("findings", []):
-                        if fd.get("request_file"):
-                            artifacts_sample.append(os.path.basename(fd.get("request_file")))
-                        if fd.get("response_file"):
-                            artifacts_sample.append(os.path.basename(fd.get("response_file")))
-                    if len(payloads_sample) >= 3:
-                        break
-                if af_count:
-                    writer.writerow([url, status, ctype, "", 0, "", "", ts, af_count, " | ".join(payloads_sample), " | ".join(artifacts_sample)])
-                else:
-                    writer.writerow([url, status, ctype, "", 0, "", "", ts, 0, "", ""])
+        for f in findings:
+            writer.writerow([
+                f.get("severity", "low"),
+                f.get("confidence", "medium"),
+                f.get("source", "passive"),
+                f.get("type", f.get("title", "")),
+                f.get("url", ""),
+                f.get("evidence", ""),
+                f.get("remediation", ""),
+                f.get("affected_count", 1),
+            ])
 
 
-def write_html_report(annotated_results, html_path, title="Exploit Finder Report"):
+def write_html_report(annotated_results, html_path, title="Tarspectra Security Audit", tool_findings=None, sitemap_data=None):
     ensure_dir(html_path)
-    summary = generate_summary(annotated_results)
+    summary = generate_summary(annotated_results, tool_findings)
+    findings = consolidate_findings(annotated_results, tool_findings)
     now = datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S UTC")
 
-    css = """
-    body{font-family:Inter,system-ui,Segoe UI,Arial,Helvetica,sans-serif;margin:20px}
-    h1,h2{color:#111827}
-    .summary{display:flex;gap:20px;flex-wrap:wrap;margin-bottom:20px}
-    .card{border:1px solid #e5e7eb;padding:12px;border-radius:8px;min-width:200px}
-    table{width:100%;border-collapse:collapse;margin-top:12px}
-    th,td{border:1px solid #e5e7eb;padding:8px;text-align:left;font-size:13px;vertical-align:top}
-    th{background:#f3f4f6}
-    .sev-low{color:#065f46;font-weight:600}
-    .sev-medium{color:#92400e;font-weight:700}
-    .sev-high{color:#b91c1c;font-weight:800}
-    .small{font-size:12px;color:#6b7280}
-    .active-block{background:#f8fafc;border:1px dashed #e5e7eb;padding:8px;border-radius:6px;margin-top:6px}
-    .payload{font-family:monospace;font-size:12px;background:#f3f4f6;padding:2px 6px;border-radius:4px;margin-right:6px;display:inline-block}
-    .artifact{font-family:monospace;font-size:12px;background:#fff7ed;padding:2px 6px;border-radius:4px;margin-right:6px;display:inline-block}
-    """
+    findings_html = []
+    for f in findings:
+        sev = html.escape(str(f.get("severity", "low")).upper())
+        sev_class = "sev-" + sev.lower()
+        title_text = html.escape(str(f.get("type") or f.get("title") or "Finding"))
+        url_text = html.escape(str(f.get("url", "")))
+        source_text = html.escape(str(f.get("source", "Check")))
+        conf = html.escape(str(f.get("confidence", "Medium")))
+        evidence = html.escape(str(f.get("evidence", "")))
+        remediation = html.escape(str(f.get("remediation", "Apply standard defense measures.")))
+        curl_cmd = f.get("curl_command", "")
+        curl_block = f"<div class='curl-block'><code>{html.escape(curl_cmd)}</code></div>" if curl_cmd else ""
 
-    rows_html = []
-    for item in annotated_results:
-        url = html.escape(item.get("url", ""))
-        status = item.get("status_code", "")
-        ctype = html.escape(item.get("content_type", ""))
-        findings = item.get("vuln_findings", [])
-        if findings:
-            finds_html = "<ul>"
-            for f in findings:
-                sev = f.get("severity", "low")
-                sev_class = "sev-" + sev
-                evids = "<br>".join([html.escape(e.get("evidence", "")) + " <span class='small'>(" + e.get("location", "") + ")</span>" for e in f.get("evidence", [])])
-                finds_html += f"<li><b>{html.escape(f.get('type',''))}</b> - <span class='{sev_class}'>{sev.upper()}</span> (count: {f.get('count')})<div class='small'>{evids}</div></li>"
-            finds_html += "</ul>"
-        else:
-            finds_html = "<span class='small'>no heuristic findings</span>"
+        findings_html.append(f"""
+        <div class="card finding-card">
+          <div class="topline">
+            <span class="badge {sev_class}">{sev}</span>
+            <span class="source">{source_text}</span>
+            <span class="conf">{conf}</span>
+          </div>
+          <h3>{title_text}</h3>
+          <p class="url">{url_text}</p>
+          <p class="evidence">{evidence}</p>
+          {curl_block}
+          <div class="remediation"><strong>Remediation:</strong> {remediation}</div>
+        </div>
+        """)
 
-        active_list = item.get("active_findings", []) or []
-        if active_list:
-            active_html = "<div class='active-block'><b>Active findings:</b>"
-            for af in active_list[:200]:
-                param = html.escape(str(af.get("param", "")))
-                payload_template = af.get("payload_template") or ""
-                payload_template_esc = html.escape(payload_template)
-                variants = af.get("variants_tested", []) or []
-                variants_html = ""
-                if variants:
-                    variants_html = "<div class='small' style='margin-top:6px'>Variants tested: " + ", ".join([f"<span class='payload'>{html.escape(v)}</span>" for v in variants[:12]]) + "</div>"
-                ff = af.get("findings", []) or []
-                if ff:
-                    ff_html = "<ul>"
-                    for fd in ff:
-                        ftype = html.escape(fd.get("type", ""))
-                        evidence = html.escape(str(fd.get("evidence", "")))
-                        payload_variant = fd.get("payload_variant") or ""
-                        payload_variant_esc = html.escape(payload_variant)
-                        reqf = fd.get("request_file")
-                        respf = fd.get("response_file")
-                        artifact_links = ""
-                        if reqf:
-                            artifact_links += f"<a class='artifact' href='file://{html.escape(reqf)}' target='_blank'>req</a>"
-                        if respf:
-                            artifact_links += f"<a class='artifact' href='file://{html.escape(respf)}' target='_blank'>resp</a>"
-                        pv_display = f" <div class='small'>used variant: <span class='payload'>{payload_variant_esc}</span></div>" if payload_variant else ""
-                        ff_html += f"<li><b>{ftype}</b>: {evidence} {pv_display} {artifact_links}</li>"
-                    ff_html += "</ul>"
-                else:
-                    ff_html = "<span class='small'>no individual findings</span>"
+    sitemap_html = ""
+    if sitemap_data:
+        tree_text = html.escape(generate_sitemap_ascii_tree(sitemap_data))
+        sitemap_html = f"""
+        <h2>Discovered Site Map & Subdomain Hierarchy</h2>
+        <pre class="sitemap-tree">{tree_text}</pre>
+        """
 
-                active_html += f"<div style='margin-top:8px'><span class='small'>param: <b>{param}</b></span><div style='margin-top:4px'>payload template: <span class='payload'>{payload_template_esc}</span></div>{variants_html}{ff_html}</div>"
-            active_html += "</div>"
-        else:
-            active_html = ""
-
-        rows_html.append(f"<tr><td>{url}</td><td>{status}</td><td>{ctype}</td><td>{finds_html}{active_html}</td></tr>")
-
-    html_content = f"""<!doctype html>
+    content = f"""<!doctype html>
 <html>
 <head>
 <meta charset="utf-8">
 <title>{html.escape(title)}</title>
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<style>{css}</style>
+<style>
+body {{ font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: #07101d; color: #edf4ff; margin: 0; padding: 24px; }}
+.shell {{ max-width: 1060px; margin: auto; }}
+h1 {{ color: #7bf5d5; margin-bottom: 4px; }}
+.stats {{ display: flex; gap: 14px; margin: 20px 0; }}
+.stat-card {{ background: #0c1a2c; padding: 14px 20px; border-radius: 8px; border: 1px solid rgba(177,205,239,0.15); }}
+.stat-card strong {{ font-size: 24px; display: block; }}
+.stat-card span {{ font-size: 11px; text-transform: uppercase; color: #9aabc0; }}
+.card {{ background: #0c1a2c; border: 1px solid rgba(177,205,239,0.15); border-radius: 8px; padding: 16px; margin-bottom: 12px; }}
+.topline {{ display: flex; gap: 10px; align-items: center; margin-bottom: 8px; font-size: 11px; font-weight: 700; }}
+.badge {{ padding: 2px 8px; border-radius: 4px; font-weight: 800; }}
+.sev-high {{ background: rgba(255,131,126,0.2); color: #ff837e; }}
+.sev-medium {{ background: rgba(255,200,112,0.2); color: #ffc870; }}
+.sev-low {{ background: rgba(130,201,255,0.2); color: #82c9ff; }}
+.url {{ color: #7bf5d5; font-family: monospace; font-size: 12px; }}
+.evidence {{ color: #9aabc0; font-size: 13px; white-space: pre-wrap; }}
+.remediation {{ border-top: 1px solid rgba(177,205,239,0.1); padding-top: 8px; margin-top: 8px; font-size: 12px; color: #edf4ff; }}
+.curl-block {{ background: #040a12; padding: 8px 12px; border-radius: 4px; margin: 8px 0; overflow-x: auto; font-family: monospace; font-size: 12px; color: #7bf5d5; }}
+.sitemap-tree {{ background: #040a12; padding: 16px; border-radius: 8px; border: 1px solid rgba(177,205,239,0.15); font-family: monospace; font-size: 13px; color: #7bf5d5; overflow-x: auto; }}
+</style>
 </head>
 <body>
-<h1>{html.escape(title)}</h1>
-<p class="small">Generated: {now}</p>
-
-<div class="summary">
-  <div class="card"><h2>Total pages</h2><p>{summary['total_pages']}</p></div>
-  <div class="card"><h2>Total findings</h2><p>{summary['total_findings']}</p></div>
-  <div class="card"><h2>By severity</h2><p>{", ".join([f"{k}: {v}" for k,v in summary.get('by_severity',{}).items()]) or 'none'}</p></div>
-  <div class="card"><h2>By type</h2><p>{", ".join([f"{k}: {v}" for k,v in summary.get('by_type',{}).items()]) or 'none'}</p></div>
+<div class="shell">
+  <h1>{html.escape(title)}</h1>
+  <p style="color:#9aabc0;font-size:13px;">Generated: {now} | Target audit scope</p>
+  <div class="stats">
+    <div class="stat-card"><strong>{summary['total_pages']}</strong><span>Pages Crawled</span></div>
+    <div class="stat-card"><strong>{summary['total_findings']}</strong><span>True Findings</span></div>
+    <div class="stat-card"><strong style="color:#ff837e">{summary['by_severity'].get('high',0)}</strong><span>High Priority</span></div>
+    <div class="stat-card"><strong style="color:#ffc870">{summary['by_severity'].get('medium',0)}</strong><span>Medium Priority</span></div>
+  </div>
+  {sitemap_html}
+  <h2>Security Findings & Audit Signals</h2>
+  {''.join(findings_html)}
 </div>
-
-<h2>Findings by URL</h2>
-<table>
-  <thead><tr><th>URL</th><th>Status</th><th>Content-Type</th><th>Findings</th></tr></thead>
-  <tbody>
-    {''.join(rows_html)}
-  </tbody>
-</table>
-
 </body>
 </html>"""
-    with open(html_path, "w", encoding="utf-8") as fh:
-        fh.write(html_content)
 
+    with open(html_path, "w", encoding="utf-8") as fh:
+        fh.write(content)

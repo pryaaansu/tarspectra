@@ -1,116 +1,113 @@
-# 🚀 TARSPECTRA Active Vuln Scanner
-Because **why not reinvent the wheel but with spikes**?  
-This tool is your friendly neighborhood **website vulnerability sniffer** with some **serious attitude**.
-```
-                    ░▀█▀░█▀█░█▀▄░█▀▀░█▀█░█▀▀░█▀▀░▀█▀░█▀▄░█▀█
-                    ░░█░░█▀█░█▀▄░▀▀█░█▀▀░█▀▀░█░░░░█░░█▀▄░█▀█
-                    ░░▀░░▀░▀░▀░▀░▀▀▀░▀░░░▀▀▀░▀▀▀░░▀░░▀░▀░▀░▀
-```
----
+# TARSPECTRA v2.5 — Web Vulnerability Scanner & Site Mapper
 
-## ⚡ What is this?
-A Python-based **active vulnerability scanner** that:
-- Crawls a target website like a hungry bot
-- Detects **potentially insecure spots** using heuristic checks
-- Actively tests vulnerabilities using **real payloads from the internet**
-- Generates **HTML reports so shiny** you can flex on your LinkedIn
-- Supports **multi-threaded active testing** (because single-thread is for quitters)
+Tarspectra is an advanced, high-precision web security scanner and attack surface mapping workbench with a modern cyber web application and a rich CLI.
+
+It addresses automated scanning noise by separating **attack surface site mapping** from **true-positive vulnerability reporting**, integrating industry-standard open-source engines (**ProjectDiscovery Nuclei**, **Subfinder**, **Nikto**, **Nmap**, **sqlmap**), and eliminating false-positive duplicates.
+
+> **Responsible Use Notice:** Only test targets you own or have explicit written permission to assess.
 
 ---
 
-## 🛠 Features:
-✅ Smart crawling (URLs, forms, and more)  
-✅ Heuristic-based detection (**a.k.a. guessing with style**)  
-✅ Active vulnerability testing using **live payloads**  
-✅ Generates **sexy HTML reports** with details  
-✅ CLI usage that makes you feel like a hacker in a movie  
-✅ Multi-threaded scanning for **speed demons**  
+## What's New in v2.5
+
+### 1. Separate Site Map & Subdomains Hierarchy
+- **Subdomain Tree Structure:** Organizes discovered assets hierarchically (`Root Apex Domain` ➔ `Subdomains` ➔ `Endpoints & Forms`).
+- **Passive Subdomain Enumeration:** Integrates **Subfinder** to discover active subdomains from passive OSINT certificate logs and DNS registries without alerting targets.
+- **In-Crawl Asset Discovery:** Parses intra-domain links, scripts, and form action endpoints across the registered domain.
+- **Dedicated Outputs:** 
+  - **Web UI:** Interactive collapsible Subdomain Tree with HTTP status pills (`200 OK`, `301/302 Redirect`, `403 Forbidden`), parameter badges, form counts, and instant copy buttons.
+  - **CLI:** Dedicated Rich visual tree (`🌐 example.com` ➔ `🖥️ sub.example.com` ➔ `📄 /endpoint`).
+  - **Export:** Standalone `reports/sitemap.json`.
+
+### 2. High True-Positive Vulnerability Reporting (Zero Noise)
+- **Host-Level Consolidation:** Fixes the bug where missing security headers were duplicated across every crawled page (e.g. 60 duplicate CSP findings ballooning into 400+ fake bugs). Host-wide controls are now consolidated into a single actionable card per host, detailing total affected endpoints and samples.
+- **Negative Finding Rejection:** Rejects informational Nmap NSE messages (e.g. *"Couldn't find any DOM based XSS"*, *"No vulnerabilities found"*) that were previously misclassified as high-severity vulnerabilities.
+- **Tuned Nikto Scanner:** Auto-detects SSL and ports, enables performance tuning (`-Tuning 1,2,3,4,8,9,0` to bypass slow CGI dictionary attacks), and filters out diagnostic output (*"Platform: Windows"*, *"SSL Info"*, *"No CGI directories"*).
+- **ProjectDiscovery Nuclei Integration:** Integrates Nuclei's community-powered templates for confirmed CVEs, exposed Git/.env/config panels, API leaks, and misconfigurations with exact reproduction `curl` commands.
+
+### 3. Cybernetic "Human-Made" Web Dashboard
+- **Matrix Digital Rain Canvas:** Fullscreen animated digital rain background with falling characters, neon-green leading drops, fading trails, and a one-click toggle (`Rain: ON/OFF`).
+- **Dual-View Switcher:** Dedicated tabs for **🌐 Site Map & Subdomains** and **🛡️ Vulnerability Report**.
+- **Real-Time Terminal Drawer:** Live SSE log stream showing real-time crawler, Nuclei, Nikto, and Nmap activity.
+- **Engine Availability Bar:** Automatically detects and displays which open-source tools are installed on the host.
 
 ---
 
-## ⚠️ Disclaimer (Read this or get sued)
-- Don’t point this at **websites you don’t own** (unless you like prison food)  
-- This tool is for **educational & research purposes only**  
-- If you **DDoS your college website**, don’t DM me crying  
-- Seriously, **USE RESPONSIBLY**  
+## Quick Start
 
----
+### 1. Requirements
+- Python 3.9+
+- Optional tools on `PATH` (already supported on macOS via Homebrew):
+  - `nuclei` (`brew install nuclei`)
+  - `subfinder` (`go install -v github.com/projectdiscovery/subfinder/v2/cmd/subfinder@latest`)
+  - `nikto` (`brew install nikto`)
+  - `nmap` (`brew install nmap`)
+  - `sqlmap` (`brew install sqlmap`)
 
-## 🧩 Installation (Linux only, because Windows users… you know why)
+### 2. Setup Virtual Environment
 ```bash
-# 1. Clone this masterpiece
-git clone https://github.com/yourusername/pryansec-active-scanner.git
-cd pryansec-active-scanner
-
-# 2. Install dependencies
-sudo apt update && sudo apt install python3 python3-pip -y
-pip3 install -r requirements.txt
-
-# 3. Make a payload directory (because chaos needs structure)
-mkdir payloads
-echo "<script>alert(1)</script>" > payloads/xss.txt
-echo "' OR 1=1 --" > payloads/sql.txt
+cd "/Users/priyanshu/Documents/tarspectra web"
+python3 -m venv .venv
+.venv/bin/pip install -r requirements.txt
 ```
----
 
-## ▶️ Usage
+### 3. Launch Web Dashboard
+```bash
+.venv/bin/python -m webapp.server
 ```
-python3 main.py -u http://testphp.vulnweb.com \
--o reports/active.json \
---max-pages 40 \
---max-depth 2 \
---confirm-active \
---active-workers 2 \
---active-delay 0.8 \
---payloads-dir payloads
-```
----
-
-## 🖼️ Screenshot Showcase
-
-Because nobody reads text without pictures:
-
-<p float="left">
-  <img src="screenshots/Screenshot_2025-08-30_18-27-59.png" alt="Screenshot 1" width="300">
-  <img src="screenshots/Screenshot_2025-08-30_18-29-29.png" alt="Screenshot 2" width="300">
-  <img src="screenshots/Screenshot_2025-08-30_18-31-03.png" alt="Screenshot 3" width="300">
-  <img src="screenshots/Screenshot_2025-08-30_18-31-30.png" alt="Screenshot 3" width="1000">
-  <img src="screenshots/Screenshot_2025-08-30_18-31-49.png" alt="Screenshot 3" width="300">
-  <img src="screenshots/Screenshot_2025-08-30_18-32-45.png" alt="Screenshot 3" width="300">
-</p>
+Open **[http://127.0.0.1:8000](http://127.0.0.1:8000)** in your browser.
 
 ---
 
-## ✅ Example Output:
+## CLI Usage
+
+### Fast Passive Scan + Site Map Tree (Fast)
+```bash
+.venv/bin/python main.py -u https://your-authorized-target.example.com --max-pages 25
 ```
-URL: http://testphp.vulnweb.com/userinfo.php
-Payload used: ' OR 1=1 --
-Type: SQL Injection
-Status: Vulnerable ✅
+
+### Complete Assessment with Subfinder, Nuclei & Nikto
+```bash
+.venv/bin/python main.py -u https://your-authorized-target.example.com \
+  --subfinder \
+  --nuclei \
+  --nikto \
+  --export-html reports/report.html \
+  --export-csv reports/report.csv
+```
+
+### Enable All Engines (Nuclei, Subfinder, Nikto, Nmap, sqlmap)
+```bash
+.venv/bin/python main.py -u https://your-authorized-target.example.com --all-tools
 ```
 
 ---
 
-## 🎯 Roadmap:
+## Output Architecture
 
-☑️Crawling & heuristics
-☑️Active scanning with payloads
-☑️HTML reports that blind your enemies
-🔜Real-time payload fetching from PayloadAllTheThings
-🔜AI-based vulnerability scoring (because why not?)
+```
+Tarspectra Output
+├── 🌐 Separate Output 1: Site Map & Subdomain Hierarchy
+│   ├── Apex Domain (e.g. dsatm.edu.in)
+│   │   ├── Subdomain 1 (e.g. portal.dsatm.edu.in [200 OK])
+│   │   │   ├── /login [POST Form: username, password]
+│   │   │   └── /reset-password
+│   │   └── Subdomain 2 (e.g. api.dsatm.edu.in [200 OK])
+│   └── Export: reports/sitemap.json
+│
+└── 🛡️ Separate Output 2: True-Positive Vulnerability Report
+    ├── Critical / High Flaws (Confirmed CVEs, SQLi, RCE, Traversal)
+    ├── Medium Flaws (Sensitive file exposure, weak CSP, CORS)
+    ├── Low / Hardening (Missing headers consolidated per host)
+    └── Export: reports/report.json, HTML, CSV
+```
 
 ---
 
-## ⭐ Pro Tip:
+## Testing & Verification
 
-If you run this on Google.com, don’t blame me when FBI shows up.
-
----
-
-## 🤘 Contribute:
-
-Pull requests are welcome, but only if your code doesn’t look like a horror movie.
-
----
-
-# Made with ❤️, ☕, and zero legal liability.
+Run the test suite:
+```bash
+.venv/bin/python -m unittest discover -s tests -v
+```
+All 11 unit tests verify site map hierarchy generation, true-positive consolidation, and tool noise rejection.

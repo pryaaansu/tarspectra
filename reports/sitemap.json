@@ -1,0 +1,41 @@
+{
+  "root_domain": "example.com",
+  "target_url": "https://example.com",
+  "total_subdomains": 1,
+  "total_endpoints": 2,
+  "subdomains": {
+    "example.com": {
+      "host": "example.com",
+      "scheme": "https",
+      "is_target_host": true,
+      "is_alive": true,
+      "status_code": 200,
+      "server": "cloudflare",
+      "total_endpoints": 2,
+      "endpoints": [
+        {
+          "url": "https://example.com",
+          "path": "/",
+          "path_with_query": "/",
+          "query": "",
+          "params": [],
+          "status_code": 0,
+          "content_type": "",
+          "forms_count": 0,
+          "forms": []
+        },
+        {
+          "url": "https://example.com/s.js",
+          "path": "/s.js",
+          "path_with_query": "/s.js",
+          "query": "",
+          "params": [],
+          "status_code": 200,
+          "content_type": "text/javascript; charset=utf-8",
+          "forms_count": 0,
+          "forms": []
+        }
+      ]
+    }
+  }
+}
