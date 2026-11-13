@@ -3,15 +3,15 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="theme-color" content="#080b11">
-    <title>TARSPECTRA | Web Security Assessment &amp; Attack Surface Workbench</title>
+    <meta name="theme-color" content="#000a04">
+    <title>TARSPECTRA | Web Vulnerability Scanner</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/styles.css">
   </head>
   <body>
-    <!-- Ambient Particle Canvas -->
+    <!-- Matrix Rain Canvas -->
     <canvas id="matrix-canvas" aria-hidden="true"></canvas>
 
     <div class="app-wrapper">
@@ -21,23 +21,21 @@
           <span class="brand-hexagon">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <path d="M12 2L3 7v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-9-5z"/>
-              <path d="M12 8v8"/>
-              <path d="M8 12h8"/>
+              <path d="M12 8v8"/><path d="M8 12h8"/>
             </svg>
           </span>
           <div class="brand-text">
             <span class="brand-title">TARSPECTRA</span>
-            <span class="brand-subtitle">Security Workbench v2.5</span>
+            <span class="brand-subtitle">Attack Surface Scanner v2.5</span>
           </div>
         </a>
 
-        <!-- System Engine Badges -->
         <div class="engines-bar" id="engines-bar">
           <span class="engine-badge active" title="Nuclei CVE Engine">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
             Nuclei
           </span>
-          <span class="engine-badge active" title="Subfinder Subdomain OSINT">
+          <span class="engine-badge active" title="Subfinder OSINT">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
             Subfinder
           </span>
@@ -49,49 +47,44 @@
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M16.2 7.8l-2 6.3-6.4 2 2-6.3z"/></svg>
             Nmap
           </span>
-          <span class="engine-badge active" title="sqlmap Injection Detection">
+          <span class="engine-badge active" title="sqlmap Injection">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
             sqlmap
           </span>
         </div>
 
         <div class="topbar-actions">
-          <button id="toggle-rain" class="pill-btn rain-active" type="button" title="Toggle Ambient FX">
-            <span class="rain-dot"></span> Ambient
+          <button id="toggle-rain" class="pill-btn rain-active" type="button" title="Toggle Matrix Rain">
+            <span class="rain-dot"></span> Matrix
           </button>
           <span id="connection" class="connection-pill"><span class="pulse-dot"></span> Ready</span>
         </div>
       </header>
 
-      <!-- Hero Header Section -->
+      <!-- Hero -->
       <section class="hero-section">
         <div class="hero-content">
           <p class="hero-eyebrow">
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-            ATTACK SURFACE INTELLIGENCE &amp; VULNERABILITY AUDITING
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            OSINT · CVE · INJECT · RECON
           </p>
-          <h1>Continuous Web Reconnaissance<br><em>&amp; Vulnerability Assessment</em></h1>
-          <p class="hero-description">
-            High true-positive web security scanning engine combining <strong>ProjectDiscovery Nuclei</strong>,
-            <strong>Subfinder</strong>, <strong>Nikto</strong>, and <strong>Nmap</strong>. Clean hierarchical site mapping
-            separated from consolidated vulnerability reporting.
-          </p>
+          <h1>Web Vulnerability<br><em>Intelligence Platform</em></h1>
         </div>
         <div class="guardrail-box">
           <div class="guardrail-badge">
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-            Authorized Testing Only
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+            Authorized Use Only
           </div>
-          <p>Assess target systems you own or have explicit written authorization to evaluate.</p>
+          <p>Scan only targets you own or have written authorization to test.</p>
         </div>
       </section>
 
-      <!-- Main Scan Configuration Card -->
+      <!-- Scan Configuration -->
       <section class="card config-card" aria-labelledby="config-heading">
         <div class="card-head">
           <div>
-            <span class="card-eyebrow">CONFIGURATION</span>
-            <h2 id="config-heading">Target Specification &amp; Assessment Scope</h2>
+            <span class="card-eyebrow">// SCAN CONFIGURATION</span>
+            <h2 id="config-heading">Target &amp; Scope</h2>
           </div>
         </div>
 
@@ -102,7 +95,7 @@
               <span class="input-icon">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
               </span>
-              <input id="target" name="target" type="url" inputmode="url" placeholder="https://app.example.com" required autocomplete="url">
+              <input id="target" name="target" type="url" inputmode="url" placeholder="https://target.example.com" required autocomplete="url">
             </div>
           </div>
 
@@ -113,153 +106,143 @@
                 <option value="15">15 pages (Fast)</option>
                 <option value="30" selected>30 pages (Balanced)</option>
                 <option value="60">60 pages (Deep)</option>
-                <option value="80">80 pages (Full scope)</option>
+                <option value="80">80 pages (Full)</option>
               </select>
             </label>
-
             <label class="field-select">
               <span class="field-label">Crawl Depth</span>
               <select id="max-depth" name="max-depth">
-                <option value="1">Depth 1 (Direct links)</option>
-                <option value="2" selected>Depth 2 (Standard)</option>
-                <option value="3">Depth 3 (Sub-sections)</option>
+                <option value="1">Depth 1</option>
+                <option value="2" selected>Depth 2</option>
+                <option value="3">Depth 3</option>
               </select>
             </label>
-
             <label class="field-select">
               <span class="field-label">Tool Timeout</span>
               <select id="tool-timeout" name="tool-timeout">
-                <option value="90">90 seconds (Fast)</option>
-                <option value="180" selected>180 seconds (Standard)</option>
-                <option value="300">300 seconds (Deep)</option>
+                <option value="90">90s (Fast)</option>
+                <option value="180" selected>180s (Standard)</option>
+                <option value="300">300s (Deep)</option>
               </select>
             </label>
           </div>
 
-          <!-- Open-Source Tools Selector Grid -->
+          <!-- Engine Selector Grid -->
           <div class="tools-selector-section">
             <div class="selector-header">
-              <span class="field-label">ACTIVE SECURITY ENGINES</span>
-              <span class="selector-note">High true-positive modules with zero noise filtering</span>
+              <span class="field-label">// ACTIVE ENGINES</span>
+              <span class="selector-note">Toggle scan modules</span>
             </div>
 
             <div class="tools-grid">
-              <!-- Nuclei -->
               <label class="tool-checkbox-card">
                 <input id="run-nuclei" type="checkbox" checked>
                 <div class="tool-card-body">
                   <div class="tool-title-row">
                     <span class="tool-name">
-                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
                       Nuclei CVE Engine
                     </span>
-                    <span class="tool-tag tag-verified">Verified Flaws</span>
+                    <span class="tool-tag tag-verified">CVE</span>
                   </div>
-                  <p class="tool-desc">ProjectDiscovery templates for confirmed CVEs, exposed configurations, and API leaks.</p>
+                  <p class="tool-desc">ProjectDiscovery templates — confirmed CVEs, exposed configs, API leaks.</p>
                 </div>
               </label>
 
-              <!-- Subfinder -->
               <label class="tool-checkbox-card">
                 <input id="run-subfinder" type="checkbox" checked>
                 <div class="tool-card-body">
                   <div class="tool-title-row">
                     <span class="tool-name">
-                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+                      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
                       Subfinder OSINT
                     </span>
-                    <span class="tool-tag tag-passive">Passive Discovery</span>
+                    <span class="tool-tag tag-passive">Passive</span>
                   </div>
-                  <p class="tool-desc">Enumerates valid subdomains from passive certificate transparency logs and DNS.</p>
+                  <p class="tool-desc">Certificate transparency logs &amp; DNS — subdomain enumeration.</p>
                 </div>
               </label>
 
-              <!-- Nikto -->
               <label class="tool-checkbox-card">
                 <input id="run-nikto" type="checkbox" checked>
                 <div class="tool-card-body">
                   <div class="tool-title-row">
                     <span class="tool-name">
-                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"/><rect x="2" y="14" width="20" height="8" rx="2" ry="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></svg>
-                      Nikto Server Scanner
+                      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"/><rect x="2" y="14" width="20" height="8" rx="2" ry="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></svg>
+                      Nikto Server Scan
                     </span>
-                    <span class="tool-tag tag-tuned">Tuned Engine</span>
+                    <span class="tool-tag tag-tuned">Server</span>
                   </div>
-                  <p class="tool-desc">Audits dangerous files, outdated server packages, directory indexing, and SSL flaws.</p>
+                  <p class="tool-desc">Dangerous files, outdated packages, directory indexing, SSL flaws.</p>
                 </div>
               </label>
 
-              <!-- Nmap -->
               <label class="tool-checkbox-card">
                 <input id="run-nmap" type="checkbox">
                 <div class="tool-card-body">
                   <div class="tool-title-row">
                     <span class="tool-name">
-                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M16.2 7.8l-2 6.3-6.4 2 2-6.3z"/></svg>
+                      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M16.2 7.8l-2 6.3-6.4 2 2-6.3z"/></svg>
                       Nmap HTTP Scripts
                     </span>
-                    <span class="tool-tag tag-network">Strict Parsing</span>
+                    <span class="tool-tag tag-network">NSE</span>
                   </div>
-                  <p class="tool-desc">HTTP vulnerability NSE scripts with automatic rejection of negative or info statements.</p>
+                  <p class="tool-desc">HTTP NSE scripts — strict parsing, rejects false statements.</p>
                 </div>
               </label>
 
-              <!-- sqlmap -->
               <label class="tool-checkbox-card">
                 <input id="run-sqlmap" type="checkbox">
                 <div class="tool-card-body">
                   <div class="tool-title-row">
                     <span class="tool-name">
-                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
-                      sqlmap Detection
+                      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
+                      sqlmap SQLi
                     </span>
                     <span class="tool-tag tag-safe">Read-Only</span>
                   </div>
-                  <p class="tool-desc">Tests URL parameters for confirmed SQL injection points (risk=1, zero database tampering).</p>
+                  <p class="tool-desc">URL parameter injection detection — risk=1, zero DB writes.</p>
                 </div>
               </label>
 
-              <!-- Reflection -->
               <label class="tool-checkbox-card">
                 <input id="safe-reflection" type="checkbox">
                 <div class="tool-card-body">
                   <div class="tool-title-row">
                     <span class="tool-name">
-                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
-                      Parameter Reflection
+                      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                      Param Reflection
                     </span>
-                    <span class="tool-tag tag-harmless">Canary Token</span>
+                    <span class="tool-tag tag-harmless">Canary</span>
                   </div>
-                  <p class="tool-desc">Sends unique harmless text tokens to verify reflection in response HTML.</p>
+                  <p class="tool-desc">Harmless token injection — verifies response reflection.</p>
                 </div>
               </label>
 
-              <!-- Passive Security Headers -->
               <label class="tool-checkbox-card">
                 <input id="check-headers" type="checkbox" checked>
                 <div class="tool-card-body">
                   <div class="tool-title-row">
                     <span class="tool-name">
-                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-                      Hardening &amp; Headers
+                      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                      Headers &amp; Hardening
                     </span>
-                    <span class="tool-tag tag-passive">HTML Only</span>
+                    <span class="tool-tag tag-passive">Passive</span>
                   </div>
-                  <p class="tool-desc">Audits CSP, HSTS, and frame protections on HTML documents. Uncheck to test only exploit flaws.</p>
+                  <p class="tool-desc">CSP, HSTS, frame protections — HTML documents only.</p>
                 </div>
               </label>
             </div>
           </div>
 
-          <!-- Consent & Submission -->
+          <!-- Authorization & Submit -->
           <div class="auth-bar">
             <label class="consent-checkbox">
               <input id="authorization" type="checkbox" required>
-              <span>I confirm that I own this target or possess written authorization for this security audit.</span>
+              <span>I own this target or have explicit written authorization to conduct this security audit.</span>
             </label>
-
             <button id="start-scan" type="submit" class="cyber-btn primary">
-              <span class="btn-text">Execute Assessment</span>
+              <span class="btn-text">Execute Scan</span>
               <span class="btn-arrow">→</span>
             </button>
           </div>
@@ -267,7 +250,7 @@
         </form>
       </section>
 
-      <!-- Live Execution & Status Monitor -->
+      <!-- Live Status & Monitor -->
       <section id="status-panel" class="card status-panel hidden" aria-live="polite">
         <div class="status-header">
           <div class="status-left">
@@ -277,62 +260,57 @@
               <h3 id="status-stage">Preparing environment…</h3>
             </div>
           </div>
-          <button id="toggle-log-btn" class="pill-btn" type="button">Terminal Log ▼</button>
+          <button id="toggle-log-btn" class="pill-btn" type="button">Terminal ▼</button>
         </div>
 
         <div class="progress-track"><div id="progress-fill" class="progress-fill"></div></div>
 
         <div class="progress-metrics">
-          <div class="metric"><strong id="metric-subdomains">0</strong><span>Subdomains Found</span></div>
-          <div class="metric"><strong id="metric-pages-found">0</strong><span>Endpoints Discovered</span></div>
-          <div class="metric"><strong id="metric-pages-scanned">0</strong><span>Pages Audited</span></div>
-          <div class="metric"><strong id="metric-findings">0</strong><span>True Findings</span></div>
+          <div class="metric"><strong id="metric-subdomains">0</strong><span>Subdomains</span></div>
+          <div class="metric"><strong id="metric-pages-found">0</strong><span>Endpoints</span></div>
+          <div class="metric"><strong id="metric-pages-scanned">0</strong><span>Audited</span></div>
+          <div class="metric"><strong id="metric-findings">0</strong><span>Findings</span></div>
         </div>
 
-        <!-- Real-time Terminal Log Stream -->
         <div id="log-drawer" class="log-drawer">
           <div class="terminal-bar">
-            <span>● LIVE AUDIT LOG</span>
+            <span>▶ LIVE LOG</span>
             <button id="clear-log-btn" type="button" class="tiny-btn">Clear</button>
           </div>
           <pre id="log-output" class="log-output"></pre>
         </div>
       </section>
 
-      <!-- SEPARATE DUAL-VIEW RESULTS SECTION -->
+      <!-- Results Panel: Dual-View -->
       <section id="results-panel" class="results-container hidden">
-        <!-- Dual Output Tabs Switcher -->
         <div class="view-switcher-bar">
           <div class="main-tabs" role="tablist">
             <button id="tab-sitemap-btn" class="main-tab active" type="button" role="tab" aria-selected="true">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-              Site Map &amp; Subdomains <span id="sitemap-count-pill" class="tab-pill">0</span>
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+              Site Map <span id="sitemap-count-pill" class="tab-pill">0</span>
             </button>
             <button id="tab-findings-btn" class="main-tab" type="button" role="tab" aria-selected="false">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-              Vulnerability Report <span id="findings-count-pill" class="tab-pill">0</span>
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              Vulnerabilities <span id="findings-count-pill" class="tab-pill">0</span>
             </button>
           </div>
-
           <div class="export-actions">
             <button id="download-sitemap-btn" class="pill-btn export-btn" type="button">
-              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-              Export Site Map
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              Site Map
             </button>
             <button id="download-report-btn" class="pill-btn export-btn" type="button">
-              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-              Export Report (JSON)
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              Report JSON
             </button>
           </div>
         </div>
 
-        <!-- ═══════════════════════════════════════════════════════════════ -->
-        <!-- VIEW 1: SITE MAP & SUBDOMAINS HIERARCHY -->
-        <!-- ═══════════════════════════════════════════════════════════════ -->
+        <!-- VIEW 1: SITE MAP -->
         <div id="sitemap-view" class="view-content active" role="tabpanel">
           <div class="sitemap-overview-card">
             <div class="sitemap-meta">
-              <span class="card-eyebrow">APEX DOMAIN TOPOLOGY</span>
+              <span class="card-eyebrow">// APEX DOMAIN</span>
               <h2 id="sitemap-root-domain">target.example.com</h2>
             </div>
             <div class="sitemap-stats-row">
@@ -342,44 +320,37 @@
               </div>
               <div class="sitemap-stat">
                 <span class="num" id="sitemap-total-eps">0</span>
-                <span class="lbl">Endpoints Mapped</span>
+                <span class="lbl">Endpoints</span>
               </div>
             </div>
           </div>
 
           <div class="sitemap-filter-bar">
-            <input id="sitemap-search" type="search" placeholder="Filter subdomains, paths, or endpoints…">
+            <input id="sitemap-search" type="search" placeholder="Filter subdomains, paths, endpoints…">
             <button id="expand-all-subs" class="tiny-btn" type="button">Expand All</button>
             <button id="collapse-all-subs" class="tiny-btn" type="button">Collapse All</button>
           </div>
 
-          <!-- Dynamic Subdomain Tree Cards -->
           <div id="subdomains-tree-list" class="subdomains-tree-list"></div>
         </div>
 
-        <!-- ═══════════════════════════════════════════════════════════════ -->
-        <!-- VIEW 2: TRUE-POSITIVE VULNERABILITY & AUDIT REPORT -->
-        <!-- ═══════════════════════════════════════════════════════════════ -->
+        <!-- VIEW 2: VULNERABILITY REPORT -->
         <div id="findings-view" class="view-content hidden" role="tabpanel">
-          <!-- Summary Metric Cards -->
           <div class="summary-cards-grid" id="summary-cards">
             <div class="summary-card sev-card-high"><strong id="cnt-high">0</strong><span>High / Critical</span></div>
-            <div class="summary-card sev-card-medium"><strong id="cnt-medium">0</strong><span>Medium Priority</span></div>
-            <div class="summary-card sev-card-low"><strong id="cnt-low">0</strong><span>Low / Hardening</span></div>
+            <div class="summary-card sev-card-medium"><strong id="cnt-medium">0</strong><span>Medium</span></div>
+            <div class="summary-card sev-card-low"><strong id="cnt-low">0</strong><span>Low</span></div>
             <div class="summary-card"><strong id="cnt-tools">0</strong><span>Tool Verified</span></div>
           </div>
 
-          <!-- Filter Toolbar -->
           <div class="findings-toolbar">
-            <input id="finding-search" type="search" placeholder="Filter findings by vulnerability, evidence, or endpoint…">
-
+            <input id="finding-search" type="search" placeholder="Filter by vuln, evidence, or endpoint…">
             <div class="filter-pills" id="severity-filters">
-              <button data-severity="all" class="f-pill active" type="button">All Severities</button>
+              <button data-severity="all" class="f-pill active" type="button">All</button>
               <button data-severity="high" class="f-pill pill-high" type="button">High</button>
               <button data-severity="medium" class="f-pill pill-medium" type="button">Medium</button>
               <button data-severity="low" class="f-pill pill-low" type="button">Low</button>
             </div>
-
             <div class="filter-pills" id="source-filters">
               <button data-source="all" class="f-pill active" type="button">All Engines</button>
               <button data-source="nuclei" class="f-pill" type="button">Nuclei</button>
@@ -390,24 +361,23 @@
             </div>
           </div>
 
-          <!-- Dynamic Consolidated Findings List -->
           <div id="finding-list" class="finding-list"></div>
         </div>
       </section>
 
-      <!-- Recent Scans History -->
+      <!-- Scan History -->
       <section class="card history-card" aria-labelledby="history-heading">
         <div class="card-head">
           <div>
-            <span class="card-eyebrow">AUDIT SESSIONS</span>
+            <span class="card-eyebrow">// SESSION HISTORY</span>
             <h2 id="history-heading">Recent Targets</h2>
           </div>
         </div>
-        <div id="history-list" class="history-list"><p class="empty-state">No assessments in this session.</p></div>
+        <div id="history-list" class="history-list"><p class="empty-state">No sessions yet.</p></div>
       </section>
 
       <footer class="app-footer">
-        <p>TARSPECTRA &bull; Automated Security Scanning &amp; Attack Surface Framework &bull; Local 127.0.0.1 Sandbox</p>
+        <p>TARSPECTRA &bull; v2.5 &bull; Local Sandbox 127.0.0.1</p>
       </footer>
     </div>
 

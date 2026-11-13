@@ -5,7 +5,7 @@
 
 const state = {
   currentScan: null,
-  activeTab: 'sitemap', // 'sitemap' | 'findings'
+  activeTab: 'sitemap',
   severityFilter: 'all',
   sourceFilter: 'all',
   searchQuery: '',
@@ -24,9 +24,9 @@ const escapeHtml = (str) =>
   );
 
 // ─────────────────────────────────────────────────────────────────────────────
-// 1. AMBIENT CONSTELLATION & MESH CANVAS
+// 1. MATRIX DIGITAL RAIN CANVAS
 // ─────────────────────────────────────────────────────────────────────────────
-(function initAmbientMesh() {
+(function initMatrixRain() {
   const canvas = $('#matrix-canvas');
   if (!canvas) return;
   const ctx = canvas.getContext('2d');
@@ -34,63 +34,77 @@ const escapeHtml = (str) =>
   let width = (canvas.width = window.innerWidth);
   let height = (canvas.height = window.innerHeight);
 
-  const particles = [];
-  const count = Math.min(Math.floor((width * height) / 22000), 55);
+  // Matrix characters — katakana + latin + digits + symbols
+  const CHARS =
+    'アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン' +
+    'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%^&*<>/\\|[]{}';
 
-  for (let i = 0; i < count; i++) {
-    particles.push({
-      x: Math.random() * width,
-      y: Math.random() * height,
-      vx: (Math.random() - 0.5) * 0.45,
-      vy: (Math.random() - 0.5) * 0.45,
-      radius: Math.random() * 1.8 + 0.8,
-      hue: Math.random() > 0.4 ? 240 : 190,
-    });
+  const FONT_SIZE = 14;
+  let cols = Math.floor(width / FONT_SIZE);
+
+  // Each column: y position (in rows), speed, opacity, color variant
+  let drops = [];
+  function initDrops() {
+    cols = Math.floor(width / FONT_SIZE);
+    drops = Array.from({ length: cols }, () => ({
+      y: Math.random() * -100,
+      speed: 0.3 + Math.random() * 0.7,
+      bright: Math.random() > 0.85, // occasional bright head
+    }));
   }
+  initDrops();
 
   window.addEventListener('resize', () => {
     width = canvas.width = window.innerWidth;
     height = canvas.height = window.innerHeight;
+    initDrops();
   });
 
-  function render() {
-    if (state.matrixRainActive) {
-      ctx.clearRect(0, 0, width, height);
+  let lastFrame = 0;
+  const FPS = 28;
+  const FRAME_MS = 1000 / FPS;
 
-      for (let i = 0; i < particles.length; i++) {
-        const p1 = particles[i];
-        p1.x += p1.vx;
-        p1.y += p1.vy;
-
-        if (p1.x < 0) p1.x = width;
-        if (p1.x > width) p1.x = 0;
-        if (p1.y < 0) p1.y = height;
-        if (p1.y > height) p1.y = 0;
-
-        for (let j = i + 1; j < particles.length; j++) {
-          const p2 = particles[j];
-          const dx = p1.x - p2.x;
-          const dy = p1.y - p2.y;
-          const dist = Math.sqrt(dx * dx + dy * dy);
-
-          if (dist < 140) {
-            const alpha = (1 - dist / 140) * 0.22;
-            ctx.strokeStyle = `rgba(99, 102, 241, ${alpha})`;
-            ctx.lineWidth = 0.8;
-            ctx.beginPath();
-            ctx.moveTo(p1.x, p1.y);
-            ctx.lineTo(p2.x, p2.y);
-            ctx.stroke();
-          }
-        }
-
-        ctx.fillStyle = p1.hue === 240 ? 'rgba(129, 140, 248, 0.7)' : 'rgba(56, 189, 248, 0.7)';
-        ctx.beginPath();
-        ctx.arc(p1.x, p1.y, p1.radius, 0, Math.PI * 2);
-        ctx.fill();
-      }
-    }
+  function render(now) {
     requestAnimationFrame(render);
+    if (!state.matrixRainActive) return;
+    if (now - lastFrame < FRAME_MS) return;
+    lastFrame = now;
+
+    // Semi-transparent fill to create trailing fade effect
+    ctx.fillStyle = 'rgba(0, 0, 0, 0.055)';
+    ctx.fillRect(0, 0, width, height);
+
+    for (let i = 0; i < drops.length; i++) {
+      const drop = drops[i];
+      const char = CHARS[Math.floor(Math.random() * CHARS.length)];
+      const x = i * FONT_SIZE;
+      const y = drop.y * FONT_SIZE;
+
+      if (drop.bright && drop.y > 1) {
+        // Bright glowing head character
+        ctx.shadowBlur = 12;
+        ctx.shadowColor = '#00ff88';
+        ctx.fillStyle = '#ccffe8';
+        ctx.font = `bold ${FONT_SIZE}px "JetBrains Mono", monospace`;
+      } else {
+        ctx.shadowBlur = 0;
+        // Fade to dim green based on trail position
+        const alpha = 0.65 + Math.random() * 0.35;
+        ctx.fillStyle = `rgba(0, 200, 100, ${alpha})`;
+        ctx.font = `${FONT_SIZE}px "JetBrains Mono", monospace`;
+      }
+
+      ctx.fillText(char, x, y);
+
+      // Reset drop when it reaches bottom (with randomness)
+      if (y > height && Math.random() > 0.975) {
+        drop.y = 0;
+        drop.speed = 0.3 + Math.random() * 0.7;
+        drop.bright = Math.random() > 0.85;
+      }
+
+      drop.y += drop.speed;
+    }
   }
   requestAnimationFrame(render);
 
@@ -98,7 +112,12 @@ const escapeHtml = (str) =>
   if (toggleBtn) {
     toggleBtn.addEventListener('click', () => {
       state.matrixRainActive = !state.matrixRainActive;
-      canvas.classList.toggle('paused', !state.matrixRainActive);
+      if (!state.matrixRainActive) {
+        ctx.clearRect(0, 0, width, height);
+        canvas.style.opacity = '0';
+      } else {
+        canvas.style.opacity = '';
+      }
       toggleBtn.classList.toggle('rain-active', state.matrixRainActive);
     });
   }
@@ -233,7 +252,6 @@ function renderSiteMap(sitemap) {
         );
       });
 
-      // Skip this subdomain card if search query filters out all its endpoints and doesn't match host
       if (query && !host.includes(query) && !endpoints.length) {
         return '';
       }
@@ -293,7 +311,6 @@ function renderSiteMap(sitemap) {
 
   container.innerHTML = html || '<p class="empty-state">No subdomains or endpoints match filter.</p>';
 
-  // Bind click-to-collapse on subdomain headers
   $$('.subdomain-header').forEach((hdr) => {
     hdr.addEventListener('click', () => {
       const card = hdr.closest('.subdomain-card');
@@ -301,7 +318,6 @@ function renderSiteMap(sitemap) {
     });
   });
 
-  // Bind copy URL buttons
   $$('.copy-url-btn').forEach((btn) => {
     btn.addEventListener('click', (e) => {
       e.stopPropagation();
@@ -313,7 +329,6 @@ function renderSiteMap(sitemap) {
   });
 }
 
-// Expand / Collapse All Subdomains
 $('#expand-all-subs').addEventListener('click', () => {
   $$('.subdomain-card').forEach((c) => c.classList.remove('collapsed'));
 });
@@ -409,7 +424,6 @@ function renderFindings(scan) {
   });
 }
 
-// Switch between Main Tabs (Site Map vs Vulnerability Report)
 $('#tab-sitemap-btn').addEventListener('click', () => {
   state.activeTab = 'sitemap';
   $('#tab-sitemap-btn').classList.add('active');
@@ -430,7 +444,6 @@ $('#tab-findings-btn').addEventListener('click', () => {
   $('#sitemap-view').classList.add('hidden');
 });
 
-// Findings filter events
 $('#finding-search').addEventListener('input', (e) => {
   state.searchQuery = e.target.value;
   if (state.currentScan) renderFindings(state.currentScan);
@@ -452,7 +465,6 @@ $('#source-filters').addEventListener('click', (e) => {
   if (state.currentScan) renderFindings(state.currentScan);
 });
 
-// Download Action Handlers
 $('#download-sitemap-btn').addEventListener('click', () => {
   if (state.currentScan?.id) {
     window.location.assign(`/api/scans/${state.currentScan.id}/download-sitemap`);
@@ -477,7 +489,7 @@ async function pollScan(scanId) {
 
     if (scan.status === 'completed') {
       $('#start-scan').disabled = false;
-      showMessage('Assessment complete! Review the Site Map and Vulnerability tabs.', 'success');
+      showMessage('Scan complete. Review Site Map and Vulnerabilities.', 'success');
       $('#results-panel').classList.remove('hidden');
 
       if (scan.sitemap) renderSiteMap(scan.sitemap);
@@ -498,7 +510,6 @@ async function pollScan(scanId) {
   }
 }
 
-// Scan Form Submission
 $('#scan-form').addEventListener('submit', async (e) => {
   e.preventDefault();
   const btn = $('#start-scan');
@@ -548,7 +559,7 @@ async function loadHistory() {
     const container = $('#history-list');
 
     if (!scans.length) {
-      container.innerHTML = '<p class="empty-state">No assessments in this session.</p>';
+      container.innerHTML = '<p class="empty-state">No sessions yet.</p>';
       return;
     }
 
@@ -566,7 +577,7 @@ async function loadHistory() {
     $$('.history-row').forEach((row) => {
       row.addEventListener('click', async () => {
         const id = row.dataset.id;
-        showMessage('Loading past scan…', 'success');
+        showMessage('Loading session…', 'success');
         const scan = await api(`/api/scans/${id}`);
         state.currentScan = scan;
         updateProgress(scan);
@@ -582,7 +593,7 @@ async function checkSystem() {
   try {
     await api('/api/health');
     const pill = $('#connection');
-    pill.innerHTML = '<span class="pulse-dot"></span> Workbench Ready';
+    pill.innerHTML = '<span class="pulse-dot"></span> ONLINE';
 
     const toolsData = await api('/api/tools');
     const installed = toolsData.tools || {};
@@ -600,7 +611,7 @@ async function checkSystem() {
       if (el && !installed[tool]) {
         el.disabled = true;
         el.checked = false;
-        el.closest('.tool-checkbox-card').style.opacity = '0.5';
+        el.closest('.tool-checkbox-card').style.opacity = '0.4';
       }
     }
 
@@ -615,14 +626,13 @@ async function checkSystem() {
     for (const [tool, idx] of Object.entries(badgeMap)) {
       if (badges[idx]) {
         badges[idx].classList.toggle('active', !!installed[tool]);
-        badges[idx].style.opacity = installed[tool] ? '1' : '0.4';
+        badges[idx].style.opacity = installed[tool] ? '1' : '0.35';
       }
     }
   } catch (_) {
-    $('#connection').innerHTML = '<span style="color:var(--sev-critical)">● Disconnected</span>';
+    $('#connection').innerHTML = '<span style="color:#ff3860">● OFFLINE</span>';
   }
 }
 
-// Initialize on Load
 checkSystem();
 loadHistory();
