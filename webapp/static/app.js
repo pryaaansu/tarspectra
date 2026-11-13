@@ -24,9 +24,9 @@ const escapeHtml = (str) =>
   );
 
 // ─────────────────────────────────────────────────────────────────────────────
-// 1. MATRIX DIGITAL RAIN CANVAS ENGINE
+// 1. AMBIENT CONSTELLATION & MESH CANVAS
 // ─────────────────────────────────────────────────────────────────────────────
-(function initMatrixRain() {
+(function initAmbientMesh() {
   const canvas = $('#matrix-canvas');
   if (!canvas) return;
   const ctx = canvas.getContext('2d');
@@ -34,62 +34,60 @@ const escapeHtml = (str) =>
   let width = (canvas.width = window.innerWidth);
   let height = (canvas.height = window.innerHeight);
 
+  const particles = [];
+  const count = Math.min(Math.floor((width * height) / 22000), 55);
+
+  for (let i = 0; i < count; i++) {
+    particles.push({
+      x: Math.random() * width,
+      y: Math.random() * height,
+      vx: (Math.random() - 0.5) * 0.45,
+      vy: (Math.random() - 0.5) * 0.45,
+      radius: Math.random() * 1.8 + 0.8,
+      hue: Math.random() > 0.4 ? 240 : 190,
+    });
+  }
+
   window.addEventListener('resize', () => {
     width = canvas.width = window.innerWidth;
     height = canvas.height = window.innerHeight;
-    initDrops();
   });
 
-  // Matrix characters: Katakana, Latin, Digits, Math symbols
-  const characters = 'ｦｱｳｴｵｶｷｹｺｻｼｽｾｿﾀﾂﾃﾅﾆﾇﾈﾊﾋﾎﾏﾐﾑﾒﾓﾔﾕﾗﾘﾜ1234567890ABCDEF<>{}/*+=~';
-  const fontSize = 14;
-  let columns = Math.floor(width / fontSize);
-  let drops = [];
-
-  function initDrops() {
-    columns = Math.floor(width / fontSize);
-    drops = [];
-    for (let i = 0; i < columns; i++) {
-      drops[i] = Math.random() * -100;
-    }
-  }
-  initDrops();
-
-  let lastTime = 0;
-  const fps = 28;
-  const interval = 1000 / fps;
-
-  function render(currentTime) {
+  function render() {
     if (state.matrixRainActive) {
-      const delta = currentTime - lastTime;
-      if (delta > interval) {
-        lastTime = currentTime - (delta % interval);
+      ctx.clearRect(0, 0, width, height);
 
-        ctx.fillStyle = 'rgba(4, 9, 19, 0.08)';
-        ctx.fillRect(0, 0, width, height);
+      for (let i = 0; i < particles.length; i++) {
+        const p1 = particles[i];
+        p1.x += p1.vx;
+        p1.y += p1.vy;
 
-        ctx.font = `${fontSize}px monospace`;
+        if (p1.x < 0) p1.x = width;
+        if (p1.x > width) p1.x = 0;
+        if (p1.y < 0) p1.y = height;
+        if (p1.y > height) p1.y = 0;
 
-        for (let i = 0; i < drops.length; i++) {
-          const char = characters.charAt(Math.floor(Math.random() * characters.length));
-          const x = i * fontSize;
-          const y = drops[i] * fontSize;
+        for (let j = i + 1; j < particles.length; j++) {
+          const p2 = particles[j];
+          const dx = p1.x - p2.x;
+          const dy = p1.y - p2.y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
 
-          // Bright neon head
-          ctx.fillStyle = '#ffffff';
-          ctx.shadowBlur = 8;
-          ctx.shadowColor = '#00ff88';
-          ctx.fillText(char, x, y);
-
-          // Trail color
-          ctx.fillStyle = '#00ff88';
-          ctx.shadowBlur = 0;
-
-          if (y > height && Math.random() > 0.985) {
-            drops[i] = 0;
+          if (dist < 140) {
+            const alpha = (1 - dist / 140) * 0.22;
+            ctx.strokeStyle = `rgba(99, 102, 241, ${alpha})`;
+            ctx.lineWidth = 0.8;
+            ctx.beginPath();
+            ctx.moveTo(p1.x, p1.y);
+            ctx.lineTo(p2.x, p2.y);
+            ctx.stroke();
           }
-          drops[i]++;
         }
+
+        ctx.fillStyle = p1.hue === 240 ? 'rgba(129, 140, 248, 0.7)' : 'rgba(56, 189, 248, 0.7)';
+        ctx.beginPath();
+        ctx.arc(p1.x, p1.y, p1.radius, 0, Math.PI * 2);
+        ctx.fill();
       }
     }
     requestAnimationFrame(render);
@@ -277,7 +275,7 @@ function renderSiteMap(sitemap) {
         <div class="subdomain-header">
           <div class="subdomain-title-group">
             <span class="subdomain-toggle-icon">▼</span>
-            <span class="subdomain-host">🖥️ ${escapeHtml(host)}</span>
+            <span class="subdomain-host"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right:6px;vertical-align:-2px"><circle cx="12" cy="12" r="10"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>${escapeHtml(host)}</span>
             ${info.is_target_host ? '<span class="badge-target-host">Target Apex</span>' : ''}
             ${info.server ? `<span class="subdomain-server">Server: ${escapeHtml(info.server)}</span>` : ''}
           </div>
@@ -605,8 +603,23 @@ async function checkSystem() {
         el.closest('.tool-checkbox-card').style.opacity = '0.5';
       }
     }
+
+    const badgeMap = {
+      nuclei: 0,
+      subfinder: 1,
+      nikto: 2,
+      nmap: 3,
+      sqlmap: 4,
+    };
+    const badges = $$('#engines-bar .engine-badge');
+    for (const [tool, idx] of Object.entries(badgeMap)) {
+      if (badges[idx]) {
+        badges[idx].classList.toggle('active', !!installed[tool]);
+        badges[idx].style.opacity = installed[tool] ? '1' : '0.4';
+      }
+    }
   } catch (_) {
-    $('#connection').innerHTML = '<span style="color:var(--sev-high)">● Disconnected</span>';
+    $('#connection').innerHTML = '<span style="color:var(--sev-critical)">● Disconnected</span>';
   }
 }
 

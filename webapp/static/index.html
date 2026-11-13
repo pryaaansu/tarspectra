@@ -3,12 +3,15 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="theme-color" content="#030811">
-    <title>TARSPECTRA | Advanced Web Vulnerability Workbench &amp; Site Mapper</title>
+    <meta name="theme-color" content="#080b11">
+    <title>TARSPECTRA | Web Security Assessment &amp; Attack Surface Workbench</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/styles.css">
   </head>
   <body>
-    <!-- Matrix Rain Digital Canvas -->
+    <!-- Ambient Particle Canvas -->
     <canvas id="matrix-canvas" aria-hidden="true"></canvas>
 
     <div class="app-wrapper">
@@ -16,47 +19,70 @@
       <header class="topbar">
         <a class="brand" href="/" aria-label="Tarspectra Home">
           <span class="brand-hexagon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 2L3 7v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-9-5z"/>
+              <path d="M12 8v8"/>
+              <path d="M8 12h8"/>
             </svg>
           </span>
           <div class="brand-text">
             <span class="brand-title">TARSPECTRA</span>
-            <span class="brand-subtitle">SECURITY WORKBENCH v2.5</span>
+            <span class="brand-subtitle">Security Workbench v2.5</span>
           </div>
         </a>
 
         <!-- System Engine Badges -->
         <div class="engines-bar" id="engines-bar">
-          <span class="engine-badge active" title="Nuclei CVE Engine">⚡ Nuclei</span>
-          <span class="engine-badge active" title="Subfinder Subdomain OSINT">🌐 Subfinder</span>
-          <span class="engine-badge active" title="Nikto Web Server Scanner">🔍 Nikto</span>
-          <span class="engine-badge active" title="Nmap HTTP Scripts">🗺️ Nmap</span>
-          <span class="engine-badge active" title="sqlmap Injection Detection">💉 sqlmap</span>
+          <span class="engine-badge active" title="Nuclei CVE Engine">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+            Nuclei
+          </span>
+          <span class="engine-badge active" title="Subfinder Subdomain OSINT">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+            Subfinder
+          </span>
+          <span class="engine-badge active" title="Nikto Web Server Scanner">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"/><rect x="2" y="14" width="20" height="8" rx="2" ry="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></svg>
+            Nikto
+          </span>
+          <span class="engine-badge active" title="Nmap HTTP Scripts">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M16.2 7.8l-2 6.3-6.4 2 2-6.3z"/></svg>
+            Nmap
+          </span>
+          <span class="engine-badge active" title="sqlmap Injection Detection">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
+            sqlmap
+          </span>
         </div>
 
         <div class="topbar-actions">
-          <button id="toggle-rain" class="pill-btn rain-active" type="button" title="Toggle Matrix Rain">
-            <span class="rain-dot"></span> Matrix Rain
+          <button id="toggle-rain" class="pill-btn rain-active" type="button" title="Toggle Ambient FX">
+            <span class="rain-dot"></span> Ambient
           </button>
-          <span id="connection" class="connection-pill"><span class="pulse-dot"></span> Checking…</span>
+          <span id="connection" class="connection-pill"><span class="pulse-dot"></span> Ready</span>
         </div>
       </header>
 
       <!-- Hero Header Section -->
       <section class="hero-section">
         <div class="hero-content">
-          <p class="hero-eyebrow">PRECISION AUDIT &amp; SUBDOMAIN HIERARCHY</p>
-          <h1>Map the Surface.<br><em>Expose True Vulnerabilities.</em></h1>
+          <p class="hero-eyebrow">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            ATTACK SURFACE INTELLIGENCE &amp; VULNERABILITY AUDITING
+          </p>
+          <h1>Continuous Web Reconnaissance<br><em>&amp; Vulnerability Assessment</em></h1>
           <p class="hero-description">
-            High true-positive web vulnerability auditing combining <strong>ProjectDiscovery Nuclei</strong>,
+            High true-positive web security scanning engine combining <strong>ProjectDiscovery Nuclei</strong>,
             <strong>Subfinder</strong>, <strong>Nikto</strong>, and <strong>Nmap</strong>. Clean hierarchical site mapping
-            separated from zero-noise vulnerability reporting.
+            separated from consolidated vulnerability reporting.
           </p>
         </div>
         <div class="guardrail-box">
-          <div class="guardrail-badge">⚠ AUTHORIZED ASSESSMENTS ONLY</div>
-          <p>Strictly evaluate systems you own or have explicit written permission to assess.</p>
+          <div class="guardrail-badge">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+            Authorized Testing Only
+          </div>
+          <p>Assess target systems you own or have explicit written authorization to evaluate.</p>
         </div>
       </section>
 
@@ -64,23 +90,25 @@
       <section class="card config-card" aria-labelledby="config-heading">
         <div class="card-head">
           <div>
-            <span class="card-eyebrow">TARGET SPECIFICATION</span>
-            <h2 id="config-heading">Configure Security Assessment</h2>
+            <span class="card-eyebrow">CONFIGURATION</span>
+            <h2 id="config-heading">Target Specification &amp; Assessment Scope</h2>
           </div>
         </div>
 
         <form id="scan-form">
           <div class="target-input-group">
-            <label for="target" class="field-label">Target Root URL</label>
+            <label for="target" class="field-label">Target URL</label>
             <div class="input-with-icon">
-              <span class="input-icon">🎯</span>
-              <input id="target" name="target" type="url" inputmode="url" placeholder="https://authorized-target.example.com" required autocomplete="url">
+              <span class="input-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+              </span>
+              <input id="target" name="target" type="url" inputmode="url" placeholder="https://app.example.com" required autocomplete="url">
             </div>
           </div>
 
           <div class="config-grid">
             <label class="field-select">
-              <span class="field-label">Max Crawl Pages</span>
+              <span class="field-label">Crawl Scope</span>
               <select id="max-pages" name="max-pages">
                 <option value="15">15 pages (Fast)</option>
                 <option value="30" selected>30 pages (Balanced)</option>
@@ -121,10 +149,13 @@
                 <input id="run-nuclei" type="checkbox" checked>
                 <div class="tool-card-body">
                   <div class="tool-title-row">
-                    <span class="tool-name">⚡ Nuclei CVE Engine</span>
-                    <span class="tool-tag tag-verified">99% True Positive</span>
+                    <span class="tool-name">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                      Nuclei CVE Engine
+                    </span>
+                    <span class="tool-tag tag-verified">Verified Flaws</span>
                   </div>
-                  <p class="tool-desc">ProjectDiscovery templates for real CVEs, misconfigurations, exposed admin panels, and secret leaks.</p>
+                  <p class="tool-desc">ProjectDiscovery templates for confirmed CVEs, exposed configurations, and API leaks.</p>
                 </div>
               </label>
 
@@ -133,10 +164,13 @@
                 <input id="run-subfinder" type="checkbox" checked>
                 <div class="tool-card-body">
                   <div class="tool-title-row">
-                    <span class="tool-name">🌐 Subfinder OSINT</span>
+                    <span class="tool-name">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+                      Subfinder OSINT
+                    </span>
                     <span class="tool-tag tag-passive">Passive Discovery</span>
                   </div>
-                  <p class="tool-desc">Enumerates all valid subdomains under the target's apex domain for the Site Map hierarchy.</p>
+                  <p class="tool-desc">Enumerates valid subdomains from passive certificate transparency logs and DNS.</p>
                 </div>
               </label>
 
@@ -145,10 +179,13 @@
                 <input id="run-nikto" type="checkbox" checked>
                 <div class="tool-card-body">
                   <div class="tool-title-row">
-                    <span class="tool-name">🔍 Nikto Server Scanner</span>
-                    <span class="tool-tag tag-tuned">Tuned &amp; Cleaned</span>
+                    <span class="tool-name">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"/><rect x="2" y="14" width="20" height="8" rx="2" ry="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></svg>
+                      Nikto Server Scanner
+                    </span>
+                    <span class="tool-tag tag-tuned">Tuned Engine</span>
                   </div>
-                  <p class="tool-desc">Scans for dangerous files, outdated server packages, directory indexing, and SSL flaws.</p>
+                  <p class="tool-desc">Audits dangerous files, outdated server packages, directory indexing, and SSL flaws.</p>
                 </div>
               </label>
 
@@ -157,10 +194,13 @@
                 <input id="run-nmap" type="checkbox">
                 <div class="tool-card-body">
                   <div class="tool-title-row">
-                    <span class="tool-name">🗺️ Nmap HTTP Scripts</span>
-                    <span class="tool-tag tag-network">Strict Verification</span>
+                    <span class="tool-name">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M16.2 7.8l-2 6.3-6.4 2 2-6.3z"/></svg>
+                      Nmap HTTP Scripts
+                    </span>
+                    <span class="tool-tag tag-network">Strict Parsing</span>
                   </div>
-                  <p class="tool-desc">Runs HTTP vulnerability scripts (methods, XSS, CSRF) with negative-finding rejection.</p>
+                  <p class="tool-desc">HTTP vulnerability NSE scripts with automatic rejection of negative or info statements.</p>
                 </div>
               </label>
 
@@ -169,10 +209,13 @@
                 <input id="run-sqlmap" type="checkbox">
                 <div class="tool-card-body">
                   <div class="tool-title-row">
-                    <span class="tool-name">💉 sqlmap Verification</span>
-                    <span class="tool-tag tag-safe">Safe Read-Only</span>
+                    <span class="tool-name">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
+                      sqlmap Detection
+                    </span>
+                    <span class="tool-tag tag-safe">Read-Only</span>
                   </div>
-                  <p class="tool-desc">Tests URL parameters for confirmed SQL injection points (risk=1, no exploitation).</p>
+                  <p class="tool-desc">Tests URL parameters for confirmed SQL injection points (risk=1, zero database tampering).</p>
                 </div>
               </label>
 
@@ -181,22 +224,28 @@
                 <input id="safe-reflection" type="checkbox">
                 <div class="tool-card-body">
                   <div class="tool-title-row">
-                    <span class="tool-name">🎯 Parameter Reflection</span>
-                    <span class="tool-tag tag-harmless">Harmless Marker</span>
+                    <span class="tool-name">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                      Parameter Reflection
+                    </span>
+                    <span class="tool-tag tag-harmless">Canary Token</span>
                   </div>
-                  <p class="tool-desc">Sends a unique harmless text marker on existing GET parameters to verify reflection.</p>
+                  <p class="tool-desc">Sends unique harmless text tokens to verify reflection in response HTML.</p>
                 </div>
               </label>
 
-              <!-- Passive Security Headers & Hardening -->
+              <!-- Passive Security Headers -->
               <label class="tool-checkbox-card">
                 <input id="check-headers" type="checkbox" checked>
                 <div class="tool-card-body">
                   <div class="tool-title-row">
-                    <span class="tool-name">🛡️ Security Headers &amp; Hardening</span>
+                    <span class="tool-name">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                      Hardening &amp; Headers
+                    </span>
                     <span class="tool-tag tag-passive">HTML Only</span>
                   </div>
-                  <p class="tool-desc">Audits missing CSP, HSTS, and frame protections on HTML pages. Uncheck to test only for active exploit bugs.</p>
+                  <p class="tool-desc">Audits CSP, HSTS, and frame protections on HTML documents. Uncheck to test only exploit flaws.</p>
                 </div>
               </label>
             </div>
@@ -206,7 +255,7 @@
           <div class="auth-bar">
             <label class="consent-checkbox">
               <input id="authorization" type="checkbox" required>
-              <span>I confirm that I own this target or possess authorized written permission for this security audit.</span>
+              <span>I confirm that I own this target or possess written authorization for this security audit.</span>
             </label>
 
             <button id="start-scan" type="submit" class="cyber-btn primary">
@@ -256,16 +305,24 @@
         <div class="view-switcher-bar">
           <div class="main-tabs" role="tablist">
             <button id="tab-sitemap-btn" class="main-tab active" type="button" role="tab" aria-selected="true">
-              🌐 Site Map &amp; Subdomains <span id="sitemap-count-pill" class="tab-pill">0</span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+              Site Map &amp; Subdomains <span id="sitemap-count-pill" class="tab-pill">0</span>
             </button>
             <button id="tab-findings-btn" class="main-tab" type="button" role="tab" aria-selected="false">
-              🛡️ Vulnerability Report <span id="findings-count-pill" class="tab-pill">0</span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              Vulnerability Report <span id="findings-count-pill" class="tab-pill">0</span>
             </button>
           </div>
 
           <div class="export-actions">
-            <button id="download-sitemap-btn" class="pill-btn export-btn" type="button">💾 Export Site Map</button>
-            <button id="download-report-btn" class="pill-btn export-btn" type="button">💾 Export Report (JSON)</button>
+            <button id="download-sitemap-btn" class="pill-btn export-btn" type="button">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              Export Site Map
+            </button>
+            <button id="download-report-btn" class="pill-btn export-btn" type="button">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              Export Report (JSON)
+            </button>
           </div>
         </div>
 
@@ -275,7 +332,7 @@
         <div id="sitemap-view" class="view-content active" role="tabpanel">
           <div class="sitemap-overview-card">
             <div class="sitemap-meta">
-              <span class="card-eyebrow">APEX DOMAIN SURFACE</span>
+              <span class="card-eyebrow">APEX DOMAIN TOPOLOGY</span>
               <h2 id="sitemap-root-domain">target.example.com</h2>
             </div>
             <div class="sitemap-stats-row">
@@ -350,7 +407,7 @@
       </section>
 
       <footer class="app-footer">
-        <p>TARSPECTRA Web Security Scanner &bull; Made for Responsible Security Engineering &bull; 127.0.0.1 Local Sandbox</p>
+        <p>TARSPECTRA &bull; Automated Security Scanning &amp; Attack Surface Framework &bull; Local 127.0.0.1 Sandbox</p>
       </footer>
     </div>
 
