@@ -3,12 +3,17 @@ from urllib.parse import urlparse, parse_qs
 from bs4 import BeautifulSoup
 import time
 import json
+import urllib3
+
+urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 
 def fetch_details(url, timeout=12, max_body=2000):
-    headers = {"User-Agent": "ExploitFinder/0.2 (+https://example.local)"}
+    headers = {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36 Tarspectra/2.5"
+    }
     try:
-        r = requests.get(url, headers=headers, timeout=timeout, allow_redirects=True, verify=True)
+        r = requests.get(url, headers=headers, timeout=timeout, allow_redirects=True, verify=False)
         content_type = r.headers.get("Content-Type", "")
         text = r.text or ""
         snippet = text[:max_body]

@@ -175,8 +175,21 @@ def build_hierarchical_sitemap(target_url: str,
                 ]
             })
 
-    # Sort endpoints per subdomain (e.g. root / first, then alphabetically)
+    # Ensure every discovered subdomain has at least a root endpoint entry
     for host, data in subdomain_map.items():
+        if not data["endpoints"]:
+            scheme = data.get("scheme") or target_scheme
+            data["endpoints"].append({
+                "url": f"{scheme}://{host}/",
+                "path": "/",
+                "path_with_query": "/",
+                "query": "",
+                "params": [],
+                "status_code": data.get("status_code", 0),
+                "content_type": "",
+                "forms_count": 0,
+                "forms": [],
+            })
         data["endpoints"].sort(key=lambda ep: (0 if ep["path"] == "/" else 1, ep["path"]))
         data["total_endpoints"] = len(data["endpoints"])
 

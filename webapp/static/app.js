@@ -10,6 +10,9 @@ const state = {
   sourceFilter: 'all',
   searchQuery: '',
   sitemapQuery: '',
+  sitemapMode: 'flowchart', // 'flowchart' | 'treelist'
+  sitemapFilterType: 'all', // 'all' | 'forms' | 'params'
+  collapsedSubs: new Set(),
   pollTimer: null,
   eventSource: null,
   matrixRainActive: true,
@@ -221,8 +224,161 @@ $('#clear-log-btn').addEventListener('click', () => {
 });
 
 // ─────────────────────────────────────────────────────────────────────────────
-// 4. SEPARATE VIEW 1: SITE MAP & SUBDOMAINS HIERARCHY
+// 4. SEPARATE VIEW 1: SITE MAP FLOWCHART & HIERARCHY
 // ─────────────────────────────────────────────────────────────────────────────
+
+function renderFlowchart(sitemap) {
+  const container = $('#flowchart-canvas-view');
+  if (!container || !sitemap || !sitemap.subdomains) return;
+
+  const query = state.sitemapQuery.trim().toLowerCase();
+  const filterType = state.sitemapFilterType;
+  const subEntries = Object.entries(sitemap.subdomains);
+
+  if (!subEntries.length) {
+    container.innerHTML = '<p class="empty-state">No attack surface discovered yet.</p>';
+    return;
+  }
+
+  const rootDomain = sitemap.root_domain || 'Apex Target';
+
+  let branchesHtml = '';
+  let visibleSubCount = 0;
+  let visibleEpCount = 0;
+
+  for (const [host, info] of subEntries) {
+    const endpoints = (info.endpoints || []).filter((ep) => {
+      // 1. Text search filter
+      if (query) {
+        const matchesQuery =
+          host.includes(query) ||
+          ep.path.toLowerCase().includes(query) ||
+          ep.path_with_query.toLowerCase().includes(query) ||
+          (ep.params || []).some((p) => p.toLowerCase().includes(query));
+        if (!matchesQuery) return false;
+      }
+      // 2. Quick type filter
+      if (filterType === 'forms' && ep.forms_count === 0) return false;
+      if (filterType === 'params' && (!ep.params || ep.params.length === 0)) return false;
+      return true;
+    });
+
+    if (query && !host.includes(query) && !endpoints.length) {
+      continue;
+    }
+
+    visibleSubCount++;
+    visibleEpCount += endpoints.length;
+
+    const isCollapsed = state.collapsedSubs.has(host);
+    const status = info.status_code || 200;
+    const statusClass =
+      status === 200 ? 'status-200' : String(status).startsWith('3') ? 'status-300' : status > 0 ? 'status-400' : 'status-unknown';
+
+    let epCardsHtml = '';
+    if (endpoints.length === 0) {
+      epCardsHtml = `<div class="fc-leaf-node fc-empty-leaf"><span class="fc-leaf-path">No matching endpoints under filter</span></div>`;
+    } else {
+      epCardsHtml = endpoints
+        .map((ep) => {
+          const method = ep.forms_count > 0 ? 'POST' : 'GET';
+          const methodClass = ep.forms_count > 0 ? 'method-post' : 'method-get';
+          const epStatus = ep.status_code || 200;
+          const statusBadge = `<span class="status-pill ${epStatus === 200 ? 'status-200' : 'status-300'}">${epStatus}</span>`;
+          const paramBadge = (ep.params || []).length
+            ? `<span class="param-pill" title="Parameters: ${escapeHtml(ep.params.join(', '))}">?${escapeHtml(ep.params.join(','))}</span>`
+            : '';
+          const formBadge = ep.forms_count > 0
+            ? `<span class="form-pill" title="${ep.forms_count} HTML Form(s)">📝 ${ep.forms_count}</span>`
+            : '';
+
+          return `
+          <div class="fc-leaf-node">
+            <div class="fc-leaf-head">
+              <span class="method-badge ${methodClass}">${method}</span>
+              <span class="fc-leaf-path" title="${escapeHtml(ep.url)}">${escapeHtml(ep.path_with_query || ep.path || '/')}</span>
+            </div>
+            <div class="fc-leaf-meta">
+              ${paramBadge}
+              ${formBadge}
+              ${statusBadge}
+              <button type="button" class="tiny-btn copy-url-btn" data-url="${escapeHtml(ep.url)}" title="Copy full URL">Copy</button>
+              <a href="${escapeHtml(ep.url)}" target="_blank" rel="noopener noreferrer" class="fc-ext-link" title="Open in browser">↗</a>
+            </div>
+          </div>`;
+        })
+        .join('');
+    }
+
+    branchesHtml += `
+    <div class="fc-branch ${isCollapsed ? 'collapsed' : ''}" data-host="${escapeHtml(host)}">
+      <div class="fc-branch-connector"></div>
+      <div class="fc-sub-node">
+        <div class="fc-sub-header" data-toggle-host="${escapeHtml(host)}">
+          <span class="fc-toggle-arrow">${isCollapsed ? '▶' : '▼'}</span>
+          <span class="fc-sub-icon">🖥️</span>
+          <span class="fc-sub-name">${escapeHtml(host)}</span>
+          ${info.is_target_host ? '<span class="badge-target-host">TARGET APEX</span>' : ''}
+          ${info.server ? `<span class="subdomain-server">${escapeHtml(info.server)}</span>` : ''}
+          <div class="fc-sub-badges">
+            <span class="status-pill ${statusClass}">${status > 0 ? status : 'PASSIVE'}</span>
+            <span class="ep-count-pill">${endpoints.length} endpoints</span>
+          </div>
+        </div>
+        <div class="fc-leaf-container ${isCollapsed ? 'hidden' : ''}">
+          ${epCardsHtml}
+        </div>
+      </div>
+    </div>`;
+  }
+
+  container.innerHTML = `
+  <div class="flowchart-tree">
+    <!-- Flowchart Apex Root Node -->
+    <div class="fc-root-node">
+      <div class="fc-root-badge">// APEX RECONNAISSANCE ROOT</div>
+      <div class="fc-root-title">
+        <span class="fc-root-icon">🌐</span>
+        <span class="fc-root-domain">${escapeHtml(rootDomain)}</span>
+      </div>
+      <div class="fc-root-stats">
+        <span class="fc-stat-pill"><strong>${visibleSubCount}</strong> Subdomains</span>
+        <span class="fc-stat-pill"><strong>${visibleEpCount}</strong> Endpoints</span>
+      </div>
+      <div class="fc-stem-line"></div>
+    </div>
+
+    <!-- Subdomain Flowchart Branches -->
+    <div class="fc-branches-wrapper">
+      ${branchesHtml || '<p class="empty-state">No matching endpoints found in flowchart.</p>'}
+    </div>
+  </div>`;
+
+  // Bind toggle clicks on subdomain nodes in flowchart
+  $$('#flowchart-canvas-view [data-toggle-host]').forEach((header) => {
+    header.addEventListener('click', () => {
+      const host = header.dataset.toggleHost;
+      if (state.collapsedSubs.has(host)) {
+        state.collapsedSubs.delete(host);
+      } else {
+        state.collapsedSubs.add(host);
+      }
+      renderFlowchart(sitemap);
+    });
+  });
+
+  // Bind copy URL buttons in flowchart
+  $$('#flowchart-canvas-view .copy-url-btn').forEach((btn) => {
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      navigator.clipboard.writeText(btn.dataset.url);
+      const prev = btn.textContent;
+      btn.textContent = 'Copied!';
+      setTimeout(() => (btn.textContent = prev), 1500);
+    });
+  });
+}
+
 function renderSiteMap(sitemap) {
   if (!sitemap || !sitemap.subdomains) return;
 
@@ -231,31 +387,41 @@ function renderSiteMap(sitemap) {
   $('#sitemap-total-eps').textContent = sitemap.total_endpoints || 0;
   $('#sitemap-count-pill').textContent = `${sitemap.total_subdomains} subs / ${sitemap.total_endpoints} eps`;
 
-  const container = $('#subdomains-tree-list');
+  // 1. Render Visual Flowchart
+  renderFlowchart(sitemap);
+
+  // 2. Render Classic List View
+  const listContainer = $('#subdomains-tree-list');
   const query = state.sitemapQuery.trim().toLowerCase();
+  const filterType = state.sitemapFilterType;
   const subEntries = Object.entries(sitemap.subdomains);
 
   if (!subEntries.length) {
-    container.innerHTML = '<p class="empty-state">No subdomains discovered.</p>';
+    listContainer.innerHTML = '<p class="empty-state">No subdomains discovered.</p>';
     return;
   }
 
   const html = subEntries
     .map(([host, info]) => {
       const endpoints = (info.endpoints || []).filter((ep) => {
-        if (!query) return true;
-        return (
-          host.includes(query) ||
-          ep.path.toLowerCase().includes(query) ||
-          ep.path_with_query.toLowerCase().includes(query) ||
-          (ep.params || []).some((p) => p.toLowerCase().includes(query))
-        );
+        if (query) {
+          const matchQuery =
+            host.includes(query) ||
+            ep.path.toLowerCase().includes(query) ||
+            ep.path_with_query.toLowerCase().includes(query) ||
+            (ep.params || []).some((p) => p.toLowerCase().includes(query));
+          if (!matchQuery) return false;
+        }
+        if (filterType === 'forms' && ep.forms_count === 0) return false;
+        if (filterType === 'params' && (!ep.params || ep.params.length === 0)) return false;
+        return true;
       });
 
       if (query && !host.includes(query) && !endpoints.length) {
         return '';
       }
 
+      const isCollapsed = state.collapsedSubs.has(host);
       const status = info.status_code;
       const statusClass =
         status === 200 ? 'status-200' : String(status).startsWith('3') ? 'status-300' : status > 0 ? 'status-400' : 'status-unknown';
@@ -289,10 +455,10 @@ function renderSiteMap(sitemap) {
         .join('');
 
       return `
-      <article class="subdomain-card" data-host="${escapeHtml(host)}">
+      <article class="subdomain-card ${isCollapsed ? 'collapsed' : ''}" data-host="${escapeHtml(host)}">
         <div class="subdomain-header">
           <div class="subdomain-title-group">
-            <span class="subdomain-toggle-icon">▼</span>
+            <span class="subdomain-toggle-icon">${isCollapsed ? '▶' : '▼'}</span>
             <span class="subdomain-host"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right:6px;vertical-align:-2px"><circle cx="12" cy="12" r="10"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>${escapeHtml(host)}</span>
             ${info.is_target_host ? '<span class="badge-target-host">Target Apex</span>' : ''}
             ${info.server ? `<span class="subdomain-server">Server: ${escapeHtml(info.server)}</span>` : ''}
@@ -302,23 +468,29 @@ function renderSiteMap(sitemap) {
             <span class="ep-count-pill">${endpoints.length} endpoints</span>
           </div>
         </div>
-        <div class="endpoints-list">
+        <div class="endpoints-list ${isCollapsed ? 'hidden' : ''}">
           ${endpointsHtml || '<p class="empty-state">No matching endpoints under this subdomain.</p>'}
         </div>
       </article>`;
     })
     .join('');
 
-  container.innerHTML = html || '<p class="empty-state">No subdomains or endpoints match filter.</p>';
+  listContainer.innerHTML = html || '<p class="empty-state">No subdomains or endpoints match filter.</p>';
 
-  $$('.subdomain-header').forEach((hdr) => {
+  $$('#subdomains-tree-list .subdomain-header').forEach((hdr) => {
     hdr.addEventListener('click', () => {
       const card = hdr.closest('.subdomain-card');
-      card.classList.toggle('collapsed');
+      const host = card.dataset.host;
+      if (state.collapsedSubs.has(host)) {
+        state.collapsedSubs.delete(host);
+      } else {
+        state.collapsedSubs.add(host);
+      }
+      renderSiteMap(sitemap);
     });
   });
 
-  $$('.copy-url-btn').forEach((btn) => {
+  $$('#subdomains-tree-list .copy-url-btn').forEach((btn) => {
     btn.addEventListener('click', (e) => {
       e.stopPropagation();
       navigator.clipboard.writeText(btn.dataset.url);
@@ -329,12 +501,48 @@ function renderSiteMap(sitemap) {
   });
 }
 
+// Flowchart vs List View Switcher
+$('#sitemap-flowchart-btn').addEventListener('click', () => {
+  state.sitemapMode = 'flowchart';
+  $('#sitemap-flowchart-btn').classList.add('active');
+  $('#sitemap-treelist-btn').classList.remove('active');
+  $('#sitemap-flowchart-container').classList.remove('hidden');
+  $('#subdomains-tree-list').classList.add('hidden');
+});
+
+$('#sitemap-treelist-btn').addEventListener('click', () => {
+  state.sitemapMode = 'treelist';
+  $('#sitemap-treelist-btn').classList.add('active');
+  $('#sitemap-flowchart-btn').classList.remove('active');
+  $('#subdomains-tree-list').classList.remove('hidden');
+  $('#sitemap-flowchart-container').classList.add('hidden');
+});
+
+// Quick Filters (All / Forms Only / Parameters Only)
+$$('.sm-qfilter').forEach((btn) => {
+  btn.addEventListener('click', () => {
+    state.sitemapFilterType = btn.dataset.qfilter;
+    $$('.sm-qfilter').forEach((b) => b.classList.toggle('active', b === btn));
+    if (state.currentScan?.sitemap) {
+      renderSiteMap(state.currentScan.sitemap);
+    }
+  });
+});
+
 $('#expand-all-subs').addEventListener('click', () => {
-  $$('.subdomain-card').forEach((c) => c.classList.remove('collapsed'));
+  state.collapsedSubs.clear();
+  if (state.currentScan?.sitemap) {
+    renderSiteMap(state.currentScan.sitemap);
+  }
 });
+
 $('#collapse-all-subs').addEventListener('click', () => {
-  $$('.subdomain-card').forEach((c) => c.classList.add('collapsed'));
+  if (state.currentScan?.sitemap?.subdomains) {
+    Object.keys(state.currentScan.sitemap.subdomains).forEach((h) => state.collapsedSubs.add(h));
+    renderSiteMap(state.currentScan.sitemap);
+  }
 });
+
 $('#sitemap-search').addEventListener('input', (e) => {
   state.sitemapQuery = e.target.value;
   if (state.currentScan?.sitemap) {

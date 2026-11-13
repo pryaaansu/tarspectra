@@ -354,7 +354,32 @@
             <button id="collapse-all-subs" class="tiny-btn" type="button">Collapse All</button>
           </div>
 
-          <div id="subdomains-tree-list" class="subdomains-tree-list"></div>
+          <div class="sitemap-subbar">
+            <div class="sitemap-mode-tabs">
+              <button id="sitemap-flowchart-btn" class="sm-mode-tab active" type="button">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="6" height="6" rx="1"/><rect x="15" y="3" width="6" height="6" rx="1"/><rect x="9" y="15" width="6" height="6" rx="1"/><path d="M6 9v3a3 3 0 0 0 3 3h3m0 0h3a3 3 0 0 0 3-3V9"/><path d="M12 15v-3"/></svg>
+                Flowchart View
+              </button>
+              <button id="sitemap-treelist-btn" class="sm-mode-tab" type="button">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
+                List View
+              </button>
+            </div>
+            <div class="sitemap-quick-filters">
+              <span class="sm-filter-label">Filter:</span>
+              <button id="filter-all-eps" class="sm-qfilter active" data-qfilter="all" type="button">All Endpoints</button>
+              <button id="filter-forms-eps" class="sm-qfilter" data-qfilter="forms" type="button">Forms Only</button>
+              <button id="filter-params-eps" class="sm-qfilter" data-qfilter="params" type="button">Parameters Only</button>
+            </div>
+          </div>
+
+          <!-- Flowchart Visual Graph View -->
+          <div id="sitemap-flowchart-container" class="flowchart-container">
+            <div id="flowchart-canvas-view" class="flowchart-canvas-view"></div>
+          </div>
+
+          <!-- Detailed List View -->
+          <div id="subdomains-tree-list" class="subdomains-tree-list hidden"></div>
         </div>
 
         <!-- VIEW 2: VULNERABILITY REPORT -->
