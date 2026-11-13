@@ -1,518 +1,319 @@
 """
-generate_architecture_image.py — Generates a comprehensive, publication-grade,
-ultra-high-resolution system architecture diagram for TARSPECTRA v2.5.
+generate_architecture_image.py — Generates a clean, professional, publication-grade
+System Architecture diagram for TARSPECTRA v2.5 with a white background, black text,
+and 16:9 aspect ratio optimized for PowerPoint presentations and research slides.
 """
 
 import os
+import matplotlib
+matplotlib.use('Agg')
 import matplotlib.pyplot as plt
-import matplotlib.patches as patches
 from matplotlib.patches import FancyBboxPatch, FancyArrowPatch
 
 def build_architecture_diagram():
-    # Ultra-high-resolution figure: 26 x 15 inches @ 300 DPI = 7800 x 4500 pixels
-    fig = plt.figure(figsize=(26, 15), facecolor='#050913')
+    # 16:9 PowerPoint Widescreen: 14.0 x 7.875 inches @ 200 DPI = 2800 x 1575 px
+    # Perfectly proportioned for inserting into standard PowerPoint slides (16:9)
+    fig = plt.figure(figsize=(14.0, 7.875), facecolor='#FFFFFF', dpi=200)
     ax = fig.add_axes([0, 0, 1, 1])
-    ax.set_facecolor('#050913')
+    ax.set_facecolor('#FFFFFF')
     ax.set_xlim(0, 1)
     ax.set_ylim(0, 1)
     ax.axis('off')
 
-    # Font configurations
-    TITLE_FONT = {'family': 'sans-serif', 'weight': 'bold', 'color': '#ffffff'}
-    HEADER_FONT = {'family': 'sans-serif', 'weight': 'bold', 'color': '#00ff88'}
-    BODY_FONT = {'family': 'monospace', 'weight': 'normal', 'color': '#cbd5e1'}
-    ACCENT_FONT = {'family': 'sans-serif', 'weight': 'bold'}
+    # Color Palette: Clean black text, white background, minimalist neutral borders
+    BG_WHITE = '#FFFFFF'
+    BG_STAGE = '#F8FAFC'       # Subtle off-white container fill
+    BG_HEADER = '#0F172A'      # Deep solid black/slate header
+    BG_CARD = '#FFFFFF'        # Crisp white card fill
+    BORDER_MAIN = '#0F172A'    # Black / Slate-900 border
+    BORDER_LIGHT = '#CBD5E1'   # Slate-300 clean border
+    TEXT_BLACK = '#000000'     # Black text
+    TEXT_MAIN = '#0F172A'      # Deep Charcoal / Slate-900 text
+    TEXT_MUTED = '#475569'     # Slate-600 neutral text
+    TEXT_CODE = '#334155'      # Code / tech labels
+    ARROW_COLOR = '#0F172A'    # Black arrows
 
-    # ─────────────────────────────────────────────────────────────────────────
-    # Helper functions for drawing styled nodes & connectors
-    # ─────────────────────────────────────────────────────────────────────────
-    def draw_card(x, y, w, h, bg_color='#0b1326', border_color='#00ff88', lw=1.5, radius=0.012, alpha=0.95):
+    def draw_box(x, y, w, h, bg=BG_CARD, border=BORDER_MAIN, lw=1.2, radius=0.008, zorder=2):
         rect = FancyBboxPatch(
             (x, y), w, h,
             boxstyle=f"round,pad={radius}",
-            facecolor=bg_color,
-            edgecolor=border_color,
+            facecolor=bg,
+            edgecolor=border,
             linewidth=lw,
-            alpha=alpha,
             transform=ax.transAxes,
-            zorder=2
+            zorder=zorder
         )
         ax.add_patch(rect)
         return rect
 
-    def draw_header_badge(x, y, w, text, color='#00ff88', bg='#002b18'):
-        badge = FancyBboxPatch(
-            (x, y), w, 0.024,
-            boxstyle="round,pad=0.004",
-            facecolor=bg,
-            edgecolor=color,
-            linewidth=1.0,
-            transform=ax.transAxes,
-            zorder=3
-        )
-        ax.add_patch(badge)
-        ax.text(x + w / 2, y + 0.012, text, ha='center', va='center',
-                fontsize=9.5, fontweight='bold', color=color, fontfamily='monospace', zorder=4)
-
-    def draw_arrow(x1, y1, x2, y2, color='#00d4ff', style='->', lw=2.0, rad=0.0):
-        connectionstyle = f"arc3,rad={rad}" if rad != 0 else "arc3,rad=0"
+    def draw_arrow(x1, y1, x2, y2, label=None, label_above=True, lw=1.6):
         arrow = FancyArrowPatch(
             (x1, y1), (x2, y2),
-            arrowstyle=style,
-            color=color,
+            arrowstyle='->',
+            color=ARROW_COLOR,
             linewidth=lw,
-            mutation_scale=16,
-            connectionstyle=connectionstyle,
+            mutation_scale=12,
             transform=ax.transAxes,
-            zorder=5
+            zorder=6
         )
         ax.add_patch(arrow)
+        if label:
+            ly = y1 + 0.016 if label_above else y1 - 0.020
+            ax.text((x1 + x2) / 2, ly, label,
+                    fontsize=6.8, fontweight='bold', color=TEXT_MAIN,
+                    ha='center', va='center', family='sans-serif', zorder=7)
 
-    # ─────────────────────────────────────────────────────────────────────────
-    # 1. TOP BANNER: Project Brand & System Header
-    # ─────────────────────────────────────────────────────────────────────────
-    banner_bg = FancyBboxPatch(
-        (0.015, 0.925), 0.97, 0.062,
-        boxstyle="round,pad=0.008",
-        facecolor='#0a1428',
-        edgecolor='#00ff88',
-        linewidth=2.0,
-        transform=ax.transAxes,
-        zorder=2
-    )
-    ax.add_patch(banner_bg)
+    # 1. Slide Title Header (Clean PPT Slide Header)
+    ax.text(0.025, 0.958, "TARSPECTRA v2.5 — SYSTEM ARCHITECTURE & DATA FLOW",
+            fontsize=15.5, fontweight='bold', color=TEXT_BLACK, family='sans-serif', zorder=4)
+    ax.text(0.025, 0.928, "Modular Web Vulnerability Scanner • Multi-Engine Active Auditing • 83.6% False-Positive Reduction • Attack Surface Flowchart",
+            fontsize=9.2, color=TEXT_MUTED, family='sans-serif', zorder=4)
 
-    ax.text(0.03, 0.965, "TARSPECTRA v2.5", fontsize=22, fontweight='heavy', color='#00ff88', fontfamily='monospace', zorder=4)
-    ax.text(0.19, 0.966, "— COMPREHENSIVE SYSTEM ARCHITECTURE & DATA FLOW", fontsize=16, fontweight='bold', color='#ffffff', fontfamily='sans-serif', zorder=4)
-    ax.text(0.03, 0.938, "AI-Driven Attack Surface Reconnaissance • Resilient Web Crawler • Multi-Engine Active Auditing • False-Positive Reduction • Interactive Flowchart",
-            fontsize=10.5, color='#94a3b8', fontfamily='monospace', zorder=4)
+    # Status Pill (top right)
+    draw_box(0.79, 0.922, 0.185, 0.046, bg='#F1F5F9', border=BORDER_LIGHT, lw=1.0, radius=0.006)
+    ax.text(0.882, 0.945, "LOCAL SANDBOX: 127.0.0.1:8000", fontsize=8.2, fontweight='bold', color=TEXT_MAIN, ha='center', va='center', family='monospace', zorder=4)
 
-    # System Status / Tech Badges (top right)
-    ax.text(0.77, 0.960, "SANDBOX: 127.0.0.1:8000", fontsize=9.5, fontweight='bold', color='#38bdf8', fontfamily='monospace', zorder=4)
-    ax.text(0.77, 0.940, "ENGINES: 6 ACTIVE PLUGINS", fontsize=9.5, fontweight='bold', color='#a855f7', fontfamily='monospace', zorder=4)
-    ax.text(0.91, 0.950, "STATUS: ONLINE ●", fontsize=10.5, fontweight='bold', color='#00ff88', fontfamily='monospace', zorder=4)
+    # Top divider rule
+    ax.plot([0.025, 0.975], [0.905, 0.905], color=BORDER_LIGHT, linewidth=1.2, transform=ax.transAxes, zorder=3)
 
-    # ─────────────────────────────────────────────────────────────────────────
-    # 2. COLUMN 1: CLIENT & USER INTERACTION LAYER
-    # ─────────────────────────────────────────────────────────────────────────
-    draw_card(0.015, 0.08, 0.165, 0.825, bg_color='#06101e', border_color='#38bdf8', lw=1.8)
-    draw_header_badge(0.025, 0.88, 0.145, "1. CLIENT INTERFACES", color='#38bdf8', bg='#082038')
+    # 2. Stage Columns Geometry
+    col_w = 0.164
+    gap = 0.035
+    start_x = 0.025
+    col_y = 0.108
+    col_h = 0.772
 
-    # 2A: Web Dashboard Card
-    draw_card(0.023, 0.50, 0.149, 0.365, bg_color='#0a162d', border_color='#00d4ff', lw=1.2)
-    ax.text(0.033, 0.840, "Web UI Dashboard", fontsize=13, fontweight='bold', color='#00d4ff', zorder=4)
-    ax.text(0.033, 0.822, "webapp/static/ (HTML5, CSS3, ES6)", fontsize=8.5, color='#64748b', fontfamily='monospace', zorder=4)
-
-    web_items = [
-        ("• Matrix Rain Canvas", "#00ff88"),
-        ("  28fps Katakana trail background", "#94a3b8"),
-        ("• Target & Scope Configuration", "#f8fafc"),
-        ("  Depth (1-4), Pages (15-80), Timeout", "#94a3b8"),
-        ("• Security Engine Selector", "#f8fafc"),
-        ("  Toggles for 6 engines + Shodan key", "#94a3b8"),
-        ("• Real-Time Monitor & Metrics", "#38bdf8"),
-        ("  Progress bar, endpoint/sub counters", "#94a3b8"),
-        ("• SSE Terminal Log Drawer", "#00ff88"),
-        ("  Live log streaming from background", "#94a3b8"),
-        ("• Dual-View Mode Controller", "#f59e0b"),
-        ("  Flowchart View vs Detailed List", "#94a3b8"),
-        ("• Findings Inspector & Filters", "#ef4444"),
-        ("  Severity, Engine, and Path query", "#94a3b8"),
+    stages = [
+        {
+            "num": "1",
+            "title": "CLIENT INTERFACES",
+            "sub": "Input & Dashboard",
+            "card_top": {
+                "title": "Web UI Dashboard",
+                "tag": "webapp/static/",
+                "bullets": [
+                    "• Matrix Rain HUD UI",
+                    "• Target URL & Scan Depth",
+                    "• 6 Engine Toggle Switches",
+                    "• Real-Time SSE Log Viewer",
+                    "• Attack Surface Visualizer"
+                ]
+            },
+            "card_bot": {
+                "title": "Command-Line (CLI)",
+                "tag": "main.py (Rich Console)",
+                "bullets": [
+                    "• Rich Formatted Terminal",
+                    "• Live Spinners & Counters",
+                    "• Arguments (--tools, -d)",
+                    "• Automated Batch Auditing",
+                    "• Report Format Exporters"
+                ]
+            }
+        },
+        {
+            "num": "2",
+            "title": "SCAN CONTROLLER",
+            "sub": "API & Task Pool",
+            "card_top": {
+                "title": "API Gateway & SSE",
+                "tag": "webapp/server.py",
+                "bullets": [
+                    "• ThreadingHTTPServer Core",
+                    "• REST Endpoints (/api/scans)",
+                    "• Server-Sent Events (SSE)",
+                    "• URL Syntax Normalization",
+                    "• Scope Boundary Filter"
+                ]
+            },
+            "card_bot": {
+                "title": "ScanStore & Queue",
+                "tag": "State Engine",
+                "bullets": [
+                    "• Async Thread Worker Pool",
+                    "• Memory State Machine",
+                    "• Real-Time Progress State",
+                    "• Disk Report Auto-Reload",
+                    "• Safe Scan Cancellation"
+                ]
+            }
+        },
+        {
+            "num": "3",
+            "title": "RECON & ENGINES",
+            "sub": "Discovery & Active Audit",
+            "card_top": {
+                "title": "Crawler & OSINT",
+                "tag": "scanner/crawler.py",
+                "bullets": [
+                    "• Resilient BFS Web Crawler",
+                    "• HTTP Keep-Alive Pooling",
+                    "• /robots.txt & /sitemap.xml",
+                    "• Static Asset Filter (.css/.png)",
+                    "• Subfinder & Shodan Intel"
+                ]
+            },
+            "card_bot": {
+                "title": "Active Tool Plugins",
+                "tag": "scanner/tools_runner.py",
+                "bullets": [
+                    "• Nuclei: CVEs & Misconfigs",
+                    "• Nikto: Web Hardening Scan",
+                    "• Nmap: Port & NSE Scripts",
+                    "• sqlmap: Safe Risk=1 SQLi",
+                    "• Safe Canary Token PoC"
+                ]
+            }
+        },
+        {
+            "num": "4",
+            "title": "ANALYSIS & ML CORE",
+            "sub": "Validation & Scoring",
+            "card_top": {
+                "title": "Passive Rule Engine",
+                "tag": "analyzer/security_checks.py",
+                "bullets": [
+                    "• Headers (CSP, HSTS, XFO)",
+                    "• HTML <meta> CSP Parser",
+                    "• Cookie Flags (HttpOnly/Sec)",
+                    "• Sensitive Secret Regexes",
+                    "• Zero Static Asset Noise"
+                ]
+            },
+            "card_bot": {
+                "title": "Deduplication & Risk",
+                "tag": "analyzer/reporting.py",
+                "bullets": [
+                    "• 83.6% False-Positive Cut",
+                    "• Host-Level Header Rollup",
+                    "• Multi-Engine Corroboration",
+                    "• Risk Score: Ri >= 0.85 (Crit)",
+                    "• Strict Positive Verification"
+                ]
+            }
+        },
+        {
+            "num": "5",
+            "title": "VISUAL & OUTPUT",
+            "sub": "Hierarchy & Archive",
+            "card_top": {
+                "title": "Attack Flowchart",
+                "tag": "Flowchart Visualizer",
+                "bullets": [
+                    "• Interactive Site Topology",
+                    "• Apex -> Subdomain -> Endpt",
+                    "• Method Pills [GET] / [POST]",
+                    "• Form & Parameter Badges",
+                    "• One-Click cURL Generator"
+                ]
+            },
+            "card_bot": {
+                "title": "Report Store",
+                "tag": "reports/web/ Archive",
+                "bullets": [
+                    "• Machine-Readable JSON",
+                    "• Attack Surface Sitemap",
+                    "• Raw HTTP Evidence Log",
+                    "• Formats: JSON, HTML, CSV",
+                    "• Direct Git Sync Support"
+                ]
+            }
+        }
     ]
-    cur_y = 0.795
-    for title, col in web_items:
-        ax.text(0.033, cur_y, title, fontsize=8.5, color=col, fontfamily='monospace', zorder=4)
-        cur_y -= 0.021
 
-    # 2B: CLI Interface Card
-    draw_card(0.023, 0.10, 0.149, 0.380, bg_color='#0a162d', border_color='#a855f7', lw=1.2)
-    ax.text(0.033, 0.455, "CLI Execution Engine", fontsize=13, fontweight='bold', color='#c084fc', zorder=4)
-    ax.text(0.033, 0.437, "main.py (argparse, rich)", fontsize=8.5, color='#64748b', fontfamily='monospace', zorder=4)
+    card_h = 0.332
+    top_card_y = col_y + 0.370
+    bot_card_y = col_y + 0.015
 
-    cli_items = [
-        ("• Target Input: -u / --url", "#f8fafc"),
-        ("• Crawl Scope: --max-pages / depth", "#94a3b8"),
-        ("• Engine Switches:", "#f8fafc"),
-        ("  --nuclei, --subfinder, --nikto", "#cbd5e1"),
-        ("  --nmap, --sqlmap, --shodan", "#cbd5e1"),
-        ("  --all-tools (one-click full audit)", "#00ff88"),
-        ("• Safe Reflection: --safe-reflection", "#38bdf8"),
-        ("• Header Skip: --skip-headers", "#94a3b8"),
-        ("• Rich Console Formatters:", "#c084fc"),
-        ("  Tree visualizer for subdomains", "#94a3b8"),
-        ("  Colorized vulnerability tables", "#94a3b8"),
-        ("• Multi-Format Exporters:", "#f59e0b"),
-        ("  --output (JSON report)", "#94a3b8"),
-        ("  --sitemap-output (Site map)", "#94a3b8"),
-        ("  --export-html & --export-csv", "#94a3b8"),
-    ]
-    cur_y = 0.412
-    for title, col in web_items[:len(cli_items)]:
-        item_text, item_col = cli_items[web_items.index((title, col))]
-        ax.text(0.033, cur_y, item_text, fontsize=8.5, color=item_col, fontfamily='monospace', zorder=4)
-        cur_y -= 0.021
+    for idx, st in enumerate(stages):
+        cx = start_x + idx * (col_w + gap)
 
-    # ─────────────────────────────────────────────────────────────────────────
-    # 3. COLUMN 2: API GATEWAY & SCAN CONTROLLER CORE
-    # ─────────────────────────────────────────────────────────────────────────
-    draw_card(0.200, 0.08, 0.170, 0.825, bg_color='#081324', border_color='#00ff88', lw=1.8)
-    draw_header_badge(0.210, 0.88, 0.150, "2. BACKEND & GATEWAY", color='#00ff88', bg='#002816')
+        # Stage background container
+        draw_box(cx, col_y, col_w, col_h, bg=BG_STAGE, border=BORDER_MAIN, lw=1.4, radius=0.008, zorder=2)
 
-    # Gateway Web Server
-    draw_card(0.208, 0.54, 0.154, 0.325, bg_color='#0c1a33', border_color='#00ff88', lw=1.2)
-    ax.text(0.218, 0.840, "REST & SSE Server", fontsize=13, fontweight='bold', color='#00ff88', zorder=4)
-    ax.text(0.218, 0.822, "webapp/server.py (ThreadingHTTPServer)", fontsize=8.5, color='#64748b', fontfamily='monospace', zorder=4)
+        # Stage header banner
+        draw_box(cx, col_y + col_h - 0.054, col_w, 0.054, bg=BG_HEADER, border=BORDER_MAIN, lw=1.2, radius=0.006, zorder=3)
+        ax.text(cx + col_w / 2, col_y + col_h - 0.021, f"{st['num']}. {st['title']}",
+                fontsize=9.2, fontweight='bold', color='#FFFFFF', ha='center', va='center', family='sans-serif', zorder=4)
+        ax.text(cx + col_w / 2, col_y + col_h - 0.040, st['sub'],
+                fontsize=7.2, color='#94A3B8', ha='center', va='center', family='sans-serif', zorder=4)
 
-    server_items = [
-        ("• HTTP/1.1 Multi-Threaded Daemon", "#f8fafc"),
-        ("• RESTful Endpoints:", "#38bdf8"),
-        ("  POST /api/scans  (Launch scan)", "#cbd5e1"),
-        ("  GET  /api/scans  (List history)", "#cbd5e1"),
-        ("  GET  /api/scans/:id  (Details)", "#cbd5e1"),
-        ("  GET  /api/tools  (Installed)", "#cbd5e1"),
-        ("  GET  /api/health (Readiness)", "#cbd5e1"),
-        ("• Server-Sent Events (SSE):", "#00ff88"),
-        ("  GET  /api/scans/:id/stream", "#00ff88"),
-        ("  Streams live terminal logs in real-time", "#94a3b8"),
-        ("• Secure Download Handlers:", "#f59e0b"),
-        ("  /api/scans/:id/download (Report)", "#cbd5e1"),
-        ("  /api/scans/:id/download-sitemap", "#cbd5e1"),
-        ("• Static Asset Dispatcher (index, CSS, JS)", "#64748b"),
-    ]
-    cur_y = 0.795
-    for title, col in server_items:
-        ax.text(0.218, cur_y, title, fontsize=8.5, color=col, fontfamily='monospace', zorder=4)
-        cur_y -= 0.020
+        # TOP CARD (Recon / UI Pipeline)
+        c_top = st['card_top']
+        draw_box(cx + 0.006, top_card_y, col_w - 0.012, card_h, bg=BG_CARD, border=BORDER_LIGHT, lw=1.0, radius=0.006, zorder=3)
+        ax.text(cx + 0.012, top_card_y + card_h - 0.022, c_top['title'], fontsize=8.8, fontweight='bold', color=TEXT_BLACK, family='sans-serif', zorder=4)
+        ax.text(cx + 0.012, top_card_y + card_h - 0.039, c_top['tag'], fontsize=7.0, color=TEXT_CODE, family='monospace', zorder=4)
 
-    # Scan State Store & Worker
-    draw_card(0.208, 0.10, 0.154, 0.415, bg_color='#0c1a33', border_color='#00d4ff', lw=1.2)
-    ax.text(0.218, 0.490, "ScanStore & Orchestrator", fontsize=13, fontweight='bold', color='#00d4ff', zorder=4)
-    ax.text(0.218, 0.472, "Thread-Safe State & Execution Pipeline", fontsize=8.5, color='#64748b', fontfamily='monospace', zorder=4)
+        # Divider line inside card
+        ax.plot([cx + 0.012, cx + col_w - 0.012], [top_card_y + card_h - 0.048, top_card_y + card_h - 0.048],
+                color='#E2E8F0', linewidth=0.8, transform=ax.transAxes, zorder=3)
 
-    store_items = [
-        ("• In-Memory Thread-Safe State Store", "#f8fafc"),
-        ("  Lock-guarded state transitions", "#94a3b8"),
-        ("  Automatic history retention (max 25)", "#94a3b8"),
-        ("• Background Thread Worker Pool", "#00d4ff"),
-        ("  Daemon threads prevent UI lockup", "#94a3b8"),
-        ("• Per-Scan Log Queue Manager", "#00ff88"),
-        ("  append_log() & drain_log() buffer", "#94a3b8"),
-        ("• Progress Telemetry Engine", "#f59e0b"),
-        ("  Pages found / scanned, subs, findings", "#94a3b8"),
-        ("• Pipeline Stage Dispatcher:", "#a855f7"),
-        ("  1. Subfinder OSINT enumeration", "#cbd5e1"),
-        ("  2. Resilient BFS web crawling", "#cbd5e1"),
-        ("  3. Page metadata & headers audit", "#cbd5e1"),
-        ("  4. Safe reflection PoC test", "#cbd5e1"),
-        ("  5. Active tool engine execution", "#cbd5e1"),
-        ("  6. De-duplication & report write", "#00ff88"),
-    ]
-    cur_y = 0.446
-    for title, col in store_items:
-        ax.text(0.218, cur_y, title, fontsize=8.2, color=col, fontfamily='monospace', zorder=4)
-        cur_y -= 0.021
+        by = top_card_y + card_h - 0.070
+        for b in c_top['bullets']:
+            ax.text(cx + 0.012, by, b, fontsize=7.4, color=TEXT_MAIN, family='sans-serif', zorder=4)
+            by -= 0.052
 
-    # ─────────────────────────────────────────────────────────────────────────
-    # 4. COLUMN 3: RECONNAISSANCE, CRAWLER & SECURITY ENGINES
-    # ─────────────────────────────────────────────────────────────────────────
-    draw_card(0.390, 0.08, 0.270, 0.825, bg_color='#07111f', border_color='#f59e0b', lw=1.8)
-    draw_header_badge(0.400, 0.88, 0.250, "3. MULTI-ENGINE RECON & AUDIT LAYER", color='#f59e0b', bg='#2b1a00')
+        # BOTTOM CARD (Active / Analysis Pipeline)
+        c_bot = st['card_bot']
+        draw_box(cx + 0.006, bot_card_y, col_w - 0.012, card_h, bg=BG_CARD, border=BORDER_LIGHT, lw=1.0, radius=0.006, zorder=3)
+        ax.text(cx + 0.012, bot_card_y + card_h - 0.022, c_bot['title'], fontsize=8.8, fontweight='bold', color=TEXT_BLACK, family='sans-serif', zorder=4)
+        ax.text(cx + 0.012, bot_card_y + card_h - 0.039, c_bot['tag'], fontsize=7.0, color=TEXT_CODE, family='monospace', zorder=4)
 
-    # Sub-box 3A: Resilient Web Crawler
-    draw_card(0.398, 0.58, 0.122, 0.285, bg_color='#0a172e', border_color='#00ff88', lw=1.2)
-    ax.text(0.406, 0.840, "Resilient BFS Crawler", fontsize=11.5, fontweight='bold', color='#00ff88', zorder=4)
-    ax.text(0.406, 0.824, "scanner/crawler.py", fontsize=8.0, color='#64748b', fontfamily='monospace', zorder=4)
-    crawler_items = [
-        ("• Connection-Pooled Session", "#f8fafc"),
-        ("  requests.Session keep-alive (10x fast)", "#94a3b8"),
-        ("• Route Auto-Discovery", "#00ff88"),
-        ("  Pulls /robots.txt & /sitemap.xml", "#94a3b8"),
-        ("• Static Asset Filter", "#38bdf8"),
-        ("  Excludes .png/.css/.woff/media", "#94a3b8"),
-        ("• Recursive Loop Detector", "#f59e0b"),
-        ("  Guards against infinite calendars", "#94a3b8"),
-        ("• SSL/TLS Resilience", "#cbd5e1"),
-        ("  Auto verify=False for local/staging", "#94a3b8"),
-        ("• Content-Type Guard (HTML only)", "#64748b"),
-    ]
-    cur_y = 0.800
-    for title, col in crawler_items:
-        ax.text(0.406, cur_y, title, fontsize=7.8, color=col, fontfamily='monospace', zorder=4)
-        cur_y -= 0.020
+        # Divider line inside card
+        ax.plot([cx + 0.012, cx + col_w - 0.012], [bot_card_y + card_h - 0.048, bot_card_y + card_h - 0.048],
+                color='#E2E8F0', linewidth=0.8, transform=ax.transAxes, zorder=3)
 
-    # Sub-box 3B: OSINT & Passive Recon
-    draw_card(0.528, 0.58, 0.122, 0.285, bg_color='#0a172e', border_color='#38bdf8', lw=1.2)
-    ax.text(0.536, 0.840, "OSINT & Surface Recon", fontsize=11.5, fontweight='bold', color='#38bdf8', zorder=4)
-    ax.text(0.536, 0.824, "scanner/sitemap.py & tools_runner.py", fontsize=7.5, color='#64748b', fontfamily='monospace', zorder=4)
-    osint_items = [
-        ("• Subfinder Passive Engine", "#38bdf8"),
-        ("  DNS & Certificate Transparency logs", "#94a3b8"),
-        ("  Subdomain enumeration without alert", "#94a3b8"),
-        ("• Shodan OSINT Engine", "#00ff88"),
-        ("  Free automated Shodan InternetDB", "#00ff88"),
-        ("  Public IP & ASN mapping", "#94a3b8"),
-        ("  Listening ports & banner metadata", "#94a3b8"),
-        ("  Exposed database alerts (Redis/Mongo)", "#ef4444"),
-        ("  Verified CVE vulnerability lookup", "#f59e0b"),
-        ("• Apex Topology Mapper", "#cbd5e1"),
-        ("  Extracts root domain via tldextract", "#94a3b8"),
-    ]
-    cur_y = 0.800
-    for title, col in osint_items:
-        ax.text(0.536, cur_y, title, fontsize=7.8, color=col, fontfamily='monospace', zorder=4)
-        cur_y -= 0.020
+        by = bot_card_y + card_h - 0.070
+        for b in c_bot['bullets']:
+            ax.text(cx + 0.012, by, b, fontsize=7.4, color=TEXT_MAIN, family='sans-serif', zorder=4)
+            by -= 0.052
 
-    # Sub-box 3C: Hierarchical Site Map Builder
-    draw_card(0.398, 0.44, 0.252, 0.125, bg_color='#0b1933', border_color='#f59e0b', lw=1.2)
-    ax.text(0.406, 0.542, "Site Map Topology Builder (scanner/sitemap.py)", fontsize=11.5, fontweight='bold', color='#f59e0b', zorder=4)
-    sitemap_items = [
-        "• Combines passive subdomains (Subfinder, Shodan) with actively discovered crawler paths",
-        "• Structures tree: Apex Registered Domain ──► Subdomains ──► Endpoints & Parameters",
-        "• Inspects HTTP status codes, server technologies (nginx, Apache, cloudflare), and forms count",
-        "• Feeds structured topology JSON to Interactive Flowchart and export endpoints",
-    ]
-    cur_y = 0.520
-    for it in sitemap_items:
-        ax.text(0.406, cur_y, it, fontsize=8.0, color='#cbd5e1', fontfamily='monospace', zorder=4)
-        cur_y -= 0.018
+    # 3. Connecting Pipeline Arrows (Top and Bottom Rows)
+    top_arrow_y = top_card_y + card_h / 2
+    bot_arrow_y = bot_card_y + card_h / 2
 
-    # Bottom Half: Active Scanning Engines Grid (Nuclei, Nikto, Nmap, sqlmap, Reflection)
-    draw_card(0.398, 0.10, 0.252, 0.320, bg_color='#091428', border_color='#ef4444', lw=1.2)
-    ax.text(0.406, 0.398, "Active Security & Vulnerability Engines (scanner/tools_runner.py)", fontsize=11.5, fontweight='bold', color='#ef4444', zorder=4)
+    # Top Row: Reconnaissance & Surface Mapping Pipeline
+    top_labels = ["HTTP / SSE", "Start Crawl", "Endpoints", "Site Tree"]
+    for i in range(4):
+        x1 = start_x + (i + 1) * col_w + i * gap
+        x2 = x1 + gap
+        draw_arrow(x1, top_arrow_y, x2, top_arrow_y, label=top_labels[i], label_above=True)
 
-    # 4 Tool sub-boxes inside
-    tool_boxes = [
-        (0.406, 0.250, 0.115, 0.130, "Nuclei CVE Engine", "#00ff88", [
-            "• ProjectDiscovery templates",
-            "• Confirmed CVEs & exposures",
-            "• 99%+ True Positive rate",
-            "• Extracts reproduction cURL"
-        ]),
-        (0.527, 0.250, 0.115, 0.130, "Nikto Web Scanner", "#f59e0b", [
-            "• Tuned server audit (-T 1..9)",
-            "• Noise filter rejects info msgs",
-            "• Dangerous files, .git, .env",
-            "• Outdated package detection"
-        ]),
-        (0.406, 0.112, 0.115, 0.125, "Nmap HTTP Scripts", "#38bdf8", [
-            "• NSE scripts: methods, xss, sqli",
-            "• Strict positive XML parsing",
-            "• Rejects 'could not find' noise",
-            "• Insecure HTTP methods alert"
-        ]),
-        (0.527, 0.112, 0.115, 0.125, "sqlmap & Reflection", "#a855f7", [
-            "• Safe SQLi detection (risk=1)",
-            "• Zero DB write tampering",
-            "• Canary reflection marker",
-            "• Proves injection reflection"
-        ]),
-    ]
-    for bx, by, bw, bh, btitle, bcol, bitems in tool_boxes:
-        draw_card(bx, by, bw, bh, bg_color='#0e1d38', border_color=bcol, lw=1.0)
-        ax.text(bx + 0.006, by + bh - 0.018, btitle, fontsize=9.5, fontweight='bold', color=bcol, zorder=4)
-        cy = by + bh - 0.038
-        for bit in bitems:
-            ax.text(bx + 0.006, cy, bit, fontsize=7.2, color='#cbd5e1', fontfamily='monospace', zorder=4)
-            cy -= 0.018
+    # Bottom Row: Active Vulnerability & Verification Pipeline
+    bot_labels = ["CLI Flags", "Dispatch", "Findings", "Final JSON"]
+    for i in range(4):
+        x1 = start_x + (i + 1) * col_w + i * gap
+        x2 = x1 + gap
+        draw_arrow(x1, bot_arrow_y, x2, bot_arrow_y, label=bot_labels[i], label_above=False)
 
-    # ─────────────────────────────────────────────────────────────────────────
-    # 5. COLUMN 4: ANALYSIS, DE-DUPLICATION & AI/ML CLASSIFIER
-    # ─────────────────────────────────────────────────────────────────────────
-    draw_card(0.680, 0.08, 0.145, 0.825, bg_color='#081324', border_color='#a855f7', lw=1.8)
-    draw_header_badge(0.690, 0.88, 0.125, "4. ANALYSIS & ML CORE", color='#c084fc', bg='#260c38')
+    # 4. Bottom Capabilities & Summary Bar
+    draw_box(0.025, 0.022, 0.950, 0.065, bg='#F1F5F9', border=BORDER_MAIN, lw=1.2, radius=0.006, zorder=2)
+    ax.text(0.040, 0.060, "KEY ARCHITECTURAL HIGHLIGHTS:", fontsize=8.5, fontweight='bold', color=TEXT_BLACK, family='sans-serif', zorder=4)
+    ax.text(0.245, 0.060, "1. 83.6% Noise Reduction via Host-Level Rollup", fontsize=8.0, color=TEXT_MAIN, family='sans-serif', zorder=4)
+    ax.text(0.575, 0.060, "2. 6 Security Engines (Nuclei, Nikto, Nmap, sqlmap, Subfinder, Shodan)", fontsize=8.0, color=TEXT_MAIN, family='sans-serif', zorder=4)
+    
+    ax.text(0.040, 0.038, "3. Resilient BFS Crawling with Keep-Alive Pool", fontsize=8.0, color=TEXT_MAIN, family='sans-serif', zorder=4)
+    ax.text(0.335, 0.038, "4. Safe Reflection PoC (Zero DB Tampering)", fontsize=8.0, color=TEXT_MAIN, family='sans-serif', zorder=4)
+    ax.text(0.615, 0.038, "5. Interactive Subdomain Attack Surface Flowchart", fontsize=8.0, color=TEXT_MAIN, family='sans-serif', zorder=4)
 
-    # Passive Security Analyzer
-    draw_card(0.688, 0.54, 0.129, 0.325, bg_color='#0f1c3a', border_color='#38bdf8', lw=1.2)
-    ax.text(0.696, 0.840, "Passive Rule Engine", fontsize=12, fontweight='bold', color='#38bdf8', zorder=4)
-    ax.text(0.696, 0.822, "analyzer/security_checks.py", fontsize=8.0, color='#64748b', fontfamily='monospace', zorder=4)
-    passive_items = [
-        ("• Security Headers Audit:", "#f8fafc"),
-        ("  CSP (Content-Security-Policy)", "#cbd5e1"),
-        ("  HSTS (Strict-Transport)", "#cbd5e1"),
-        ("  X-Frame-Options (Clickjack)", "#cbd5e1"),
-        ("  X-Content-Type-Options", "#cbd5e1"),
-        ("  Referrer-Policy & Permissions", "#cbd5e1"),
-        ("• Meta Tag CSP Parser", "#00ff88"),
-        ("  Detects <meta> CSP in HTML", "#94a3b8"),
-        ("• Cookie Hardening Checks", "#f59e0b"),
-        ("  Secure, HttpOnly, SameSite", "#cbd5e1"),
-        ("• Information Leak Regexes", "#ef4444"),
-        ("  API keys, tokens, emails, stack", "#cbd5e1"),
-        ("• Static Asset Disqualification", "#38bdf8"),
-        ("  Zero header warnings on images", "#94a3b8"),
-    ]
-    cur_y = 0.795
-    for title, col in passive_items:
-        ax.text(0.696, cur_y, title, fontsize=7.8, color=col, fontfamily='monospace', zorder=4)
-        cur_y -= 0.020
-
-    # ML Classifier & De-Duplication
-    draw_card(0.688, 0.10, 0.129, 0.415, bg_color='#0f1c3a', border_color='#a855f7', lw=1.2)
-    ax.text(0.696, 0.490, "De-Duplication & ML", fontsize=12, fontweight='bold', color='#c084fc', zorder=4)
-    ax.text(0.696, 0.472, "analyzer/reporting.py & model.py", fontsize=8.0, color='#64748b', fontfamily='monospace', zorder=4)
-    ml_items = [
-        ("• False-Positive Reducer", "#00ff88"),
-        ("  consolidate_findings()", "#00ff88"),
-        ("  83.6% relative FP reduction", "#00ff88"),
-        ("  30 duplicate page CSP warnings", "#94a3b8"),
-        ("  ──► 1 host-level finding", "#00ff88"),
-        ("• Feature Vector Extractor ($x_i$):", "#f8fafc"),
-        ("  Status, method, forms, headers,", "#cbd5e1"),
-        ("  content-type, response entropy", "#cbd5e1"),
-        ("• ML Classifier (RF / LogReg):", "#c084fc"),
-        ("  Computes probability $P(y_i|x_i)$", "#cbd5e1"),
-        ("  Decision threshold $\\tau = 0.65$", "#cbd5e1"),
-        ("• Risk Prioritization Model:", "#f59e0b"),
-        ("  $R_i = w_s S_i + w_e E_i + w_c C_i + w_p I_i$", "#f59e0b"),
-        ("  Critical ($R_i \\geq 0.85$): SLA 24h", "#ef4444"),
-        ("  High ($0.65 \\leq R_i < 0.85$): SLA 7d", "#f97316"),
-        ("  Medium ($0.40 \\leq R_i < 0.65$): 30d", "#f59e0b"),
-        ("  Low ($R_i < 0.40$): SLA 90d", "#38bdf8"),
-    ]
-    cur_y = 0.446
-    for title, col in ml_items:
-        ax.text(0.696, cur_y, title, fontsize=7.6, color=col, fontfamily='monospace', zorder=4)
-        cur_y -= 0.020
-
-    # ─────────────────────────────────────────────────────────────────────────
-    # 6. COLUMN 5: PRESENTATION, FLOWCHART & PERSISTENCE
-    # ─────────────────────────────────────────────────────────────────────────
-    draw_card(0.845, 0.08, 0.140, 0.825, bg_color='#06101e', border_color='#00ff88', lw=1.8)
-    draw_header_badge(0.855, 0.88, 0.120, "5. VISUAL & STORAGE", color='#00ff88', bg='#002816')
-
-    # Flowchart Visualizer Box
-    draw_card(0.853, 0.54, 0.124, 0.325, bg_color='#0a172e', border_color='#00ff88', lw=1.2)
-    ax.text(0.861, 0.840, "Flowchart Architecture", fontsize=11.5, fontweight='bold', color='#00ff88', zorder=4)
-    ax.text(0.861, 0.822, "Interactive Attack Surface Tree", fontsize=8.0, color='#64748b', fontfamily='monospace', zorder=4)
-    fc_items = [
-        ("• Visual Node Graph Hierarchy:", "#00ff88"),
-        ("  Apex Root ──► Subdomains ──►", "#00ff88"),
-        ("  Endpoints with Methods & Params", "#00ff88"),
-        ("• Status & Technology Badges", "#38bdf8"),
-        ("  200 OK, 301 Redirect, 403 Forbidden", "#94a3b8"),
-        ("• Dynamic Method Pills", "#f59e0b"),
-        ("  [GET] cyan / [POST] orange", "#cbd5e1"),
-        ("• Form & Parameter Indicators", "#ef4444"),
-        ("  Forms count & ?param badges", "#cbd5e1"),
-        ("• Quick Attack Surface Filters:", "#a855f7"),
-        ("  [All] / [Forms Only] / [Params]", "#a855f7"),
-        ("• Expand / Collapse Branches", "#94a3b8"),
-        ("• One-Click cURL & URL Copy", "#00ff88"),
-    ]
-    cur_y = 0.795
-    for title, col in fc_items:
-        ax.text(0.861, cur_y, title, fontsize=7.6, color=col, fontfamily='monospace', zorder=4)
-        cur_y -= 0.020
-
-    # Persistence & Reporting Box
-    draw_card(0.853, 0.10, 0.124, 0.415, bg_color='#0a172e', border_color='#f59e0b', lw=1.2)
-    ax.text(0.861, 0.490, "Reports & Data Store", fontsize=11.5, fontweight='bold', color='#f59e0b', zorder=4)
-    ax.text(0.861, 0.472, "Persistent File Archive (reports/)", fontsize=8.0, color='#64748b', fontfamily='monospace', zorder=4)
-    report_items = [
-        ("• Vulnerability Reports (JSON)", "#f8fafc"),
-        ("  reports/web/{scan_id}.json", "#cbd5e1"),
-        ("  Target, findings, severity summary", "#94a3b8"),
-        ("  Active tool outputs & remediation", "#94a3b8"),
-        ("• Site Map Export (JSON)", "#38bdf8"),
-        ("  reports/web/{scan_id}_sitemap.json", "#cbd5e1"),
-        ("  Topology, subdomains, endpoints", "#94a3b8"),
-        ("• Request/Response Store", "#00ff88"),
-        ("  reports/requests/*.txt", "#cbd5e1"),
-        ("  Raw forensic audit proof & headers", "#94a3b8"),
-        ("• Publication Artifacts:", "#a855f7"),
-        ("  CSV & Standalone HTML Reports", "#cbd5e1"),
-        ("  300 DPI Figures in output/paper_figures/", "#cbd5e1"),
-        ("• GitHub Synchronization", "#f59e0b"),
-        ("  Automated commit & push integration", "#94a3b8"),
-    ]
-    cur_y = 0.446
-    for title, col in report_items:
-        ax.text(0.861, cur_y, title, fontsize=7.6, color=col, fontfamily='monospace', zorder=4)
-        cur_y -= 0.020
-
-    # ─────────────────────────────────────────────────────────────────────────
-    # 7. INTER-LAYER DATA FLOW CONNECTORS & PIPELINES (Arrows)
-    # ─────────────────────────────────────────────────────────────────────────
-    # Arrow 1: Client -> Gateway
-    draw_arrow(0.180, 0.68, 0.208, 0.68, color='#38bdf8', lw=2.5)
-    ax.text(0.183, 0.700, "HTTP REST", fontsize=7.5, fontweight='bold', color='#38bdf8', fontfamily='monospace', zorder=6)
-
-    draw_arrow(0.208, 0.64, 0.180, 0.64, color='#00ff88', lw=2.0)
-    ax.text(0.183, 0.620, "SSE Logs", fontsize=7.5, fontweight='bold', color='#00ff88', fontfamily='monospace', zorder=6)
-
-    draw_arrow(0.180, 0.26, 0.208, 0.26, color='#c084fc', lw=2.0)
-    ax.text(0.183, 0.280, "CLI Call", fontsize=7.5, fontweight='bold', color='#c084fc', fontfamily='monospace', zorder=6)
-
-    # Arrow 2: Gateway Store -> Multi-Engine Pipeline
-    draw_arrow(0.362, 0.72, 0.398, 0.72, color='#00ff88', lw=2.5)
-    ax.text(0.367, 0.738, "Phase 1 & 2", fontsize=7.5, fontweight='bold', color='#00ff88', fontfamily='monospace', zorder=6)
-
-    draw_arrow(0.362, 0.26, 0.398, 0.26, color='#ef4444', lw=2.5)
-    ax.text(0.367, 0.278, "Phase 3..5", fontsize=7.5, fontweight='bold', color='#ef4444', fontfamily='monospace', zorder=6)
-
-    # Arrow 3: Crawler & OSINT -> Sitemap Builder
-    draw_arrow(0.459, 0.58, 0.459, 0.565, color='#00ff88', lw=1.8)
-    draw_arrow(0.589, 0.58, 0.589, 0.565, color='#38bdf8', lw=1.8)
-
-    # Arrow 4: Multi-Engine Results -> Analysis Core
-    draw_arrow(0.650, 0.70, 0.688, 0.70, color='#38bdf8', lw=2.2)
-    ax.text(0.654, 0.718, "Pages & Headers", fontsize=7.0, fontweight='bold', color='#38bdf8', fontfamily='monospace', zorder=6)
-
-    draw_arrow(0.650, 0.26, 0.688, 0.26, color='#ef4444', lw=2.2)
-    ax.text(0.654, 0.278, "Active Findings", fontsize=7.0, fontweight='bold', color='#ef4444', fontfamily='monospace', zorder=6)
-
-    # Arrow 5: Analysis Core -> Flowchart & Reports
-    draw_arrow(0.817, 0.70, 0.853, 0.70, color='#00ff88', lw=2.5)
-    ax.text(0.822, 0.718, "Site Topology", fontsize=7.0, fontweight='bold', color='#00ff88', fontfamily='monospace', zorder=6)
-
-    draw_arrow(0.817, 0.26, 0.853, 0.26, color='#f59e0b', lw=2.5)
-    ax.text(0.822, 0.278, "Consolidated JSON", fontsize=7.0, fontweight='bold', color='#f59e0b', fontfamily='monospace', zorder=6)
-
-    # ─────────────────────────────────────────────────────────────────────────
-    # 8. BOTTOM FOOTER & ARCHITECTURAL METRICS
-    # ─────────────────────────────────────────────────────────────────────────
-    footer_bg = FancyBboxPatch(
-        (0.015, 0.012), 0.97, 0.052,
-        boxstyle="round,pad=0.006",
-        facecolor='#091428',
-        edgecolor='#334155',
-        linewidth=1.2,
-        transform=ax.transAxes,
-        zorder=2
-    )
-    ax.add_patch(footer_bg)
-
-    highlights = [
-        "KEY ARCHITECTURAL HIGHLIGHTS:",
-        "1. True-Positive Consolidation (83.6% Noise Reduction)",
-        "2. Multi-Engine Corroboration (Nuclei + Nikto + Nmap + sqlmap + Shodan)",
-        "3. Resilient BFS Crawling (Keep-Alive Pool + Route Discovery)",
-        "4. Interactive Flowchart Topology Explorer",
-    ]
-    ax.text(0.028, 0.038, highlights[0], fontsize=9.0, fontweight='bold', color='#00ff88', fontfamily='monospace', zorder=4)
-    ax.text(0.240, 0.038, highlights[1], fontsize=8.5, fontweight='bold', color='#38bdf8', fontfamily='monospace', zorder=4)
-    ax.text(0.530, 0.038, highlights[2], fontsize=8.5, fontweight='bold', color='#f59e0b', fontfamily='monospace', zorder=4)
-    ax.text(0.028, 0.020, highlights[3], fontsize=8.5, fontweight='bold', color='#c084fc', fontfamily='monospace', zorder=4)
-    ax.text(0.360, 0.020, "5. Strict Positive Verification for NSE & Nikto", fontsize=8.5, fontweight='bold', color='#ef4444', fontfamily='monospace', zorder=4)
-    ax.text(0.680, 0.020, "6. Shodan InternetDB Zero-Key + API Key Dual Mode", fontsize=8.5, fontweight='bold', color='#00ff88', fontfamily='monospace', zorder=4)
-
-    # ─────────────────────────────────────────────────────────────────────────
-    # Save Image to disk
-    # ─────────────────────────────────────────────────────────────────────────
+    # Save outputs
     out_dir = "/Users/priyanshu/Documents/tarspectra web/output"
     os.makedirs(out_dir, exist_ok=True)
-    out_path_png = os.path.join(out_dir, "tarspectra_system_architecture.png")
-    out_path_root_png = "/Users/priyanshu/Documents/tarspectra web/system_architecture.png"
-    out_path_svg = os.path.join(out_dir, "tarspectra_system_architecture.svg")
+    out_png = os.path.join(out_dir, "tarspectra_system_architecture.png")
+    out_root = "/Users/priyanshu/Documents/tarspectra web/system_architecture.png"
+    out_svg = os.path.join(out_dir, "tarspectra_system_architecture.svg")
+    out_ppt_png = os.path.join(out_dir, "tarspectra_architecture_ppt.png")
 
-    plt.savefig(out_path_png, dpi=300, facecolor='#050913', edgecolor='none')
-    plt.savefig(out_path_root_png, dpi=300, facecolor='#050913', edgecolor='none')
-    plt.savefig(out_path_svg, dpi=300, facecolor='#050913', edgecolor='none')
+    plt.savefig(out_png, dpi=200, facecolor='#FFFFFF', edgecolor='none')
+    plt.savefig(out_root, dpi=200, facecolor='#FFFFFF', edgecolor='none')
+    plt.savefig(out_svg, dpi=200, facecolor='#FFFFFF', edgecolor='none')
+    plt.savefig(out_ppt_png, dpi=200, facecolor='#FFFFFF', edgecolor='none')
     plt.close()
 
-    print(f"✓ Generated high-resolution architecture PNG: {out_path_png}")
-    print(f"✓ Copied to project root: {out_path_root_png}")
-    print(f"✓ Generated vector SVG: {out_path_svg}")
+    print(f"✓ Generated clean PPT architecture PNG (Output): {out_png}")
+    print(f"✓ Generated clean PPT architecture PNG (Root): {out_root}")
+    print(f"✓ Generated clean PPT architecture PNG (PPT alias): {out_ppt_png}")
+    print(f"✓ Generated clean vector SVG: {out_svg}")
 
 if __name__ == '__main__':
     build_architecture_diagram()
