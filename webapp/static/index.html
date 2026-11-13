@@ -51,6 +51,10 @@
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
             sqlmap
           </span>
+          <span class="engine-badge active" title="Shodan Attack Surface & CVE Intelligence">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+            Shodan
+          </span>
         </div>
 
         <div class="topbar-actions">
@@ -206,6 +210,20 @@
               </label>
 
               <label class="tool-checkbox-card">
+                <input id="run-shodan" type="checkbox" checked>
+                <div class="tool-card-body">
+                  <div class="tool-title-row">
+                    <span class="tool-name">
+                      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+                      Shodan OSINT
+                    </span>
+                    <span class="tool-tag tag-verified">OSINT</span>
+                  </div>
+                  <p class="tool-desc">IP intelligence, open ports, exposed databases, and known CVEs.</p>
+                </div>
+              </label>
+
+              <label class="tool-checkbox-card">
                 <input id="safe-reflection" type="checkbox">
                 <div class="tool-card-body">
                   <div class="tool-title-row">
@@ -232,6 +250,11 @@
                   <p class="tool-desc">CSP, HSTS, frame protections — HTML documents only.</p>
                 </div>
               </label>
+            </div>
+
+            <div class="shodan-key-bar">
+              <label for="shodan-api-key" class="field-label" style="margin-bottom:4px">// SHODAN API KEY (OPTIONAL)</label>
+              <input id="shodan-api-key" type="password" placeholder="Leave blank to use free Shodan InternetDB (zero config)" autocomplete="off">
             </div>
           </div>
 
@@ -357,6 +380,7 @@
               <button data-source="nikto" class="f-pill" type="button">Nikto</button>
               <button data-source="nmap" class="f-pill" type="button">Nmap</button>
               <button data-source="sqlmap" class="f-pill" type="button">sqlmap</button>
+              <button data-source="shodan" class="f-pill" type="button">Shodan</button>
               <button data-source="passive_check" class="f-pill" type="button">Passive</button>
             </div>
           </div>

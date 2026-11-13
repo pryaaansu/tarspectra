@@ -355,7 +355,7 @@ function renderFindings(scan) {
   $('#cnt-high').textContent = (sevMap.high || 0) + (sevMap.critical || 0);
   $('#cnt-medium').textContent = sevMap.medium || 0;
   $('#cnt-low').textContent = sevMap.low || 0;
-  const toolHits = findings.filter((f) => ['nuclei', 'nikto', 'nmap', 'sqlmap'].includes(f.source)).length;
+  const toolHits = findings.filter((f) => ['nuclei', 'nikto', 'nmap', 'sqlmap', 'shodan'].includes(f.source)).length;
   $('#cnt-tools').textContent = toolHits;
 
   const container = $('#finding-list');
@@ -529,6 +529,8 @@ $('#scan-form').addEventListener('submit', async (e) => {
     run_nikto: $('#run-nikto').checked,
     run_nmap: $('#run-nmap').checked,
     run_sqlmap: $('#run-sqlmap').checked,
+    run_shodan: $('#run-shodan') ? $('#run-shodan').checked : true,
+    shodan_api_key: $('#shodan-api-key') ? $('#shodan-api-key').value.trim() : '',
     safe_reflection: $('#safe-reflection').checked,
     check_headers: $('#check-headers') ? $('#check-headers').checked : true,
     authorization: $('#authorization').checked,
@@ -604,6 +606,7 @@ async function checkSystem() {
       nikto: '#run-nikto',
       nmap: '#run-nmap',
       sqlmap: '#run-sqlmap',
+      shodan: '#run-shodan',
     };
 
     for (const [tool, sel] of Object.entries(toolElemMap)) {
@@ -621,6 +624,7 @@ async function checkSystem() {
       nikto: 2,
       nmap: 3,
       sqlmap: 4,
+      shodan: 5,
     };
     const badges = $$('#engines-bar .engine-badge');
     for (const [tool, idx] of Object.entries(badgeMap)) {

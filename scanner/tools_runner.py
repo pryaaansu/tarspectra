@@ -14,10 +14,12 @@ and evidence snippets.
 
 from __future__ import annotations
 
+import ipaddress
 import json
 import os
 import re
 import shutil
+import socket
 import subprocess
 import tempfile
 import threading
@@ -26,6 +28,8 @@ import xml.etree.ElementTree as ET
 from pathlib import Path
 from typing import Callable, Optional
 from urllib.parse import urlparse
+
+import requests
 
 
 # ---------------------------------------------------------------------------
@@ -629,6 +633,262 @@ def run_sqlmap(url: str, timeout: int = 120,
 
 
 # ---------------------------------------------------------------------------
+# Shodan — Attack Surface, Port & CVE Intelligence Engine
+# ---------------------------------------------------------------------------
+
+_SHODAN_SENSITIVE_PORTS = {
+    21: ("FTP", "medium", "Unencrypted file transfer service exposed"),
+    23: ("Telnet", "high", "Insecure unencrypted Telnet service exposed"),
+    445: ("SMB", "high", "Server Message Block service exposed (vulnerable to network exploit / traversal)"),
+    1433: ("Microsoft SQL Server", "high", "MSSQL database service exposed"),
+    1521: ("Oracle Database", "high", "Oracle TNS listener exposed"),
+    2375: ("Docker REST API", "high", "Unencrypted Docker daemon API exposed"),
+    2379: ("etcd", "high", "etcd key-value store exposed"),
+    3306: ("MySQL", "high", "MySQL database service exposed to the public internet"),
+    3389: ("RDP", "medium", "Remote Desktop Protocol service exposed"),
+    5432: ("PostgreSQL", "high", "PostgreSQL database service exposed to the public internet"),
+    5900: ("VNC", "medium", "Virtual Network Computing service exposed"),
+    6379: ("Redis", "high", "Publicly accessible Redis database (unauthenticated data store risk)"),
+    9200: ("Elasticsearch", "high", "Elasticsearch REST cluster service exposed"),
+    11211: ("Memcached", "high", "Memcached distributed memory cache exposed"),
+    27017: ("MongoDB", "high", "MongoDB NoSQL database port exposed to the public internet"),
+}
+
+
+def run_shodan(target_url: str, api_key: str | None = None, timeout: int = 25,
+               log_cb: Optional[Callable[[str], None]] = None) -> dict:
+    """
+    Query Shodan for host intelligence, open ports, exposed databases, and known CVEs.
+    
+    Supports:
+      - Authenticated mode via Shodan REST API (if api_key or SHODAN_API_KEY is present)
+      - Free zero-config automated mode via Shodan InternetDB API (internetdb.shodan.io)
+    """
+    host, port, scheme = _target_host_port_scheme(target_url)
+
+    # 1. Resolve domain / host to IPv4
+    resolved_ips = []
+    try:
+        resolved_ips = socket.gethostbyname_ex(host)[2]
+    except Exception as exc:
+        try:
+            resolved_ips = [socket.gethostbyname(host)]
+        except Exception:
+            pass
+
+    if not resolved_ips:
+        if log_cb:
+            log_cb(f"[shodan] Could not resolve hostname '{host}' to an IP address.")
+        return {
+            "tool": "shodan",
+            "status": "failed",
+            "findings": [],
+            "raw": "",
+            "error": f"DNS resolution failed for {host}",
+        }
+
+    target_ip = resolved_ips[0]
+    if log_cb:
+        log_cb(f"[shodan] Resolved {host} to target IP: {target_ip}")
+
+    # 2. Check if private or loopback IP
+    try:
+        ip_obj = ipaddress.ip_address(target_ip)
+        if ip_obj.is_private or ip_obj.is_loopback or ip_obj.is_reserved:
+            if log_cb:
+                log_cb(f"[shodan] Target IP {target_ip} is in a private/local range; Shodan indexes public IPv4 addresses.")
+            return {
+                "tool": "shodan",
+                "status": "completed",
+                "ip": target_ip,
+                "host": host,
+                "ports": [],
+                "vulns": [],
+                "cpes": [],
+                "findings": [{
+                    "source": "shodan",
+                    "title": f"[Shodan] Local/Private Network Target ({target_ip})",
+                    "uri": target_url,
+                    "method": "GET",
+                    "severity": "low",
+                    "confidence": "AUDIT SIGNAL",
+                    "evidence": f"Target resolves to private/loopback IP {target_ip}. Shodan indexes public internet hosts.",
+                    "remediation": "No external attack surface is exposed to Shodan on this private/local IP.",
+                }],
+                "raw": f"Private IP {target_ip}",
+                "error": "",
+            }
+    except ValueError:
+        pass
+
+    # 3. Query Shodan API (Key-based or InternetDB)
+    shodan_key = (api_key or "").strip() or os.environ.get("SHODAN_API_KEY", "").strip()
+    data = {}
+    source_api = "internetdb"
+
+    # Try full API if key is available
+    if shodan_key:
+        try:
+            if log_cb:
+                log_cb(f"[shodan] Querying official Shodan Host API with API key for {target_ip}…")
+            resp = requests.get(
+                f"https://api.shodan.io/shodan/host/{target_ip}",
+                params={"key": shodan_key, "minify": "true"},
+                timeout=timeout,
+            )
+            if resp.status_code == 200:
+                data = resp.json()
+                source_api = "shodan_api"
+            elif resp.status_code in (401, 403):
+                if log_cb:
+                    log_cb("[shodan] Shodan API key invalid or unauthorized; falling back to Shodan InternetDB…")
+            elif resp.status_code == 404:
+                if log_cb:
+                    log_cb(f"[shodan] No historical Shodan record found for {target_ip}.")
+        except Exception as e:
+            if log_cb:
+                log_cb(f"[shodan] Shodan Host API error ({e}); trying InternetDB…")
+
+    # Fallback to Shodan InternetDB (Fast, public, zero key required)
+    if not data:
+        try:
+            if log_cb:
+                log_cb(f"[shodan] Querying Shodan InternetDB for {target_ip}…")
+            resp = requests.get(
+                f"https://internetdb.shodan.io/{target_ip}",
+                headers={"User-Agent": "Tarspectra-Security-Scanner/2.5"},
+                timeout=timeout,
+            )
+            if resp.status_code == 200:
+                data = resp.json()
+                source_api = "internetdb"
+            elif resp.status_code == 404:
+                if log_cb:
+                    log_cb(f"[shodan] No open ports or known vulnerabilities on record for {target_ip}.")
+                data = {"ip": target_ip, "ports": [], "cpes": [], "vulns": [], "hostnames": []}
+            else:
+                if log_cb:
+                    log_cb(f"[shodan] InternetDB returned status code {resp.status_code}.")
+        except Exception as exc:
+            if log_cb:
+                log_cb(f"[shodan] InternetDB connection failed: {exc}")
+            return {
+                "tool": "shodan",
+                "status": "failed",
+                "findings": [],
+                "raw": "",
+                "error": str(exc),
+            }
+
+    # 4. Extract data and build normalized security findings
+    ports = sorted(data.get("ports", []))
+    cpes = data.get("cpes", [])
+    vulns = data.get("vulns", [])
+    hostnames = data.get("hostnames", [])
+    tags = data.get("tags", [])
+    org = data.get("org") or data.get("isp") or ""
+    asn = data.get("asn") or ""
+
+    findings = []
+
+    # Finding type A: Confirmed CVE Vulnerabilities
+    if vulns:
+        # Group into top critical CVEs + summary
+        top_cves = vulns[:8]
+        for cve_id in top_cves:
+            findings.append({
+                "source": "shodan",
+                "title": f"[Shodan] Verified CVE on {target_ip}: {cve_id}",
+                "uri": f"https://{host}",
+                "method": "GET",
+                "references": f"https://nvd.nist.gov/vuln/detail/{cve_id}",
+                "severity": "high",
+                "confidence": "VERIFIED",
+                "evidence": f"Shodan indexed confirmed vulnerability {cve_id} on public host {target_ip} ({host})",
+                "remediation": f"Apply security updates to the service running on {target_ip} to remediate {cve_id}.",
+                "cve_id": cve_id,
+                "ip": target_ip,
+            })
+
+        if len(vulns) > 8:
+            extra_cves = vulns[8:]
+            findings.append({
+                "source": "shodan",
+                "title": f"[Shodan] Additional {len(extra_cves)} Confirmed CVEs on {target_ip}",
+                "uri": f"https://{host}",
+                "method": "GET",
+                "references": f"Shodan CVE Database: {target_ip}",
+                "severity": "medium",
+                "confidence": "VERIFIED",
+                "evidence": f"Total {len(vulns)} CVEs identified: {', '.join(vulns[:25])}...",
+                "remediation": "Audit and patch all vulnerable software components reported on this host.",
+                "total_cves": len(vulns),
+                "ip": target_ip,
+            })
+
+    # Finding type B: Exposed Sensitive / Database / Admin Ports
+    exposed_sensitive = []
+    for p in ports:
+        if p in _SHODAN_SENSITIVE_PORTS:
+            service_name, sev, desc = _SHODAN_SENSITIVE_PORTS[p]
+            exposed_sensitive.append(f"{service_name} ({p})")
+            findings.append({
+                "source": "shodan",
+                "title": f"[Shodan] Exposed Service Port: {service_name} (Port {p})",
+                "uri": f"https://{host}",
+                "method": "GET",
+                "references": f"CWE-200 / Exposed Administrative Interface",
+                "severity": sev,
+                "confidence": "HIGH",
+                "evidence": f"Shodan detected open port {p} ({service_name}) on public IP {target_ip}. {desc}.",
+                "remediation": f"Bind {service_name} to localhost or restrict access via firewall / VPN. Never expose {service_name} to 0.0.0.0/0.",
+                "port": p,
+                "service": service_name,
+                "ip": target_ip,
+            })
+
+    # Finding type C: Public Attack Surface Overview
+    if ports:
+        cpe_summary = ", ".join(cpes[:4]) if cpes else "None identified"
+        tag_str = ", ".join(tags) if tags else "None"
+        findings.append({
+            "source": "shodan",
+            "title": f"[Shodan] Public Attack Surface on {target_ip} ({len(ports)} Open Ports)",
+            "uri": f"https://{host}",
+            "method": "GET",
+            "references": f"Shodan Intelligence: {source_api}",
+            "severity": "low",
+            "confidence": "HIGH",
+            "evidence": f"Public IP: {target_ip} | Ports: {', '.join(map(str, ports))} | CPEs: {cpe_summary} | Tags: {tag_str}" + (f" | Org: {org}" if org else ""),
+            "remediation": "Review all open ports and close unnecessary services or restrict them to trusted IP ranges.",
+            "ports": ports,
+            "ip": target_ip,
+            "cpes": cpes,
+        })
+
+    if log_cb:
+        log_cb(f"[shodan] Completed with {len(findings)} findings ({len(vulns)} CVEs, {len(ports)} open ports)")
+
+    return {
+        "tool": "shodan",
+        "status": "completed",
+        "source_api": source_api,
+        "ip": target_ip,
+        "host": host,
+        "ports": ports,
+        "vulns": vulns,
+        "cpes": cpes,
+        "tags": tags,
+        "org": org,
+        "asn": asn,
+        "hostnames": hostnames,
+        "findings": findings,
+        "raw": json.dumps(data)[:4000],
+        "error": "",
+    }
+
+
+# ---------------------------------------------------------------------------
 # Tool Capabilities & Runner
 # ---------------------------------------------------------------------------
 
@@ -640,4 +900,5 @@ def get_installed_tools() -> dict[str, bool]:
         "nikto": _tool_available("nikto") is not None,
         "nmap": _tool_available("nmap") is not None,
         "sqlmap": _tool_available("sqlmap") is not None,
+        "shodan": True,  # Shodan InternetDB is built-in HTTP + optional API key
     }

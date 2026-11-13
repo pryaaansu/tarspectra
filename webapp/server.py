@@ -46,6 +46,7 @@ from scanner.tools_runner import (
     run_nikto,
     run_nmap,
     run_nuclei,
+    run_shodan,
     run_sqlmap,
     run_subfinder,
 )
@@ -305,6 +306,21 @@ def execute_scan(scan_id):
             all_tool_findings.extend(sqf)
             log(f"[sqlmap] sqlmap finished: {len(sqf)} confirmed injections")
 
+        # 5. Shodan Attack Surface & CVE Intelligence
+        if settings.get("run_shodan", True):
+            STORE.update(scan_id, stage="Querying Shodan intelligence & attack surface…")
+            log("[shodan] Querying Shodan for public IP intelligence, open ports, and CVEs…")
+            shodan_res = run_shodan(
+                target,
+                api_key=settings.get("shodan_api_key"),
+                timeout=settings.get("tool_timeout", 25),
+                log_cb=log,
+            )
+            tool_results_map["shodan"] = shodan_res
+            shf = shodan_res.get("findings", [])
+            all_tool_findings.extend(shf)
+            log(f"[shodan] Shodan finished: {len(shf)} intelligence signals & vulnerabilities")
+
         # ── Phase 6: Consolidate & Summarize (Zero False Positive Spam) ──────
         consolidated = consolidate_findings(annotated_results, all_tool_findings)
         summary = generate_summary(annotated_results, all_tool_findings)
@@ -487,6 +503,8 @@ class DashboardHandler(SimpleHTTPRequestHandler):
                 "run_nikto": payload.get("run_nikto") is True,
                 "run_nmap": payload.get("run_nmap") is True,
                 "run_sqlmap": payload.get("run_sqlmap") is True,
+                "run_shodan": payload.get("run_shodan") is not False,
+                "shodan_api_key": str(payload.get("shodan_api_key") or "").strip(),
                 "tool_timeout": clamp_int(payload.get("tool_timeout"), 180, 30, 600),
             }
         except ValueError as exc:

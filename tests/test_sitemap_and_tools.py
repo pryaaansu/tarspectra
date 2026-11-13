@@ -1,7 +1,13 @@
 import unittest
+from unittest.mock import patch, MagicMock
 from scanner.sitemap import build_hierarchical_sitemap, get_registered_domain
 from analyzer.reporting import consolidate_findings
-from scanner.tools_runner import _parse_nikto_output, _parse_nmap_xml_true_positive
+from scanner.tools_runner import (
+    _parse_nikto_output,
+    _parse_nmap_xml_true_positive,
+    run_shodan,
+    get_installed_tools,
+)
 
 
 class SitemapAndToolsTests(unittest.TestCase):
@@ -113,6 +119,52 @@ class SitemapAndToolsTests(unittest.TestCase):
         findings = _parse_nmap_xml_true_positive(xml_output, "https://example.com")
         # Should be 0 findings! Negative statements must NOT be reported as vulnerabilities.
         self.assertEqual(len(findings), 0)
+
+    def test_get_installed_tools_includes_shodan(self):
+        tools = get_installed_tools()
+        self.assertIn("shodan", tools)
+        self.assertTrue(tools["shodan"])
+
+    def test_shodan_local_private_ip_handled_cleanly(self):
+        res = run_shodan("http://127.0.0.1:8000")
+        self.assertEqual(res["status"], "completed")
+        self.assertEqual(res["ip"], "127.0.0.1")
+        self.assertEqual(len(res["findings"]), 1)
+        self.assertIn("Local/Private", res["findings"][0]["title"])
+
+    @patch("scanner.tools_runner.requests.get")
+    @patch("scanner.tools_runner.socket.gethostbyname_ex")
+    def test_shodan_generates_cve_and_sensitive_port_findings(self, mock_dns, mock_get):
+        mock_dns.return_value = ("target.com", [], ["93.184.216.34"])
+        mock_resp = MagicMock()
+        mock_resp.status_code = 200
+        mock_resp.json.return_value = {
+            "ip": "93.184.216.34",
+            "ports": [80, 443, 6379],  # Redis 6379 exposed
+            "cpes": ["cpe:/a:redis:redis:6.0"],
+            "vulns": ["CVE-2022-0543"],
+            "tags": ["cloud"],
+        }
+        mock_get.return_value = mock_resp
+
+        res = run_shodan("https://target.com")
+        self.assertEqual(res["status"], "completed")
+        self.assertEqual(res["ip"], "93.184.216.34")
+
+        findings = res["findings"]
+        titles = [f["title"] for f in findings]
+
+        # Should detect the verified CVE
+        self.assertTrue(any("CVE-2022-0543" in t for t in titles))
+        # Should detect the exposed Redis service
+        self.assertTrue(any("Redis" in t for t in titles))
+        # Should detect the attack surface overview
+        self.assertTrue(any("Public Attack Surface" in t for t in titles))
+
+        # Check severity of Redis exposed port
+        redis_finding = next(f for f in findings if "Redis" in f["title"])
+        self.assertEqual(redis_finding["severity"], "high")
+        self.assertEqual(redis_finding["source"], "shodan")
 
 
 if __name__ == "__main__":

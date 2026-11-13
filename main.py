@@ -37,6 +37,7 @@ from scanner.tools_runner import (
     run_subfinder,
     run_nikto,
     run_nmap,
+    run_shodan,
     run_sqlmap,
 )
 
@@ -194,6 +195,8 @@ def main():
     tools_grp.add_argument("--nikto", action="store_true", help="Run tuned Nikto web server scanner")
     tools_grp.add_argument("--nmap", action="store_true", help="Run Nmap HTTP vulnerability NSE scripts")
     tools_grp.add_argument("--sqlmap", action="store_true", help="Run sqlmap SQL injection detection (read-only, confirmed flaws only)")
+    tools_grp.add_argument("--shodan", action="store_true", help="Run Shodan host intelligence, open ports & CVE discovery")
+    tools_grp.add_argument("--shodan-key", help="Shodan API key (optional; free Shodan InternetDB used by default)")
     tools_grp.add_argument("--tool-timeout", type=int, default=180, help="Per-tool timeout in seconds (default 180)")
 
     args = parser.parse_args()
@@ -205,6 +208,7 @@ def main():
         args.nikto = True
         args.nmap = True
         args.sqlmap = True
+        args.shodan = True
 
     installed = get_installed_tools()
     root_domain = get_registered_domain(args.url)
@@ -296,6 +300,11 @@ def main():
         cprint("\n[bold cyan]Phase 5d — sqlmap SQL Injection Detection[/bold cyan]")
         sq_res = run_sqlmap(args.url, timeout=args.tool_timeout, log_cb=_tool_log)
         all_tool_findings.extend(sq_res.get("findings", []))
+
+    if args.shodan and installed.get("shodan"):
+        cprint("\n[bold cyan]Phase 5e — Shodan Attack Surface & CVE Intelligence[/bold cyan]")
+        sh_res = run_shodan(args.url, api_key=args.shodan_key, timeout=min(30, args.tool_timeout), log_cb=_tool_log)
+        all_tool_findings.extend(sh_res.get("findings", []))
 
     # ── Phase 6: Consolidation & Output Generation ──────────────────────────
     consolidated = consolidate_findings(annotated, all_tool_findings)
