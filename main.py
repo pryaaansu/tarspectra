@@ -184,6 +184,7 @@ def main():
     parser.add_argument("--export-csv", help="CSV report export path (e.g. reports/report.csv)")
     parser.add_argument("--min-severity", choices=["low", "medium", "high", "critical"], help="Filter exports by min severity")
     parser.add_argument("--safe-reflection", action="store_true", help="Run harmless GET parameter reflection check")
+    parser.add_argument("--skip-headers", action="store_true", help="Skip passive missing security headers/hardening audit (CSP, HSTS, framing)")
 
     # Tool switches
     tools_grp = parser.add_argument_group("Integrated Security Tools")
@@ -254,8 +255,11 @@ def main():
     sitemap_data = build_hierarchical_sitemap(args.url, collected, all_discovered_urls, combined_subs)
 
     # Passive security audit
-    cprint("\n[bold cyan]Phase 4 — Passive Security Control Audit[/bold cyan]")
-    annotated = annotate_results(collected)
+    if args.skip_headers:
+        cprint("\n[bold cyan]Phase 4 — Passive Security Audit (Headers Skipped)[/bold cyan]")
+    else:
+        cprint("\n[bold cyan]Phase 4 — Passive Security Control Audit[/bold cyan]")
+    annotated = annotate_results(collected, check_headers=not args.skip_headers)
 
     # Reflection checks
     if args.safe_reflection:

@@ -521,6 +521,7 @@ $('#scan-form').addEventListener('submit', async (e) => {
     run_nmap: $('#run-nmap').checked,
     run_sqlmap: $('#run-sqlmap').checked,
     safe_reflection: $('#safe-reflection').checked,
+    check_headers: $('#check-headers') ? $('#check-headers').checked : true,
     authorization: $('#authorization').checked,
   };
 

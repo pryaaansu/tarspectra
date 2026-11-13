@@ -243,8 +243,12 @@ def execute_scan(scan_id):
         )
 
         STORE.update(scan_id, stage="Analyzing security controls & disclosures")
-        log("[passive] Inspecting HTTP headers, cookie security, form hygiene, mixed content…")
-        annotated_results = annotate_results(collected)
+        check_headers = settings.get("check_headers", True)
+        if check_headers:
+            log("[passive] Auditing HTML documents for security headers, cookies, forms, disclosures…")
+        else:
+            log("[passive] Security header audit disabled; auditing cookies, forms, disclosures, leaks…")
+        annotated_results = annotate_results(collected, check_headers=check_headers)
 
         # ── Phase 4: Safe Reflection Checks ─────────────────────────────────
         if settings.get("safe_reflection"):
@@ -477,6 +481,7 @@ class DashboardHandler(SimpleHTTPRequestHandler):
                 "max_pages": clamp_int(payload.get("max_pages"), 20, 1, 80),
                 "max_depth": clamp_int(payload.get("max_depth"), 2, 0, 4),
                 "safe_reflection": payload.get("safe_reflection") is True,
+                "check_headers": payload.get("check_headers") is not False,
                 "run_subfinder": payload.get("run_subfinder") is not False,
                 "run_nuclei": payload.get("run_nuclei") is not False,
                 "run_nikto": payload.get("run_nikto") is True,

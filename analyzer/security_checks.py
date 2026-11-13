@@ -25,75 +25,181 @@ def _headers_lower(headers):
     return {str(key).lower(): str(value) for key, value in (headers or {}).items()}
 
 
+STATIC_EXTENSIONS = (
+    ".css", ".js", ".png", ".jpg", ".jpeg", ".gif", ".svg", ".ico", ".webp",
+    ".woff", ".woff2", ".ttf", ".eot", ".otf",
+    ".pdf", ".zip", ".tar", ".gz", ".mp4", ".mp3", ".avi", ".mov",
+    ".xml", ".json", ".map", ".wasm", ".bin"
+)
+
+
+def _is_navigable_html(response):
+    """
+    Return True if the response is a successful (2xx) navigable HTML document.
+    Document security policies (CSP, X-Frame-Options, Permissions-Policy) are
+    only evaluated and enforced by browsers on HTML responses, never on static
+    assets (CSS, JS, images, PDFs) or HTTP redirects/errors (3xx, 4xx, 5xx).
+    """
+    if not isinstance(response, dict):
+        return False
+
+    # Failed request or network error
+    if response.get("error"):
+        return False
+    status_code = response.get("status_code", 200)
+    # Only 2xx responses (or default 200 in unit test mocks) are checked
+    if status_code < 200 or status_code >= 300:
+        return False
+
+    url = (response.get("url") or "").lower().split("?")[0].split("#")[0]
+    if any(url.endswith(ext) for ext in STATIC_EXTENSIONS):
+        return False
+
+    content_type = (response.get("content_type") or "").lower()
+    if content_type:
+        return "text/html" in content_type or "application/xhtml" in content_type
+
+    # If content_type was omitted (e.g. mock test response or server omitted it)
+    body = (response.get("body_snippet") or "").strip().lower()
+    if body:
+        return "<!doctype" in body or "<html" in body or "<head" in body or "<body" in body
+
+    # Default to True for lightweight mock test dictionaries with url and headers
+    return True
+
+
+def _extract_meta_directives(body):
+    """Extract security policies declared in HTML <meta> tags."""
+    meta = {}
+    if not body:
+        return meta
+
+    # 1. Content-Security-Policy (handles nested quotes like content="default-src 'self'")
+    csp_m = (
+        re.search(r'<meta[^>]+http-equiv=["\']?content-security-policy["\']?[^>]+content=(?:"([^"]*)"|\'([^\']*)\')', body, re.I)
+        or re.search(r'<meta[^>]+content=(?:"([^"]*)"|\'([^\']*)\')[^>]+http-equiv=["\']?content-security-policy["\']?', body, re.I)
+    )
+    if csp_m:
+        meta["content-security-policy"] = (csp_m.group(1) or csp_m.group(2) or "").strip()
+
+    # 2. X-Frame-Options
+    xfo_m = (
+        re.search(r'<meta[^>]+http-equiv=["\']?x-frame-options["\']?[^>]+content=(?:"([^"]*)"|\'([^\']*)\')', body, re.I)
+        or re.search(r'<meta[^>]+content=(?:"([^"]*)"|\'([^\']*)\')[^>]+http-equiv=["\']?x-frame-options["\']?', body, re.I)
+    )
+    if xfo_m:
+        meta["x-frame-options"] = (xfo_m.group(1) or xfo_m.group(2) or "").strip()
+
+    # 3. Referrer-Policy
+    ref_m = (
+        re.search(r'<meta[^>]+name=["\']?referrer["\']?[^>]+content=(?:"([^"]*)"|\'([^\']*)\')', body, re.I)
+        or re.search(r'<meta[^>]+content=(?:"([^"]*)"|\'([^\']*)\')[^>]+name=["\']?referrer["\']?', body, re.I)
+    )
+    if ref_m:
+        meta["referrer-policy"] = (ref_m.group(1) or ref_m.group(2) or "").strip()
+
+    return meta
+
+
 def check_security_headers(response):
     """Return missing-header and risky-header findings for a fetched response."""
+    # Don't evaluate document security headers on non-HTML static assets, redirects, or failed crawls
+    if not _is_navigable_html(response):
+        return []
+
     headers = _headers_lower(response.get("headers"))
+    body = response.get("body_snippet", "") or ""
+    meta_directives = _extract_meta_directives(body)
     parsed_url = urlparse(response.get("url", ""))
     findings = []
 
-    # --- Missing required headers ---
-    required_headers = [
-        (
-            "missing_content_security_policy",
-            "Missing Content Security Policy",
-            "medium",
-            "Content-Security-Policy header was not present.",
-            "Deploy a restrictive Content-Security-Policy and allow only the sources the application needs.",
-        ),
-        (
-            "missing_x_content_type_options",
-            "Missing MIME-sniffing protection",
-            "low",
-            "X-Content-Type-Options header was not present.",
-            "Set X-Content-Type-Options: nosniff on responses that serve user-controlled content.",
-        ),
-        (
-            "missing_frame_protection",
-            "Missing clickjacking protection",
-            "medium",
-            "Neither X-Frame-Options nor frame-ancestors in Content-Security-Policy was found.",
-            "Use CSP frame-ancestors (preferred) or X-Frame-Options to limit where pages may be framed.",
-        ),
-        (
-            "missing_referrer_policy",
-            "Missing Referrer-Policy",
-            "low",
-            "Referrer-Policy header was not present.",
-            "Set a policy such as strict-origin-when-cross-origin to reduce URL data leakage.",
-        ),
-        (
-            "missing_permissions_policy",
-            "Missing Permissions-Policy",
-            "low",
-            "Permissions-Policy header was not present.",
-            "Explicitly disable browser features that this application does not require.",
-        ),
-    ]
+    # Combined header + meta checks
+    csp_header = headers.get("content-security-policy", "")
+    csp_meta = meta_directives.get("content-security-policy", "")
+    has_csp = bool(csp_header or csp_meta)
 
-    for key, title, severity, evidence, remediation in required_headers:
-        if key == "missing_frame_protection":
-            csp = headers.get("content-security-policy", "").lower()
-            present = "x-frame-options" in headers or "frame-ancestors" in csp
-        else:
-            header_name = {
-                "missing_content_security_policy": "content-security-policy",
-                "missing_x_content_type_options": "x-content-type-options",
-                "missing_referrer_policy": "referrer-policy",
-                "missing_permissions_policy": "permissions-policy",
-            }[key]
-            present = header_name in headers
-        if not present:
-            findings.append(_finding(key, title, severity, evidence, remediation))
+    # 1. Missing Content-Security-Policy
+    if not has_csp:
+        findings.append(
+            _finding(
+                "missing_content_security_policy",
+                "Missing Content Security Policy",
+                "low",
+                "Neither Content-Security-Policy HTTP header nor <meta> CSP directive was present.",
+                "Deploy a restrictive Content-Security-Policy to mitigate script injection and unauthorized resource loading.",
+                "high",
+            )
+        )
 
-    # --- HSTS (HTTPS only) ---
+    # 2. Missing MIME-sniffing protection
+    if "x-content-type-options" not in headers:
+        findings.append(
+            _finding(
+                "missing_x_content_type_options",
+                "Missing MIME-sniffing protection",
+                "low",
+                "X-Content-Type-Options: nosniff was not returned by the server.",
+                "Set X-Content-Type-Options: nosniff on responses to prevent browsers from MIME-sniffing content.",
+                "high",
+            )
+        )
+
+    # 3. Clickjacking / Frame Protection
+    has_xfo = "x-frame-options" in headers or "x-frame-options" in meta_directives
+    has_frame_ancestors = "frame-ancestors" in csp_header.lower() or "frame-ancestors" in csp_meta.lower()
+    if not (has_xfo or has_frame_ancestors):
+        forms = response.get("forms_detail", []) or []
+        has_interactive_form = len(forms) > 0
+        severity = "medium" if has_interactive_form else "low"
+        evidence_note = " (Page contains interactive form elements; susceptible to clickjacking UI redress attacks)" if has_interactive_form else ""
+        findings.append(
+            _finding(
+                "missing_frame_protection",
+                "Missing clickjacking protection",
+                severity,
+                f"Neither X-Frame-Options nor CSP frame-ancestors was found.{evidence_note}",
+                "Use CSP frame-ancestors (preferred) or X-Frame-Options: SAMEORIGIN/DENY to limit where pages may be framed.",
+                "high",
+            )
+        )
+
+    # 4. Missing Referrer-Policy
+    has_referrer_policy = "referrer-policy" in headers or "referrer-policy" in meta_directives
+    if not has_referrer_policy:
+        findings.append(
+            _finding(
+                "missing_referrer_policy",
+                "Missing Referrer-Policy",
+                "low",
+                "Neither Referrer-Policy HTTP header nor <meta name='referrer'> was present.",
+                "Set a Referrer-Policy (e.g. strict-origin-when-cross-origin) to prevent accidental URL/token leakage in the Referer header.",
+                "medium",
+            )
+        )
+
+    # 5. Missing Permissions-Policy
+    if "permissions-policy" not in headers and "feature-policy" not in headers:
+        findings.append(
+            _finding(
+                "missing_permissions_policy",
+                "Missing Permissions-Policy",
+                "low",
+                "Permissions-Policy header was not present.",
+                "Explicitly disable browser features and hardware APIs (e.g. camera, microphone, geolocation) that this site does not need.",
+                "low",
+            )
+        )
+
+    # 6. HSTS (Strictly HTTPS only!)
     if parsed_url.scheme == "https" and "strict-transport-security" not in headers:
         findings.append(
             _finding(
                 "missing_hsts",
                 "Missing HTTP Strict Transport Security",
-                "medium",
+                "low",
                 "The HTTPS response did not include Strict-Transport-Security.",
-                "After confirming every subdomain supports HTTPS, enable HSTS with an appropriate max-age.",
+                "After confirming every subdomain supports HTTPS, enable HSTS with an appropriate max-age (>= 180 days).",
+                "high",
             )
         )
 
@@ -388,15 +494,16 @@ def check_information_disclosure(response):
     return findings
 
 
-def run_passive_security_checks(response):
-    """Run all passive checks and return a stable, deduplicated list."""
-    checks = (
-        check_security_headers(response)
-        + check_cookies(response)
-        + check_forms(response)
-        + check_mixed_content(response)
-        + check_information_disclosure(response)
-    )
+def run_passive_security_checks(response, check_headers=True):
+    """Run passive checks and return a stable, deduplicated list."""
+    checks = []
+    if check_headers:
+        checks.extend(check_security_headers(response))
+    checks.extend(check_cookies(response))
+    checks.extend(check_forms(response))
+    checks.extend(check_mixed_content(response))
+    checks.extend(check_information_disclosure(response))
+
     seen = set()
     unique = []
     for finding in checks:

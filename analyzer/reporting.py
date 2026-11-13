@@ -51,6 +51,20 @@ HOST_LEVEL_CHECK_IDS = {
     "hsts_short_max_age",
 }
 
+HARDENING_CHECK_IDS = {
+    "missing_content_security_policy",
+    "missing_x_content_type_options",
+    "missing_frame_protection",
+    "missing_referrer_policy",
+    "missing_permissions_policy",
+    "missing_hsts",
+    "hsts_short_max_age",
+    "technology_disclosure_server",
+    "technology_disclosure_x_powered_by",
+    "technology_disclosure_x_aspnet_version",
+    "technology_disclosure_x_aspnetmvc_version",
+}
+
 
 def consolidate_findings(annotated_results: list[dict], tool_findings: list[dict] = None) -> list[dict]:
     """
@@ -83,6 +97,7 @@ def consolidate_findings(annotated_results: list[dict], tool_findings: list[dict
                     tracker["finding"] = dict(f)
                     tracker["finding"]["target_host"] = host
                     tracker["finding"]["scope"] = "Host Configuration"
+                    tracker["finding"]["category"] = "Hardening & Best Practice" if fid in HARDENING_CHECK_IDS else "Vulnerability"
                 tracker["affected_urls"].append(url)
                 tracker["count"] += 1
             else:
@@ -90,6 +105,7 @@ def consolidate_findings(annotated_results: list[dict], tool_findings: list[dict
                 finding_copy = dict(f)
                 finding_copy["url"] = url
                 finding_copy["scope"] = "Page Endpoint"
+                finding_copy["category"] = "Vulnerability"
                 consolidated.append(finding_copy)
 
         # Reflection findings
@@ -97,6 +113,7 @@ def consolidate_findings(annotated_results: list[dict], tool_findings: list[dict
             finding_copy = dict(f)
             finding_copy["url"] = url
             finding_copy["scope"] = "Parameter Reflection"
+            finding_copy["category"] = "Vulnerability"
             consolidated.append(finding_copy)
 
     # Finalize consolidated host-level findings
@@ -123,6 +140,7 @@ def consolidate_findings(annotated_results: list[dict], tool_findings: list[dict
         seen_tool_keys.add(t_key)
         tf_copy = dict(tf)
         tf_copy.setdefault("scope", "Automated Tool")
+        tf_copy.setdefault("category", "Vulnerability")
         consolidated.append(tf_copy)
 
     # Sort: High -> Medium -> Low

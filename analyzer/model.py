@@ -19,7 +19,7 @@ from __future__ import annotations
 from analyzer.security_checks import run_passive_security_checks
 
 
-def annotate_results(results: list[dict]) -> list[dict]:
+def annotate_results(results: list[dict], check_headers: bool = True) -> list[dict]:
     """
     Accept a list of fetch_details results and return a new list where each
     item has:
@@ -30,7 +30,7 @@ def annotate_results(results: list[dict]) -> list[dict]:
     annotated = []
     for r in results:
         new_r = dict(r)
-        new_r["passive_findings"] = run_passive_security_checks(new_r)
+        new_r["passive_findings"] = run_passive_security_checks(new_r, check_headers=check_headers)
         new_r["vuln_findings"] = []          # kept for API compatibility
         new_r.setdefault("tool_findings", [])
         annotated.append(new_r)
