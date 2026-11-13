@@ -848,3 +848,24 @@ async function checkSystem() {
 
 checkSystem();
 loadHistory();
+
+(async function autoLoadFromUrl() {
+  const params = new URLSearchParams(window.location.search);
+  const scanId = params.get('scan');
+  const view = params.get('view');
+  if (scanId) {
+    try {
+      const scan = await api(`/api/scans/${scanId}`);
+      state.currentScan = scan;
+      updateProgress(scan);
+      $('#results-panel').classList.remove('hidden');
+      if (scan.sitemap) renderSiteMap(scan.sitemap);
+      renderFindings(scan);
+      if (view === 'findings') {
+        $('#tab-findings-btn').click();
+      } else if (view === 'sitemap') {
+        $('#tab-sitemap-btn').click();
+      }
+    } catch (_) {}
+  }
+})();

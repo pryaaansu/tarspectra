@@ -84,6 +84,46 @@ class ScanStore:
         self._items = {}
         self._lock = threading.Lock()
         self._log_queues: dict[str, list[str]] = {}
+        self._load_existing_reports()
+
+    def _load_existing_reports(self):
+        if not REPORT_ROOT.is_dir():
+            return
+        for file in sorted(REPORT_ROOT.glob("*.json"), key=lambda p: p.stat().st_mtime, reverse=True):
+            if file.name.endswith("_sitemap.json"):
+                continue
+            scan_id = file.stem
+            try:
+                rep = json.loads(file.read_text(encoding="utf-8"))
+                sitemap_file = REPORT_ROOT / f"{scan_id}_sitemap.json"
+                sitemap_data = json.loads(sitemap_file.read_text(encoding="utf-8")) if sitemap_file.is_file() else None
+                findings = rep.get("consolidated_findings", [])
+                total_eps = sitemap_data.get("total_endpoints", 0) if sitemap_data else len(findings)
+                total_subs = sitemap_data.get("total_subdomains", 1) if sitemap_data else 1
+                self._items[scan_id] = {
+                    "id": scan_id,
+                    "target": rep.get("target", "Target"),
+                    "settings": rep.get("settings", {}),
+                    "status": "completed",
+                    "stage": "Complete",
+                    "progress": {
+                        "pages_found": total_eps,
+                        "pages_scanned": total_eps,
+                        "total_findings": len(findings),
+                        "subdomains_found": total_subs,
+                    },
+                    "started_at": rep.get("generated_at", now_iso()),
+                    "finished_at": rep.get("generated_at", now_iso()),
+                    "summary": rep.get("summary") or {"by_severity": {}},
+                    "results": [],
+                    "consolidated_findings": findings,
+                    "sitemap": sitemap_data,
+                    "tool_results": rep.get("tool_results", {}),
+                    "error": None,
+                    "report_ready": True,
+                }
+            except Exception:
+                continue
 
     def create(self, target, settings):
         scan_id = uuid.uuid4().hex[:12]
